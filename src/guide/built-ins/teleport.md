@@ -1,16 +1,16 @@
 # Teleport {#teleport}
 
- <VueSchoolLink href="https://vueschool.io/lessons/vue-3-teleport" title="Free Vue.js Teleport Lesson"/>
+ <VueSchoolLink href="https://vueschool.io/lessons/vue-3-teleport" title="বিনামূল্যে Vue.js টেলিপোর্ট পাঠ"/>
 
-`<Teleport>` is a built-in component that allows us to "teleport" a part of a component's template into a DOM node that exists outside the DOM hierarchy of that component.
+`<Teleport>` হল একটি অন্তর্নির্মিত কম্পোনেন্ট যা আমাদেরকে একটি কম্পোনেন্টের টেমপ্লেটের একটি অংশকে একটি DOM নোডে "টেলিপোর্ট" করতে দেয় যা সেই কম্পোনেন্টের DOM অনুক্রমের বাইরে বিদ্যমান।
 
 ## Basic Usage {#basic-usage}
 
-Sometimes we may run into the following scenario: a part of a component's template belongs to it logically, but from a visual standpoint, it should be displayed somewhere else in the DOM, outside of the Vue application.
+কখনও কখনও আমরা নিম্নলিখিত পরিস্থিতিতে যেতে পারি: একটি উপাদানের টেমপ্লেটের একটি অংশ যৌক্তিকভাবে এটির অন্তর্গত, কিন্তু একটি ভিজ্যুয়াল দৃষ্টিকোণ থেকে, এটি Vue অ্যাপ্লিকেশনের বাইরে DOM-এর অন্য কোথাও প্রদর্শিত হওয়া উচিত।
 
-The most common example of this is when building a full-screen modal. Ideally, we want the modal's button and the modal itself to live within the same component, since they are both related to the open / close state of the modal. But that means the modal will be rendered alongside the button, deeply nested in the application's DOM hierarchy. This can create some tricky issues when positioning the modal via CSS.
+এটির সবচেয়ে সাধারণ উদাহরণ হল একটি পূর্ণ-স্ক্রিন মডেল তৈরি করার সময়। আদর্শভাবে, আমরা চাই যে মডেলের বোতাম এবং মডেলটি একই উপাদানের মধ্যে থাকুক, যেহেতু তারা উভয়ই মডেলের খোলা / বন্ধ অবস্থার সাথে সম্পর্কিত। কিন্তু যে মানে মোডালটি বোতামের সাথে রেন্ডার করা হবে, অ্যাপ্লিকেশনের DOM অনুক্রমের মধ্যে গভীরভাবে নেস্ট করা হবে। CSS এর মাধ্যমে মোডেল অবস্থান করার সময় এটি কিছু জটিল সমস্যা তৈরি করতে পারে।
 
-Consider the following HTML structure.
+নিম্নলিখিত HTML গঠন বিবেচনা করুন.
 
 ```vue-html
 <div class="outer">
@@ -21,7 +21,7 @@ Consider the following HTML structure.
 </div>
 ```
 
-And here is the implementation of `<MyModal>`:
+এবং এখানে `<MyModal>` এর বাস্তবায়ন:
 
 <div class="composition-api">
 
@@ -90,15 +90,15 @@ export default {
 
 </div>
 
-The component contains a `<button>` to trigger the opening of the modal, and a `<div>` with a class of `.modal`, which will contain the modal's content and a button to self-close.
+কম্পোনেন্টটিতে রয়েছে একটি `<button>` মোডাল খোলার ট্রিগার করার জন্য, এবং একটি `<div>` রয়েছে `.modal` এর একটি ক্লাস সহ, যেটিতে মোডালের বিষয়বস্তু থাকবে এবং স্ব-বন্ধ করার জন্য একটি button থাকবে।
 
-When using this component inside the initial HTML structure, there are a number of potential issues:
+প্রাথমিক HTML কাঠামোর ভিতরে এই উপাদানটি ব্যবহার করার সময়, বেশ কয়েকটি সম্ভাব্য সমস্যা রয়েছে:
 
-- `position: fixed` only places the element relative to the viewport when no ancestor element has `transform`, `perspective` or `filter` property set. If, for example, we intend to animate the ancestor `<div class="outer">` with a CSS transform, it would break the modal layout!
+- `position: fixed` শুধুমাত্র ভিউপোর্টের সাপেক্ষে উপাদানটিকে রাখে যখন কোনো ancestor উপাদানের `transform`, `perspective` বা `filter` বৈশিষ্ট্য সেট না থাকে। উদাহরণস্বরূপ, যদি আমরা একটি CSS ট্রান্সফর্মের সাথে ancestor  `<div class="outer">`কে অ্যানিমেট করতে চাই, তাহলে এটি মডেল বিন্যাসকে ভেঙে দেবে!
 
-- The modal's `z-index` is constrained by its containing elements. If there is another element that overlaps with `<div class="outer">` and has a higher `z-index`, it would cover our modal.
+- মডেলের `z-index` এর উপাদানগুলি দ্বারা সীমাবদ্ধ। যদি আরেকটি উপাদান থাকে যা `<div class="outer">` এর সাথে ওভারল্যাপ করে এবং উচ্চতর `z-index` থাকে, তাহলে এটি আমাদের মডেলকে কভার করবে।
 
-`<Teleport>` provides a clean way to work around these, by allowing us to break out of the nested DOM structure. Let's modify `<MyModal>` to use `<Teleport>`:
+`<Teleport>` আমাদের নেস্টেড DOM কাঠামো থেকে বেরিয়ে আসার অনুমতি দিয়ে এগুলোর চারপাশে কাজ করার একটি পরিষ্কার উপায় প্রদান করে। চলুন `<Teleport>` ব্যবহার করতে `<MyModal>` পরিবর্তন করি:
 
 ```vue-html{3,8}
 <button @click="open = true">Open Modal</button>
@@ -111,9 +111,9 @@ When using this component inside the initial HTML structure, there are a number 
 </Teleport>
 ```
 
-The `to` target of `<Teleport>` expects a CSS selector string or an actual DOM node. Here, we are essentially telling Vue to "**teleport** this template fragment **to** the **`body`** tag".
+`<Teleport>`-এর `to` লক্ষ্য একটি CSS নির্বাচক স্ট্রিং বা একটি প্রকৃত DOM নোড আশা করে। এখানে, আমরা মূলত Vue কে বলছি "**teleport** এই template fragment **to** **`body`** tag"।
 
-You can click the button below and inspect the `<body>` tag via your browser's devtools:
+আপনি নীচের বোতামে ক্লিক করতে পারেন এবং আপনার ব্রাউজারের devtools এর মাধ্যমে `<body>` ট্যাগ পরিদর্শন করতে পারেন:
 
 <script setup>
 import { ref } from 'vue'
@@ -147,21 +147,21 @@ const open = ref(false)
 }
 </style>
 
-You can combine `<Teleport>` with [`<Transition>`](./transition) to create animated modals - see [Example here](/examples/#modal).
+অ্যানিমেটেড মডেল তৈরি করতে আপনি `<Teleport>` এর সাথে [`<Transition>`](./transition) একত্রিত করতে পারেন - [এখানে উদাহরণ](/examples/#modal) দেখুন।
 
 :::tip
-The teleport `to` target must be already in the DOM when the `<Teleport>` component is mounted. Ideally, this should be an element outside the entire Vue application. If targeting another element rendered by Vue, you need to make sure that element is mounted before the `<Teleport>`.
+যখন `<Teleport>` কম্পোনেন্ট মাউন্ট করা হয় তখন টেলিপোর্ট `to` টার্গেটকে অবশ্যই DOM-এ থাকতে হবে। আদর্শভাবে, এটি সম্পূর্ণ Vue অ্যাপ্লিকেশনের বাইরে একটি উপাদান হওয়া উচিত। যদি Vue দ্বারা রেন্ডার করা অন্য একটি উপাদানকে টার্গেট করা হয়, তাহলে আপনাকে নিশ্চিত করতে হবে যে উপাদানটি `<Teleport>` এর আগে মাউন্ট করা আছে।
 :::
 
 ## Using with Components {#using-with-components}
 
-`<Teleport>` only alters the rendered DOM structure - it does not affect the logical hierarchy of the components. That is to say, if `<Teleport>` contains a component, that component will remain a logical child of the parent component containing the `<Teleport>`. Props passing and event emitting will continue to work the same way.
+`<Teleport>` শুধুমাত্র রেন্ডার করা DOM কাঠামোকে পরিবর্তন করে - এটি উপাদানগুলির যৌক্তিক অনুক্রমকে প্রভাবিত করে না। অর্থাৎ, যদি `<Teleport>` একটি উপাদান থাকে, তাহলে সেই উপাদানটি `<Teleport>` ধারণকারী প্যারেন্ট কম্পোনেন্টের লজিক্যাল চাইল্ড হিসেবে থাকবে। প্রপস পাসিং এবং ইভেন্ট এমিটিং একইভাবে কাজ করতে থাকবে।
 
-This also means that injections from a parent component work as expected, and that the child component will be nested below the parent component in the Vue Devtools, instead of being placed where the actual content moved to.
+এর মানে হল যে একটি অভিভাবক উপাদান থেকে ইনজেকশনগুলি প্রত্যাশিতভাবে কাজ করে এবং প্রকৃত সামগ্রী যেখানে স্থানান্তরিত হয়েছে সেখানে স্থাপন করার পরিবর্তে, Vue Devtools-এ মূল উপাদানের নীচে শিশু উপাদানটি নেস্ট করা হবে৷
 
 ## Disabling Teleport {#disabling-teleport}
 
-In some cases, we may want to conditionally disable `<Teleport>`. For example, we may want to render a component as an overlay for desktop, but inline on mobile. `<Teleport>` supports the `disabled` prop which can be dynamically toggled:
+কিছু ক্ষেত্রে, আমরা শর্তসাপেক্ষে `<Teleport>` অক্ষম করতে চাই। উদাহরণস্বরূপ, আমরা ডেস্কটপের জন্য একটি ওভারলে হিসাবে একটি উপাদান রেন্ডার করতে চাই, কিন্তু মোবাইলে ইনলাইন। `<Teleport>` `disabled` প্রপ সমর্থন করে যা গতিশীলভাবে টগল করা যেতে পারে:
 
 ```vue-html
 <Teleport :disabled="isMobile">
@@ -169,13 +169,13 @@ In some cases, we may want to conditionally disable `<Teleport>`. For example, w
 </Teleport>
 ```
 
-Where the `isMobile` state can be dynamically updated by detecting media query changes.
+যেখানে `isMobile` অবস্থা মিডিয়া ক্যোয়ারী পরিবর্তন সনাক্ত করে গতিশীলভাবে আপডেট করা যেতে পারে।
 
 ## Multiple Teleports on the Same Target {#multiple-teleports-on-the-same-target}
 
-A common use case would be a reusable `<Modal>` component, with the potential for multiple instances to be active at the same time. For this kind of scenario, multiple `<Teleport>` components can mount their content to the same target element. The order will be a simple append - later mounts will be located after earlier ones within the target element.
+একটি সাধারণ ব্যবহারের ক্ষেত্রে একটি পুনঃব্যবহারযোগ্য `<Modal>` উপাদান হবে, একই সময়ে একাধিক দৃষ্টান্ত সক্রিয় হওয়ার সম্ভাবনা সহ। এই ধরনের দৃশ্যের জন্য, একাধিক `<Teleport>` উপাদান একই টার্গেট এলিমেন্টে তাদের বিষয়বস্তু মাউন্ট করতে পারে। অর্ডারটি একটি সাধারণ সংযোজন হবে - পরবর্তী মাউন্টগুলি লক্ষ্য উপাদানের মধ্যে আগেরগুলির পরে অবস্থিত হবে।
 
-Given the following usage:
+নিম্নলিখিত ব্যবহার দেওয়া:
 
 ```vue-html
 <Teleport to="#modals">
@@ -186,7 +186,7 @@ Given the following usage:
 </Teleport>
 ```
 
-The rendered result would be:
+রেন্ডার করা ফলাফল হবে:
 
 ```html
 <div id="modals">
@@ -197,7 +197,7 @@ The rendered result would be:
 
 ---
 
-**Related**
+**সম্পর্কিত**
 
-- [`<Teleport>` API reference](/api/built-in-components#teleport)
-- [Handling Teleports in SSR](/guide/scaling-up/ssr#teleports)
+- [`<Teleport>` API রেফারেন্স](/api/built-in-components#teleport)
+- [SSR-এ টেলিপোর্ট হ্যান্ডলিং](/guide/scaling-up/ssr#teleports)
