@@ -4,15 +4,15 @@ outline: deep
 
 # Suspense {#suspense}
 
-:::warning Experimental Feature
-`<Suspense>` is an experimental feature. It is not guaranteed to reach stable status and the API may change before it does.
+:::warning পরীক্ষামূলক বৈশিষ্ট্য
+`<Suspense>` একটি পরীক্ষামূলক বৈশিষ্ট্য৷ এটি স্থিতিশীল অবস্থায় পৌঁছানোর নিশ্চয়তা দেয় না এবং এটি হওয়ার আগেই API পরিবর্তিত হতে পারে৷
 :::
 
-`<Suspense>` is a built-in component for orchestrating async dependencies in a component tree. It can render a loading state while waiting for multiple nested async dependencies down the component tree to be resolved.
+`<Suspense>` হল একটি কম্পোনেন্ট ট্রিতে অ্যাসিঙ্ক নির্ভরতা অর্কেস্ট্রেট করার জন্য একটি অন্তর্নির্মিত কম্পোনেন্ট। এটি কম্পোনেন্ট ট্রির নিচে একাধিক নেস্টেড অ্যাসিঙ্ক নির্ভরতা সমাধানের জন্য অপেক্ষা করার সময় একটি লোডিং স্টেট রেন্ডার করতে পারে।
 
 ## Async Dependencies {#async-dependencies}
 
-To explain the problem `<Suspense>` is trying to solve and how it interacts with these async dependencies, let's imagine a component hierarchy like the following:
+`<Suspense>` যে সমস্যাটি সমাধান করার চেষ্টা করছে এবং এটি কীভাবে এই অ্যাসিঙ্ক নির্ভরতার সাথে ইন্টারঅ্যাক্ট করে তা ব্যাখ্যা করতে, আসুন নিম্নলিখিতগুলির মতো একটি উপাদান শ্রেণিবিন্যাস কল্পনা করি:
 
 ```
 <Suspense>
@@ -24,19 +24,19 @@ To explain the problem `<Suspense>` is trying to solve and how it interacts with
       └─ <Stats> (async component)
 ```
 
-In the component tree there are multiple nested components whose rendering depends on some async resource to be resolved first. Without `<Suspense>`, each of them will need to handle its own loading / error and loaded states. In the worst case scenario, we may see three loading spinners on the page, with content displayed at different times.
+কম্পোনেন্ট ট্রিতে একাধিক নেস্টেড কম্পোনেন্ট রয়েছে যার রেন্ডারিং কিছু অ্যাসিঙ্ক রিসোর্সের উপর নির্ভর করে প্রথমে সমাধান করা হবে। `<Suspense>` ছাড়া, তাদের প্রত্যেকের নিজস্ব লোডিং/ত্রুটি এবং লোড হওয়া অবস্থা পরিচালনা করতে হবে। সবচেয়ে খারাপ পরিস্থিতিতে, আমরা পৃষ্ঠায় তিনটি লোডিং স্পিনার দেখতে পারি, বিভিন্ন সময়ে প্রদর্শিত বিষয়বস্তু সহ।
 
-The `<Suspense>` component gives us the ability to display top-level loading / error states while we wait on these nested async dependencies to be resolved.
+`<Suspense>` উপাদানটি আমাদের শীর্ষ-স্তরের লোডিং / ত্রুটির অবস্থা প্রদর্শন করার ক্ষমতা দেয় যখন আমরা এই নেস্টেড অ্যাসিঙ্ক নির্ভরতাগুলি সমাধান করার জন্য অপেক্ষা করি।
 
-There are two types of async dependencies that `<Suspense>` can wait on:
+দুটি ধরণের অ্যাসিঙ্ক নির্ভরতা রয়েছে যেগুলির জন্য `<Suspense>` অপেক্ষা করতে পারে:
 
-1. Components with an async `setup()` hook. This includes components using `<script setup>` with top-level `await` expressions.
+1. একটি async `setup()` হুক সহ উপাদান। এতে শীর্ষ-স্তরের `await` অভিব্যক্তি সহ `<script setup>` ব্যবহার করা উপাদান অন্তর্ভুক্ত রয়েছে।
 
 2. [Async Components](/guide/components/async).
 
 ### `async setup()` {#async-setup}
 
-A Composition API component's `setup()` hook can be async:
+একটি রচনা API উপাদানের `setup()` হুক অ্যাসিঙ্ক হতে পারে:
 
 ```js
 export default {
@@ -50,7 +50,7 @@ export default {
 }
 ```
 
-If using `<script setup>`, the presence of top-level `await` expressions automatically makes the component an async dependency:
+`<script setup>` ব্যবহার করলে, উচ্চ-স্তরের `await` অভিব্যক্তির উপস্থিতি স্বয়ংক্রিয়ভাবে উপাদানটিকে একটি অ্যাসিঙ্ক নির্ভরতা করে তোলে:
 
 ```vue
 <script setup>
@@ -65,13 +65,13 @@ const posts = await res.json()
 
 ### Async Components {#async-components}
 
-Async components are **"suspensible"** by default. This means that if it has a `<Suspense>` in the parent chain, it will be treated as an async dependency of that `<Suspense>`. In this case, the loading state will be controlled by the `<Suspense>`, and the component's own loading, error, delay and timeout options will be ignored.
+Async উপাদানগুলি ডিফল্টরূপে **"suspensible"**। এর মানে হল যে যদি এটির প্যারেন্ট চেইনে একটি `<Suspense>` থাকে, তাহলে এটি সেই `<Suspense>`-এর একটি অ্যাসিঙ্ক নির্ভরতা হিসাবে বিবেচিত হবে। এই ক্ষেত্রে, লোডিং অবস্থা `<Suspense>` দ্বারা নিয়ন্ত্রিত হবে এবং কম্পোনেন্টের নিজস্ব লোডিং, ত্রুটি, বিলম্ব এবং টাইমআউট বিকল্পগুলি উপেক্ষা করা হবে।
 
-The async component can opt-out of `Suspense` control and let the component always control its own loading state by specifying `suspensible: false` in its options.
+অ্যাসিঙ্ক কম্পোনেন্ট `Suspense` নিয়ন্ত্রণ থেকে অপ্ট-আউট করতে পারে এবং কম্পোনেন্টটিকে তার বিকল্পগুলিতে `suspensible: false` উল্লেখ করে সর্বদা তার নিজস্ব লোডিং অবস্থা নিয়ন্ত্রণ করতে দেয়।
 
 ## Loading State {#loading-state}
 
-The `<Suspense>` component has two slots: `#default` and `#fallback`. Both slots only allow for **one** immediate child node. The node in the default slot is shown if possible. If not, the node in the fallback slot will be shown instead.
+`<Suspense>` উপাদানটির দুটি স্লট রয়েছে: `#default` এবং `#fallback`। উভয় স্লটই শুধুমাত্র **এক** অবিলম্বে চাইল্ড নোডের জন্য অনুমতি দেয়। সম্ভব হলে ডিফল্ট স্লটে নোড দেখানো হয়। যদি না হয়, তাহলে এর পরিবর্তে ফলব্যাক স্লটে নোড দেখানো হবে।
 
 ```vue-html
 <Suspense>
@@ -85,31 +85,31 @@ The `<Suspense>` component has two slots: `#default` and `#fallback`. Both slots
 </Suspense>
 ```
 
-On initial render, `<Suspense>` will render its default slot content in memory. If any async dependencies are encountered during the process, it will enter a **pending** state. During the pending state, the fallback content will be displayed. When all encountered async dependencies have been resolved, `<Suspense>` enters a **resolved** state and the resolved default slot content is displayed.
+প্রাথমিক রেন্ডারে, `<Suspense>` মেমরিতে তার ডিফল্ট স্লট সামগ্রী রেন্ডার করবে। প্রক্রিয়া চলাকালীন কোনো অ্যাসিঙ্ক নির্ভরতা সম্মুখীন হলে, এটি একটি **মুলতুবি** অবস্থায় প্রবেশ করবে। মুলতুবি থাকা অবস্থায়, ফলব্যাক সামগ্রী প্রদর্শিত হবে। যখন সমস্ত সম্মুখীন অ্যাসিঙ্ক নির্ভরতা সমাধান করা হয়, `<Suspense>` একটি **মীমাংসিত** অবস্থায় প্রবেশ করে এবং সমাধানকৃত ডিফল্ট স্লট সামগ্রী প্রদর্শিত হয়।
 
-If no async dependencies were encountered during the initial render, `<Suspense>` will directly go into a resolved state.
+যদি প্রাথমিক রেন্ডারের সময় কোনো অ্যাসিঙ্ক নির্ভরতার সম্মুখীন না হয়, `<Suspense>` সরাসরি একটি সমাধান করা অবস্থায় চলে যাবে।
 
-Once in a resolved state, `<Suspense>` will only revert to a pending state if the root node of the `#default` slot is replaced. New async dependencies nested deeper in the tree will **not** cause the `<Suspense>` to revert to a pending state.
+একবার সমাধান করা অবস্থায়, `#default` স্লটের রুট নোড প্রতিস্থাপিত হলেই `<Suspense>` একটি মুলতুবি অবস্থায় ফিরে আসবে। সাসপেন্স>` একটি মুলতুবি অবস্থায় ফিরে যেতে।
 
-When a revert happens, fallback content will not be immediately displayed. Instead, `<Suspense>` will display the previous `#default` content while waiting for the new content and its async dependencies to be resolved. This behavior can be configured with the `timeout` prop: `<Suspense>` will switch to fallback content if it takes longer than `timeout` to render the new default content. A `timeout` value of `0` will cause the fallback content to be displayed immediately when default content is replaced.
+যখন একটি প্রত্যাবর্তন ঘটবে, ফলব্যাক সামগ্রী অবিলম্বে প্রদর্শিত হবে না৷ পরিবর্তে, `<Suspense>` পূর্ববর্তী `#default` সামগ্রী প্রদর্শন করবে যখন নতুন সামগ্রী এবং এর অ্যাসিঙ্ক নির্ভরতা সমাধানের জন্য অপেক্ষা করা হবে। এই আচরণটি এর সাথে কনফিগার করা যেতে পারে `timeout` প্রপ: `<Suspense>` যদি নতুন ডিফল্ট সামগ্রী রেন্ডার করতে `timeout` এর চেয়ে বেশি সময় নেয় তাহলে ফলব্যাক সামগ্রীতে স্যুইচ করবে। `0` এর একটি `timeout` মান ডিফল্ট হলে ফলব্যাক সামগ্রী অবিলম্বে প্রদর্শিত হবে বিষয়বস্তু প্রতিস্থাপিত হয়।
 
 ## Events {#events}
 
-The `<Suspense>` component emits 3 events: `pending`, `resolve` and `fallback`. The `pending` event occurs when entering a pending state. The `resolve` event is emitted when new content has finished resolving in the `default` slot. The `fallback` event is fired when the contents of the `fallback` slot are shown.
+`<Suspense>` উপাদানটি ৩টি ইভেন্ট নির্গত করে: `pending`, `resolve` এবং `fallback`। একটি pending অবস্থায় প্রবেশ করার সময় `pending` ইভেন্টটি ঘটে। যখন নতুন বিষয়বস্তুর সমাধান করা শেষ হয় তখন `resolve` ইভেন্টটি নির্গত হয় `ডিফল্ট` স্লট। `fallback` স্লটের বিষয়বস্তু দেখানো হলে `fallback` ইভেন্টটি চালু হয়।
 
-The events could be used, for example, to show a loading indicator in front of the old DOM while new components are loading.
+ইভেন্টগুলি ব্যবহার করা যেতে পারে, উদাহরণস্বরূপ, নতুন উপাদানগুলি লোড হওয়ার সময় পুরানো DOM-এর সামনে একটি লোডিং সূচক দেখানোর জন্য৷
 
 ## Error Handling {#error-handling}
 
-`<Suspense>` currently does not provide error handling via the component itself - however, you can use the [`errorCaptured`](/api/options-lifecycle#errorcaptured) option or the [`onErrorCaptured()`](/api/composition-api-lifecycle#onerrorcaptured) hook to capture and handle async errors in the parent component of `<Suspense>`.
+`<Suspense>` বর্তমানে উপাদানটির মাধ্যমে ত্রুটি পরিচালনা করে না - তবে, আপনি ক্যাপচার এবং অ্যাসিঙ্ক পরিচালনা করতে [`errorCaptured`](/api/options-lifecycle#errorcaptured) বিকল্প বা [`onErrorCaptured()`](/api/composition-api-lifecycle#onerrorcaptured) হুক ব্যবহার করতে পারেন `<Suspense>` এর মূল উপাদানে ত্রুটি।
 
 ## Combining with Other Components {#combining-with-other-components}
 
-It is common to want to use `<Suspense>` in combination with the [`<Transition>`](./transition) and [`<KeepAlive>`](./keep-alive) components. The nesting order of these components is important to get them all working correctly.
+[`<Transition>`](./transition) এবং [`<KeepAlive>`](./keep-alive) উপাদানগুলির সংমিশ্রণে `<Suspense>` ব্যবহার করা সাধারণ। এগুলোর নেস্টিং অর্ডার উপাদানগুলি সঠিকভাবে কাজ করার জন্য গুরুত্বপূর্ণ।
 
-In addition, these components are often used in conjunction with the `<RouterView>` component from [Vue Router](https://router.vuejs.org/).
+উপরন্তু, এই উপাদানগুলি প্রায়ই [Vue Router](https://router.vuejs.org/) থেকে `<RouterView>` কম্পোনেন্টের সাথে ব্যবহার করা হয়।
 
-The following example shows how to nest these components so that they all behave as expected. For simpler combinations you can remove the components that you don't need:
+নিম্নলিখিত উদাহরণটি দেখায় কিভাবে এই উপাদানগুলিকে নেস্ট করতে হয় যাতে তারা সমস্ত প্রত্যাশিতভাবে আচরণ করে৷ সহজ সংমিশ্রণের জন্য আপনি আপনার প্রয়োজন নেই এমন উপাদানগুলি সরাতে পারেন:
 
 ```vue-html
 <RouterView v-slot="{ Component }">
@@ -131,4 +131,4 @@ The following example shows how to nest these components so that they all behave
 </RouterView>
 ```
 
-Vue Router has built-in support for [lazily loading components](https://router.vuejs.org/guide/advanced/lazy-loading.html) using dynamic imports. These are distinct from async components and currently they will not trigger `<Suspense>`. However, they can still have async components as descendants and those can trigger `<Suspense>` in the usual way.
+ভিউ রাউটারে গতিশীল আমদানি ব্যবহার করে [lazily loading components](https://router.vuejs.org/guide/advanced/lazy-loading.html) জন্য অন্তর্নির্মিত সমর্থন রয়েছে। এগুলি async উপাদানগুলির থেকে আলাদা এবং বর্তমানে তারা ট্রিগার করবে না `<Suspense>`। যাইহোক, তাদের এখনও বংশধর হিসাবে অ্যাসিঙ্ক উপাদান থাকতে পারে এবং সেগুলি স্বাভাবিক উপায়ে `<Suspense>` ট্রিগার করতে পারে।
