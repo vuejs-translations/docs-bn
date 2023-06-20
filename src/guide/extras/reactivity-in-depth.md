@@ -8,17 +8,17 @@ import SpreadSheet from './demos/SpreadSheet.vue'
 
 # Reactivity in Depth {#reactivity-in-depth}
 
-One of Vue’s most distinctive features is the unobtrusive reactivity system. Component state consists of reactive JavaScript objects. When you modify them, the view updates. It makes state management simple and intuitive, but it’s also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue’s reactivity system.
+Vue-এর সবচেয়ে স্বতন্ত্র বৈশিষ্ট্যগুলির মধ্যে একটি হল অবাধ প্রতিক্রিয়াশীলতা ব্যবস্থা। কম্পোনেন্ট স্টেট প্রতিক্রিয়াশীল জাভাস্ক্রিপ্ট অবজেক্ট নিয়ে গঠিত। আপনি যখন তাদের পরিবর্তন করেন, ভিউ আপডেট হয়। এটি রাষ্ট্র পরিচালনাকে সহজ এবং স্বজ্ঞাত করে তোলে, তবে কিছু সাধারণ গোটচা এড়াতে এটি কীভাবে কাজ করে তা বোঝাও গুরুত্বপূর্ণ। এই বিভাগে, আমরা Vue-এর প্রতিক্রিয়াশীলতা সিস্টেমের নিম্ন-স্তরের কিছু বিবরণে খনন করতে যাচ্ছি।
 
 ## What is Reactivity? {#what-is-reactivity}
 
-This term comes up in programming quite a bit these days, but what do people mean when they say it? Reactivity is a programming paradigm that allows us to adjust to changes in a declarative manner. The canonical example that people usually show, because it’s a great one, is an Excel spreadsheet:
+এই শব্দটি আজকাল প্রোগ্রামিংয়ে বেশ কিছুটা আসে, কিন্তু লোকেরা যখন এটি বলে তখন তার অর্থ কী? প্রতিক্রিয়াশীলতা একটি প্রোগ্রামিং দৃষ্টান্ত যা আমাদেরকে ঘোষণামূলক পদ্ধতিতে পরিবর্তনের সাথে সামঞ্জস্য করতে দেয়। ক্যানোনিকাল উদাহরণ যা লোকেরা সাধারণত দেখায়, কারণ এটি একটি দুর্দান্ত, একটি এক্সেল স্প্রেডশীট:
 
 <SpreadSheet />
 
-Here cell A2 is defined via a formula of `= A0 + A1` (you can click on A2 to view or edit the formula), so the spreadsheet gives us 3. No surprises there. But if you update A0 or A1, you'll notice that A2 automagically updates too.
+এখানে সেল A2 কে `= A0 + A1` এর একটি সূত্রের মাধ্যমে সংজ্ঞায়িত করা হয়েছে (আপনি সূত্রটি দেখতে বা সম্পাদনা করতে A2 এ ক্লিক করতে পারেন), তাই স্প্রেডশীট আমাদের দেয় 3. সেখানে কোনো আশ্চর্যের কিছু নেই। কিন্তু যদি আপনি A0 বা A1 আপডেট করেন, আপনি লক্ষ্য করবেন যে A2 স্বয়ংক্রিয়ভাবে আপডেট হয়।
 
-JavaScript doesn’t usually work like this. If we were to write something comparable in JavaScript:
+জাভাস্ক্রিপ্ট সাধারণত এই মত কাজ করে না। আমরা যদি জাভাস্ক্রিপ্টে তুলনামূলক কিছু লিখি:
 
 ```js
 let A0 = 1
@@ -31,9 +31,9 @@ A0 = 2
 console.log(A2) // Still 3
 ```
 
-When we mutate `A0`, `A2` does not change automatically.
+যখন আমরা `A0` পরিবর্তন করি, `A2` স্বয়ংক্রিয়ভাবে পরিবর্তিত হয় না।
 
-So how would we do this in JavaScript? First, in order to re-run the code that updates `A2`, let's wrap it in a function:
+তাই কিভাবে আমরা জাভাস্ক্রিপ্ট এই কাজ করতে হবে? প্রথমে, যে কোডটি `A2` আপডেট করে সেটি পুনরায় চালানোর জন্য, আসুন এটিকে একটি ফাংশনে মোড়ানো যাক:
 
 ```js
 let A2
@@ -43,31 +43,31 @@ function update() {
 }
 ```
 
-Then, we need to define a few terms:
+তারপরে, আমাদের কয়েকটি পদ সংজ্ঞায়িত করতে হবে:
 
-- The `update()` function produces a **side effect**, or **effect** for short, because it modifies the state of the program.
+- `update()` ফাংশনটি একটি **পার্শ্ব প্রভাব**, বা সংক্ষেপে **প্রভাব** তৈরি করে, কারণ এটি প্রোগ্রামের অবস্থা পরিবর্তন করে।
 
-- `A0` and `A1` are considered **dependencies** of the effect, as their values are used to perform the effect. The effect is said to be a **subscriber** to its dependencies.
+- `A0` এবং `A1`কে প্রভাবের **নির্ভরতা** হিসেবে বিবেচনা করা হয়, কারণ তাদের মান প্রভাবটি সম্পাদন করতে ব্যবহৃত হয়। প্রভাবটিকে এর নির্ভরশীলতার জন্য **গ্রাহক** বলা হয়।
 
-What we need is a magic function that can invoke `update()` (the **effect**) whenever `A0` or `A1` (the **dependencies**) change:
+আমাদের যা দরকার তা হল একটি ম্যাজিক ফাংশন যা `update()` (**প্রভাব**) যখনই `A0` বা `A1` (**নির্ভরতা**) পরিবর্তন করতে পারে:
 
 ```js
 whenDepsChange(update)
 ```
 
-This `whenDepsChange()` function has the following tasks:
+এই `whenDepsChange()` ফাংশনের নিম্নলিখিত কাজগুলি রয়েছে:
 
-1. Track when a variable is read. E.g. when evaluating the expression `A0 + A1`, both `A0` and `A1` are read.
+1. একটি পরিবর্তনশীল পড়া হয় যখন ট্র্যাক. যেমন `A0 + A1` অভিব্যক্তিটির মূল্যায়ন করার সময়, `A0` এবং `A1` উভয়ই পড়া হয়।
 
-2. If a variable is read when there is a currently running effect, make that effect a subscriber to that variable. E.g. because `A0` and `A1` are read when `update()` is being executed, `update()` becomes a subscriber to both `A0` and `A1` after the first call.
+2. বর্তমানে চলমান প্রভাব থাকা অবস্থায় যদি একটি ভেরিয়েবল পড়া হয়, তাহলে সেই প্রভাবটিকে সেই ভেরিয়েবলের গ্রাহক করুন। যেমন কারণ `A0` এবং `A1` পড়া হয় যখন `update()` চালানো হচ্ছে, `update()` প্রথম কলের পর `A0` এবং `A1` উভয়েরই গ্রাহক হয়ে যায়।
 
-3. Detect when a variable is mutated. E.g. when `A0` is assigned a new value, notify all its subscriber effects to re-run.
+3. সনাক্ত করুন যখন একটি পরিবর্তনশীল পরিবর্তন করা হয়। যেমন যখন `A0` একটি নতুন মান বরাদ্দ করা হয়, তখন এর সমস্ত গ্রাহক প্রভাব পুনরায় চালানোর জন্য অবহিত করুন।
 
 ## How Reactivity Works in Vue {#how-reactivity-works-in-vue}
 
-We can't really track the reading and writing of local variables like in the example. There's just no mechanism for doing that in vanilla JavaScript. What we **can** do though, is intercept the reading and writing of **object properties**.
+আমরা সত্যিই উদাহরণের মত স্থানীয় ভেরিয়েবলের পড়া এবং লেখার ট্র্যাক করতে পারি না। ভ্যানিলা জাভাস্ক্রিপ্টে এটি করার জন্য কোন ব্যবস্থা নেই। যদিও আমরা **কি করতে পারি** তা হল **বস্তু বৈশিষ্ট্য** এর পড়া এবং লেখাকে আটকানো।
 
-There are two ways of intercepting property access in JavaScript: [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) / [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) and [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy). Vue 2 used getter / setters exclusively due to browser support limitations. In Vue 3, Proxies are used for reactive objects and getter / setters are used for refs. Here's some pseudo-code that illustrates how they work:
+জাভাস্ক্রিপ্টে সম্পত্তি অ্যাক্সেসকে আটকানোর দুটি উপায় রয়েছে: [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) / [সেটার](https:// developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) এবং [প্রক্সি](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects /প্রক্সি)। Vue 2 ব্রাউজার সমর্থন সীমাবদ্ধতার কারণে একচেটিয়াভাবে গেটার/সেটার ব্যবহার করেছে। Vue 3 তে, প্রতিক্রিয়াশীল বস্তুর জন্য প্রক্সি ব্যবহার করা হয় এবং রেফের জন্য গেটার/সেটার ব্যবহার করা হয়। এখানে কিছু ছদ্ম-কোড রয়েছে যা তারা কীভাবে কাজ করে তা ব্যাখ্যা করে:
 
 ```js{4,9,17,22}
 function reactive(obj) {
@@ -99,16 +99,16 @@ function ref(value) {
 ```
 
 :::tip
-Code snippets here and below are meant to explain the core concepts in the simplest form possible, so many details are omitted, and edge cases ignored.
+এখানে এবং নীচের কোড স্নিপেটগুলি মূল ধারণাগুলিকে সম্ভাব্য সহজতম আকারে ব্যাখ্যা করার জন্য বোঝানো হয়েছে, তাই অনেকগুলি বিবরণ বাদ দেওয়া হয়েছে এবং প্রান্তের ক্ষেত্রে উপেক্ষা করা হয়েছে৷
 :::
 
-This explains a few [limitations of reactive objects](/guide/essentials/reactivity-fundamentals#limitations-of-reactive) that we have discussed in the fundamentals section:
+এটি কয়েকটি [প্রতিক্রিয়াশীল বস্তুর সীমাবদ্ধতা](/guide/essentials/reactivity-fundamentals#limitations-of-reactive) ব্যাখ্যা করে যা আমরা মৌলিক বিভাগে আলোচনা করেছি:
 
-- When you assign or destructure a reactive object's property to a local variable, accessing or assigning to that variable is non-reactive because it no longer triggers the get / set proxy traps on the source object. Note this "disconnect" only affects the variable binding - if the variable points to a non-primitive value such as an object, mutating the object would still be reactive.
+- যখন আপনি একটি স্থানীয় ভেরিয়েবলে একটি প্রতিক্রিয়াশীল বস্তুর সম্পত্তি বরাদ্দ বা ধ্বংস করেন, তখন সেই ভেরিয়েবলে অ্যাক্সেস করা বা বরাদ্দ করা অ-প্রতিক্রিয়াশীল কারণ এটি আর উত্স অবজেক্টে গেট/সেট প্রক্সি ট্র্যাপগুলিকে ট্রিগার করে না। মনে রাখবেন এই "সংযোগ বিচ্ছিন্ন" শুধুমাত্র পরিবর্তনশীল বাইন্ডিংকে প্রভাবিত করে - যদি ভেরিয়েবলটি একটি অ-আদিম মানকে নির্দেশ করে যেমন একটি অবজেক্ট, তাহলে অবজেক্টটিকে মিউট করা এখনও প্রতিক্রিয়াশীল হবে।
 
-- The returned proxy from `reactive()`, although behaving just like the original, has a different identity if we compare it to the original using the `===` operator.
+- `reactive()` থেকে ফিরে আসা প্রক্সি, যদিও আসলটির মতোই আচরণ করে, যদি আমরা `===` অপারেটর ব্যবহার করে আসলটির সাথে তুলনা করি তবে এর একটি আলাদা পরিচয় রয়েছে।
 
-Inside `track()`, we check whether there is a currently running effect. If there is one, we lookup the subscriber effects (stored in a Set) for the property being tracked, and add the effect to the Set:
+`track()` এর ভিতরে, আমরা বর্তমানে কোনো চলমান প্রভাব আছে কিনা তা পরীক্ষা করি। যদি একটি থাকে, আমরা ট্র্যাক করা সম্পত্তির জন্য গ্রাহক প্রভাব (একটি সেটে সংরক্ষিত) সন্ধান করি এবং সেটটিতে প্রভাব যুক্ত করি:
 
 ```js
 // This will be set right before an effect is about
@@ -123,9 +123,9 @@ function track(target, key) {
 }
 ```
 
-Effect subscriptions are stored in a global `WeakMap<target, Map<key, Set<effect>>>` data structure. If no subscribing effects Set was found for a property (tracked for the first time), it will be created. This is what the `getSubscribersForProperty()` function does, in short. For simplicity, we will skip its details.
+প্রভাব সাবস্ক্রিপশন একটি বিশ্বব্যাপী `WeakMap<target, Map<key, Set<effect>>>` ডেটা কাঠামোতে সংরক্ষণ করা হয়। যদি কোনও সম্পত্তির জন্য কোনও সদস্যতা প্রভাব সেট না পাওয়া যায় (প্রথমবারের জন্য ট্র্যাক করা হয়েছে), এটি তৈরি করা হবে। সংক্ষেপে `getSubscribersForProperty()` ফাংশন এটিই করে। সরলতার জন্য, আমরা এর বিবরণ এড়িয়ে যাব।
 
-Inside `trigger()`, we again lookup the subscriber effects for the property. But this time we invoke them instead:
+`trigger()` এর ভিতরে, আমরা আবার সম্পত্তির জন্য গ্রাহক প্রভাবগুলি সন্ধান করি। কিন্তু এবার আমরা পরিবর্তে তাদের আহ্বান জানাই:
 
 ```js
 function trigger(target, key) {
@@ -134,7 +134,7 @@ function trigger(target, key) {
 }
 ```
 
-Now let's circle back to the `whenDepsChange()` function:
+এখন `whenDepsChange()` ফাংশনে ফিরে বৃত্তাকার করা যাক:
 
 ```js
 function whenDepsChange(update) {
@@ -147,11 +147,11 @@ function whenDepsChange(update) {
 }
 ```
 
-It wraps the raw `update` function in an effect that sets itself as the current active effect before running the actual update. This enables `track()` calls during the update to locate the current active effect.
+এটি একটি ইফেক্টে কাঁচা `update` ফাংশনকে মোড়ানো করে যা প্রকৃত আপডেট চালানোর আগে বর্তমান সক্রিয় প্রভাব হিসেবে নিজেকে সেট করে। এটি বর্তমান সক্রিয় প্রভাব সনাক্ত করতে আপডেটের সময় `track()` কলগুলিকে সক্ষম করে৷
 
-At this point, we have created an effect that automatically tracks its dependencies, and re-runs whenever a dependency changes. We call this a **Reactive Effect**.
+এই মুহুর্তে, আমরা একটি প্রভাব তৈরি করেছি যা স্বয়ংক্রিয়ভাবে তার নির্ভরতাগুলিকে ট্র্যাক করে, এবং যখনই কোনও নির্ভরতা পরিবর্তিত হয় তখন পুনরায় চালানো হয়। আমরা একে **প্রতিক্রিয়াশীল প্রভাব** বলি।
 
-Vue provides an API that allows you to create reactive effects: [`watchEffect()`](/api/reactivity-core#watcheffect). In fact, you may have noticed that it works pretty similarly to the magical `whenDepsChange()` in the example. We can now rework the original example using actual Vue APIs:
+Vue একটি API প্রদান করে যা আপনাকে প্রতিক্রিয়াশীল প্রভাব তৈরি করতে দেয়: [`watchEffect()`](/api/reactivity-core#watcheffect)। প্রকৃতপক্ষে, আপনি লক্ষ্য করেছেন যে এটি উদাহরণে জাদুকর `whenDepsChange()` এর মতোই কাজ করে। আমরা এখন আসল Vue API ব্যবহার করে মূল উদাহরণটি পুনরায় কাজ করতে পারি:
 
 ```js
 import { ref, watchEffect } from 'vue'
@@ -169,7 +169,7 @@ watchEffect(() => {
 A0.value = 2
 ```
 
-Using a reactive effect to mutate a ref isn't the most interesting use case - in fact, using a computed property makes it more declarative:
+একটি রেফ পরিবর্তন করার জন্য একটি প্রতিক্রিয়াশীল প্রভাব ব্যবহার করা সবচেয়ে আকর্ষণীয় ব্যবহারের ক্ষেত্রে নয় - আসলে, একটি গণনা করা সম্পত্তি ব্যবহার করা এটিকে আরও ঘোষণামূলক করে তোলে:
 
 ```js
 import { ref, computed } from 'vue'
@@ -181,9 +181,9 @@ const A2 = computed(() => A0.value + A1.value)
 A0.value = 2
 ```
 
-Internally, `computed` manages its invalidation and re-computation using a reactive effect.
+অভ্যন্তরীণভাবে, `computed` একটি প্রতিক্রিয়াশীল প্রভাব ব্যবহার করে এর অবৈধকরণ এবং পুনরায় গণনা পরিচালনা করে।
 
-So what's an example of a common and useful reactive effect? Well, updating the DOM! We can implement simple "reactive rendering" like this:
+তাই একটি সাধারণ এবং দরকারী প্রতিক্রিয়াশীল প্রভাব একটি উদাহরণ কি? আচ্ছা, DOM আপডেট করা হচ্ছে! আমরা এই মত সহজ "প্রতিক্রিয়াশীল রেন্ডারিং" বাস্তবায়ন করতে পারি:
 
 ```js
 import { ref, watchEffect } from 'vue'
@@ -198,29 +198,29 @@ watchEffect(() => {
 count.value++
 ```
 
-In fact, this is pretty close to how a Vue component keeps the state and the DOM in sync - each component instance creates a reactive effect to render and update the DOM. Of course, Vue components use much more efficient ways to update the DOM than `innerHTML`. This is discussed in [Rendering Mechanism](./rendering-mechanism).
+আসলে, এটি একটি Vue কম্পোনেন্ট কীভাবে স্টেট এবং DOM-কে সিঙ্কে রাখে তার খুব কাছাকাছি - প্রতিটি কম্পোনেন্ট ইনস্ট্যান্স DOM রেন্ডার এবং আপডেট করার জন্য একটি প্রতিক্রিয়াশীল প্রভাব তৈরি করে। অবশ্যই, Vue উপাদানগুলি `innerHTML` এর চেয়ে DOM আপডেট করার জন্য অনেক বেশি কার্যকর উপায় ব্যবহার করে। এটি [রেন্ডারিং মেকানিজম](./রেন্ডারিং-মেকানিজম) এ আলোচনা করা হয়েছে।
 
 <div class="options-api">
 
-The `ref()`, `computed()` and `watchEffect()` APIs are all part of the Composition API. If you have only been using Options API with Vue so far, you'll notice that Composition API is closer to how Vue's reactivity system works under the hood. In fact, in Vue 3 the Options API is implemented on top of the Composition API. All property access on the component instance (`this`) triggers getter / setters for reactivity tracking, and options like `watch` and `computed` invoke their Composition API equivalents internally.
+`ref()`, `computed()` এবং `watchEffect()` এপিআইগুলি কম্পোজিশন এপিআই-এর অংশ। আপনি যদি এখন পর্যন্ত শুধুমাত্র Vue-এর সাথে Options API ব্যবহার করে থাকেন, তাহলে আপনি লক্ষ্য করবেন যে Vue-এর প্রতিক্রিয়াশীলতা সিস্টেম হুডের অধীনে কীভাবে কাজ করে তার কাছাকাছি Composition API। প্রকৃতপক্ষে, Vue 3-এ Options API কম্পোজিশন API-এর উপরে প্রয়োগ করা হয়েছে। কম্পোনেন্ট ইন্সট্যান্সে সমস্ত সম্পত্তি অ্যাক্সেস (`this`) প্রতিক্রিয়াশীলতা ট্র্যাকিংয়ের জন্য গেটার/সেটারকে ট্রিগার করে এবং `watch` এবং `computed` এর মতো বিকল্পগুলি তাদের কম্পোজিশন এপিআই সমতুল্যকে অভ্যন্তরীণভাবে আহ্বান করে।
 
 </div>
 
 ## Runtime vs. Compile-time Reactivity {#runtime-vs-compile-time-reactivity}
 
-Vue's reactivity system is primarily runtime-based: the tracking and triggering are all performed while the code is running directly in the browser. The pros of runtime reactivity are that it can work without a build step, and there are fewer edge cases. On the other hand, this makes it constrained by the syntax limitations of JavaScript, leading to the need of value containers like Vue refs.
+Vue-এর রিঅ্যাকটিভিটি সিস্টেম প্রাথমিকভাবে রানটাইম-ভিত্তিক: কোডটি সরাসরি ব্রাউজারে চলার সময় ট্র্যাকিং এবং ট্রিগারিং করা হয়। রানটাইম রিঅ্যাকটিভিটির সুবিধা হল যে এটি একটি বিল্ড স্টেপ ছাড়াই কাজ করতে পারে এবং কম এজ কেস আছে। অন্যদিকে, এটি জাভাস্ক্রিপ্টের সিনট্যাক্স সীমাবদ্ধতা দ্বারা এটিকে সীমাবদ্ধ করে তোলে, যার ফলে Vue refs-এর মতো মান ধারকগুলির প্রয়োজন হয়।
 
-Some frameworks, such as [Svelte](https://svelte.dev/), choose to overcome such limitations by implementing reactivity during compilation. It analyzes and transforms the code in order to simulate reactivity. The compilation step allows the framework to alter the semantics of JavaScript itself - for example, implicitly injecting code that performs dependency analysis and effect triggering around access to locally defined variables. The downside is that such transforms require a build step, and altering JavaScript semantics is essentially creating a language that looks like JavaScript but compiles into something else.
+কিছু ফ্রেমওয়ার্ক, যেমন [Svelte](https://svelte.dev/), সংকলনের সময় প্রতিক্রিয়াশীলতা প্রয়োগ করে এই ধরনের সীমাবদ্ধতা কাটিয়ে উঠতে বেছে নেয়। এটি প্রতিক্রিয়াশীলতা অনুকরণ করার জন্য কোডটিকে বিশ্লেষণ করে এবং রূপান্তর করে। সংকলন ধাপটি ফ্রেমওয়ার্কটিকে জাভাস্ক্রিপ্টের শব্দার্থবিদ্যাকে পরিবর্তন করার অনুমতি দেয় - উদাহরণস্বরূপ, অন্তর্নিহিতভাবে কোড ইনজেক্ট করা যা নির্ভরতা বিশ্লেষণ করে এবং স্থানীয়ভাবে সংজ্ঞায়িত ভেরিয়েবলের অ্যাক্সেসের চারপাশে প্রভাব ট্রিগার করে। নেতিবাচক দিক হল যে এই ধরনের রূপান্তরগুলির জন্য একটি বিল্ড স্টেপ প্রয়োজন, এবং জাভাস্ক্রিপ্ট শব্দার্থবিদ্যা পরিবর্তন করা মূলত একটি ভাষা তৈরি করছে যা জাভাস্ক্রিপ্টের মতো দেখতে কিন্তু অন্য কিছুতে কম্পাইল করে।
 
-The Vue team did explore this direction via an experimental feature called [Reactivity Transform](/guide/extras/reactivity-transform), but in the end we have decided that it would not be a good fit for the project due to [the reasoning here](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028).
+Vue টিম [Reactivity Transform](/guide/extras/reactivity-transform) নামক একটি পরীক্ষামূলক বৈশিষ্ট্যের মাধ্যমে এই দিকটি অন্বেষণ করেছে, কিন্তু শেষ পর্যন্ত আমরা সিদ্ধান্ত নিয়েছি যে এটি প্রকল্পের জন্য উপযুক্ত হবে না [যুক্তির কারণ এখানে](https://github.com/vuejs/rfcs/discussions/369#discussioncomment-5059028)।
 
 ## Reactivity Debugging {#reactivity-debugging}
 
-It's great that Vue's reactivity system automatically tracks dependencies, but in some cases we may want to figure out exactly what is being tracked, or what is causing a component to re-render.
+এটি দুর্দান্ত যে Vue-এর প্রতিক্রিয়াশীলতা সিস্টেম স্বয়ংক্রিয়ভাবে নির্ভরতাগুলিকে ট্র্যাক করে, তবে কিছু ক্ষেত্রে আমরা ঠিক কী ট্র্যাক করা হচ্ছে বা কোন উপাদানটিকে পুনরায় রেন্ডার করার কারণ হতে পারে তা বের করতে চাই।
 
 ### Component Debugging Hooks {#component-debugging-hooks}
 
-We can debug what dependencies are used during a component's render and which dependency is triggering an update using the <span class="options-api">`renderTracked`</span><span class="composition-api">`onRenderTracked`</span> and <span class="options-api">`renderTriggered`</span><span class="composition-api">`onRenderTriggered`</span> lifecycle hooks. Both hooks will receive a debugger event which contains information on the dependency in question. It is recommended to place a `debugger` statement in the callbacks to interactively inspect the dependency:
+কোন কম্পোনেন্টের রেন্ডারের সময় কোন নির্ভরতা ব্যবহার করা হয় এবং কোন নির্ভরতা <span class="options-api">`renderTracked`</span><span class="composition-api">`onRenderTracked` ব্যবহার করে আপডেট ট্রিগার করছে তা আমরা ডিবাগ করতে পারি </span> এবং <span class="options-api">`renderTriggered`</span><span class="composition-api">`onRenderTriggered`</span> জীবনচক্র হুক। উভয় হুকই একটি ডিবাগার ইভেন্ট পাবে যা প্রশ্নে নির্ভরশীলতার তথ্য ধারণ করে। ইন্টারেক্টিভভাবে নির্ভরতা পরিদর্শন করতে কলব্যাকগুলিতে একটি `ডিবাগার` বিবৃতি রাখার পরামর্শ দেওয়া হয়:
 
 <div class="composition-api">
 
@@ -255,10 +255,10 @@ export default {
 </div>
 
 :::tip
-Component debug hooks only work in development mode.
+কম্পোনেন্ট ডিবাগ হুক শুধুমাত্র উন্নয়ন মোডে কাজ করে।
 :::
 
-The debug event objects have the following type:
+ডিবাগ ইভেন্ট অবজেক্টের নিম্নলিখিত প্রকার রয়েছে:
 
 <span id="debugger-event"></span>
 
@@ -280,12 +280,12 @@ type DebuggerEvent = {
 
 <!-- TODO options API equivalent -->
 
-We can debug computed properties by passing `computed()` a second options object with `onTrack` and `onTrigger` callbacks:
+আমরা `onTrack` এবং `onTrigger` কলব্যাকের সাথে একটি দ্বিতীয় বিকল্প অবজেক্টকে `computed()` পাস করে গণনা করা বৈশিষ্ট্যগুলি ডিবাগ করতে পারি:
 
-- `onTrack` will be called when a reactive property or ref is tracked as a dependency.
-- `onTrigger` will be called when the watcher callback is triggered by the mutation of a dependency.
+- 'onTrack' বলা হবে যখন একটি প্রতিক্রিয়াশীল সম্পত্তি বা রেফ নির্ভরতা হিসাবে ট্র্যাক করা হয়।
+- 'onTrigger' কল করা হবে যখন প্রহরী কলব্যাক নির্ভরতার মিউটেশন দ্বারা ট্রিগার হয়।
 
-Both callbacks will receive debugger events in the [same format](#debugger-event) as component debug hooks:
+উভয় কলব্যাকই কম্পোনেন্ট ডিবাগ হুক হিসাবে [same format](#debugger-event) ডিবাগার ইভেন্টগুলি গ্রহণ করবে:
 
 ```js
 const plusOne = computed(() => count.value + 1, {
@@ -307,14 +307,14 @@ count.value++
 ```
 
 :::tip
-`onTrack` and `onTrigger` computed options only work in development mode.
+`onTrack` এবং `onTrigger` গণনা করা বিকল্পগুলি শুধুমাত্র বিকাশ মোডে কাজ করে।
 :::
 
 ### Watcher Debugging {#watcher-debugging}
 
 <!-- TODO options API equivalent -->
 
-Similar to `computed()`, watchers also support the `onTrack` and `onTrigger` options:
+`computed()` এর মতো, পর্যবেক্ষকরা `onTrack` এবং `onTrigger` বিকল্পগুলিকেও সমর্থন করে:
 
 ```js
 watch(source, callback, {
@@ -337,22 +337,22 @@ watchEffect(callback, {
 ```
 
 :::tip
-`onTrack` and `onTrigger` watcher options only work in development mode.
+`onTrack` এবং `onTrigger` প্রহরী বিকল্পগুলি শুধুমাত্র বিকাশ মোডে কাজ করে।
 :::
 
 ## Integration with External State Systems {#integration-with-external-state-systems}
 
-Vue's reactivity system works by deeply converting plain JavaScript objects into reactive proxies. The deep conversion can be unnecessary or sometimes unwanted when integrating with external state management systems (e.g. if an external solution also uses Proxies).
+Vue এর প্রতিক্রিয়াশীলতা সিস্টেম গভীরভাবে প্লেইন জাভাস্ক্রিপ্ট অবজেক্টকে প্রতিক্রিয়াশীল প্রক্সিতে রূপান্তর করে কাজ করে। বাহ্যিক স্টেট ম্যানেজমেন্ট সিস্টেমের সাথে একীভূত করার সময় গভীর রূপান্তরটি অপ্রয়োজনীয় বা কখনও কখনও অবাঞ্ছিত হতে পারে (যেমন যদি একটি বাহ্যিক সমাধানও প্রক্সি ব্যবহার করে)।
 
-The general idea of integrating Vue's reactivity system with an external state management solution is to hold the external state in a [`shallowRef`](/api/reactivity-advanced#shallowref). A shallow ref is only reactive when its `.value` property is accessed - the inner value is left intact. When the external state changes, replace the ref value to trigger updates.
+বাহ্যিক স্টেট ম্যানেজমেন্ট সলিউশনের সাথে Vue-এর রিঅ্যাকটিভিটি সিস্টেমকে একীভূত করার সাধারণ ধারণা হল বাহ্যিক অবস্থাকে একটি [`shallowRef`](/api/reactivity-advanced#shallowref) এ রাখা। একটি অগভীর রেফ শুধুমাত্র তখনই প্রতিক্রিয়াশীল হয় যখন এর `.value` বৈশিষ্ট্য অ্যাক্সেস করা হয় - ভিতরের মানটি অক্ষত থাকে। যখন বাহ্যিক অবস্থা পরিবর্তিত হয়, আপডেটগুলি ট্রিগার করতে রেফ মান প্রতিস্থাপন করুন।
 
 ### Immutable Data {#immutable-data}
 
-If you are implementing an undo / redo feature, you likely want to take a snapshot of the application's state on every user edit. However, Vue's mutable reactivity system isn't best suited for this if the state tree is large, because serializing the entire state object on every update can be expensive in terms of both CPU and memory costs.
+আপনি যদি একটি পূর্বাবস্থায় ফেরান/পুনরায় করুন বৈশিষ্ট্যটি প্রয়োগ করেন, আপনি সম্ভবত প্রতিটি ব্যবহারকারীর সম্পাদনায় অ্যাপ্লিকেশনটির অবস্থার একটি স্ন্যাপশট নিতে চান। যাইহোক, স্টেট ট্রি বড় হলে Vue-এর মিউটেবল রিঅ্যাকটিভিটি সিস্টেম এর জন্য সবচেয়ে উপযুক্ত নয়, কারণ প্রতিটি আপডেটে পুরো স্টেট অবজেক্টকে সিরিয়াল করা CPU এবং মেমরি খরচ উভয়ের ক্ষেত্রেই ব্যয়বহুল হতে পারে।
 
-[Immutable data structures](https://en.wikipedia.org/wiki/Persistent_data_structure) solve this by never mutating the state objects - instead, it creates new objects that share the same, unchanged parts with old ones. There are different ways of using immutable data in JavaScript, but we recommend using [Immer](https://immerjs.github.io/immer/) with Vue because it allows you to use immutable data while keeping the more ergonomic, mutable syntax.
+[অপরিবর্তনীয় ডেটা স্ট্রাকচার](https://en.wikipedia.org/wiki/Persistent_data_structure) স্টেট অবজেক্টকে কখনো মিউট না করে এর সমাধান করুন - পরিবর্তে, এটি নতুন অবজেক্ট তৈরি করে যা পুরানোগুলির সাথে একই, অপরিবর্তিত অংশগুলি ভাগ করে। জাভাস্ক্রিপ্টে অপরিবর্তনীয় ডেটা ব্যবহার করার বিভিন্ন উপায় রয়েছে, তবে আমরা Vue-এর সাথে [Immer](https://immerjs.github.io/immer/) ব্যবহার করার পরামর্শ দিই কারণ এটি আপনাকে আরও অর্গোনমিক, পরিবর্তনযোগ্য সিনট্যাক্স রেখে অপরিবর্তনীয় ডেটা ব্যবহার করতে দেয় .
 
-We can integrate Immer with Vue via a simple composable:
+আমরা একটি সাধারণ কম্পোজেবলের মাধ্যমে ইমারকে Vue এর সাথে একীভূত করতে পারি:
 
 ```js
 import produce from 'immer'
@@ -368,13 +368,13 @@ export function useImmer(baseState) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNplU8Fu2zAM/RXOlzpAYu82zEu67lhgpw3bJcrBs5VYqywJkpxmMPzvoyjZNRodbJF84iOppzH7ZkxxHXhWZXvXWGE8OO4H88iU6I22HkYYHH/ue25hgrPVPTwUpQh28dc9MAXAVKOV83AUnvduC4Npa8+fg3GCw3I8PwbwGD64vPCSV8Cy77y2Cn4PnGXbFGu1wpC36EPHRO67c78cD6fgVfgOiOB9gnMtXczA1GnDFFPnQTVeaAVeXy6SSsyFavltE/OvKs+pGTg8zsxkHwl9KgIBtvbhzkl0yIWU+zIOFEeJBgKNxORoAewHSX/cSQHX3VnbA8vyMXa3pfqxb0i1CRXZWZb6w1U1snYOT40JvQ4+NVI0Lxi865NliTisMRHChOVSNaUUscCSKtyXq7LRdP6fDNvYPw3G85vftbzRtg6TrUAKxXe+s3q4dF/mQdC5bJtFTe362qB4tELVURKWAthhNc87+OhSw2V33htXleWgzMulaHQfFfj0ufhYfCpb4XySJHc9Zv7a63aQqKh0+xNRR8kiZ1K2sYhqeBI1xVHPi+xdV0upX3/w8yJ8fCiIYIrfCLPIaZH4n9rxnx7nlQQVH4YLHpTLW8YV8A0W1Ye4PO7sZiU/ylFca4mSP8yl5yvv/O4sZcSmw8/iW8bXdSTcjDiFgUz/AcH6WZQ=)
+[চেষ্টা করুন](https://play.vuejs.org/#eNplU8Fu2zAM/RXOlzpAYu82zEu67lhgpw3bJcrBs5VYqywJkpxmMPzvoyjZNRodbJF84iOppzH7ZkxxHXhWZXvXWGE8OO4H88iU6I22HkYYHH/ue25hgrPVPTwUpQh28dc9MAXAVKOV83AUnvduC4Npa8+fg3GCw3I8PwbwGD64vPCSV8Cy77y2Cn4PnGXbFGu1wpC36EPHRO67c78cD6fgVfgOiOB9gnMtXczA1GnDFFPnQTVeaAVeXy6SSsyFavltE/OvKs+pGTg8zsxkHwl9KgIBtvbhzkl0yIWU+zIOFEeJBgKNxORoAewHSX/cSQHX3VnbA8vyMXa3pfqxb0i1CRXZWZb6w1U1snYOT40JvQ4+NVI0Lxi865NliTisMRHChOVSNaUUscCSKtyXq7LRdP6fDNvYPw3G85vftbzRtg6TrUAKxXe+s3q4dF/mQdC5bJtFTe362qB4tELVURKWAthhNc87+OhSw2V33htXleWgzMulaHQfFfj0ufhYfCpb4XySJHc9Zv7a63aQqKh0+xNRR8kiZ1K2sYhqeBI1xVHPi+xdV0upX3/w8yJ8fCiIYIrfCLPIaZH4n9rxnx7nlQQVH4YLHpTLW8YV8A0W1Ye4PO7sZiU/ylFca4mSP8yl5yvv/O4sZcSmw8/iW8bXdSTcjDiFgUz/AcH6WZQ=)
 
 ### State Machines {#state-machines}
 
-[State Machine](https://en.wikipedia.org/wiki/Finite-state_machine) is a model for describing all the possible states an application can be in, and all the possible ways it can transition from one state to another. While it may be overkill for simple components, it can help make complex state flows more robust and manageable.
+[State Machine](https://en.wikipedia.org/wiki/Finite-state_machine) হল একটি মডেল যেখানে একটি অ্যাপ্লিকেশন থাকতে পারে এবং এটি একটি রাজ্য থেকে অন্য রাজ্যে স্থানান্তর করতে পারে এমন সমস্ত সম্ভাব্য স্থিতির বর্ণনা দেয়৷ যদিও এটি সাধারণ উপাদানগুলির জন্য ওভারকিল হতে পারে, এটি জটিল অবস্থার প্রবাহকে আরও শক্তিশালী এবং পরিচালনাযোগ্য করতে সাহায্য করতে পারে।
 
-One of the most popular state machine implementations in JavaScript is [XState](https://xstate.js.org/). Here's a composable that integrates with it:
+জাভাস্ক্রিপ্টের সবচেয়ে জনপ্রিয় স্টেট মেশিন বাস্তবায়নের একটি হল [XState](https://xstate.js.org/)। এখানে একটি সংমিশ্রণযোগ্য যা এটির সাথে সংহত করে:
 
 ```js
 import { createMachine, interpret } from 'xstate'
@@ -392,32 +392,32 @@ export function useMachine(options) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNp1U81unDAQfpWRL7DSFqqqUiXEJumhyqVVpDa3ugcKZtcJjC1syEqId8/YBu/uIRcEM9/P/DGz71pn0yhYwUpTD1JbMMKO+o6j7LUaLMwwGvGrqk8SBSzQDqqHJMv7EMleTMIRgGOt0Fj4a2xlxZ5EsPkHhytuOjucbApIrDoeO5HsfQCllVVHUYlVbeW0xr2OKcCzHCwkKQAK3fP56fHx5w/irSyqbfFMgA+h0cKBHZYey45jmYfeqWv6sKLXHbnTF0D5f7RWITzUnaxfD5y5ztIkSCY7zjwKYJ5DyVlf2fokTMrZ5sbZDu6Bs6e25QwK94b0svgKyjwYkEyZR2e2Z2H8n/pK04wV0oL8KEjWJwxncTicnb23C3F2slabIs9H1K/HrFZ9HrIPX7Mv37LPuTC5xEacSfa+V83YEW+bBfleFkuW8QbqQZDEuso9rcOKQQ/CxosIHnQLkWJOVdept9+ijSA6NEJwFGePaUekAdFwr65EaRcxu9BbOKq1JDqnmzIi9oL0RRDu4p1u/ayH9schrhlimGTtOLGnjeJRAJnC56FCQ3SFaYriLWjA4Q7SsPOp6kYnEXMbldKDTW/ssCFgKiaB1kusBWT+rkLYjQiAKhkHvP2j3IqWd5iMQ+M=)
+[চেষ্টা করুন](https://play.vuejs.org/#eNp1U81unDAQfpWRL7DSFqqqUiXEJumhyqVVpDa3ugcKZtcJjC1syEqId8/YBu/uIRcEM9/P/DGz71pn0yhYwUpTD1JbMMKO+o6j7LUaLMwwGvGrqk8SBSzQDqqHJMv7EMleTMIRgGOt0Fj4a2xlxZ5EsPkHhytuOjucbApIrDoeO5HsfQCllVVHUYlVbeW0xr2OKcCzHCwkKQAK3fP56fHx5w/irSyqbfFMgA+h0cKBHZYey45jmYfeqWv6sKLXHbnTF0D5f7RWITzUnaxfD5y5ztIkSCY7zjwKYJ5DyVlf2fokTMrZ5sbZDu6Bs6e25QwK94b0svgKyjwYkEyZR2e2Z2H8n/pK04wV0oL8KEjWJwxncTicnb23C3F2slabIs9H1K/HrFZ9HrIPX7Mv37LPuTC5xEacSfa+V83YEW+bBfleFkuW8QbqQZDEuso9rcOKQQ/CxosIHnQLkWJOVdept9+ijSA6NEJwFGePaUekAdFwr65EaRcxu9BbOKq1JDqnmzIi9oL0RRDu4p1u/ayH9schrhlimGTtOLGnjeJRAJnC56FCQ3SFaYriLWjA4Q7SsPOp6kYnEXMbldKDTW/ssCFgKiaB1kusBWT+rkLYjQiAKhkHvP2j3IqWd5iMQ+M=)
 
 ### RxJS {#rxjs}
 
-[RxJS](https://rxjs.dev/) is a library for working with asynchronous event streams. The [VueUse](https://vueuse.org/) library provides the [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) add-on for connecting RxJS streams with Vue's reactivity system.
+[RxJS](https://rxjs.dev/) হল অ্যাসিঙ্ক্রোনাস ইভেন্ট স্ট্রিমগুলির সাথে কাজ করার জন্য একটি লাইব্রেরি। [VueUse](https://vueuse.org/) লাইব্রেরি Vue-এর প্রতিক্রিয়াশীলতার সাথে RxJS স্ট্রিমগুলিকে সংযুক্ত করার জন্য [`@vueuse/rxjs`](https://vueuse.org/rxjs/readme.html) অ্যাড-অন প্রদান করে পদ্ধতি.
 
 ## Connection to Signals {#connection-to-signals}
 
-Quite a few other frameworks have introduced reactivity primitives similar to refs from Vue's Composition API, under the term "signals":
+বেশ কিছু অন্যান্য ফ্রেমওয়ার্ক "সিগন্যাল" শব্দের অধীনে Vue এর কম্পোজিশন এপিআই থেকে রেফের অনুরূপ প্রতিক্রিয়াশীল আদিম প্রবর্তন করেছে:
 
 - [Solid Signals](https://www.solidjs.com/docs/latest/api#createsignal)
 - [Angular Signals](https://github.com/angular/angular/discussions/49090)
 - [Preact Signals](https://preactjs.com/guide/v10/signals/)
 - [Qwik Signals](https://qwik.builder.io/docs/components/state/#usesignal)
 
-Fundamentally, signals are the same kind of reactivity primitive as Vue refs. It's a value container that provides dependency tracking on access, and side-effect triggering on mutation. This reactivity-primitive-based paradigm isn't a particularly new concept in the frontend world: it dates back to implementations like [Knockout observables](https://knockoutjs.com/documentation/observables.html) and [Meteor Tracker](https://docs.meteor.com/api/tracker.html) from more than a decade ago. Vue Options API and the React state management library [MobX](https://mobx.js.org/) are also based on the same principles, but hide the primitives behind object properties.
+মৌলিকভাবে, সংকেত Vue refs হিসাবে একই ধরনের প্রতিক্রিয়াশীল আদিম। এটি একটি মান ধারক যা অ্যাক্সেসের উপর নির্ভরতা ট্র্যাকিং প্রদান করে এবং মিউটেশনে পার্শ্ব-প্রতিক্রিয়া ট্রিগার করে। এই প্রতিক্রিয়াশীলতা-আদি-ভিত্তিক দৃষ্টান্তটি ফ্রন্টএন্ড বিশ্বে একটি বিশেষ নতুন ধারণা নয়: এর মতো বাস্তবায়নের সময়কার [নকআউট অবজারভেবলস](https://knockoutjs.com/documentation/observables.html) এবং [মেটিওর ট্র্যাকার](https://docs.meteor.com/api/tracker.html) এক দশকেরও বেশি আগে থেকে। Vue Options API এবং React স্টেট ম্যানেজমেন্ট লাইব্রেরি [MobX](https://mobx.js.org/) একই নীতির উপর ভিত্তি করে, কিন্তু অবজেক্টের বৈশিষ্ট্যগুলির পিছনে আদিম বিষয়গুলি লুকিয়ে রাখে।
 
-Although not a necessary trait for something to qualify as signals, today the concept is often discussed alongside the rendering model where updates are performed through fine-grained subscriptions. Due to the use of Virtual DOM, Vue currently [relies on compilers to achieve similar optimizations](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom). However, we are also exploring a new Solid-inspired compilation strategy (Vapor Mode) that does not rely on Virtual DOM and takes more advantage of Vue's built-in reactivity system.
+যদিও সিগন্যাল হিসেবে যোগ্যতা অর্জনের জন্য কোনো কিছুর জন্য প্রয়োজনীয় বৈশিষ্ট্য নয়, আজ ধারণাটি প্রায়ই রেন্ডারিং মডেলের পাশাপাশি আলোচনা করা হয় যেখানে সূক্ষ্ম-দানাদার সদস্যতার মাধ্যমে আপডেট করা হয়। ভার্চুয়াল DOM ব্যবহারের কারণে, Vue বর্তমানে [অনুরূপ অপটিমাইজেশন অর্জনের জন্য কম্পাইলারদের উপর নির্ভর করে](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom)। যাইহোক, আমরা একটি নতুন সলিড-অনুপ্রাণিত সংকলন কৌশল (বাষ্প মোড) অন্বেষণ করছি যা ভার্চুয়াল DOM-এর উপর নির্ভর করে না এবং Vue-এর অন্তর্নির্মিত প্রতিক্রিয়া সিস্টেমের আরও সুবিধা নেয়।
 
 ### API Design Trade-Offs {#api-design-trade-offs}
 
-The design of Preact and Qwik's signals are very similar to Vue's [shallowRef](/api/reactivity-advanced#shallowref): all three provide a mutable interface via the `.value` property. We will focus the discussion on Solid and Angular signals.
+Preact এবং Qwik-এর সিগন্যালগুলির নকশা Vue এর [shallowRef](/api/reactivity-advanced#shallowref) এর সাথে খুব মিল: তিনটিই `.value` বৈশিষ্ট্যের মাধ্যমে একটি পরিবর্তনযোগ্য ইন্টারফেস প্রদান করে। আমরা সলিড এবং কৌণিক সংকেতের উপর আলোচনায় ফোকাস করব।
 
 #### Solid Signals {#solid-signals}
 
-Solid's `createSignal()` API design emphasizes read / write segregation. Signals are exposed as a read-only getter and a separate setter:
+সলিডের `createSignal()` API ডিজাইন পঠন/লেখা বিচ্ছিন্নতার উপর জোর দেয়। সিগন্যালগুলি শুধুমাত্র পঠনযোগ্য গেটার এবং একটি পৃথক সেটার হিসাবে প্রকাশ করা হয়:
 
 ```js
 const [count, setCount] = createSignal(0)
@@ -426,7 +426,7 @@ count() // access the value
 setCount(1) // update the value
 ```
 
-Notice how the `count` signal can be passed down without the setter. This ensures that the state can never be mutated unless the setter is also explicitly exposed. Whether this safety guarantee justifies the more verbose syntax could be subject to the requirement of the project and personal taste - but in case you prefer this API style, you can easily replicate it in Vue:
+লক্ষ্য করুন কীভাবে সেটার ছাড়াই `count` সংকেতটি পাস করা যেতে পারে। এটি নিশ্চিত করে যে রাষ্ট্রকে কখনই পরিবর্তিত করা যাবে না যদি না সেটারকেও স্পষ্টভাবে প্রকাশ করা হয়। এই নিরাপত্তা গ্যারান্টিটি আরও ভারবোস সিনট্যাক্সকে ন্যায্যতা দেয় কিনা তা প্রকল্পের প্রয়োজনীয়তা এবং ব্যক্তিগত স্বাদের সাপেক্ষে হতে পারে - তবে আপনি যদি এই API শৈলীটি পছন্দ করেন তবে আপনি সহজেই এটিকে Vue-তে প্রতিলিপি করতে পারেন:
 
 ```js
 import { shallowRef, triggerRef } from 'vue'
@@ -442,11 +442,11 @@ export function createSignal(value, options) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNpdUk1TgzAQ/Ss7uQAjgr12oNXxH+ix9IAYaDQkMV/qMPx3N6G0Uy9Msu/tvn2PTORJqcI7SrakMp1myoKh1qldI9iopLYwQadpa+krG0TLYYZeyxGSojSSs/d7E8vFh0ka0YhOCmPh0EknbB4mPYfTEeqbIelD1oiqXPRQCS+WjoojAW8A1Wmzm1A39KYZzHNVYiUib85aKeCx46z7rBuySqQe6h14uINN1pDIBWACVUcqbGwtl17EqvIiR3LyzwcmcXFuTi3n8vuF9jlYzYaBajxfMsDcomv6E/m9E51luN2NV99yR3OQKkAmgykss+SkMZerxMLEZFZ4oBYJGAA600VEryAaD6CPaJwJKwnr9ldR2WMedV1Dsi6WwB58emZlsAV/zqmH9LzfvqBfruUmNvZ4QN7VearjenP4aHwmWsABt4x/+tiImcx/z27Jqw==)
+[চেষ্টা করুন](https://play.vuejs.org/#eNpdUk1TgzAQ/Ss7uQAjgr12oNXxH+ix9IAYaDQkMV/qMPx3N6G0Uy9Msu/tvn2PTORJqcI7SrakMp1myoKh1qldI9iopLYwQadpa+krG0TLYYZeyxGSojSSs/d7E8vFh0ka0YhOCmPh0EknbB4mPYfTEeqbIelD1oiqXPRQCS+WjoojAW8A1Wmzm1A39KYZzHNVYiUib85aKeCx46z7rBuySqQe6h14uINN1pDIBWACVUcqbGwtl17EqvIiR3LyzwcmcXFuTi3n8vuF9jlYzYaBajxfMsDcomv6E/m9E51luN2NV99yR3OQKkAmgykss+SkMZerxMLEZFZ4oBYJGAA600VEryAaD6CPaJwJKwnr9ldR2WMedV1Dsi6WwB58emZlsAV/zqmH9LzfvqBfruUmNvZ4QN7VearjenP4aHwmWsABt4x/+tiImcx/z27Jqw==)
 
 #### Angular Signals {#angular-signals}
 
-Angular is undergoing some fundamental changes by foregoing dirty-checking and introducing its own implementation of a reactivity primitive. The Angular Signal API looks like this:
+কৌণিক নোংরা-পরীক্ষাকে অগ্রাহ্য করে এবং একটি রিঅ্যাকটিভিটি আদিম এর নিজস্ব বাস্তবায়ন প্রবর্তন করে কিছু মৌলিক পরিবর্তনের মধ্য দিয়ে যাচ্ছে। কৌণিক সংকেত API এই মত দেখায়:
 
 ```js
 const count = signal(0)
@@ -462,7 +462,7 @@ state.mutate((o) => {
 })
 ```
 
-Again, we can easily replicate the API in Vue:
+আবার, আমরা সহজেই Vue-তে API কে প্রতিলিপি করতে পারি:
 
 ```js
 import { shallowRef, triggerRef } from 'vue'
@@ -484,11 +484,11 @@ export function signal(initialValue) {
 }
 ```
 
-[Try it in the Playground](https://play.vuejs.org/#eNp9UslOwzAQ/ZVRLiRQEsqxpBUIvoADp0goTd3U4DiWl4AU5d8ZL3E3iZtn5r1Z3vOYvAiRD4Ykq6RUjaRCgyLaiE3FaSd6qWEERVteswU0fSeMJjuYYC/7Dm7youatYbW895D8S91UvOJNz5VGuOEa1oGePmRzYdebLSNYmRumaQbrjSfg8xYeEVsWfh/cBANNOsFqTTACKA/LzavrTtUKxjEyp6kssDZj3vygAPJjL1Bbo3XP4blhtPleV4nrlBuxw1npYLca4A6WWZU4PADljSQd4drRC8//rxfKaW+f+ZJg4oJbFvG8ZJFcaYreHL041Iz1P+9kvwAtadsS6d7Rm1rB55VRaLAzhvy6NnvDG01x1WAN5VTTmn3UzJAMRrudd0pa++LEc9wRpRDlHZT5YGu2pOzhWHAJWxvnakxOHufFxqx/4MxzcEinIYP+eV5ntOe5Rx94IYjopxOZUhnIEr+4xPMrjuG1LPFftkTj5DNJGhwYBZ4BJz3DV56FmJLpD1DrKXU=)
+[চেষ্টা করুন](https://play.vuejs.org/#eNp9UslOwzAQ/ZVRLiRQEsqxpBUIvoADp0goTd3U4DiWl4AU5d8ZL3E3iZtn5r1Z3vOYvAiRD4Ykq6RUjaRCgyLaiE3FaSd6qWEERVteswU0fSeMJjuYYC/7Dm7youatYbW895D8S91UvOJNz5VGuOEa1oGePmRzYdebLSNYmRumaQbrjSfg8xYeEVsWfh/cBANNOsFqTTACKA/LzavrTtUKxjEyp6kssDZj3vygAPJjL1Bbo3XP4blhtPleV4nrlBuxw1npYLca4A6WWZU4PADljSQd4drRC8//rxfKaW+f+ZJg4oJbFvG8ZJFcaYreHL041Iz1P+9kvwAtadsS6d7Rm1rB55VRaLAzhvy6NnvDG01x1WAN5VTTmn3UzJAMRrudd0pa++LEc9wRpRDlHZT5YGu2pOzhWHAJWxvnakxOHufFxqx/4MxzcEinIYP+eV5ntOe5Rx94IYjopxOZUhnIEr+4xPMrjuG1LPFftkTj5DNJGhwYBZ4BJz3DV56FmJLpD1DrKXU=)
 
-Compared to Vue refs, Solid and Angular's getter-based API style provide some interesting trade-offs when used in Vue components:
+Vue refs-এর তুলনায়, সলিড এবং অ্যাঙ্গুলারের গেটার-ভিত্তিক API শৈলী Vue উপাদানগুলিতে ব্যবহার করার সময় কিছু আকর্ষণীয় ট্রেড-অফ প্রদান করে:
 
-- `()` is slightly less verbose than `.value`, but updating the value is more verbose.
-- There is no ref-unwrapping: accessing values always require `()`. This makes value access consistent everywhere. This also means you can pass raw signals down as component props.
+- `()` `.value`-এর চেয়ে সামান্য কম ভার্বস, কিন্তু মান আপডেট করা আরও ভার্বস।
+- কোন রেফ-আনর্যাপিং নেই: অ্যাক্সেসের মান সবসময় `()` প্রয়োজন। এটি মান অ্যাক্সেসকে সর্বত্র সামঞ্জস্যপূর্ণ করে তোলে। এর মানে হল আপনি কম্পোনেন্ট প্রপস হিসাবে কাঁচা সংকেত পাস করতে পারেন।
 
-Whether these API styles suit you is to some extent subjective. Our goal here is to demonstrate the underlying similarity and trade-offs between these different API designs. We also want to show that Vue is flexible: you are not really locked into the existing APIs. Should it be necessary, you can create your own reactivity primitive API to suit more specific needs.
+এই API শৈলী আপনার জন্য উপযুক্ত কিনা তা কিছুটা বিষয়ভিত্তিক। এখানে আমাদের লক্ষ্য হল এই বিভিন্ন API ডিজাইনের মধ্যে অন্তর্নিহিত সাদৃশ্য এবং ট্রেড-অফ প্রদর্শন করা। আমরা এটাও দেখাতে চাই যে Vue নমনীয়: আপনি আসলে বিদ্যমান API-এ লক নন। এটি প্রয়োজন হলে, আপনি আরও নির্দিষ্ট প্রয়োজন অনুসারে আপনার নিজস্ব প্রতিক্রিয়াশীল আদিম API তৈরি করতে পারেন।
