@@ -2,21 +2,21 @@
 
 ## createApp() {#createapp}
 
-Creates an application instance.
+একটি অ্যাপ্লিকেশন উদাহরণ তৈরি করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function createApp(rootComponent: Component, rootProps?: object): App
   ```
 
-- **Details**
+- **বিস্তারিত**
 
   The first argument is the root component. The second optional argument is the props to be passed to the root component.
 
-- **Example**
+- **উদাহরণ**
 
-  With inline root component:
+  ইনলাইন রুট উপাদান সহ:
 
   ```js
   import { createApp } from 'vue'
@@ -26,7 +26,7 @@ Creates an application instance.
   })
   ```
 
-  With imported component:
+  imported component সহ:
 
   ```js
   import { createApp } from 'vue'
@@ -35,17 +35,17 @@ Creates an application instance.
   const app = createApp(App)
   ```
 
-- **See also** [Guide - Creating a Vue Application](/guide/essentials/application)
+- **আরো দেখুন** [Guide - Creating a Vue Application](/guide/essentials/application)
 
 ## createSSRApp() {#createssrapp}
 
-Creates an application instance in [SSR Hydration](/guide/scaling-up/ssr#client-hydration) mode. Usage is exactly the same as `createApp()`.
+[SSR হাইড্রেশন](/guide/scaling-up/ssr#client-hydration) মোডে একটি অ্যাপ্লিকেশন উদাহরণ তৈরি করে। ব্যবহার ঠিক `createApp()` এর মতোই।
 
 ## app.mount() {#app-mount}
 
-Mounts the application instance in a container element.
+একটি ধারক উপাদানে অ্যাপ্লিকেশন দৃষ্টান্ত মাউন্ট করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface App {
@@ -53,17 +53,17 @@ Mounts the application instance in a container element.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The argument can either be an actual DOM element or a CSS selector (the first matched element will be used). Returns the root component instance.
+  যুক্তিটি হয় একটি প্রকৃত DOM উপাদান বা একটি CSS নির্বাচক হতে পারে (প্রথম মিলে যাওয়া উপাদানটি ব্যবহার করা হবে)। মূল উপাদান উদাহরণ প্রদান করে।
 
-  If the component has a template or a render function defined, it will replace any existing DOM nodes inside the container. Otherwise, if the runtime compiler is available, the `innerHTML` of the container will be used as the template.
+  যদি উপাদানটির একটি টেমপ্লেট বা একটি রেন্ডার ফাংশন সংজ্ঞায়িত থাকে, তাহলে এটি কন্টেইনারের ভিতরে বিদ্যমান যেকোনো DOM নোডকে প্রতিস্থাপন করবে। অন্যথায়, রানটাইম কম্পাইলার উপলব্ধ থাকলে, টেমপ্লেট হিসাবে কন্টেইনারের `ইনারএইচটিএমএল` ব্যবহার করা হবে।
 
-  In SSR hydration mode, it will hydrate the existing DOM nodes inside the container. If there are [mismatches](/guide/scaling-up/ssr#hydration-mismatch), the existing DOM nodes will be morphed to match the expected output.
+  SSR হাইড্রেশন মোডে, এটি পাত্রের ভিতরে বিদ্যমান DOM নোডগুলিকে হাইড্রেট করবে। যদি [অমিল থাকে](/guide/scaling-up/ssr#hydration-mismatch), বিদ্যমান DOM নোডগুলি প্রত্যাশিত আউটপুটের সাথে মেলে।
 
-  For each app instance, `mount()` can only be called once.
+  প্রতিটি অ্যাপের উদাহরণের জন্য, `মাউন্ট()` শুধুমাত্র একবার কল করা যেতে পারে।
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   import { createApp } from 'vue'
@@ -80,9 +80,9 @@ Mounts the application instance in a container element.
 
 ## app.unmount() {#app-unmount}
 
-Unmounts a mounted application instance, triggering the unmount lifecycle hooks for all components in the application's component tree.
+একটি মাউন্ট করা অ্যাপ্লিকেশন দৃষ্টান্ত আনমাউন্ট করে, অ্যাপ্লিকেশনের উপাদান গাছের সমস্ত উপাদানের জন্য আনমাউন্ট লাইফসাইকেল হুকগুলিকে ট্রিগার করে৷
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface App {
@@ -92,9 +92,9 @@ Unmounts a mounted application instance, triggering the unmount lifecycle hooks 
 
 ## app.component() {#app-component}
 
-Registers a global component if passing both a name string and a component definition, or retrieves an already registered one if only the name is passed.
+একটি নাম স্ট্রিং এবং একটি উপাদান সংজ্ঞা উভয় পাস করলে একটি বিশ্বব্যাপী উপাদান নিবন্ধন করে, অথবা শুধুমাত্র নাম পাস হলে ইতিমধ্যে নিবন্ধিত একটি পুনরুদ্ধার করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface App {
@@ -103,7 +103,7 @@ Registers a global component if passing both a name string and a component defin
   }
   ```
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   import { createApp } from 'vue'
@@ -119,13 +119,13 @@ Registers a global component if passing both a name string and a component defin
   const MyComponent = app.component('my-component')
   ```
 
-- **See also** [Component Registration](/guide/components/registration)
+- **আরো দেখুন** [Component Registration](/guide/components/registration)
 
 ## app.directive() {#app-directive}
 
-Registers a global custom directive if passing both a name string and a directive definition, or retrieves an already registered one if only the name is passed.
+একটি নাম স্ট্রিং এবং একটি নির্দেশিক সংজ্ঞা উভয় পাস করলে একটি বিশ্বব্যাপী কাস্টম নির্দেশিকা নিবন্ধন করে, অথবা শুধুমাত্র নামটি পাস হলে ইতিমধ্যেই নিবন্ধিত একটি পুনরুদ্ধার করে৷
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface App {
@@ -134,7 +134,7 @@ Registers a global custom directive if passing both a name string and a directiv
   }
   ```
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   import { createApp } from 'vue'
@@ -157,13 +157,13 @@ Registers a global custom directive if passing both a name string and a directiv
   const myDirective = app.directive('my-directive')
   ```
 
-- **See also** [Custom Directives](/guide/reusability/custom-directives)
+- **আরো দেখুন** [Custom Directives](/guide/reusability/custom-directives)
 
 ## app.use() {#app-use}
 
 Installs a [plugin](/guide/reusability/plugins).
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface App {
@@ -171,15 +171,15 @@ Installs a [plugin](/guide/reusability/plugins).
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Expects the plugin as the first argument, and optional plugin options as the second argument.
+  প্রথম আর্গুমেন্ট হিসাবে প্লাগইন এবং দ্বিতীয় আর্গুমেন্ট হিসাবে ঐচ্ছিক প্লাগইন অপশন আশা করে।
 
-  The plugin can either be an object with an `install()` method, or just a function that will be used as the `install()` method. The options (second argument of `app.use()`) will be passed along to the plugin's `install()` method.
+  প্লাগইনটি হয় একটি `ইনস্টল()` পদ্ধতি সহ একটি বস্তু হতে পারে, অথবা শুধুমাত্র একটি ফাংশন যা `ইনস্টল()` পদ্ধতি হিসেবে ব্যবহার করা হবে। বিকল্পগুলি (`app.use()` এর দ্বিতীয় আর্গুমেন্ট) প্লাগইনের `ইনস্টল()` পদ্ধতিতে পাস করা হবে।
 
-  When `app.use()` is called on the same plugin multiple times, the plugin will be installed only once.
+  একই প্লাগইনে যখন `app.use()` একাধিকবার কল করা হয়, প্লাগইনটি একবার ইন্সটল করা হবে।
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   import { createApp } from 'vue'
@@ -192,19 +192,19 @@ Installs a [plugin](/guide/reusability/plugins).
   app.use(MyPlugin)
   ```
 
-- **See also** [Plugins](/guide/reusability/plugins)
+- **আরো দেখুন** [Plugins](/guide/reusability/plugins)
 
 ## app.mixin() {#app-mixin}
 
-Applies a global mixin (scoped to the application). A global mixin applies its included options to every component instance in the application.
+একটি গ্লোবাল মিক্সিন প্রয়োগ করে (অ্যাপ্লিকেশনের সুযোগ)। একটি গ্লোবাল মিক্সিন অ্যাপ্লিকেশনের প্রতিটি উপাদান উদাহরণে এর অন্তর্ভুক্ত বিকল্পগুলি প্রয়োগ করে।
 
-:::warning Not Recommended
-Mixins are supported in Vue 3 mainly for backwards compatibility, due to their widespread use in ecosystem libraries. Use of mixins, especially global mixins, should be avoided in application code.
+:::warning প্রস্তাবিত নয়
+ইকোসিস্টেম লাইব্রেরিতে তাদের ব্যাপক ব্যবহারের কারণে মিক্সিনগুলি মূলত পিছনের দিকের সামঞ্জস্যের জন্য Vue 3-তে সমর্থিত। অ্যাপ্লিকেশান কোডে মিক্সিনের ব্যবহার, বিশেষ করে গ্লোবাল মিক্সিন এড়ানো উচিত।
 
-For logic reuse, prefer [Composables](/guide/reusability/composables) instead.
+যুক্তি পুনঃব্যবহারের জন্য, পরিবর্তে [কম্পোজেবল](/guide/reusability/composables) পছন্দ করুন।
 :::
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface App {
@@ -214,9 +214,9 @@ For logic reuse, prefer [Composables](/guide/reusability/composables) instead.
 
 ## app.provide() {#app-provide}
 
-Provide a value that can be injected in all descendant components within the application.
+একটি মান প্রদান করুন যা অ্যাপ্লিকেশনের মধ্যে সমস্ত বংশধর উপাদানগুলিতে ইনজেকশন করা যেতে পারে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface App {
@@ -224,11 +224,11 @@ Provide a value that can be injected in all descendant components within the app
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Expects the injection key as the first argument, and the provided value as the second. Returns the application instance itself.
+  প্রথম আর্গুমেন্ট হিসাবে ইনজেকশন কী এবং দ্বিতীয় হিসাবে প্রদত্ত মান প্রত্যাশা করে। অ্যাপ্লিকেশন উদাহরণ নিজেই প্রদান করে.
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   import { createApp } from 'vue'
@@ -266,16 +266,16 @@ Provide a value that can be injected in all descendant components within the app
 
   </div>
 
-- **See also**
+- **আরো দেখুন**
   - [Provide / Inject](/guide/components/provide-inject)
   - [App-level Provide](/guide/components/provide-inject#app-level-provide)
   - [app.runWithContext()](#app-runwithcontext)
 
 ## app.runWithContext()<sup class="vt-badge" data-text="3.3+" /> {#app-runwithcontext}
 
-Execute a callback with the current app as injection context.
+ইনজেকশন প্রসঙ্গ হিসাবে বর্তমান অ্যাপের সাথে একটি কলব্যাক চালান।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface App {
@@ -283,11 +283,11 @@ Execute a callback with the current app as injection context.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Expects a callback function and runs the callback immediately. During the synchronous call of the callback,  `inject()` calls are able to look up injections from the values provided by the current app, even when there is no current active component instance. The return value of the callback will also be returned.
+  একটি কলব্যাক ফাংশন আশা করে এবং অবিলম্বে কলব্যাক চালায়। কলব্যাকের সিঙ্ক্রোনাস কলের সময়, `inject()` কলগুলি বর্তমান অ্যাপের দ্বারা প্রদত্ত মানগুলি থেকে ইনজেকশনগুলি সন্ধান করতে সক্ষম হয়, এমনকি কোনো বর্তমান সক্রিয় উপাদানের উদাহরণ না থাকলেও৷ কলব্যাকের রিটার্ন মানও ফেরত দেওয়া হবে।
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   import { inject } from 'vue'
@@ -303,9 +303,9 @@ Execute a callback with the current app as injection context.
 
 ## app.version {#app-version}
 
-Provides the version of Vue that the application was created with. This is useful inside [plugins](/guide/reusability/plugins), where you might need conditional logic based on different Vue versions.
+Vue এর সংস্করণ প্রদান করে যেটি দিয়ে অ্যাপ্লিকেশনটি তৈরি করা হয়েছিল। এটি [plugins](/guide/reusability/plugins) এর ভিতরে দরকারী, যেখানে আপনার বিভিন্ন Vue সংস্করণের উপর ভিত্তি করে শর্তসাপেক্ষ যুক্তির প্রয়োজন হতে পারে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface App {
@@ -313,9 +313,9 @@ Provides the version of Vue that the application was created with. This is usefu
   }
   ```
 
-- **Example**
+- **উদাহরণ**
 
-  Performing a version check inside a plugin:
+  একটি প্লাগইনের ভিতরে একটি সংস্করণ পরীক্ষা করা:
 
   ```js
   export default {
@@ -328,11 +328,11 @@ Provides the version of Vue that the application was created with. This is usefu
   }
   ```
 
-- **See also** [Global API - version](/api/general#version)
+- **আরো দেখুন** [Global API - version](/api/general#version)
 
 ## app.config {#app-config}
 
-Every application instance exposes a `config` object that contains the configuration settings for that application. You can modify its properties (documented below) before mounting your application.
+প্রতিটি অ্যাপ্লিকেশন দৃষ্টান্ত একটি `config` অবজেক্টকে প্রকাশ করে যেটিতে সেই অ্যাপ্লিকেশনটির জন্য কনফিগারেশন সেটিংস রয়েছে। আপনি আপনার অ্যাপ্লিকেশন মাউন্ট করার আগে এর বৈশিষ্ট্যগুলি (নীচে নথিভুক্ত) সংশোধন করতে পারেন।
 
 ```js
 import { createApp } from 'vue'
@@ -344,9 +344,9 @@ console.log(app.config)
 
 ## app.config.errorHandler {#app-config-errorhandler}
 
-Assign a global handler for uncaught errors propagating from within the application.
+অ্যাপ্লিকেশনের মধ্যে থেকে প্রচারিত অজানা ত্রুটিগুলির জন্য একটি বিশ্বব্যাপী হ্যান্ডলারকে বরাদ্দ করুন৷
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface AppConfig {
@@ -360,11 +360,11 @@ Assign a global handler for uncaught errors propagating from within the applicat
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The error handler receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
+  error handler তিনটি আর্গুমেন্ট পায়: ত্রুটি, কম্পোনেন্ট ইনস্ট্যান্স যা ত্রুটিটি ট্রিগার করে এবং একটি তথ্য স্ট্রিং যা ত্রুটির উৎসের ধরন নির্দিষ্ট করে।
 
-  It can capture errors from the following sources:
+   এটি নিম্নলিখিত sources গুলি থেকে ত্রুটিগুলি capture  করতে পারে:
 
   - Component renders
   - Event handlers
@@ -374,7 +374,7 @@ Assign a global handler for uncaught errors propagating from within the applicat
   - Custom directive hooks
   - Transition hooks
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   app.config.errorHandler = (err, instance, info) => {
@@ -384,9 +384,9 @@ Assign a global handler for uncaught errors propagating from within the applicat
 
 ## app.config.warnHandler {#app-config-warnhandler}
 
-Assign a custom handler for runtime warnings from Vue.
+Vue থেকে রানটাইম সতর্কতার জন্য একটি কাস্টম হ্যান্ডলার বরাদ্দ করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface AppConfig {
@@ -398,17 +398,17 @@ Assign a custom handler for runtime warnings from Vue.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The warning handler receives the warning message as the first argument, the source component instance as the second argument, and a component trace string as the third.
+  সতর্কতা হ্যান্ডলার প্রথম আর্গুমেন্ট হিসেবে সতর্কীকরণ বার্তা পায়, দ্বিতীয় আর্গুমেন্ট হিসেবে সোর্স কম্পোনেন্ট ইনস্ট্যান্স এবং তৃতীয় হিসেবে একটি কম্পোনেন্ট ট্রেস স্ট্রিং।
 
-  It can be used to filter out specific warnings to reduce console verbosity. All Vue warnings should be addressed during development, so this is only recommended during debug sessions to focus on specific warnings among many, and should be removed once the debugging is done.
+   এটি কনসোল ভার্বোসিটি কমাতে নির্দিষ্ট সতর্কতা ফিল্টার করতে ব্যবহার করা যেতে পারে। সমস্ত Vue সতর্কতাগুলি বিকাশের সময় সম্বোধন করা উচিত, তাই এটি শুধুমাত্র ডিবাগ সেশনের সময় অনেকের মধ্যে নির্দিষ্ট সতর্কতার উপর ফোকাস করার জন্য সুপারিশ করা হয়, এবং ডিবাগিং সম্পন্ন হলে এটি সরানো উচিত।
 
   :::tip
-  Warnings only work during development, so this config is ignored in production mode.
+  সতর্কতাগুলি শুধুমাত্র বিকাশের সময় কাজ করে, তাই এই কনফিগারেশনটি উত্পাদন মোডে উপেক্ষা করা হয়।
   :::
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   app.config.warnHandler = (msg, instance, trace) => {
@@ -418,37 +418,37 @@ Assign a custom handler for runtime warnings from Vue.
 
 ## app.config.performance {#app-config-performance}
 
-Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+ব্রাউজার ডেভটুল পারফরম্যান্স/টাইমলাইন প্যানেলে কম্পোনেন্ট ইনিট, কম্পাইল, রেন্ডার এবং প্যাচ পারফরম্যান্স ট্রেসিং সক্ষম করতে এটিকে `true` তে সেট করুন। শুধুমাত্র ডেভেলপমেন্ট মোডে এবং [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API সমর্থন করে এমন ব্রাউজারে কাজ করে।
 
-- **Type:** `boolean`
+- **প্রকার:** `boolean`
 
-- **See also** [Guide - Performance](/guide/best-practices/performance)
+- **আরো দেখুন** [Guide - Performance](/guide/best-practices/performance)
 
 ## app.config.compilerOptions {#app-config-compileroptions}
 
-Configure runtime compiler options. Values set on this object will be passed to the in-browser template compiler and affect every component in the configured app. Note you can also override these options on a per-component basis using the [`compilerOptions` option](/api/options-rendering#compileroptions).
+রানটাইম কম্পাইলার বিকল্পগুলি কনফিগার করুন। এই অবজেক্টে সেট করা মানগুলি ইন-ব্রাউজার টেমপ্লেট কম্পাইলারে পাঠানো হবে এবং কনফিগার করা অ্যাপের প্রতিটি উপাদানকে প্রভাবিত করবে। মনে রাখবেন আপনি [`compilerOptions` বিকল্প](/api/options-rendering#compileroptions) ব্যবহার করে প্রতি-কম্পোনেন্ট ভিত্তিতে এই বিকল্পগুলিকে ওভাররাইড করতে পারেন।
 
-::: warning Important
-This config option is only respected when using the full build (i.e. the standalone `vue.js` that can compile templates in the browser). If you are using the runtime-only build with a build setup, compiler options must be passed to `@vue/compiler-dom` via build tool configurations instead.
+::: warning গুরুত্বপূর্ণ
+এই কনফিগার বিকল্পটি শুধুমাত্র সম্পূর্ণ বিল্ড ব্যবহার করার সময় সম্মান করা হয় (অর্থাৎ স্বতন্ত্র `vue.js` যা ব্রাউজারে টেমপ্লেট কম্পাইল করতে পারে)। আপনি যদি বিল্ড সেটআপের সাথে রানটাইম-অনলি বিল্ড ব্যবহার করেন, তাহলে কম্পাইলার বিকল্পগুলি অবশ্যই বিল্ড টুল কনফিগারেশনের মাধ্যমে `@vue/compiler-dom`-এ পাস করতে হবে।
 
-- For `vue-loader`: [pass via the `compilerOptions` loader option](https://vue-loader.vuejs.org/options.html#compileroptions). Also see [how to configure it in `vue-cli`](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader).
+- `vue-loader` এর জন্য: [`compilerOptions` লোডার বিকল্পের মাধ্যমে পাস করুন](https://vue-loader.vuejs.org/options.html#compileroptions)। এছাড়াও [কিভাবে এটিকে `vue-cli` এ কনফিগার করবেন](https://cli.vuejs.org/guide/webpack.html#modifying-options-of-a-loader) দেখুন।
 
-- For `vite`: [pass via `@vitejs/plugin-vue` options](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#options).
+- `vite`-এর জন্য: [`@vitejs/plugin-vue` বিকল্পের মাধ্যমে পাস](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#options)।
   :::
 
 ### app.config.compilerOptions.isCustomElement {#app-config-compileroptions-iscustomelement}
 
-Specifies a check method to recognize native custom elements.
+নেটিভ কাস্টম উপাদান চিনতে একটি চেক পদ্ধতি নির্দিষ্ট করে।
 
-- **Type:** `(tag: string) => boolean`
+- **প্রকার:** `(tag: string) => boolean`
 
-- **Details**
+- **বিস্তারিত**
 
-  Should return `true` if the tag should be treated as a native custom element. For a matched tag, Vue will render it as a native element instead of attempting to resolve it as a Vue component.
+  ট্যাগটিকে একটি নেটিভ কাস্টম উপাদান হিসাবে বিবেচনা করা হলে `true` ফেরত দেওয়া উচিত। একটি মিলে যাওয়া ট্যাগের জন্য, Vue এটিকে একটি Vue উপাদান হিসাবে সমাধান করার চেষ্টা করার পরিবর্তে একটি নেটিভ উপাদান হিসাবে রেন্ডার করবে।
 
-  Native HTML and SVG tags don't need to be matched in this function - Vue's parser recognizes them automatically.
+  এই ফাংশনে নেটিভ এইচটিএমএল এবং এসভিজি ট্যাগগুলির সাথে মিলিত হওয়ার প্রয়োজন নেই - Vue-এর পার্সার স্বয়ংক্রিয়ভাবে সেগুলিকে চিনতে পারে৷
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   // treat all tags starting with 'ion-' as custom elements
@@ -457,27 +457,27 @@ Specifies a check method to recognize native custom elements.
   }
   ```
 
-- **See also** [Vue and Web Components](/guide/extras/web-components)
+- **আরো দেখুন** [Vue and Web Components](/guide/extras/web-components)
 
 ### app.config.compilerOptions.whitespace {#app-config-compileroptions-whitespace}
 
-Adjusts template whitespace handling behavior.
+টেমপ্লেট হোয়াইটস্পেস হ্যান্ডলিং আচরণ সামঞ্জস্য করে।
 
-- **Type:** `'condense' | 'preserve'`
+- **প্রকার:** `'condense' | 'preserve'`
 
 - **Default:** `'condense'`
 
-- **Details**
+- **বিস্তারিত**
 
-  Vue removes / condenses whitespace characters in templates to produce more efficient compiled output. The default strategy is "condense", with the following behavior:
+  Vue আরও দক্ষ কম্পাইল আউটপুট তৈরি করতে টেমপ্লেটগুলিতে হোয়াইটস্পেস অক্ষরগুলি সরিয়ে / ঘনীভূত করে। ডিফল্ট কৌশল হল "কনডেন্স", নিম্নলিখিত আচরণ সহ:
 
-  1. Leading / ending whitespace characters inside an element are condensed into a single space.
-  2. Whitespace characters between elements that contain newlines are removed.
-  3. Consecutive whitespace characters in text nodes are condensed into a single space.
+  1. একটি উপাদানের অভ্যন্তরে অগ্রণী / শেষ হোয়াইটস্পেস অক্ষরগুলিকে একক স্থানে ঘনীভূত করা হয়।
+  2. নতুন লাইন ধারণকারী উপাদানগুলির মধ্যে হোয়াইটস্পেস অক্ষরগুলি সরানো হয়।
+  3. টেক্সট নোডের ক্রমাগত হোয়াইটস্পেস অক্ষরগুলিকে একক স্থানে ঘনীভূত করা হয়।
 
-  Setting this option to `'preserve'` will disable (2) and (3).
+  এই বিকল্পটিকে `'preserve'-এ সেট করলে (2) এবং (3) নিষ্ক্রিয় হবে।
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   app.config.compilerOptions.whitespace = 'preserve'
@@ -485,17 +485,17 @@ Adjusts template whitespace handling behavior.
 
 ### app.config.compilerOptions.delimiters {#app-config-compileroptions-delimiters}
 
-Adjusts the delimiters used for text interpolation within the template.
+টেমপ্লেটের মধ্যে টেক্সট ইন্টারপোলেশনের জন্য ব্যবহৃত ডিলিমিটারগুলিকে সামঞ্জস্য করে।
 
-- **Type:** `[string, string]`
+- **প্রকার:** `[string, string]`
 
 - **Default:** `{{ "['\u007b\u007b', '\u007d\u007d']" }}`
 
-- **Details**
+- **বিস্তারিত**
 
-  This is typically used to avoid conflicting with server-side frameworks that also use mustache syntax.
+  এটি সাধারণত সার্ভার-সাইড ফ্রেমওয়ার্কের সাথে বিরোধ এড়াতে ব্যবহৃত হয় যা গোঁফের সিনট্যাক্স ব্যবহার করে।
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   // Delimiters changed to ES6 template string style
@@ -504,17 +504,17 @@ Adjusts the delimiters used for text interpolation within the template.
 
 ### app.config.compilerOptions.comments {#app-config-compileroptions-comments}
 
-Adjusts treatment of HTML comments in templates.
+টেমপ্লেটে এইচটিএমএল মন্তব্যের চিকিৎসা সামঞ্জস্য করে।
 
-- **Type:** `boolean`
+- **প্রকার:** `boolean`
 
 - **Default:** `false`
 
-- **Details**
+- **বিস্তারিত**
 
-  By default, Vue will remove the comments in production. Setting this option to `true` will force Vue to preserve comments even in production. Comments are always preserved during development. This option is typically used when Vue is used with other libraries that rely on HTML comments.
+  ডিফল্টরূপে, Vue প্রোডাকশনে মন্তব্যগুলি সরিয়ে দেবে। এই বিকল্পটিকে `true` তে সেট করা Vue কে এমনকি উৎপাদনেও মন্তব্য সংরক্ষণ করতে বাধ্য করবে। মন্তব্য সবসময় উন্নয়নের সময় সংরক্ষিত হয়. এই বিকল্পটি সাধারণত ব্যবহৃত হয় যখন Vue অন্যান্য লাইব্রেরির সাথে ব্যবহার করা হয় যা HTML মন্তব্যের উপর নির্ভর করে।
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   app.config.compilerOptions.comments = true
@@ -522,9 +522,9 @@ Adjusts treatment of HTML comments in templates.
 
 ## app.config.globalProperties {#app-config-globalproperties}
 
-An object that can be used to register global properties that can be accessed on any component instance inside the application.
+একটি বস্তু যা বিশ্বব্যাপী বৈশিষ্ট্য নিবন্ধন করতে ব্যবহার করা যেতে পারে যা অ্যাপ্লিকেশনের ভিতরে যেকোন উপাদানের উদাহরণে অ্যাক্সেস করা যেতে পারে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface AppConfig {
@@ -532,19 +532,19 @@ An object that can be used to register global properties that can be accessed on
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  This is a replacement of Vue 2's `Vue.prototype` which is no longer present in Vue 3. As with anything global, this should be used sparingly.
+  এটি Vue 2 এর `Vue.prototype` এর একটি প্রতিস্থাপন যা এখন আর Vue 3 তে নেই। বৈশ্বিক যেকোনো কিছুর মতো, এটিকে অল্প ব্যবহার করা উচিত।
 
-  If a global property conflicts with a component’s own property, the component's own property will have higher priority.
+   যদি একটি বৈশ্বিক সম্পত্তি একটি উপাদানের নিজস্ব সম্পত্তির সাথে দ্বন্দ্ব করে, তবে উপাদানটির নিজস্ব সম্পত্তির অগ্রাধিকার থাকবে।
 
-- **Usage**
+- **ব্যবহার**
 
   ```js
   app.config.globalProperties.msg = 'hello'
   ```
 
-  This makes `msg` available inside any component template in the application, and also on `this` of any component instance:
+  এটি অ্যাপ্লিকেশানের যেকোনো উপাদান টেমপ্লেটের ভিতরে `msg` উপলব্ধ করে, এবং কোনো উপাদান উদাহরণের `এ`তেও:
 
   ```js
   export default {
@@ -554,13 +554,13 @@ An object that can be used to register global properties that can be accessed on
   }
   ```
 
-- **See also** [Guide - Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
+- **আরো দেখুন** [Guide - Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties) <sup class="vt-badge ts" />
 
 ## app.config.optionMergeStrategies {#app-config-optionmergestrategies}
 
-An object for defining merging strategies for custom component options.
+কাস্টম উপাদান বিকল্পগুলির জন্য মার্জিং কৌশল নির্ধারণের জন্য একটি বস্তু।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface AppConfig {
@@ -570,15 +570,15 @@ An object for defining merging strategies for custom component options.
   type OptionMergeFunction = (to: unknown, from: unknown) => any
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Some plugins / libraries add support for custom component options (by injecting global mixins). These options may require special merging logic when the same option needs to be "merged" from multiple sources (e.g. mixins or component inheritance).
+  কিছু প্লাগইন/লাইব্রেরি কাস্টম কম্পোনেন্ট বিকল্পের জন্য সমর্থন যোগ করে (গ্লোবাল মিক্সিন ইনজেকশনের মাধ্যমে)। এই বিকল্পগুলির জন্য বিশেষ মার্জিং যুক্তির প্রয়োজন হতে পারে যখন একই বিকল্পটিকে একাধিক উত্স থেকে "একত্রীকরণ" করতে হবে (যেমন মিক্সিন বা উপাদান উত্তরাধিকার)।
 
-  A merge strategy function can be registered for a custom option by assigning it on the `app.config.optionMergeStrategies` object using the option's name as the key.
+   `app.config.optionMergeStrategies` অবজেক্টে কী হিসাবে বিকল্পের নাম ব্যবহার করে একটি কাস্টম বিকল্পের জন্য একটি মার্জ কৌশল ফাংশন নিবন্ধিত করা যেতে পারে।
 
-  The merge strategy function receives the value of that option defined on the parent and child instances as the first and second arguments, respectively.
+   মার্জ স্ট্র্যাটেজি ফাংশন যথাক্রমে প্রথম এবং দ্বিতীয় আর্গুমেন্ট হিসাবে অভিভাবক এবং সন্তানের দৃষ্টান্তগুলিতে সংজ্ঞায়িত বিকল্পটির মান গ্রহণ করে।
 
-- **Example**
+- **উদাহরণ**
 
   ```js
   const app = createApp({
@@ -605,4 +605,4 @@ An object for defining merging strategies for custom component options.
   // logs 'Hello Vue'
   ```
 
-- **See also** [Component Instance - `$options`](/api/component-instance#options)
+- **আরো দেখুন** [Component Instance - `$options`](/api/component-instance#options)
