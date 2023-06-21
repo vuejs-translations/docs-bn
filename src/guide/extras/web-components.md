@@ -1,18 +1,18 @@
 # Vue and Web Components {#vue-and-web-components}
 
-[Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) is an umbrella term for a set of web native APIs that allows developers to create reusable custom elements.
+[ওয়েব উপাদান](https://developer.mozilla.org/en-US/docs/Web/Web_Components) হল ওয়েব নেটিভ API-এর একটি সেটের জন্য একটি ছাতা শব্দ যা ডেভেলপারদের পুনরায় ব্যবহারযোগ্য কাস্টম উপাদান তৈরি করতে দেয়।
 
-We consider Vue and Web Components to be primarily complementary technologies. Vue has excellent support for both consuming and creating custom elements. Whether you are integrating custom elements into an existing Vue application, or using Vue to build and distribute custom elements, you are in good company.
+আমরা Vue এবং ওয়েব উপাদানগুলিকে প্রাথমিকভাবে পরিপূরক প্রযুক্তি হিসাবে বিবেচনা করি। Vue ব্যবহার এবং কাস্টম উপাদান তৈরি উভয়ের জন্য চমৎকার সমর্থন রয়েছে। আপনি একটি বিদ্যমান Vue অ্যাপ্লিকেশনে কাস্টম উপাদানগুলিকে একীভূত করছেন বা কাস্টম উপাদানগুলি তৈরি এবং বিতরণ করতে Vue ব্যবহার করছেন, আপনি ভাল কোম্পানিতে আছেন৷
 
 ## Using Custom Elements in Vue {#using-custom-elements-in-vue}
 
-Vue [scores a perfect 100% in the Custom Elements Everywhere tests](https://custom-elements-everywhere.com/libraries/vue/results/results.html). Consuming custom elements inside a Vue application largely works the same as using native HTML elements, with a few things to keep in mind:
+Vue [কাস্টম এলিমেন্টস এভরিওয়ের পরীক্ষায় একটি নিখুঁত ১০০% স্কোর করে](https://custom-elements-everywhere.com/libraries/vue/results/results.html)। একটি Vue অ্যাপ্লিকেশনের মধ্যে কাস্টম উপাদানগুলি ব্যবহার করা মূলত নেটিভ HTML উপাদানগুলি ব্যবহার করার মতোই কাজ করে, কয়েকটি জিনিস মাথায় রাখতে হবে:
 
 ### Skipping Component Resolution {#skipping-component-resolution}
 
-By default, Vue will attempt to resolve a non-native HTML tag as a registered Vue component before falling back to rendering it as a custom element. This will cause Vue to emit a "failed to resolve component" warning during development. To let Vue know that certain elements should be treated as custom elements and skip component resolution, we can specify the [`compilerOptions.isCustomElement` option](/api/application#app-config-compileroptions).
+ডিফল্টরূপে, Vue একটি নন-নেটিভ HTML ট্যাগকে একটি কাস্টম উপাদান হিসাবে রেন্ডার করার আগে একটি নিবন্ধিত Vue উপাদান হিসাবে সমাধান করার চেষ্টা করবে৷ এটি বিকাশের সময় Vue একটি "কম্পোনেন্ট সমাধান করতে ব্যর্থ" সতর্কতা নির্গত করবে। Vue কে জানাতে যে নির্দিষ্ট উপাদানগুলিকে কাস্টম উপাদান হিসাবে বিবেচনা করা উচিত এবং কম্পোনেন্ট রেজোলিউশন এড়িয়ে যাওয়া উচিত, আমরা [`compilerOptions.isCustomElement` বিকল্প](/api/application#app-config-compileroptions) নির্দিষ্ট করতে পারি।
 
-If you are using Vue with a build setup, the option should be passed via build configs since it is a compile-time option.
+আপনি যদি বিল্ড সেটআপের সাথে Vue ব্যবহার করেন তবে বিকল্পটি বিল্ড কনফিগারেশনের মাধ্যমে পাস করা উচিত কারণ এটি একটি কম্পাইল-টাইম বিকল্প।
 
 #### Example In-Browser Config {#example-in-browser-config}
 
@@ -64,9 +64,9 @@ module.exports = {
 
 ### Passing DOM Properties {#passing-dom-properties}
 
-Since DOM attributes can only be strings, we need to pass complex data to custom elements as DOM properties. When setting props on a custom element, Vue 3 automatically checks DOM-property presence using the `in` operator and will prefer setting the value as a DOM property if the key is present. This means that, in most cases, you won't need to think about this if the custom element follows the [recommended best practices](https://web.dev/custom-elements-best-practices/).
+যেহেতু DOM বৈশিষ্ট্যগুলি শুধুমাত্র স্ট্রিং হতে পারে, তাই আমাদের DOM বৈশিষ্ট্য হিসাবে কাস্টম উপাদানগুলিতে জটিল ডেটা প্রেরণ করতে হবে। একটি কাস্টম উপাদানে প্রপ সেট করার সময়, Vue 3 স্বয়ংক্রিয়ভাবে `in` অপারেটর ব্যবহার করে DOM-সম্পত্তি উপস্থিতি পরীক্ষা করে এবং কী উপস্থিত থাকলে মানটিকে DOM বৈশিষ্ট্য হিসাবে সেট করতে পছন্দ করবে। এর মানে হল যে, বেশিরভাগ ক্ষেত্রে, যদি কাস্টম উপাদানটি [প্রস্তাবিত সেরা অনুশীলনগুলি](https://web.dev/custom-elements-best-practices/) অনুসরণ করে তবে আপনাকে এটি নিয়ে ভাবতে হবে না।
 
-However, there could be rare cases where the data must be passed as a DOM property, but the custom element does not properly define/reflect the property (causing the `in` check to fail). In this case, you can force a `v-bind` binding to be set as a DOM property using the `.prop` modifier:
+যাইহোক, এমন কিছু বিরল ঘটনা ঘটতে পারে যেখানে ডেটা অবশ্যই একটি DOM সম্পত্তি হিসাবে পাস করতে হবে, কিন্তু কাস্টম উপাদানটি সঠিকভাবে সম্পত্তিকে সংজ্ঞায়িত/প্রতিফলিত করে না (যার ফলে `in` চেক ব্যর্থ হয়)। এই ক্ষেত্রে, আপনি `.prop` সংশোধক ব্যবহার করে একটি `v-bind` বাইন্ডিংকে DOM বৈশিষ্ট্য হিসেবে সেট করতে বাধ্য করতে পারেন:
 
 ```vue-html
 <my-element :user.prop="{ name: 'jack' }"></my-element>
@@ -77,11 +77,11 @@ However, there could be rare cases where the data must be passed as a DOM proper
 
 ## Building Custom Elements with Vue {#building-custom-elements-with-vue}
 
-The primary benefit of custom elements is that they can be used with any framework, or even without a framework. This makes them ideal for distributing components where the end consumer may not be using the same frontend stack, or when you want to insulate the end application from the implementation details of the components it uses.
+কাস্টম উপাদানগুলির প্রাথমিক সুবিধা হ'ল এগুলি যে কোনও কাঠামোর সাথে বা এমনকি কোনও কাঠামো ছাড়াই ব্যবহার করা যেতে পারে। এটি উপাদানগুলি বিতরণ করার জন্য তাদের আদর্শ করে তোলে যেখানে শেষ ভোক্তা একই ফ্রন্টএন্ড স্ট্যাক ব্যবহার নাও করতে পারে, বা যখন আপনি এটি ব্যবহার করে এমন উপাদানগুলির বাস্তবায়নের বিশদ থেকে শেষ অ্যাপ্লিকেশনটিকে আলাদা করতে চান৷
 
 ### defineCustomElement {#definecustomelement}
 
-Vue supports creating custom elements using exactly the same Vue component APIs via the [`defineCustomElement`](/api/general#definecustomelement) method. The method accepts the same argument as [`defineComponent`](/api/general#definecomponent), but instead returns a custom element constructor that extends `HTMLElement`:
+Vue [`defineCustomElement`](/api/general#definecustomelement) পদ্ধতির মাধ্যমে ঠিক একই Vue কম্পোনেন্ট API ব্যবহার করে কাস্টম উপাদান তৈরি করতে সমর্থন করে। পদ্ধতিটি [`defineComponent`](/api/general#definecomponent) হিসাবে একই যুক্তি গ্রহণ করে, কিন্তু পরিবর্তে একটি কাস্টম উপাদান কন্সট্রাকটর প্রদান করে যা `HTMLElement` প্রসারিত করে:
 
 ```vue-html
 <my-vue-element></my-vue-element>
@@ -116,23 +116,23 @@ document.body.appendChild(
 
 #### Lifecycle {#lifecycle}
 
-- A Vue custom element will mount an internal Vue component instance inside its shadow root when the element's [`connectedCallback`](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) is called for the first time.
+- একটি Vue কাস্টম এলিমেন্ট যখন এলিমেন্টের [`connectedCallback`](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) হয় তখন তার শ্যাডো রুটের ভিতরে একটি অভ্যন্তরীণ Vue কম্পোনেন্ট ইন্সট্যান্স মাউন্ট করবে। প্রথমবার ডাকলেন।
 
-- When the element's `disconnectedCallback` is invoked, Vue will check whether the element is detached from the document after a microtask tick.
+- যখন উপাদানটির `disconnectedCallback` আহ্বান করা হয়, Vue একটি মাইক্রোটাস্ক টিক করার পরে নথি থেকে উপাদানটি বিচ্ছিন্ন হয়েছে কিনা তা পরীক্ষা করবে।
 
-  - If the element is still in the document, it's a move and the component instance will be preserved;
+   - যদি উপাদানটি এখনও নথিতে থাকে তবে এটি একটি সরানো এবং উপাদান উদাহরণটি সংরক্ষণ করা হবে;
 
-  - If the element is detached from the document, it's a removal and the component instance will be unmounted.
+   - উপাদানটি নথি থেকে বিচ্ছিন্ন হলে, এটি একটি অপসারণ এবং উপাদান উদাহরণটি আনমাউন্ট করা হবে।
 
 #### Props {#props}
 
-- All props declared using the `props` option will be defined on the custom element as properties. Vue will automatically handle the reflection between attributes / properties where appropriate.
+-  `props` বিকল্প ব্যবহার করে ঘোষিত সমস্ত প্রপগুলি বৈশিষ্ট্য হিসাবে কাস্টম উপাদানে সংজ্ঞায়িত করা হবে। Vue স্বয়ংক্রিয়ভাবে বৈশিষ্ট্য / বৈশিষ্ট্যের মধ্যে প্রতিফলন পরিচালনা করবে যেখানে উপযুক্ত।
 
-  - Attributes are always reflected to corresponding properties.
+   - গুণাবলী সবসময় সংশ্লিষ্ট বৈশিষ্ট্য প্রতিফলিত হয়.
 
-  - Properties with primitive values (`string`, `boolean` or `number`) are reflected as attributes.
+   - আদিম মান (`string`, `boolean` বা `number`) সহ বৈশিষ্ট্যগুলি বৈশিষ্ট্য হিসাবে প্রতিফলিত হয়।
 
-- Vue also automatically casts props declared with `Boolean` or `Number` types into the desired type when they are set as attributes (which are always strings). For example, given the following props declaration:
+- Vue স্বয়ংক্রিয়ভাবে `Boolean` বা `Number` প্রকারের সাথে ঘোষিত প্রপগুলিকে পছন্দসই টাইপে কাস্ট করে যখন সেগুলি বৈশিষ্ট্য হিসাবে সেট করা হয় (যা সর্বদা strings)। উদাহরণস্বরূপ, নিম্নলিখিত প্রপস ঘোষণা দেওয়া হয়েছে:
 
   ```js
   props: {
@@ -147,19 +147,19 @@ document.body.appendChild(
   <my-element selected index="1"></my-element>
   ```
 
-  In the component, `selected` will be cast to `true` (boolean) and `index` will be cast to `1` (number).
+  কম্পোনেন্টে, `selected` কে `true` (বুলিয়ান) তে কাস্ট করা হবে এবং `index` কে `1` (সংখ্যা) এ কাস্ট করা হবে।
 
 #### Events {#events}
 
-Events emitted via `this.$emit` or setup `emit` are dispatched as native [CustomEvents](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events#adding_custom_data_%E2%80%93_customevent) on the custom element. Additional event arguments (payload) will be exposed as an array on the CustomEvent object as its `detail` property.
+`this.$emit` বা সেটআপ `emit` এর মাধ্যমে নির্গত ইভেন্টগুলি নেটিভ [CustomEvents](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events#adding_custom_data_%E2%80%) হিসাবে পাঠানো হয় 93_customevent) কাস্টম উপাদানে। অতিরিক্ত ইভেন্ট আর্গুমেন্ট (পেলোড) কাস্টম ইভেন্ট অবজেক্টের 'বিস্তারিত' সম্পত্তি হিসাবে একটি অ্যারে হিসাবে প্রকাশ করা হবে।
 
 #### Slots {#slots}
 
-Inside the component, slots can be rendered using the `<slot/>` element as usual. However, when consuming the resulting element, it only accepts [native slots syntax](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots):
+কম্পোনেন্টের ভিতরে, যথারীতি `<slot/>` উপাদান ব্যবহার করে স্লট রেন্ডার করা যেতে পারে। যাইহোক, ফলস্বরূপ উপাদান গ্রহণ করার সময়, এটি শুধুমাত্র [নেটিভ স্লট সিনট্যাক্স](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_templates_and_slots) গ্রহণ করে:
 
-- [Scoped slots](/guide/components/slots#scoped-slots) are not supported.
+- [স্কোপড স্লট](/guide/components/slots#scoped-slots) সমর্থিত নয়।
 
-- When passing named slots, use the `slot` attribute instead of the `v-slot` directive:
+- নামযুক্ত স্লট পাস করার সময়, `v-slot` নির্দেশের পরিবর্তে `slot` বৈশিষ্ট্য ব্যবহার করুন:
 
   ```vue-html
   <my-element>
@@ -169,15 +169,15 @@ Inside the component, slots can be rendered using the `<slot/>` element as usual
 
 #### Provide / Inject {#provide-inject}
 
-The [Provide / Inject API](/guide/components/provide-inject#provide-inject) and its [Composition API equivalent](/api/composition-api-dependency-injection#provide) also work between Vue-defined custom elements. However, note that this works **only between custom elements**. i.e. a Vue-defined custom element won't be able to inject properties provided by a non-custom-element Vue component.
+[প্রোভাইড/ইনজেক্ট API](/guide/components/provide-inject#provide-inject) এবং এর [কম্পোজিশন API সমতুল্য](/api/composition-api-dependency-injection#provide) Vue-সংজ্ঞায়িত কাস্টম উপাদানগুলির মধ্যেও কাজ করে . যাইহোক, মনে রাখবেন এটি **শুধুমাত্র কাস্টম উপাদানগুলির মধ্যে** কাজ করে। যেমন একটি Vue-সংজ্ঞায়িত কাস্টম উপাদান একটি নন-কাস্টম-উপাদান Vue উপাদান দ্বারা প্রদত্ত বৈশিষ্ট্যগুলি ইনজেক্ট করতে সক্ষম হবে না।
 
 ### SFC as Custom Element {#sfc-as-custom-element}
 
-`defineCustomElement` also works with Vue Single-File Components (SFCs). However, with the default tooling setup, the `<style>` inside the SFCs will still be extracted and merged into a single CSS file during production build. When using an SFC as a custom element, it is often desirable to inject the `<style>` tags into the custom element's shadow root instead.
+`defineCustomElement` এছাড়াও Vue একক-ফাইল উপাদান (SFCs) এর সাথে কাজ করে। যাইহোক, ডিফল্ট টুলিং সেটআপের সাথে, SFC-এর ভিতরে `<style>` এখনও নিষ্কাশন করা হবে এবং প্রোডাকশন বিল্ডের সময় একক CSS ফাইলে মার্জ করা হবে। একটি কাস্টম উপাদান হিসাবে একটি SFC ব্যবহার করার সময়, এর পরিবর্তে কাস্টম উপাদানের ছায়া রুটে `<style>` ট্যাগগুলি ইনজেকশন করা বাঞ্ছনীয়।
 
-The official SFC toolings support importing SFCs in "custom element mode" (requires `@vitejs/plugin-vue@^1.4.0` or `vue-loader@^16.5.0`). An SFC loaded in custom element mode inlines its `<style>` tags as strings of CSS and exposes them under the component's `styles` option. This will be picked up by `defineCustomElement` and injected into the element's shadow root when instantiated.
+অফিসিয়াল SFC টুলিং "কাস্টম এলিমেন্ট মোডে" SFC আমদানি করতে সমর্থন করে (`@vitejs/plugin-vue@^1.4.0` বা `vue-loader@^16.5.0` প্রয়োজন)। কাস্টম এলিমেন্ট মোডে লোড করা একটি SFC তার `<style>` ট্যাগকে CSS-এর স্ট্রিং হিসেবে ইনলাইন করে এবং কম্পোনেন্টের `styles` বিকল্পের অধীনে সেগুলোকে প্রকাশ করে। এটিকে `defineCustomElement` দ্বারা বাছাই করা হবে এবং তাৎক্ষণিকভাবে উপাদানের শ্যাডো রুটে ইনজেক্ট করা হবে।
 
-To opt-in to this mode, simply end your component file name with `.ce.vue`:
+এই মোডে অপ্ট-ইন করতে, আপনার কম্পোনেন্ট ফাইলের নামটি `.ce.vue` দিয়ে শেষ করুন:
 
 ```js
 import { defineCustomElement } from 'vue'
@@ -192,18 +192,18 @@ const ExampleElement = defineCustomElement(Example)
 customElements.define('my-example', ExampleElement)
 ```
 
-If you wish to customize what files should be imported in custom element mode (for example, treating _all_ SFCs as custom elements), you can pass the `customElement` option to the respective build plugins:
+আপনি যদি কাস্টম এলিমেন্ট মোডে কোন ফাইল আমদানি করতে চান তা কাস্টমাইজ করতে চান (উদাহরণস্বরূপ, _all_ SFC কে কাস্টম উপাদান হিসাবে বিবেচনা করা), আপনি সংশ্লিষ্ট বিল্ড প্লাগইনগুলিতে `customElement` বিকল্পটি পাস করতে পারেন:
 
 - [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue#using-vue-sfcs-as-custom-elements)
 - [vue-loader](https://github.com/vuejs/vue-loader/tree/next#v16-only-options)
 
 ### Tips for a Vue Custom Elements Library {#tips-for-a-vue-custom-elements-library}
 
-When building custom elements with Vue, the elements will rely on Vue's runtime. There is a ~16kb baseline size cost depending on how many features are being used. This means it is not ideal to use Vue if you are shipping a single custom element - you may want to use vanilla JavaScript, [petite-vue](https://github.com/vuejs/petite-vue), or frameworks that specialize in small runtime size. However, the base size is more than justifiable if you are shipping a collection of custom elements with complex logic, as Vue will allow each component to be authored with much less code. The more elements you are shipping together, the better the trade-off.
+Vue এর সাথে কাস্টম উপাদানগুলি তৈরি করার সময়, উপাদানগুলি Vue এর রানটাইমের উপর নির্ভর করবে। কতগুলি বৈশিষ্ট্য ব্যবহার করা হচ্ছে তার উপর নির্ভর করে একটি ~16kb বেসলাইন আকারের খরচ রয়েছে৷ এর অর্থ হল আপনি যদি একটি একক কাস্টম উপাদান শিপিং করেন তবে Vue ব্যবহার করা আদর্শ নয় - আপনি ভ্যানিলা জাভাস্ক্রিপ্ট, [petite-vue](https://github.com/vuejs/petite-vue) বা ফ্রেমওয়ার্ক ব্যবহার করতে চাইতে পারেন ছোট রানটাইম আকার বিশেষজ্ঞ. যাইহোক, যদি আপনি জটিল যুক্তি সহ কাস্টম উপাদানগুলির একটি সংগ্রহ প্রেরণ করেন তবে বেস আকারটি যুক্তিযুক্ত নয়, কারণ Vue প্রতিটি উপাদানকে অনেক কম কোডের সাথে লেখার অনুমতি দেবে। আপনি যত বেশি উপাদান একসাথে শিপিং করছেন, ট্রেড-অফ তত ভাল।
 
-If the custom elements will be used in an application that is also using Vue, you can choose to externalize Vue from the built bundle so that the elements will be using the same copy of Vue from the host application.
+যদি কাস্টম উপাদানগুলি এমন একটি অ্যাপ্লিকেশনে ব্যবহার করা হয় যা Vue ব্যবহার করছে, তাহলে আপনি নির্মিত বান্ডেল থেকে Vue-কে বাহ্যিক করতে বেছে নিতে পারেন যাতে উপাদানগুলি হোস্ট অ্যাপ্লিকেশন থেকে Vue-এর একই অনুলিপি ব্যবহার করে।
 
-It is recommended to export the individual element constructors to give your users the flexibility to import them on-demand and register them with desired tag names. You can also export a convenience function to automatically register all elements. Here's an example entry point of a Vue custom element library:
+আপনার ব্যবহারকারীদের চাহিদা অনুযায়ী আমদানি করতে এবং পছন্দসই ট্যাগ নাম দিয়ে তাদের নিবন্ধন করার জন্য নমনীয়তা দেওয়ার জন্য পৃথক উপাদান নির্মাণকারী রপ্তানি করার পরামর্শ দেওয়া হয়। আপনি স্বয়ংক্রিয়ভাবে সমস্ত উপাদান নিবন্ধন করার জন্য একটি সুবিধার ফাংশন রপ্তানি করতে পারেন। এখানে একটি Vue কাস্টম উপাদান লাইব্রেরির একটি উদাহরণ এন্ট্রি পয়েন্ট:
 
 ```js
 import { defineCustomElement } from 'vue'
@@ -222,13 +222,13 @@ export function register() {
 }
 ```
 
-If you have many components, you can also leverage build tool features such as Vite's [glob import](https://vitejs.dev/guide/features.html#glob-import) or webpack's [`require.context`](https://webpack.js.org/guides/dependency-management/#requirecontext) to load all components from a directory.
+আপনার যদি অনেকগুলি উপাদান থাকে তবে আপনি Vite's [glob import](https://vitejs.dev/guide/features.html#glob-import) বা ওয়েবপ্যাকের [`require.context`](https://vitejs.dev/guide/features.html#glob-import) এর মতো বিল্ড টুল বৈশিষ্ট্যগুলিও ব্যবহার করতে পারেন ://webpack.js.org/guides/dependency-management/#requirecontext) একটি ডিরেক্টরি থেকে সমস্ত উপাদান লোড করতে।
 
 ### Web Components and Typescript {#web-components-and-typescript}
 
-If you are developing an application or a library, you may want to [type check](/guide/scaling-up/tooling.html#typescript) your Vue components, including those that are defined as custom elements.
+আপনি যদি একটি অ্যাপ্লিকেশন বা একটি লাইব্রেরি তৈরি করেন, তাহলে আপনি আপনার Vue উপাদানগুলিকে [টাইপ চেক](/guide/scaling-up/tooling.html#typescript) করতে চাইতে পারেন, যেগুলি কাস্টম উপাদান হিসাবে সংজ্ঞায়িত করা হয়েছে।
 
-Custom elements are registered globally using native APIs, so by default they won't have type inference when used in Vue templates. To provide type support for Vue components registered as custom elements, we can register global component typings using the the [`GlobalComponents` interface](https://github.com/vuejs/language-tools/blob/master/packages/vscode-vue/README.md#usage) in Vue templates and/or in [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html#intrinsic-elements):
+কাস্টম উপাদানগুলি নেটিভ API ব্যবহার করে বিশ্বব্যাপী নিবন্ধিত হয়, তাই Vue টেমপ্লেটে ব্যবহার করার সময় ডিফল্টরূপে তাদের টাইপ অনুমান থাকবে না। কাস্টম উপাদান হিসাবে নিবন্ধিত Vue উপাদানগুলির জন্য টাইপ সমর্থন প্রদান করতে, আমরা [`GlobalComponents` ইন্টারফেস](https://github.com/vuejs/language-tools/blob/master/packages/vscode-) ব্যবহার করে বিশ্বব্যাপী উপাদান টাইপিং নিবন্ধন করতে পারি vue/README.md#usage) Vue টেমপ্লেটে এবং/অথবা [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html#intrinsic-elements):
 
 ```typescript
 import { defineCustomElement } from 'vue'
@@ -249,26 +249,26 @@ declare module 'vue' {
 
 ## Web Components vs. Vue Components {#web-components-vs-vue-components}
 
-Some developers believe that framework-proprietary component models should be avoided, and that exclusively using Custom Elements makes an application "future-proof". Here we will try to explain why we believe that this is an overly simplistic take on the problem.
+কিছু ডেভেলপার বিশ্বাস করেন যে ফ্রেমওয়ার্ক-মালিকানা কম্পোনেন্ট মডেল এড়ানো উচিত, এবং শুধুমাত্র কাস্টম এলিমেন্ট ব্যবহার করে একটি অ্যাপ্লিকেশন "ভবিষ্যত-প্রমাণ" করে তোলে। এখানে আমরা ব্যাখ্যা করার চেষ্টা করব কেন আমরা বিশ্বাস করি যে এটি একটি অত্যধিক সরলীকৃত সমস্যা।
 
-There is indeed a certain level of feature overlap between Custom Elements and Vue Components: they both allow us to define reusable components with data passing, event emitting, and lifecycle management. However, Web Components APIs are relatively low-level and bare-bones. To build an actual application, we need quite a few additional capabilities which the platform does not cover:
+কাস্টম উপাদান এবং Vue উপাদানগুলির মধ্যে প্রকৃতপক্ষে বৈশিষ্ট্যগুলির একটি নির্দিষ্ট স্তরের ওভারল্যাপ রয়েছে: তারা উভয়ই আমাদের ডেটা পাসিং, ইভেন্ট নির্গমন এবং জীবনচক্র পরিচালনার সাথে পুনরায় ব্যবহারযোগ্য উপাদানগুলিকে সংজ্ঞায়িত করার অনুমতি দেয়। যাইহোক, ওয়েব কম্পোনেন্ট এপিআই তুলনামূলকভাবে নিম্ন-স্তরের এবং বেয়ার-বোন। একটি প্রকৃত অ্যাপ্লিকেশন তৈরি করতে, আমাদের বেশ কয়েকটি অতিরিক্ত ক্ষমতার প্রয়োজন যা প্ল্যাটফর্মটি কভার করে না:
 
-- A declarative and efficient templating system;
+- একটি ঘোষণামূলক এবং দক্ষ টেমপ্লেটিং সিস্টেম;
 
-- A reactive state management system that facilitates cross-component logic extraction and reuse;
+- একটি প্রতিক্রিয়াশীল রাষ্ট্র পরিচালনা ব্যবস্থা যা ক্রস-কম্পোনেন্ট লজিক নিষ্কাশন এবং পুনঃব্যবহারের সুবিধা দেয়;
 
-- A performant way to render the components on the server and hydrate them on the client (SSR), which is important for SEO and [Web Vitals metrics such as LCP](https://web.dev/vitals/). Native custom elements SSR typically involves simulating the DOM in Node.js and then serializing the mutated DOM, while Vue SSR compiles into string concatenation whenever possible, which is much more efficient.
+- সার্ভারে উপাদানগুলি রেন্ডার করার এবং ক্লায়েন্টে (SSR) হাইড্রেট করার একটি কার্যকর উপায়, যা SEO এবং [ওয়েব ভাইটালস মেট্রিক্স যেমন LCP](https://web.dev/vitals/) এর জন্য গুরুত্বপূর্ণ। নেটিভ কাস্টম উপাদান SSR সাধারণত Node.js-এ DOM কে সিমুলেট করে এবং তারপরে রূপান্তরিত DOM কে সিরিয়ালাইজ করে, যখন Vue SSR যখনই সম্ভব স্ট্রিং কনক্যাটেনেশনে কম্পাইল করে, যা অনেক বেশি কার্যকর।
 
-Vue's component model is designed with these needs in mind as a coherent system.
+Vue এর উপাদান মডেলটি একটি সুসংগত সিস্টেম হিসাবে এই চাহিদাগুলিকে মাথায় রেখে ডিজাইন করা হয়েছে।
 
-With a competent engineering team, you could probably build the equivalent on top of native Custom Elements - but this also means you are taking on the long-term maintenance burden of an in-house framework, while losing out on the ecosystem and community benefits of a mature framework like Vue.
+একটি দক্ষ ইঞ্জিনিয়ারিং দলের সাথে, আপনি সম্ভবত নেটিভ কাস্টম উপাদানগুলির শীর্ষে সমতুল্য তৈরি করতে পারেন - তবে এর অর্থ হল আপনি একটি ইন-হাউস ফ্রেমওয়ার্কের দীর্ঘমেয়াদী রক্ষণাবেক্ষণের বোঝাটি গ্রহণ করছেন, যদিও এর ইকোসিস্টেম এবং সম্প্রদায়ের সুবিধাগুলি হারাচ্ছেন Vue এর মত একটি পরিপক্ক ফ্রেমওয়ার্ক।
 
-There are also frameworks built using Custom Elements as the basis of their component model, but they all inevitably have to introduce their proprietary solutions to the problems listed above. Using these frameworks entails buying into their technical decisions on how to solve these problems - which, despite what may be advertised, doesn't automatically insulate you from potential future churns.
+কাস্টম এলিমেন্টগুলিকে তাদের কম্পোনেন্ট মডেলের ভিত্তি হিসাবে ব্যবহার করে তৈরি ফ্রেমওয়ার্কগুলিও রয়েছে, তবে তাদের সকলকে অনিবার্যভাবে উপরে তালিকাভুক্ত সমস্যাগুলির জন্য তাদের মালিকানাধীন সমাধানগুলি প্রবর্তন করতে হবে। এই ফ্রেমওয়ার্কগুলি ব্যবহার করার ফলে এই সমস্যাগুলি কীভাবে সমাধান করা যায় সে সম্পর্কে তাদের প্রযুক্তিগত সিদ্ধান্তগুলি কেনার অন্তর্ভুক্ত - যা, যা বিজ্ঞাপন দেওয়া হতে পারে, তা স্বয়ংক্রিয়ভাবে আপনাকে ভবিষ্যতের সম্ভাব্য মন্থন থেকে দূরে রাখে না।
 
-There are also some areas where we find custom elements to be limiting:
+এমন কিছু ক্ষেত্রও রয়েছে যেখানে আমরা কাস্টম উপাদানগুলিকে সীমাবদ্ধ বলে মনে করি:
 
-- Eager slot evaluation hinders component composition. Vue's [scoped slots](/guide/components/slots#scoped-slots) are a powerful mechanism for component composition, which can't be supported by custom elements due to native slots' eager nature. Eager slots also mean the receiving component cannot control when or whether to render a piece of slot content.
+- আগ্রহী স্লট মূল্যায়ন উপাদান রচনা বাধা দেয়. Vue-এর [স্কোপড স্লট](/guide/components/slots#scoped-slots) হল কম্পোনেন্ট কম্পোজিশনের জন্য একটি শক্তিশালী মেকানিজম, যা নেটিভ স্লটের আগ্রহের কারণে কাস্টম উপাদান দ্বারা সমর্থিত হতে পারে না। আগ্রহী স্লটগুলির মানে হল প্রাপ্তির উপাদান কখন বা স্লট সামগ্রীর একটি অংশ রেন্ডার করবে তা নিয়ন্ত্রণ করতে পারে না।
 
-- Shipping custom elements with shadow DOM scoped CSS today requires embedding the CSS inside JavaScript so that they can be injected into shadow roots at runtime. They also result in duplicated styles in markup in SSR scenarios. There are [platform features](https://github.com/whatwg/html/pull/4898/) being worked on in this area - but as of now they are not yet universally supported, and there are still production performance / SSR concerns to be addressed. In the meanwhile, Vue SFCs provide [CSS scoping mechanisms](/api/sfc-css-features) that support extracting the styles into plain CSS files.
+- শ্যাডো ডম স্কোপড সিএসএসের সাথে কাস্টম উপাদান শিপিং করার জন্য আজ জাভাস্ক্রিপ্টের ভিতরে সিএসএস এম্বেড করা প্রয়োজন যাতে রানটাইমে সেগুলি শ্যাডো রুটে ইনজেক্ট করা যায়। তারা SSR পরিস্থিতিতে মার্কআপে সদৃশ শৈলীতেও পরিণত হয়। এই এলাকায় [প্ল্যাটফর্মের বৈশিষ্ট্যগুলি](https://github.com/whatwg/html/pull/4898/) কাজ করা হচ্ছে - কিন্তু এখন পর্যন্ত সেগুলি সর্বজনীনভাবে সমর্থিত নয় এবং এখনও প্রোডাকশন পারফরম্যান্স / SSR আছে উদ্বেগ মোকাবেলা করতে হবে। ইতিমধ্যে, Vue SFC গুলি [CSS স্কোপিং মেকানিজম](/api/sfc-css-features) প্রদান করে যা প্লেইন CSS ফাইলগুলিতে স্টাইলগুলি বের করতে সমর্থন করে।
 
-Vue will always stay up to date with the latest standards in the web platform, and we will happily leverage whatever the platform provides if it makes our job easier. However, our goal is to provide solutions that work well and work today. That means we have to incorporate new platform features with a critical mindset - and that involves filling the gaps where the standards fall short while that is still the case.
+Vue সর্বদা ওয়েব প্ল্যাটফর্মের সর্বশেষ মানগুলির সাথে আপ টু ডেট থাকবে এবং প্ল্যাটফর্মটি আমাদের কাজকে সহজ করে দিলে আমরা আনন্দের সাথে যা কিছু সরবরাহ করে তা লাভ করব। যাইহোক, আমাদের লক্ষ্য হল সমাধান প্রদান করা যা ভাল কাজ করে এবং আজ কাজ করে। এর অর্থ হল আমাদের একটি সমালোচনামূলক মানসিকতার সাথে নতুন প্ল্যাটফর্ম বৈশিষ্ট্যগুলিকে অন্তর্ভুক্ত করতে হবে - এবং এর মধ্যে সেই ফাঁকগুলি পূরণ করা জড়িত যেখানে মানগুলি কম পড়ে যখন এটি এখনও হয়।
