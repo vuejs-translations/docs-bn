@@ -1,7 +1,7 @@
 # Composition API: Lifecycle Hooks {#composition-api-lifecycle-hooks}
 
 :::info Usage Note
-All APIs listed on this page must be called synchronously during the `setup()` phase of a component. See [Guide - Lifecycle Hooks](/guide/essentials/lifecycle) for more details.
+এই পৃষ্ঠায় তালিকাভুক্ত সমস্ত API একটি উপাদানের `সেটআপ()` পর্বের সময় সিঙ্ক্রোনাসভাবে কল করতে হবে। আরও বিস্তারিত জানার জন্য [Guide - Lifecycle Hooks](/guide/essentials/lifecycle) দেখুন।
 :::
 
 ## onMounted() {#onmounted}
@@ -16,15 +16,15 @@ Registers a callback to be called after the component has been mounted.
 
 - **Details**
 
-  A component is considered mounted after:
+  একটি উপাদান পরে মাউন্ট করা বিবেচনা করা হয়:
 
-  - All of its synchronous child components have been mounted (does not include async components or components inside `<Suspense>` trees).
+  - এর সমস্ত সিঙ্ক্রোনাস চাইল্ড উপাদান মাউন্ট করা হয়েছে (`<সাসপেন্স>` গাছের ভিতরে অ্যাসিঙ্ক উপাদান বা উপাদান অন্তর্ভুক্ত নয়)।
 
-  - Its own DOM tree has been created and inserted into the parent container. Note it only guarantees that the component's DOM tree is in-document if the application's root container is also in-document.
+  - এর নিজস্ব DOM গাছ তৈরি করা হয়েছে এবং প্যারেন্ট কন্টেইনারে ঢোকানো হয়েছে। মনে রাখবেন এটি শুধুমাত্র নিশ্চিত করে যে কম্পোনেন্টের DOM ট্রি ইন-ডকুমেন্ট আছে যদি অ্যাপ্লিকেশনের রুট কন্টেইনারটিও ইন-ডকুমেন্ট হয়।
 
-  This hook is typically used for performing side effects that need access to the component's rendered DOM, or for limiting DOM-related code to the client in a [server-rendered application](/guide/scaling-up/ssr).
+  এই হুকটি সাধারণত পার্শ্বপ্রতিক্রিয়া সম্পাদনের জন্য ব্যবহৃত হয় যার জন্য উপাদানের রেন্ডার করা DOM অ্যাক্সেসের প্রয়োজন হয়, অথবা একটি [সার্ভার-রেন্ডার করা অ্যাপ্লিকেশন](/guide/scaling-up/ssr) এ ক্লায়েন্টের কাছে DOM-সম্পর্কিত কোড সীমিত করার জন্য।
 
-  **This hook is not called during server-side rendering.**
+  **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি বলা হয় না।**
 
 - **Example**
 
@@ -48,7 +48,7 @@ Registers a callback to be called after the component has been mounted.
 
 ## onUpdated() {#onupdated}
 
-Registers a callback to be called after the component has updated its DOM tree due to a reactive state change.
+একটি প্রতিক্রিয়াশীল অবস্থা পরিবর্তনের কারণে উপাদানটি তার DOM ট্রি আপডেট করার পরে কল করার জন্য একটি কলব্যাক নিবন্ধন করে।
 
 - **Type**
 
@@ -58,14 +58,14 @@ Registers a callback to be called after the component has updated its DOM tree d
 
 - **Details**
 
-  A parent component's updated hook is called after that of its child components.
+  একটি প্যারেন্ট কম্পোনেন্টের আপডেটেড হুককে এর চাইল্ড কম্পোনেন্টের পরে বলা হয়।
 
-  This hook is called after any DOM update of the component, which can be caused by different state changes, because multiple state changes can be batched into a single render cycle for performance reasons. If you need to access the updated DOM after a specific state change, use [nextTick()](/api/general#nexttick) instead.
+  এই হুকটিকে কম্পোনেন্টের যেকোনো DOM আপডেটের পরে বলা হয়, যা বিভিন্ন স্টেট পরিবর্তনের কারণে হতে পারে, কারণ পারফরম্যান্সের কারণে একাধিক স্টেট পরিবর্তন একটি একক রেন্ডার সাইকেলে ব্যাচ করা যেতে পারে। আপনি যদি একটি নির্দিষ্ট অবস্থা পরিবর্তনের পরে আপডেট হওয়া DOM অ্যাক্সেস করতে চান তবে পরিবর্তে [nextTick()](/api/general#nexttick) ব্যবহার করুন।
 
-  **This hook is not called during server-side rendering.**
+  **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি বলা হয় না।**
 
   :::warning
-  Do not mutate component state in the updated hook - this will likely lead to an infinite update loop!
+  আপডেট করা হুকে কম্পোনেন্টের অবস্থা পরিবর্তন করবেন না - এটি সম্ভবত একটি অসীম আপডেট লুপের দিকে নিয়ে যাবে!
   :::
 
 - **Example**
@@ -101,15 +101,15 @@ Registers a callback to be called after the component has been unmounted.
 
 - **Details**
 
-  A component is considered unmounted after:
+  একটি উপাদান পরে আনমাউন্ট করা বলে মনে করা হয়:
 
-  - All of its child components have been unmounted.
+  - এর সমস্ত চাইল্ড কম্পোনেন্ট আনমাউন্ট করা হয়েছে।
 
-  - All of its associated reactive effects (render effect and computed / watchers created during `setup()`) have been stopped.
+  - এর সমস্ত সম্পর্কিত প্রতিক্রিয়াশীল প্রভাব (`setup()` এর সময় তৈরি করা রেন্ডার প্রভাব এবং গণনা করা / প্রহরী) বন্ধ করা হয়েছে।
 
-  Use this hook to clean up manually created side effects such as timers, DOM event listeners or server connections.
+  টাইমার, DOM ইভেন্ট লিসেনার বা সার্ভার সংযোগের মতো ম্যানুয়ালি তৈরি করা পার্শ্ব প্রতিক্রিয়াগুলি পরিষ্কার করতে এই হুকটি ব্যবহার করুন।
 
-  **This hook is not called during server-side rendering.**
+  **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি বলা হয় না।**
 
 - **Example**
 
@@ -204,25 +204,25 @@ Registers a hook to be called when an error propagating from a descendant compon
   - Custom directive hooks
   - Transition hooks
 
-  The hook receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
+  হুক তিনটি আর্গুমেন্ট পায়: ত্রুটি, কম্পোনেন্ট ইনস্ট্যান্স যা ত্রুটিটি ট্রিগার করে এবং একটি তথ্য স্ট্রিং যা ত্রুটির উৎসের ধরনটি নির্দিষ্ট করে।
 
-  You can modify component state in `errorCaptured()` to display an error state to the user. However, it is important that the error state should not render the original content that caused the error; otherwise the component will be thrown into an infinite render loop.
+  ব্যবহারকারীর কাছে একটি ত্রুটির অবস্থা প্রদর্শন করতে আপনি `errorCaptured()` এ উপাদানের অবস্থা পরিবর্তন করতে পারেন। যাইহোক, এটি গুরুত্বপূর্ণ যে ত্রুটির অবস্থাটি মূল বিষয়বস্তুকে রেন্ডার করা উচিত নয় যা ত্রুটি সৃষ্টি করেছে; অন্যথায় উপাদানটি একটি অসীম রেন্ডার লুপে নিক্ষিপ্ত হবে।
 
-  The hook can return `false` to stop the error from propagating further. See error propagation details below.
+  ত্রুটিটিকে আরও প্রচার করা থেকে থামাতে হুকটি `false` ফেরত দিতে পারে। নীচে ত্রুটি বিস্তার বিবরণ দেখুন.
 
-  **Error Propagation Rules**
+  **ত্রুটি প্রচারের নিয়ম**
 
-  - By default, all errors are still sent to the application-level [`app.config.errorHandler`](/api/application#app-config-errorhandler) if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - ডিফল্টরূপে, সমস্ত ত্রুটিগুলি এখনও অ্যাপ্লিকেশন-লেভেলে পাঠানো হয় [`app.config.errorHandler`](/api/application#app-config-errorhandler) যদি এটি সংজ্ঞায়িত করা হয়, যাতে এই ত্রুটিগুলি এখনও একটি রিপোর্ট করা যেতে পারে একক জায়গায় বিশ্লেষণ সেবা।
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error, in the order of bottom to top. This is similar to the bubbling mechanism of native DOM events.
+  - যদি একটি উপাদানের উত্তরাধিকার শৃঙ্খলে বা প্যারেন্ট চেইনে একাধিক `errorCaptured` হুক বিদ্যমান থাকে, তাহলে নিচে থেকে উপরের ক্রমানুসারে তাদের সকলকে একই ত্রুটির জন্য আহ্বান করা হবে। এটি নেটিভ DOM ইভেন্টগুলির বুদবুদ করার পদ্ধতির অনুরূপ।
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to `app.config.errorHandler`.
+  - যদি `errorCaptured` হুক নিজেই একটি ত্রুটি ছুড়ে দেয়, তাহলে এই ত্রুটি এবং মূল ক্যাপচার করা ত্রুটি উভয়ই `app.config.errorHandler`-এ পাঠানো হবে।
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or `app.config.errorHandler` from being invoked for this error.
+  - একটি `errorCaptured` হুক `false` ফেরত দিতে পারে যাতে ত্রুটিটিকে আরও প্রচার করা থেকে রোধ করা যায়। এটি মূলত বলছে "এই ত্রুটিটি পরিচালনা করা হয়েছে এবং উপেক্ষা করা উচিত।" এটি কোনো অতিরিক্ত `errorCaptured` হুক বা `app.config.errorHandler`কে এই ত্রুটির জন্য আহ্বান করা থেকে বাধা দেবে।
 
 ## onRenderTracked() <sup class="vt-badge dev-only" /> {#onrendertracked}
 
-Registers a debug hook to be called when a reactive dependency has been tracked by the component's render effect.
+কম্পোনেন্টের রেন্ডার প্রভাব দ্বারা একটি প্রতিক্রিয়াশীল নির্ভরতা ট্র্যাক করা হলে কল করার জন্য একটি ডিবাগ হুক নিবন্ধন করে।
 
 **This hook is development-mode-only and not called during server-side rendering.**
 
@@ -241,13 +241,13 @@ Registers a debug hook to be called when a reactive dependency has been tracked 
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **আরো দেখুন** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## onRenderTriggered() <sup class="vt-badge dev-only" /> {#onrendertriggered}
 
-Registers a debug hook to be called when a reactive dependency triggers the component's render effect to be re-run.
+যখন একটি প্রতিক্রিয়াশীল নির্ভরতা কম্পোনেন্টের রেন্ডার প্রভাবকে পুনরায় চালানোর জন্য ট্রিগার করে তখন কল করার জন্য একটি ডিবাগ হুক নিবন্ধন করে।
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**এই হুকটি শুধুমাত্র বিকাশ-মোড এবং সার্ভার-সাইড রেন্ডারিংয়ের সময় বলা হয় না।**
 
 - **Type**
 
@@ -267,11 +267,11 @@ Registers a debug hook to be called when a reactive dependency triggers the comp
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **আরো দেখুন** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## onActivated() {#onactivated}
 
-Registers a callback to be called after the component instance is inserted into the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+ক্যাশে করা একটি গাছের অংশ হিসাবে DOM-এ কম্পোনেন্ট ইনস্ট্যান্স ঢোকানোর পরে কল করার জন্য একটি কলব্যাক নিবন্ধন করে [`<KeepAlive>`](/api/built-in-components#keepalive).
 
 **This hook is not called during server-side rendering.**
 
@@ -281,13 +281,13 @@ Registers a callback to be called after the component instance is inserted into 
   function onActivated(callback: () => void): void
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **আরো দেখুন** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## onDeactivated() {#ondeactivated}
 
-Registers a callback to be called after the component instance is removed from the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+দ্বারা ক্যাশে করা একটি গাছের অংশ হিসাবে DOM থেকে কম্পোনেন্ট ইন্সট্যান্স মুছে ফেলার পরে কল করার জন্য একটি কলব্যাক নিবন্ধন করে [`<KeepAlive>`](/api/built-in-components#keepalive).
 
-**This hook is not called during server-side rendering.**
+**সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি বলা হয় না।**
 
 - **Type**
 
@@ -295,11 +295,11 @@ Registers a callback to be called after the component instance is removed from t
   function onDeactivated(callback: () => void): void
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **আরো দেখুন** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## onServerPrefetch() <sup class="vt-badge" data-text="SSR only" /> {#onserverprefetch}
 
-Registers an async function to be resolved before the component instance is to be rendered on the server.
+কম্পোনেন্ট ইন্সট্যান্স সার্ভারে রেন্ডার করার আগে সমাধান করার জন্য একটি অ্যাসিঙ্ক ফাংশন নিবন্ধন করে।
 
 - **Type**
 
@@ -309,9 +309,9 @@ Registers an async function to be resolved before the component instance is to b
 
 - **Details**
 
-  If the callback returns a Promise, the server renderer will wait until the Promise is resolved before rendering the component.
+  যদি কলব্যাক একটি প্রতিশ্রুতি প্রদান করে, সার্ভার রেন্ডারার কম্পোনেন্ট রেন্ডার করার আগে প্রতিশ্রুতির সমাধান না হওয়া পর্যন্ত অপেক্ষা করবে।
 
-  This hook is only called during server-side rendering can be used to perform server-only data fetching.
+  এই হুকটি শুধুমাত্র সার্ভার-সাইড রেন্ডারিংয়ের সময় বলা হয় সার্ভার-শুধু ডেটা আনার জন্য ব্যবহার করা যেতে পারে।
 
 - **Example**
 
@@ -338,4 +338,4 @@ Registers an async function to be resolved before the component instance is to b
   </script>
   ```
 
-- **See also** [Server-Side Rendering](/guide/scaling-up/ssr)
+- **আরো দেখুন** [Server-Side Rendering](/guide/scaling-up/ssr)
