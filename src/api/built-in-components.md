@@ -4,10 +4,10 @@ pageClass: api
 
 # Built-in Components {#built-in-components}
 
-:::info Registration and Usage
-Built-in components can be used directly in templates without needing to be registered. They are also tree-shakeable: they are only included in the build when they are used.
+:::info নিবন্ধন এবং ব্যবহার
+অন্তর্নির্মিত উপাদানগুলি নিবন্ধিত হওয়ার প্রয়োজন ছাড়াই সরাসরি টেমপ্লেটগুলিতে ব্যবহার করা যেতে পারে। এগুলি গাছ-কাঁপানো যায়: এগুলি ব্যবহার করা হলেই বিল্ডে অন্তর্ভুক্ত করা হয়।
 
-When using them in [render functions](/guide/extras/render-function), they need to be imported explicitly. For example:
+এগুলিকে [render functions](/guide/extras/render-function) এ ব্যবহার করার সময়, সেগুলি স্পষ্টভাবে আমদানি করতে হবে৷ উদাহরণ স্বরূপ:
 
 ```js
 import { h, Transition } from 'vue'
@@ -21,7 +21,7 @@ h(Transition, {
 
 ## `<Transition>` {#transition}
 
-Provides animated transition effects to a **single** element or component.
+একটি **একক** উপাদান বা উপাদানে অ্যানিমেটেড ট্রানজিশন প্রভাব প্রদান করে।
 
 - **Props**
 
@@ -78,7 +78,7 @@ Provides animated transition effects to a **single** element or component.
   }
   ```
 
-- **Events**
+- **ইভেন্টস**
 
   - `@before-enter`
   - `@before-leave`
@@ -92,9 +92,9 @@ Provides animated transition effects to a **single** element or component.
   - `@leave-cancelled` (`v-show` only)
   - `@appear-cancelled`
 
-- **Example**
+- **উদাহরণ**
 
-  Simple element:
+  সাধারণ উপাদান:
 
   ```vue-html
   <Transition>
@@ -102,7 +102,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-  Forcing a transition by changing the `key` attribute:
+  `key` বৈশিষ্ট্য পরিবর্তন করে একটি ট্রানজিশন জোর করে:
 
   ```vue-html
   <Transition>
@@ -110,7 +110,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-  Dynamic component, with transition mode + animate on appear:
+  ট্রানজিশন মোড সহ ডাইনামিক কম্পোনেন্ট + অ্যানিমেট দেখা যাচ্ছে:
 
   ```vue-html
   <Transition name="fade" mode="out-in" appear>
@@ -118,7 +118,7 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-  Listening to transition events:
+  ট্রানজিশন ইভেন্টগুলি শোনা:
 
   ```vue-html
   <Transition @after-enter="onTransitionComplete">
@@ -126,15 +126,15 @@ Provides animated transition effects to a **single** element or component.
   </Transition>
   ```
 
-- **See also** [`<Transition>` Guide](/guide/built-ins/transition)
+- **আরো দেখুন** [`<Transition>` Guide](/guide/built-ins/transition)
 
 ## `<TransitionGroup>` {#transitiongroup}
 
-Provides transition effects for **multiple** elements or components in a list.
+একটি তালিকায় **একাধিক** উপাদান বা উপাদানগুলির জন্য রূপান্তর প্রভাব প্রদান করে।
 
 - **Props**
 
-  `<TransitionGroup>` accepts the same props as `<Transition>` except `mode`, plus two additional props:
+`<TransitionGroup>` `mode` ব্যতীত `<Transition>`-এর মতো একই প্রপস গ্রহণ করে, এছাড়াও দুটি অতিরিক্ত প্রপস:
 
   ```ts
   interface TransitionGroupProps extends Omit<TransitionProps, 'mode'> {
@@ -150,19 +150,19 @@ Provides transition effects for **multiple** elements or components in a list.
   }
   ```
 
-- **Events**
+- **ইভেন্টস**
 
   `<TransitionGroup>` emits the same events as `<Transition>`.
 
-- **Details**
+- **বিস্তারিত**
 
-  By default, `<TransitionGroup>` doesn't render a wrapper DOM element, but one can be defined via the `tag` prop.
+  ডিফল্টরূপে, `<TransitionGroup>` একটি মোড়ক DOM উপাদান রেন্ডার করে না, তবে একটিকে `ট্যাগ` প্রপের মাধ্যমে সংজ্ঞায়িত করা যেতে পারে।
 
-  Note that every child in a `<transition-group>` must be [**uniquely keyed**](/guide/essentials/list#maintaining-state-with-key) for the animations to work properly.
+  মনে রাখবেন যে অ্যানিমেশনগুলি সঠিকভাবে কাজ করার জন্য একটি `<TransitionGroup>`-এর প্রতিটি শিশুকে অবশ্যই [**অনন্যভাবে কীযুক্ত**](/guide/essentials/list#maintaining-state-with-key) থাকতে হবে।
 
-  `<TransitionGroup>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` prop). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<TransitionGroup>` CSS ট্রান্সফর্মের মাধ্যমে মুভিং ট্রানজিশন সমর্থন করে। একটি আপডেটের পরে যখন স্ক্রিনে একটি শিশুর অবস্থান পরিবর্তিত হয়, তখন এটি একটি চলমান CSS ক্লাস প্রয়োগ করা হবে (`name` বৈশিষ্ট্য থেকে স্বয়ংক্রিয়ভাবে তৈরি বা `move-class` প্রপের সাথে কনফিগার করা)। চলন্ত শ্রেণী প্রয়োগ করার সময় যদি CSS `transform` প্রপার্টি "transition-able" হয়, তাহলে উপাদানটি ব্যবহার করে তার গন্তব্যে মসৃণভাবে অ্যানিমেটেড হবে [FLIP technique](https://aerotwist.com/blog/flip-your-animations/)।
 
-- **Example**
+- **উদাহরণ**
 
   ```vue-html
   <TransitionGroup tag="ul" name="slide">
@@ -172,11 +172,11 @@ Provides transition effects for **multiple** elements or components in a list.
   </TransitionGroup>
   ```
 
-- **See also** [Guide - TransitionGroup](/guide/built-ins/transition-group)
+- **আরো দেখুন** [Guide - TransitionGroup](/guide/built-ins/transition-group)
 
 ## `<KeepAlive>` {#keepalive}
 
-Caches dynamically toggled components wrapped inside.
+ক্যাশে dynamically toggled করা components wrapped inside.
 
 - **Props**
 
@@ -201,17 +201,17 @@ Caches dynamically toggled components wrapped inside.
   type MatchPattern = string | RegExp | (string | RegExp)[]
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  When wrapped around a dynamic component, `<KeepAlive>` caches the inactive component instances without destroying them.
+একটি ডায়নামিক কম্পোনেন্টের চারপাশে মোড়ানো হলে, `<KeepAlive>` নিষ্ক্রিয় কম্পোনেন্ট ইনস্ট্যান্সকে ধ্বংস না করে ক্যাশে করে।
 
-  There can only be one active component instance as the direct child of `<KeepAlive>` at any time.
+   যে কোনো সময়ে `<KeepAlive>`-এর সরাসরি সন্তান হিসেবে শুধুমাত্র একটি সক্রিয় উপাদানের উদাহরণ থাকতে পারে।
 
-  When a component is toggled inside `<KeepAlive>`, its `activated` and `deactivated` lifecycle hooks will be invoked accordingly, providing an alternative to `mounted` and `unmounted`, which are not called. This applies to the direct child of `<KeepAlive>` as well as to all of its descendants.
+   যখন একটি উপাদান `<KeepAlive>`-এর ভিতরে টগল করা হয়, তখন এর `activated` এবং `deactivated` লাইফসাইকেল হুকগুলিকে সেই অনুযায়ী আহ্বান করা হবে, যা `mounted` এবং `unmounted` এর বিকল্প প্রদান করবে, যেগুলিকে বলা হয় না। এটি `<KeepAlive>`-এর সরাসরি সন্তানের জন্য প্রযোজ্য এবং সেইসাথে এর সমস্ত বংশধরের ক্ষেত্রেও প্রযোজ্য।
 
-- **Example**
+- **উদাহরণ**
 
-  Basic usage:
+  প্রাথমিক ব্যবহার:
 
   ```vue-html
   <KeepAlive>
@@ -219,7 +219,7 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-  When used with `v-if` / `v-else` branches, there must be only one component rendered at a time:
+  যখন `v-if` / `v-else` শাখার সাথে ব্যবহার করা হয়, তখন একটি সময়ে শুধুমাত্র একটি উপাদান রেন্ডার করা আবশ্যক:
 
   ```vue-html
   <KeepAlive>
@@ -265,11 +265,11 @@ Caches dynamically toggled components wrapped inside.
   </KeepAlive>
   ```
 
-- **See also** [Guide - KeepAlive](/guide/built-ins/keep-alive)
+- **আরো দেখুন** [Guide - KeepAlive](/guide/built-ins/keep-alive)
 
 ## `<Teleport>` {#teleport}
 
-Renders its slot content to another part of the DOM.
+এর স্লট বিষয়বস্তু DOM এর অন্য অংশে রেন্ডার করে।
 
 - **Props**
 
@@ -289,7 +289,7 @@ Renders its slot content to another part of the DOM.
   }
   ```
 
-- **Example**
+- **উদাহরণ**
 
   Specifying target container:
 
@@ -307,11 +307,11 @@ Renders its slot content to another part of the DOM.
   </teleport>
   ```
 
-- **See also** [Guide - Teleport](/guide/built-ins/teleport)
+- **আরো দেখুন** [Guide - Teleport](/guide/built-ins/teleport)
 
 ## `<Suspense>` <sup class="vt-badge experimental" /> {#suspense}
 
-Used for orchestrating nested async dependencies in a component tree.
+একটি উপাদান গাছে নেস্টেড অ্যাসিঙ্ক নির্ভরতা অর্কেস্ট্রেট করার জন্য ব্যবহৃত হয়।
 
 - **Props**
 
@@ -321,16 +321,16 @@ Used for orchestrating nested async dependencies in a component tree.
   }
   ```
 
-- **Events**
+- **ইভেন্টস**
 
   - `@resolve`
   - `@pending`
   - `@fallback`
 
-- **Details**
+- **বিস্তারিত**
 
-  `<Suspense>` accepts two slots: the `#default` slot and the `#fallback` slot. It will display the content of the fallback slot while rendering the default slot in memory.
+  `<Suspense>` দুটি স্লট গ্রহণ করে: `#default` slot এবং `#fallback` slot। এটি মেমরিতে ডিফল্ট slot রেন্ডার করার সময় ফলব্যাক স্লটের বিষয়বস্তু প্রদর্শন করবে।
 
-  If it encounters async dependencies ([Async Components](/guide/components/async) and components with [`async setup()`](/guide/built-ins/suspense#async-setup)) while rendering the default slot, it will wait until all of them are resolved before displaying the default slot.
+  ডিফল্ট স্লট রেন্ডার করার সময় যদি এটি async নির্ভরতা ([Async Components](/guide/components/async) এবং [`async setup()`](/guide/built-ins/suspense#async-setup)) সহ উপাদানগুলির সম্মুখীন হয়, ডিফল্ট slot প্রদর্শন করার আগে তাদের সব সমাধান না হওয়া পর্যন্ত এটি অপেক্ষা করবে।
 
-- **See also** [Guide - Suspense](/guide/built-ins/suspense)
+- **আরো দেখুন** [Guide - Suspense](/guide/built-ins/suspense)
