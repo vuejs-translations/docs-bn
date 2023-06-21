@@ -79,7 +79,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 ## Max Cached Instances {#max-cached-instances}
 
-আমরা সর্বাধিক সংখ্যক উপাদানের দৃষ্টান্ত সীমিত করতে পারি যা `max` প্রপের মাধ্যমে ক্যাশ করা যেতে পারে। যখন `max` নির্দিষ্ট করা হয়, `<KeepAlive>` একটি [LRU ক্যাশ](<https://en.wikipedia.org) এর মতো আচরণ করে /wiki/Cache_replacement_policies#Least_recently_used_(LRU)>): যদি ক্যাশে করা দৃষ্টান্তের সংখ্যা নির্দিষ্ট সর্বোচ্চ গণনাকে অতিক্রম করতে থাকে, তবে নতুনটির জন্য জায়গা তৈরি করতে সর্বনিম্ন সম্প্রতি অ্যাক্সেস করা ক্যাশে করা উদাহরণ ধ্বংস করা হবে।
+আমরা সর্বাধিক সংখ্যক উপাদানের দৃষ্টান্ত সীমিত করতে পারি যা `max` প্রপের মাধ্যমে ক্যাশ করা যেতে পারে। যখন `max` নির্দিষ্ট করা হয়, `<KeepAlive>` একটি [LRU cache](<https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)>): যদি ক্যাশে করা দৃষ্টান্তের সংখ্যা নির্দিষ্ট সর্বোচ্চ গণনাকে অতিক্রম করতে থাকে, তবে নতুনটির জন্য জায়গা তৈরি করতে সর্বনিম্ন সম্প্রতি অ্যাক্সেস করা ক্যাশে করা উদাহরণ ধ্বংস করা হবে।
 
 ```vue-html
 <KeepAlive :max="10">
@@ -133,7 +133,7 @@ export default {
 
 Note that:
 
-- <span class="composition-api">`onActivated`</span><span class="options-api">`অ্যাক্টিভেটেড`</span> কে মাউন্টেও বলা হয়, এবং <span class="composition-api আনমাউন্ট করার সময় `অনডিঅ্যাক্টিভেটেড`</span><span class="options-api">`ডিঅ্যাক্টিভেটেড`</span>।
+- <span class="composition-api">`onActivated`</span><span class="options-api">`activated`</span> is also called on mount, and <span class="composition-api">`onDeactivated`</span><span class="options-api">`deactivated`</span> on unmount.
 
 - উভয় হুক শুধুমাত্র `<KeepAlive>` দ্বারা ক্যাশে করা রুট কম্পোনেন্টের জন্যই কাজ করে না, কিন্তু ক্যাশে করা ট্রিতে ডিসেন্ডেন্ট কম্পোনেন্টের জন্যও কাজ করে।
 
