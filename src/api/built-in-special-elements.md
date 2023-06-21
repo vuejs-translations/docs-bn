@@ -1,12 +1,12 @@
 # Built-in Special Elements {#built-in-special-elements}
 
-:::info Not Components
-`<component>`, `<slot>` and `<template>` are component-like features and part of the template syntax. They are not true components and are compiled away during template compilation. As such, they are conventionally written with lowercase in templates.
+:::info Components নয়
+`<component>`, `<slot>` এবং `<template>` হল কম্পোনেন্ট-এর মতো বৈশিষ্ট্য এবং টেমপ্লেট সিনট্যাক্সের অংশ। এগুলি সত্য উপাদান নয় এবং টেমপ্লেট সংকলনের সময় কম্পাইল করা হয়। যেমন, তারা প্রচলিতভাবে টেমপ্লেটে ছোট হাতের অক্ষর দিয়ে লেখা হয়।
 :::
 
 ## `<component>` {#component}
 
-A "meta component" for rendering dynamic components or elements.
+গতিশীল উপাদান বা উপাদান রেন্ডার করার জন্য একটি "meta component"।
 
 - **Props**
 
@@ -16,17 +16,17 @@ A "meta component" for rendering dynamic components or elements.
   }
   ```
 
-- **Details**
+- ** বিস্তারিত**
 
-  The actual component to render is determined by the `is` prop.
+  রেন্ডার করার জন্য প্রকৃত উপাদান `is` প্রপ দ্বারা নির্ধারিত হয়।
 
-  - When `is` is a string, it could be either an HTML tag name or a component's registered name.
+  - যখন `is` একটি স্ট্রিং হয়, এটি হয় একটি HTML ট্যাগ নাম বা কোনো উপাদানের নিবন্ধিত নাম হতে পারে।
 
-  - Alternatively, `is` can also be directly bound to the definition of a component.
+  - বিকল্পভাবে, `is` একটি উপাদানের সংজ্ঞার সাথে সরাসরি আবদ্ধ হতে পারে।
 
-- **Example**
+- **উদাহরণ**
 
-  Rendering components by registered name (Options API):
+  নিবন্ধিত নাম দ্বারা উপাদান রেন্ডারিং (Options API):
 
   ```vue
   <script>
@@ -48,7 +48,7 @@ A "meta component" for rendering dynamic components or elements.
   </template>
   ```
 
-  Rendering components by definition (Composition API with `<script setup>`):
+  সংজ্ঞা অনুসারে কম্পোনেন্ট রেন্ডারিং (Composition API with `<script setup>`):
 
   ```vue
   <script setup>
@@ -67,7 +67,7 @@ A "meta component" for rendering dynamic components or elements.
   <component :is="href ? 'a' : 'span'"></component>
   ```
 
-  The [built-in components](./built-in-components) can all be passed to `is`, but you must register them if you want to pass them by name. For example:
+  [বিল্ট-ইন কম্পোনেন্ট](./built-in-components) সবই `is`-এ পাস করা যেতে পারে, কিন্তু আপনি যদি সেগুলি নাম দিয়ে পাস করতে চান তাহলে আপনাকে অবশ্যই সেগুলি নিবন্ধন করতে হবে৷ উদাহরণ স্বরূপ:
 
   ```vue
   <script>
@@ -88,9 +88,9 @@ A "meta component" for rendering dynamic components or elements.
   </template>
   ```
 
-  Registration is not required if you pass the component itself to `is` rather than its name, e.g. in `<script setup>`.
+  আপনি যদি কম্পোনেন্টটিকে এর নামের পরিবর্তে `is`-এ পাস করেন তাহলে নিবন্ধনের প্রয়োজন নেই, যেমন `<script setup>`-এ।
 
-  If `v-model` is used on a `<component>` tag, the template compiler will expand it to a `modelValue` prop and `update:modelValue` event listener, much like it would for any other component. However, this won't be compatible with native HTML elements, such as `<input>` or `<select>`. As a result, using `v-model` with a dynamically created native element won't work:
+  যদি `v-model` একটি `<component>` ট্যাগে ব্যবহার করা হয়, তাহলে টেমপ্লেট কম্পাইলার এটিকে একটি `modelValue` প্রপ এবং `update:modelValue` ইভেন্ট লিসেনারে প্রসারিত করবে, অনেকটা অন্য কোনো উপাদানের মতো। যাইহোক, এটি নেটিভ HTML উপাদানের সাথে সামঞ্জস্যপূর্ণ হবে না, যেমন `<input>` বা `<select>`। ফলস্বরূপ, গতিশীলভাবে তৈরি স্থানীয় উপাদানের সাথে `v-model` ব্যবহার করা কাজ করবে না:
 
   ```vue
   <script setup>
@@ -106,13 +106,13 @@ A "meta component" for rendering dynamic components or elements.
   </template>
   ```
 
-  In practice, this edge case isn't common as native form fields are typically wrapped in components in real applications. If you do need to use a native element directly then you can split the `v-model` into an attribute and event manually.
+ অনুশীলনে, এই এজ কেসটি সাধারণ নয় কারণ নেটিভ ফর্ম ক্ষেত্রগুলি সাধারণত বাস্তব অ্যাপ্লিকেশনগুলিতে উপাদানগুলিতে মোড়ানো থাকে। আপনি যদি সরাসরি একটি নেটিভ এলিমেন্ট ব্যবহার করতে চান তাহলে আপনি `v-model` কে একটি অ্যাট্রিবিউট এবং ইভেন্টে ম্যানুয়ালি বিভক্ত করতে পারেন।
 
-- **See also** [Dynamic Components](/guide/essentials/component-basics#dynamic-components)
+- **আরো দেখুন** [Dynamic Components](/guide/essentials/component-basics#dynamic-components)
 
 ## `<slot>` {#slot}
 
-Denotes slot content outlets in templates.
+টেমপ্লেটগুলিতে স্লট সামগ্রী আউটলেটগুলিকে বোঝায়।
 
 - **Props**
 
@@ -130,35 +130,35 @@ Denotes slot content outlets in templates.
   }
   ```
 
-- **Details**
+- ** বিস্তারিত**
 
-  The `<slot>` element can use the `name` attribute to specify a slot name. When no `name` is specified, it will render the default slot. Additional attributes passed to the slot element will be passed as slot props to the scoped slot defined in the parent.
+  `<slot>` উপাদানটি একটি স্লটের নাম নির্দিষ্ট করতে `name` বৈশিষ্ট্য ব্যবহার করতে পারে। যখন কোনো `name` নির্দিষ্ট করা না থাকে, এটি ডিফল্ট স্লট রেন্ডার করবে। স্লট উপাদানে পাস করা অতিরিক্ত বৈশিষ্ট্যগুলি প্যারেন্টে সংজ্ঞায়িত স্কোপড স্লটে স্লট প্রপ হিসাবে পাস করা হবে।
 
-  The element itself will be replaced by its matched slot content.
+  উপাদানটি নিজেই এর মিলিত স্লট সামগ্রী দ্বারা প্রতিস্থাপিত হবে।
 
-  `<slot>` elements in Vue templates are compiled into JavaScript, so they are not to be confused with [native `<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot).
+  `<slot>` Vue টেমপ্লেটের উপাদানগুলি জাভাস্ক্রিপ্টে কম্পাইল করা হয়েছে, তাই সেগুলিকে বিভ্রান্ত করা যাবে না [native `<slot>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot).
 
-- **See also** [Component - Slots](/guide/components/slots)
+- **আরো দেখুন** [Component - Slots](/guide/components/slots)
 
 ## `<template>` {#template}
 
-The `<template>` tag is used as a placeholder when we want to use a built-in directive without rendering an element in the DOM.
+`<template>` ট্যাগটি প্লেসহোল্ডার হিসেবে ব্যবহার করা হয় যখন আমরা DOM-এ কোনো উপাদান রেন্ডার না করে বিল্ট-ইন নির্দেশিকা ব্যবহার করতে চাই।
 
-- **Details**
+- ** বিস্তারিত**
 
-  The special handling for `<template>` is only triggered if it is used with one of these directives:
+  `<template>` এর জন্য বিশেষ হ্যান্ডলিং শুধুমাত্র তখনই ট্রিগার হয় যদি এটি এই নির্দেশাবলীর একটির সাথে ব্যবহার করা হয়:
 
   - `v-if`, `v-else-if`, or `v-else`
   - `v-for`
   - `v-slot`
 
-  If none of those directives are present then it will be rendered as a [native `<template>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) instead.
+  যদি এই নির্দেশাবলীর কোনোটিই উপস্থিত না থাকে তবে এটি একটি [নেটিভ `<template>` উপাদান](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) হিসেবে রেন্ডার করা হবে।
 
-  A `<template>` with a `v-for` can also have a [`key` attribute](/api/built-in-special-attributes#key). All other attributes and directives will be discarded, as they aren't meaningful without a corresponding element.
+  একটি `<template>` একটি `v-for` সহ একটি [`কী` বৈশিষ্ট্য](/api/built-in-special-attributes#key) থাকতে পারে। অন্যান্য সমস্ত বৈশিষ্ট্য এবং নির্দেশ বাতিল করা হবে, কারণ সেগুলি সংশ্লিষ্ট উপাদান ছাড়া অর্থপূর্ণ নয়৷
 
-  Single-file components use a [top-level `<template>` tag](/api/sfc-spec#language-blocks) to wrap the entire template. That usage is separate from the use of `<template>` described above. That top-level tag is not part of the template itself and doesn't support template syntax, such as directives.
+  একক-ফাইল উপাদানগুলি সম্পূর্ণ টেমপ্লেটটি মোড়ানোর জন্য একটি [শীর্ষ-স্তরের `<template>` ট্যাগ](/api/sfc-spec#language-blocks) ব্যবহার করে। সেই ব্যবহার উপরে বর্ণিত `<template>` ব্যবহার থেকে আলাদা। সেই শীর্ষ-স্তরের ট্যাগটি নিজেই টেমপ্লেটের অংশ নয় এবং টেমপ্লেট সিনট্যাক্স সমর্থন করে না, যেমন নির্দেশাবলী।
 
-- **See also**
+- **আরো দেখুন**
   - [Guide - `v-if` on `<template>`](/guide/essentials/conditional#v-if-on-template)
   - [Guide - `v-for` on `<template>`](/guide/essentials/list#v-for-on-template)
   - [Guide - Named slots](/guide/components/slots#named-slots)
