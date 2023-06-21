@@ -2,15 +2,15 @@
 
 ## v-text {#v-text}
 
-Update the element's text content.
+উপাদানটির পাঠ্য বিষয়বস্তু আপডেট করুন।
 
 - **Expects:** `string`
 
-- **Details**
+- **বিস্তারিত**
 
-  `v-text` works by setting the element's [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) property, so it will overwrite any existing content inside the element. If you need to update the part of `textContent`, you should use [mustache interpolations](/guide/essentials/template-syntax#text-interpolation) instead.
+'v-text' এলিমেন্টের [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) প্রপার্টি সেট করে কাজ করে, তাই এটি এলিমেন্টের ভিতরে বিদ্যমান যেকোনো কন্টেন্ট ওভাররাইট করবে . আপনার যদি `textContent`-এর অংশ আপডেট করতে হয়, তাহলে আপনার পরিবর্তে [mustache interpolations](/guide/essentials/template-syntax#text-interpolation) ব্যবহার করা উচিত।
 
-- **Example**
+- **উদাহরণ**
 
   ```vue-html
   <span v-text="msg"></span>
@@ -18,75 +18,75 @@ Update the element's text content.
   <span>{{msg}}</span>
   ```
 
-- **See also** [Template Syntax - Text Interpolation](/guide/essentials/template-syntax#text-interpolation)
+- **আরো দেখুন** [Template Syntax - Text Interpolation](/guide/essentials/template-syntax#text-interpolation)
 
 ## v-html {#v-html}
 
-Update the element's [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML).
+উপাদান এর আপডেট [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML).
 
 - **Expects:** `string`
 
-- **Details**
+- **বিস্তারিত**
 
-  Contents of `v-html` are inserted as plain HTML - Vue template syntax will not be processed. If you find yourself trying to compose templates using `v-html`, try to rethink the solution by using components instead.
+  `v-html` এর বিষয়বস্তু প্লেইন HTML হিসাবে ঢোকানো হয়েছে - Vue টেমপ্লেট সিনট্যাক্স প্রক্রিয়া করা হবে না। আপনি যদি নিজেকে `v-html` ব্যবহার করে টেমপ্লেট রচনা করার চেষ্টা করেন, তবে পরিবর্তে উপাদানগুলি ব্যবহার করে সমাধানটি পুনর্বিবেচনা করার চেষ্টা করুন।
 
-  ::: warning Security Note
-  Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use `v-html` on trusted content and **never** on user-provided content.
+  ::: warning নিরাপত্তা নোট
+  গতিশীলভাবে আপনার ওয়েবসাইটে নির্বিচারে HTML রেন্ডার করা খুব বিপজ্জনক হতে পারে কারণ এটি সহজেই [XSS আক্রমণ](https://en.wikipedia.org/wiki/Cross-site_scripting) হতে পারে। শুধুমাত্র বিশ্বস্ত কন্টেন্টে `v-html` ব্যবহার করুন এবং ব্যবহারকারীর দেওয়া কন্টেন্টে **কখনই না** ব্যবহার করুন।
   :::
 
-  In [Single-File Components](/guide/scaling-up/sfc), `scoped` styles will not apply to content inside `v-html`, because that HTML is not processed by Vue's template compiler. If you want to target `v-html` content with scoped CSS, you can instead use [CSS modules](./sfc-css-features#css-modules) or an additional, global `<style>` element with a manual scoping strategy such as BEM.
+ [Single-File Components](/guide/scaling-up/sfc), `v-html`-এর ভিতরের সামগ্রীতে `scoped` শৈলী প্রযোজ্য হবে না, কারণ সেই HTML Vue-এর টেমপ্লেট কম্পাইলার দ্বারা প্রক্রিয়া করা হয় না। আপনি যদি স্কোপড CSS দিয়ে `v-html` কন্টেন্ট টার্গেট করতে চান, তাহলে আপনি [CSS মডিউল](./sfc-css-features#css-modules) অথবা ম্যানুয়াল সহ একটি অতিরিক্ত, গ্লোবাল `<style>` উপাদান ব্যবহার করতে পারেন স্কোপিং কৌশল যেমন BEM।
 
-- **Example**
+- **উদাহরণ**
 
   ```vue-html
   <div v-html="html"></div>
   ```
 
-- **See also** [Template Syntax - Raw HTML](/guide/essentials/template-syntax#raw-html)
+- **আরো দেখুন** [Template Syntax - Raw HTML](/guide/essentials/template-syntax#raw-html)
 
 ## v-show {#v-show}
 
-Toggle the element's visibility based on the truthy-ness of the expression value.
+অভিব্যক্তি মানের সত্যতার উপর ভিত্তি করে উপাদানটির দৃশ্যমানতা টগল করুন।
 
 - **Expects:** `any`
 
-- **Details**
+- **বিস্তারিত**
 
-  `v-show` works by setting the `display` CSS property via inline styles, and will try to respect the initial `display` value when the element is visible. It also triggers transitions when its condition changes.
+  `v-show` ইনলাইন শৈলীর মাধ্যমে `display` CSS প্রপার্টি সেট করে কাজ করে এবং উপাদানটি দৃশ্যমান হলে প্রাথমিক `display` মানকে সম্মান করার চেষ্টা করবে। এর অবস্থা পরিবর্তিত হলে এটি রূপান্তরকেও ট্রিগার করে।
 
-- **See also** [Conditional Rendering - v-show](/guide/essentials/conditional#v-show)
+- **আরো দেখুন** [Conditional Rendering - v-show](/guide/essentials/conditional#v-show)
 
 ## v-if {#v-if}
 
-Conditionally render an element or a template fragment based on the truthy-ness of the expression value.
+অভিব্যক্তি মানের সত্যতার উপর ভিত্তি করে শর্তসাপেক্ষে একটি উপাদান বা একটি টেমপ্লেট খণ্ড রেন্ডার করুন।
 
 - **Expects:** `any`
 
-- **Details**
+- **বিস্তারিত**
 
-  When a `v-if` element is toggled, the element and its contained directives / components are destroyed and re-constructed. If the initial condition is falsy, then the inner content won't be rendered at all.
+  যখন একটি `v-if` উপাদান টগল করা হয়, তখন উপাদান এবং এর মধ্যে থাকা নির্দেশাবলী/উপাদানগুলি ধ্বংস হয়ে পুনরায় তৈরি করা হয়। যদি প্রাথমিক শর্তটি মিথ্যা হয়, তাহলে ভিতরের বিষয়বস্তু মোটেও রেন্ডার করা হবে না।
 
-  Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+  শুধুমাত্র পাঠ্য বা একাধিক উপাদান সম্বলিত শর্তাধীন ব্লক বোঝাতে `<template>`-এ ব্যবহার করা যেতে পারে।
 
-  This directive triggers transitions when its condition changes.
+  এই নির্দেশিকা যখন এর অবস্থা পরিবর্তিত হয় তখন ট্রানজিশন শুরু করে।
 
-  When used together, `v-if` has a higher priority than `v-for`. We don't recommend using these two directives together on one element — see the [list rendering guide](/guide/essentials/list#v-for-with-v-if) for details.
+  একসাথে ব্যবহার করা হলে, `v-for` এর চেয়ে `v-if` এর অগ্রাধিকার বেশি থাকে। আমরা একটি উপাদানে এই দুটি নির্দেশ একসাথে ব্যবহার করার পরামর্শ দিই না — বিস্তারিত জানার জন্য [তালিকা রেন্ডারিং গাইড](/guide/essentials/list#v-for-with-v-if) দেখুন।
 
-- **See also** [Conditional Rendering - v-if](/guide/essentials/conditional#v-if)
+- **আরো দেখুন** [Conditional Rendering - v-if](/guide/essentials/conditional#v-if)
 
 ## v-else {#v-else}
 
-Denote the "else block" for `v-if` or a `v-if` / `v-else-if` chain.
+`v-if` বা `v-if` / `v-else-if` চেইনের জন্য "অন্য ব্লক" নির্দেশ করুন।
 
-- **Does not expect expression**
+- **এক্সপ্রেশন আশা করি না**
 
-- **Details**
+- **বিস্তারিত**
 
-  - Restriction: previous sibling element must have `v-if` or `v-else-if`.
+    - সীমাবদ্ধতা: পূর্ববর্তী ভাইবোন উপাদানে অবশ্যই `v-if` বা `v-else-if` থাকতে হবে।
 
-  - Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+    - শুধুমাত্র পাঠ্য বা একাধিক উপাদান সমন্বিত একটি শর্তাধীন ব্লক বোঝাতে `<টেমপ্লেট>`-এ ব্যবহার করা যেতে পারে।
 
-- **Example**
+- **উদাহরণ**
 
   ```vue-html
   <div v-if="Math.random() > 0.5">
@@ -97,21 +97,21 @@ Denote the "else block" for `v-if` or a `v-if` / `v-else-if` chain.
   </div>
   ```
 
-- **See also** [Conditional Rendering - v-else](/guide/essentials/conditional#v-else)
+- **আরো দেখুন** [Conditional Rendering - v-else](/guide/essentials/conditional#v-else)
 
 ## v-else-if {#v-else-if}
 
-Denote the "else if block" for `v-if`. Can be chained.
+`v-if` এর জন্য "else if block" নির্দেশ করুন। শৃঙ্খলিত হতে পারে।
 
 - **Expects:** `any`
 
-- **Details**
+- **বিস্তারিত**
 
-  - Restriction: previous sibling element must have `v-if` or `v-else-if`.
+    - সীমাবদ্ধতা: পূর্ববর্তী ভাইবোন উপাদানে অবশ্যই `v-if` বা `v-else-if` থাকতে হবে।
 
-  - Can be used on `<template>` to denote a conditional block containing only text or multiple elements.
+    - শুধুমাত্র পাঠ্য বা একাধিক উপাদান সমন্বিত একটি শর্তাধীন ব্লক বোঝাতে `<template>`-এ ব্যবহার করা যেতে পারে।
 
-- **Example**
+- **উদাহরণ**
 
   ```vue-html
   <div v-if="type === 'A'">
@@ -128,17 +128,17 @@ Denote the "else if block" for `v-if`. Can be chained.
   </div>
   ```
 
-- **See also** [Conditional Rendering - v-else-if](/guide/essentials/conditional#v-else-if)
+- **আরো দেখুন** [Conditional Rendering - v-else-if](/guide/essentials/conditional#v-else-if)
 
 ## v-for {#v-for}
 
-Render the element or template block multiple times based on the source data.
+উৎস ডেটার উপর ভিত্তি করে উপাদান বা টেমপ্লেট ব্লক একাধিকবার রেন্ডার করুন।
 
 - **Expects:** `Array | Object | number | string | Iterable`
 
-- **Details**
+- **বিস্তারিত**
 
-  The directive's value must use the special syntax `alias in expression` to provide an alias for the current element being iterated on:
+  নির্দেশের মানটিকে অবশ্যই বিশেষ সিনট্যাক্স ব্যবহার করতে হবে `alias in expression` ব্যবহার করে বর্তমান উপাদানটির জন্য একটি উপনাম প্রদান করার জন্য:
 
   ```vue-html
   <div v-for="item in items">
@@ -146,7 +146,7 @@ Render the element or template block multiple times based on the source data.
   </div>
   ```
 
-  Alternatively, you can also specify an alias for the index (or the key if used on an Object):
+  বিকল্পভাবে, আপনি সূচকের জন্য একটি উপনামও নির্দিষ্ট করতে পারেন (বা কীটি যদি কোনো বস্তুতে ব্যবহার করা হয়):
 
   ```vue-html
   <div v-for="(item, index) in items"></div>
@@ -154,7 +154,7 @@ Render the element or template block multiple times based on the source data.
   <div v-for="(value, name, index) in object"></div>
   ```
 
-  The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you should provide an ordering hint with the `key` special attribute:
+  `v-for` এর ডিফল্ট আচরণ উপাদানগুলিকে স্থানান্তর না করেই প্যাচ করার চেষ্টা করবে। উপাদানগুলিকে পুনরায় ক্রমানুসারে জোর করতে, আপনাকে `key` বিশেষ বৈশিষ্ট্য সহ একটি অর্ডারিং ইঙ্গিত প্রদান করা উচিত:
 
   ```vue-html
   <div v-for="item in items" :key="item.id">
@@ -162,14 +162,14 @@ Render the element or template block multiple times based on the source data.
   </div>
   ```
 
-  `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`.
+  'v-for' এমন মানগুলির উপরও কাজ করতে পারে যা [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), native `Map` সহ প্রয়োগ করে এবং `Set`।
 
-- **See also**
+- **আরো দেখুন**
   - [List Rendering](/guide/essentials/list)
 
 ## v-on {#v-on}
 
-Attach an event listener to the element.
+উপাদানটির সাথে একটি ইভেন্ট শ্রোতা সংযুক্ত করুন।
 
 - **Shorthand:** `@`
 
@@ -190,17 +190,17 @@ Attach an event listener to the element.
   - `.middle` - only trigger handler for middle button mouse events.
   - `.passive` - attaches a DOM event with `{ passive: true }`.
 
-- **Details**
+- **বিস্তারিত**
 
-  The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
+  ইভেন্টের ধরনটি যুক্তি দ্বারা চিহ্নিত করা হয়। অভিব্যক্তিটি একটি পদ্ধতির নাম, একটি ইনলাইন বিবৃতি বা বাদ দেওয়া হতে পারে যদি সেখানে সংশোধক উপস্থিত থাকে।
 
-  When used on a normal element, it listens to [**native DOM events**](https://developer.mozilla.org/en-US/docs/Web/Events) only. When used on a custom element component, it listens to **custom events** emitted on that child component.
+  একটি সাধারণ উপাদানে ব্যবহার করা হলে, এটি শুধুমাত্র [**নেটিভ DOM ইভেন্ট**](https://developer.mozilla.org/en-US/docs/Web/Events) শোনে। একটি কাস্টম উপাদান উপাদান ব্যবহার করা হলে, এটি সেই শিশু উপাদানে নির্গত **কাস্টম ইভেন্ট** শোনে।
 
-  When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+  নেটিভ DOM ইভেন্টগুলি শোনার সময়, পদ্ধতিটি নেটিভ ইভেন্টটিকে একমাত্র যুক্তি হিসাবে গ্রহণ করে। ইনলাইন স্টেটমেন্ট ব্যবহার করলে, স্টেটমেন্টের বিশেষ `$event` প্রপার্টিতে অ্যাক্সেস আছে: `v-on:click="handle('ok', $event)"`।
 
-  `v-on` also supports binding to an object of event / listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
+  `v-on` কোনো যুক্তি ছাড়াই ইভেন্ট/শ্রোতা জোড়ার কোনো বস্তুর সাথে বাঁধাই সমর্থন করে। অবজেক্ট সিনট্যাক্স ব্যবহার করার সময় নোট করুন, এটি কোনো পরিবর্তনকারীকে সমর্থন করে না।
 
-- **Example**
+- **উদাহরণ**
 
   ```vue-html
   <!-- method handler -->
@@ -240,7 +240,7 @@ Attach an event listener to the element.
   <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
-  Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
+  চাইল্ড কম্পোনেন্টে কাস্টম ইভেন্ট শোনা (যখন বাচ্চার উপর "my-event" নির্গত হয় তখন হ্যান্ডলারকে বলা হয়):
 
   ```vue-html
   <MyComponent @my-event="handleThis" />
@@ -249,13 +249,13 @@ Attach an event listener to the element.
   <MyComponent @my-event="handleThis(123, $event)" />
   ```
 
-- **See also**
+- **আরো দেখুন**
   - [Event Handling](/guide/essentials/event-handling)
   - [Components - Custom Events](/guide/essentials/component-basics#listening-to-events)
 
 ## v-bind {#v-bind}
 
-Dynamically bind one or more attributes, or a component prop to an expression.
+গতিশীলভাবে এক বা একাধিক বৈশিষ্ট্য বা একটি কম্পোনেন্ট প্রপ একটি এক্সপ্রেশনে আবদ্ধ করুন।
 
 - **Shorthand:** `:` or `.` (when using `.prop` modifier)
 
@@ -271,15 +271,15 @@ Dynamically bind one or more attributes, or a component prop to an expression.
 
 - **Usage**
 
-  When used to bind the `class` or `style` attribute, `v-bind` supports additional value types such as Array or Objects. See linked guide section below for more details.
+  যখন `class` বা `style` অ্যাট্রিবিউটকে আবদ্ধ করতে ব্যবহৃত হয়, তখন `v-bind` অ্যারে বা অবজেক্টের মতো অতিরিক্ত মান প্রকারকে সমর্থন করে। আরো বিস্তারিত জানার জন্য নীচের লিঙ্ক গাইড বিভাগ দেখুন.
 
-  When setting a binding on an element, Vue by default checks whether the element has the key defined as a property using an `in` operator check. If the property is defined, Vue will set the value as a DOM property instead of an attribute. This should work in most cases, but you can override this behavior by explicitly using `.prop` or `.attr` modifiers. This is sometimes necessary, especially when [working with custom elements](/guide/extras/web-components#passing-dom-properties).
+  একটি উপাদানের উপর একটি বাইন্ডিং সেট করার সময়, একটি `in` অপারেটর চেক ব্যবহার করে উপাদানটির কী একটি বৈশিষ্ট্য হিসাবে সংজ্ঞায়িত আছে কিনা তা ডিফল্টরূপে Vue চেক করে। যদি সম্পত্তি সংজ্ঞায়িত করা হয়, Vue একটি বৈশিষ্ট্যের পরিবর্তে একটি DOM সম্পত্তি হিসাবে মান সেট করবে। এটি বেশিরভাগ ক্ষেত্রে কাজ করা উচিত, তবে আপনি স্পষ্টভাবে `.prop` বা `.attr` সংশোধক ব্যবহার করে এই আচরণটিকে ওভাররাইড করতে পারেন। এটি কখনও কখনও প্রয়োজনীয়, বিশেষ করে যখন [কাস্টম উপাদানগুলির সাথে কাজ করা](/guide/extras/web-components#passing-dom-properties)।
 
-  When used for component prop binding, the prop must be properly declared in the child component.
+  যখন কম্পোনেন্ট প্রপ বাইন্ডিং এর জন্য ব্যবহার করা হয়, তখন প্রপটি অবশ্যই চাইল্ড কম্পোনেন্টে সঠিকভাবে ঘোষণা করতে হবে।
 
-  When used without an argument, can be used to bind an object containing attribute name-value pairs.
+  যখন কোন যুক্তি ছাড়া ব্যবহার করা হয়, তখন অ্যাট্রিবিউট নাম-মানের জোড়া ধারণকারী বস্তুকে আবদ্ধ করতে ব্যবহার করা যেতে পারে।
 
-- **Example**
+- **উদাহরণ**
 
   ```vue-html
   <!-- bind an attribute -->
@@ -328,21 +328,21 @@ Dynamically bind one or more attributes, or a component prop to an expression.
   <div .someProperty="someObject"></div>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  ইন-ডোম টেমপ্লেট ব্যবহার করার সময় `.camel` সংশোধক একটি `v-bind` অ্যাট্রিবিউটের নাম উট করার অনুমতি দেয়, যেমন SVG `viewBox` বৈশিষ্ট্য:
 
   ```vue-html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or pre-compiling the template with a build step.
+  আপনি যদি স্ট্রিং টেমপ্লেট ব্যবহার করেন, বা একটি বিল্ড স্টেপ সহ টেমপ্লেটটি প্রাক-কম্পাইল করেন তাহলে `.camel` এর প্রয়োজন নেই।
 
-- **See also**
+- **আরো দেখুন**
   - [Class and Style Bindings](/guide/essentials/class-and-style)
   - [Components - Prop Passing Details](/guide/components/props#prop-passing-details)
 
 ## v-model {#v-model}
 
-Create a two-way binding on a form input element or a component.
+একটি ফর্ম ইনপুট উপাদান বা একটি উপাদানে একটি দ্বি-মুখী বাঁধাই তৈরি করুন।
 
 - **Expects:** varies based on value of form inputs element or output of components
 
@@ -359,18 +359,18 @@ Create a two-way binding on a form input element or a component.
   - [`.number`](/guide/essentials/forms#number) - cast valid input string to numbers
   - [`.trim`](/guide/essentials/forms#trim) - trim input
 
-- **See also**
+- **আরো দেখুন**
 
   - [Form Input Bindings](/guide/essentials/forms)
   - [Component Events - Usage with `v-model`](/guide/components/v-model)
 
 ## v-slot {#v-slot}
 
-Denote named slots or scoped slots that expect to receive props.
+নামযুক্ত স্লট বা স্কোপড স্লটগুলি নির্দেশ করুন যা প্রপস পাওয়ার আশা করে।
 
 - **Shorthand:** `#`
 
-- **Expects:** JavaScript expression that is valid in a function argument position, including support for destructuring. Optional - only needed if expecting props to be passed to the slot.
+- **Expects:** জাভাস্ক্রিপ্ট এক্সপ্রেশন যা একটি ফাংশন আর্গুমেন্ট পজিশনে বৈধ, ধ্বংস করার জন্য সমর্থন সহ। ঐচ্ছিক - শুধুমাত্র প্রয়োজন যদি প্রপস স্লটে পাস করার আশা করা হয়।
 
 - **Argument:** slot name (optional, defaults to `default`)
 
@@ -379,7 +379,7 @@ Denote named slots or scoped slots that expect to receive props.
   - `<template>`
   - [components](/guide/components/slots#scoped-slots) (for a lone default slot with props)
 
-- **Example**
+- **উদাহরণ**
 
   ```vue-html
   <!-- Named slots -->
@@ -412,20 +412,20 @@ Denote named slots or scoped slots that expect to receive props.
   </Mouse>
   ```
 
-- **See also**
+- **আরো দেখুন**
   - [Components - Slots](/guide/components/slots)
 
 ## v-pre {#v-pre}
 
-Skip compilation for this element and all its children.
+এই উপাদান এবং এর সমস্ত শিশুদের জন্য সংকলন এড়িয়ে যান।
 
-- **Does not expect expression**
+- **এক্সপ্রেশন আশা করি না**
 
-- **Details**
+- **বিস্তারিত**
 
-  Inside the element with `v-pre`, all Vue template syntax will be preserved and rendered as-is. The most common use case of this is displaying raw mustache tags.
+  `v-pre` সহ উপাদানের ভিতরে, সমস্ত Vue টেমপ্লেট সিনট্যাক্স সংরক্ষণ করা হবে এবং যেমন আছে তেমন রেন্ডার করা হবে। এর সবচেয়ে সাধারণ ব্যবহার হল কাঁচা গোঁফের ট্যাগ প্রদর্শন করা।
 
-- **Example**
+- **উদাহরণ**
 
   ```vue-html
   <span v-pre>{{ this will not be compiled }}</span>
@@ -433,13 +433,13 @@ Skip compilation for this element and all its children.
 
 ## v-once {#v-once}
 
-Render the element and component once only, and skip future updates.
+শুধুমাত্র একবার উপাদান এবং উপাদান রেন্ডার করুন এবং ভবিষ্যতের আপডেটগুলি এড়িয়ে যান।
 
-- **Does not expect expression**
+- **এক্সপ্রেশন আশা করি না**
 
-- **Details**
+- **বিস্তারিত**
 
-  On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.
+  পরবর্তী রি-রেন্ডারে, উপাদান/উপাদান এবং এর সমস্ত সন্তানকে স্ট্যাটিক কন্টেন্ট হিসেবে গণ্য করা হবে এবং বাদ দেওয়া হবে। এটি আপডেট কর্মক্ষমতা অপ্টিমাইজ করতে ব্যবহার করা যেতে পারে.
 
   ```vue-html
   <!-- single element -->
@@ -457,9 +457,9 @@ Render the element and component once only, and skip future updates.
   </ul>
   ```
 
-  Since 3.2, you can also memoize part of the template with invalidation conditions using [`v-memo`](#v-memo).
+  3.2 থেকে, আপনি [`v-memo`](#v-memo) ব্যবহার করে অবৈধ অবস্থার সাথে টেমপ্লেটের কিছু অংশ স্মরণ করতে পারেন।
 
-- **See also**
+- **আরো দেখুন**
   - [Data Binding Syntax - interpolations](/guide/essentials/template-syntax#text-interpolation)
   - [v-memo](#v-memo)
 
@@ -467,9 +467,9 @@ Render the element and component once only, and skip future updates.
 
 - **Expects:** `any[]`
 
-- **Details**
+- **বিস্তারিত**
 
-  Memoize a sub-tree of the template. Can be used on both elements and components. The directive expects a fixed-length array of dependency values to compare for the memoization. If every value in the array was the same as last render, then updates for the entire sub-tree will be skipped. For example:
+  টেমপ্লেটের একটি সাব-ট্রি মেমোাইজ করুন। উভয় উপাদান এবং উপাদান ব্যবহার করা যেতে পারে. নির্দেশিকাটি মেমোাইজেশনের জন্য তুলনা করার জন্য নির্ভরতা মানগুলির একটি নির্দিষ্ট দৈর্ঘ্যের অ্যারে আশা করে। যদি অ্যারের প্রতিটি মান শেষ রেন্ডারের মতোই হয়, তাহলে সমগ্র সাব-ট্রির আপডেটগুলি এড়িয়ে যাবে৷ উদাহরণ স্বরূপ:
 
   ```vue-html
   <div v-memo="[valueA, valueB]">
@@ -477,13 +477,13 @@ Render the element and component once only, and skip future updates.
   </div>
   ```
 
-  When the component re-renders, if both `valueA` and `valueB` remain the same, all updates for this `<div>` and its children will be skipped. In fact, even the Virtual DOM VNode creation will also be skipped since the memoized copy of the sub-tree can be reused.
+  যখন কম্পোনেন্ট রি-রেন্ডার হয়, যদি `valueA` এবং `valueB` উভয়ই একই থাকে, তাহলে এই `<div>` এবং এর বাচ্চাদের জন্য সমস্ত আপডেট এড়িয়ে যাবে। প্রকৃতপক্ষে, এমনকি ভার্চুয়াল DOM VNode সৃষ্টিও বাদ দেওয়া হবে যেহেতু সাব-ট্রির মেমোকৃত কপি পুনরায় ব্যবহার করা যেতে পারে।
 
-  It is important to specify the memoization array correctly, otherwise we may skip updates that should indeed be applied. `v-memo` with an empty dependency array (`v-memo="[]"`) would be functionally equivalent to `v-once`.
+  মেমোাইজেশন অ্যারেটি সঠিকভাবে উল্লেখ করা গুরুত্বপূর্ণ, অন্যথায় আমরা এমন আপডেটগুলি এড়িয়ে যেতে পারি যা প্রকৃতপক্ষে প্রয়োগ করা উচিত। একটি খালি নির্ভরতা অ্যারে সহ `v-মেমো` (`v-memo="[]"`) কার্যকরীভাবে `v-একবার` এর সমতুল্য হবে।
 
   **Usage with `v-for`**
 
-  `v-memo` is provided solely for micro optimizations in performance-critical scenarios and should be rarely needed. The most common case where this may prove helpful is when rendering large `v-for` lists (where `length > 1000`):
+  `v-memo` শুধুমাত্র পারফরম্যান্স-সমালোচনামূলক পরিস্থিতিতে মাইক্রো অপ্টিমাইজেশনের জন্য প্রদান করা হয় এবং খুব কমই প্রয়োজন হওয়া উচিত। সবচেয়ে সাধারণ ক্ষেত্রে যেখানে এটি সহায়ক হতে পারে তা হল বড় `v-for` তালিকা রেন্ডার করার সময় (যেখানে `length > 1000`):
 
   ```vue-html
   <div v-for="item in list" :key="item.id" v-memo="[item.id === selected]">
@@ -492,32 +492,32 @@ Render the element and component once only, and skip future updates.
   </div>
   ```
 
-  When the component's `selected` state changes, a large amount of VNodes will be created even though most of the items remained exactly the same. The `v-memo` usage here is essentially saying "only update this item if it went from non-selected to selected, or the other way around". This allows every unaffected item to reuse its previous VNode and skip diffing entirely. Note we don't need to include `item.id` in the memo dependency array here since Vue automatically infers it from the item's `:key`.
+যখন কম্পোনেন্টের `selected` অবস্থা পরিবর্তিত হয়, বেশিরভাগ আইটেম ঠিক একই থাকা সত্ত্বেও প্রচুর পরিমাণে VNodes তৈরি করা হবে। এখানে `v-memo` ব্যবহারটি মূলত বলছে "শুধুমাত্র এই আইটেমটি আপডেট করুন যদি এটি অ-নির্বাচিত থেকে নির্বাচিত হয়ে যায়, বা অন্য উপায়ে"। এটি প্রতিটি অপ্রভাবিত আইটেমকে তার আগের VNode পুনরায় ব্যবহার করতে এবং সম্পূর্ণরূপে ভিন্নতা এড়িয়ে যেতে দেয়। মনে রাখবেন আমাদের এখানে মেমো নির্ভরতা অ্যারেতে `item.id` অন্তর্ভুক্ত করার দরকার নেই কারণ Vue স্বয়ংক্রিয়ভাবে আইটেমের `:key` থেকে এটিকে অনুমান করে।
 
   :::warning
-  When using `v-memo` with `v-for`, make sure they are used on the same element. **`v-memo` does not work inside `v-for`.**
+  `v-for` এর সাথে `v-memo` ব্যবহার করার সময়, নিশ্চিত করুন যে সেগুলি একই উপাদানে ব্যবহার করা হয়েছে। **`v-memo` `v-for` এর ভিতরে কাজ করে না।**
   :::
 
-  `v-memo` can also be used on components to manually prevent unwanted updates in certain edge cases where the child component update check has been de-optimized. But again, it is the developer's responsibility to specify correct dependency arrays to avoid skipping necessary updates.
+  কিছু প্রান্তের ক্ষেত্রে যেখানে চাইল্ড কম্পোনেন্ট আপডেট চেক ডি-অপ্টিমাইজ করা হয়েছে সেখানে অবাঞ্ছিত আপডেটগুলি ম্যানুয়ালি প্রতিরোধ করতে উপাদানগুলিতে `v-memo` ব্যবহার করা যেতে পারে। কিন্তু আবার, প্রয়োজনীয় আপডেটগুলি এড়িয়ে যাওয়ার জন্য সঠিক নির্ভরতা অ্যারেগুলি নির্দিষ্ট করা বিকাশকারীর দায়িত্ব।
 
-- **See also**
+- **আরো দেখুন**
   - [v-once](#v-once)
 
 ## v-cloak {#v-cloak}
 
-Used to hide un-compiled template until it is ready.
+এটি প্রস্তুত না হওয়া পর্যন্ত আন-সংকলিত টেমপ্লেট লুকানোর জন্য ব্যবহৃত হয়।
 
-- **Does not expect expression**
+- **এক্সপ্রেশন আশা করি না**
 
-- **Details**
+- **বিস্তারিত**
 
-  **This directive is only needed in no-build-step setups.**
+  **এই নির্দেশিকা শুধুমাত্র নো-বিল্ড-স্টেপ সেটআপে প্রয়োজন।**
 
-  When using in-DOM templates, there can be a "flash of un-compiled templates": the user may see raw mustache tags until the mounted component replaces them with rendered content.
+  ইন-ডোম টেমপ্লেটগুলি ব্যবহার করার সময়, "অসংকলিত টেমপ্লেটগুলির ফ্ল্যাশ" হতে পারে: মাউন্ট করা উপাদানটি রেন্ডার করা সামগ্রীর সাথে প্রতিস্থাপন না করা পর্যন্ত ব্যবহারকারী কাঁচা গোঁফের ট্যাগ দেখতে পারেন৷
 
-  `v-cloak` will remain on the element until the associated component instance is mounted. Combined with CSS rules such as `[v-cloak] { display: none }`, it can be used to hide the raw templates until the component is ready.
+  সংশ্লিষ্ট কম্পোনেন্ট ইনস্ট্যান্স মাউন্ট না হওয়া পর্যন্ত 'v-cloak' উপাদানটিতে থাকবে। CSS নিয়মের সাথে মিলিত যেমন `[v-cloak] { display: none }`, এটি কম্পোনেন্ট প্রস্তুত না হওয়া পর্যন্ত কাঁচা টেমপ্লেট লুকানোর জন্য ব্যবহার করা যেতে পারে।
 
-- **Example**
+- **উদাহরণ**
 
   ```css
   [v-cloak] {
@@ -531,4 +531,4 @@ Used to hide un-compiled template until it is ready.
   </div>
   ```
 
-  The `<div>` will not be visible until the compilation is done.
+  সংকলন সম্পন্ন না হওয়া পর্যন্ত `<div>` দৃশ্যমান হবে না।
