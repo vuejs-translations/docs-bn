@@ -2,7 +2,7 @@
 
 ## provide() {#provide}
 
-Provides a value that can be injected by descendant components.
+একটি মান প্রদান করে যা বংশধর উপাদান দ্বারা ইনজেকশন করা যেতে পারে।
 
 - **Type**
 
@@ -12,11 +12,11 @@ Provides a value that can be injected by descendant components.
 
 - **Details**
 
-  `provide()` takes two arguments: the key, which can be a string or a symbol, and the value to be injected.
+  `provide()` দুটি আর্গুমেন্ট নেয়: কী, যা একটি স্ট্রিং বা প্রতীক হতে পারে এবং যে মানটি inject করা হবে।
 
-  When using TypeScript, the key can be a symbol casted as `InjectionKey` - a Vue provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  TypeScript ব্যবহার করার সময়, কীটি `InjectionKey` হিসেবে কাস্ট করা একটি প্রতীক হতে পারে - একটি Vue প্রদত্ত ইউটিলিটি টাইপ যা `Symbol` প্রসারিত করে, যা `provide()` এবং `inject()` এর মধ্যে মান প্রকার সিঙ্ক করতে ব্যবহার করা যেতে পারে।
 
-  Similar to lifecycle hook registration APIs, `provide()` must be called synchronously during a component's `setup()` phase.
+  লাইফসাইকেল হুক রেজিস্ট্রেশন এপিআই-এর মতো, একটি উপাদানের `setup()` পর্বের সময় অবশ্যই `provide()` সিঙ্ক্রোনাসভাবে কল করতে হবে।
 
 - **Example**
 
@@ -43,7 +43,7 @@ Provides a value that can be injected by descendant components.
 
 ## inject() {#inject}
 
-Injects a value provided by an ancestor component or the application (via `app.provide()`).
+একটি ancestor উপাদান বা অ্যাপ্লিকেশন (`app.provide()` এর মাধ্যমে) দ্বারা প্রদত্ত একটি মান ইনজেক্ট করে।
 
 - **Type**
 
@@ -64,19 +64,19 @@ Injects a value provided by an ancestor component or the application (via `app.p
 
 - **Details**
 
-  The first argument is the injection key. Vue will walk up the parent chain to locate a provided value with a matching key. If multiple components in the parent chain provides the same key, the one closest to the injecting component will "shadow" those higher up the chain. If no value with matching key was found, `inject()` returns `undefined` unless a default value is provided.
+  প্রথম যুক্তি হল ইনজেকশন কী। Vue একটি ম্যাচিং কী সহ একটি প্রদত্ত মান সনাক্ত করতে প্যারেন্ট চেইনে চলে যাবে। যদি প্যারেন্ট চেইনের একাধিক কম্পোনেন্ট একই কী প্রদান করে, তাহলে ইনজেকশনের কম্পোনেন্টের সবচেয়ে কাছের একটি চেইনের উপরের অংশটিকে "ছায়া" করবে। ম্যাচিং কী সহ কোনো মান পাওয়া না গেলে, ডিফল্ট মান প্রদান না করা পর্যন্ত `inject()` `undefined` প্রদান করে।
 
-  The second argument is optional and is the default value to be used when no matching value was found.
+  দ্বিতীয় যুক্তিটি ঐচ্ছিক এবং এটি ডিফল্ট মান যা ব্যবহার করা হবে যখন কোনো মিল পাওয়া যায় নি।
 
-  The second argument can also be a factory function that returns values that are expensive to create. In this case, `true` must be passed as the third argument to indicate that the function should be used as a factory instead of the value itself.
+  দ্বিতীয় যুক্তিটি একটি ফ্যাক্টরি ফাংশনও হতে পারে যা তৈরি করা ব্যয়বহুল মান প্রদান করে। এই ক্ষেত্রে, 'সত্য'কে অবশ্যই তৃতীয় আর্গুমেন্ট হিসাবে পাস করতে হবে যে ফাংশনটিকে মানের পরিবর্তে ফ্যাক্টরি হিসাবে ব্যবহার করা উচিত।
 
-  Similar to lifecycle hook registration APIs, `inject()` must be called synchronously during a component's `setup()` phase.
+  লাইফসাইকেল হুক রেজিস্ট্রেশন API-এর মতোই, একটি কম্পোনেন্টের 'সেটআপ()' পর্বের সময় `inject()`কে অবশ্যই সিঙ্ক্রোনাসভাবে কল করতে হবে।
 
-  When using TypeScript, the key can be of type of `InjectionKey` - a Vue-provided utility type that extends `Symbol`, which can be used to sync the value type between `provide()` and `inject()`.
+  TypeScript ব্যবহার করার সময়, কীটি `InjectionKey`-এর প্রকার হতে পারে - একটি Vue-প্রদত্ত ইউটিলিটি টাইপ যা `Symbol` প্রসারিত করে, যা `provide()` এবং `inject()` এর মধ্যে মান প্রকার সিঙ্ক করতে ব্যবহার করা যেতে পারে।
 
 - **Example**
 
-  Assuming a parent component has provided values as shown in the previous `provide()` example:
+  পূর্ববর্তী `provide()` উদাহরণে দেখানো হিসাবে একটি অভিভাবক উপাদান মান প্রদান করেছে:
 
   ```vue
   <script setup>
