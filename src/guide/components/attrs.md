@@ -79,17 +79,7 @@ outline: deep
 
 <div class="composition-api">
 
-`<script সেটআপ>` ব্যবহার করলে, আপনি [`defineOptions`](/api/sfc-script-setup#defineoptions) ম্যাক্রো ব্যবহার করতে পারেন:
-
-```vue
-<script setup>
-defineOptions({
-  inheritAttrs: false
-})
-</script>
-```
-
- Since 3.3 you can also use `defineOptions` directly in `<script setup>`:
+3.3 থেকে আপনি সরাসরি `<script setup>` এ [`defineOptions`](/api/sfc-script-setup#defineoptions) ব্যবহার করতে পারেন:
 
 ```vue
 <script setup>

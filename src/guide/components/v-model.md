@@ -450,7 +450,7 @@ Here's another example of using modifiers with multiple `v-model` with different
 <div class="composition-api">
 
 ```vue{5,6,10,11}
-<script setup >
+<script setup>
 const props = defineProps({
   firstName: String,
   lastName: String,
@@ -488,4 +488,5 @@ export default {
 }
 </script>
 ```
+
 </div>
