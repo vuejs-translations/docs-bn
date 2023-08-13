@@ -115,7 +115,7 @@ export default {
 
 ### Exposing Public Properties {#exposing-public-properties}
 
-`expose` is a function that can be used to explicitly limit the properties exposed when the component instance is accessed by a parent component via [template refs](/guide/essentials/template-refs#ref-on-component):
+`expose` হল এমন একটি ফাংশন যা [template refs](/guide/essentials/template-refs#ref-on-component) এর মাধ্যমে কম্পোনেন্ট ইনস্ট্যান্সটি প্যারেন্ট কম্পোনেন্ট দ্বারা অ্যাক্সেস করা হলে উন্মুক্ত প্রোপার্টিগুলো স্পষ্টভাবে সীমাবদ্ধ করতে ব্যবহার করা যেতে পারে:
 
 ```js{5,10}
 export default {
@@ -134,7 +134,7 @@ export default {
 
 ## Usage with Render Functions {#usage-with-render-functions}
 
-`setup` can also return a [render function](/guide/extras/render-function) which can directly make use of the reactive state declared in the same scope:
+`setup` একটি [render function](/guide/extras/render-function) রিটার্ন করতে পারে যা একই স্কোপে  রিয়েক্টিভ স্টেট ডিক্লার এর সরাসরি ব্যবহার করতে পারে:
 
 ```js{6}
 import { h, ref } from 'vue'
@@ -147,9 +147,9 @@ export default {
 }
 ```
 
-Returning a render function prevents us from returning anything else. Internally that shouldn't be a problem, but it can be problematic if we want to expose methods of this component to the parent component via template refs.
+একটি রেন্ডার ফাংশন রিটার্ন দেওয়া আমাদের অন্য কিছু রিটার্ন দেওয়া থেকে বাধা দেয়। অভ্যন্তরীণভাবে এটি একটি সমস্যা হওয়া উচিত নয়, তবে এটি সমস্যাযুক্ত হতে পারে যদি আমরা এই কম্পোনেন্ট এর মেথডগুলোকে টেমপ্লেট রেফের মাধ্যমে প্যারেন্ট কম্পোনেন্ট কাছে প্রকাশ করতে চাই।
 
-We can solve this problem by calling [`expose()`](#exposing-public-properties):
+আমরা [`expose()`](#exposing-public-properties): কল করে এই সমস্যার সমাধান করতে পারি:
 
 ```js{8-10}
 import { h, ref } from 'vue'
@@ -168,4 +168,4 @@ export default {
 }
 ```
 
-The `increment` method would then be available in the parent component via a template ref.
+'increment' মেথডতি তখন একটি টেমপ্লেট রেফের মাধ্যমে প্যারেন্ট কম্পোনেন্টে অ্যাভেইলএবল হবে।
