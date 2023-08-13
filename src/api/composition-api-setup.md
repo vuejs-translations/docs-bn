@@ -2,16 +2,16 @@
 
 ## Basic Usage {#basic-usage}
 
-`setup()` হুক নিম্নলিখিত ক্ষেত্রে কম্পোনেন্টগুলোতে কম্পোজিশন API ব্যবহারের জন্য এন্ট্রি পয়েন্ট হিসাবে কাজ করে:
+The `setup()` hook serves as the entry point for Composition API usage in components in the following cases:
 
-1. বিল্ড স্টেপ ছাড়া কম্পোজিশন API ব্যবহার করা;
-2. একটি বিকল্প API কম্পোনেন্টে কম্পোজিশন-এপিআই-ভিত্তিক কোডের সাথে একত্রিত  করা।
+1. Using Composition API without a build step;
+2. Integrating with Composition-API-based code in an Options API component.
 
-:::info নোট
-আপনি যদি সিঙ্গেল-ফাইল কম্পোনেন্টগুলির সাথে কম্পোজিশন API ব্যবহার করেন, তবে আরও সংক্ষিপ্ত এবং এরগনোমিক সিনট্যাক্সের জন্য, [`<script setup>`](/api/sfc-script-setup) দৃঢ়ভাবে রিকোমেন্ডেড করা হয়।
+:::info Note
+If you are using Composition API with Single-File Components, [`<script setup>`](/api/sfc-script-setup) is strongly recommended for a more succinct and ergonomic syntax.
 :::
 
-আমরা [Reactivity APIs](./reactivity-core) ব্যবহার করে রিয়েক্টিভ স্টেট  ডিক্লেয়ার করতে পারি এবং `setup()` থেকে একটি অবজেক্ট রিটার্ন দিয়ে টেমপ্লেটে তাদের প্রকাশ করতে পারি। রিটার্ন অবজেক্টের বৈশিষ্ট্যগুলিও কম্পোনেন্ট ইনস্ট্যান্সে সহজলভ্য করা হবে (যদি অন্য অপশনগুলো ব্যবহার করা হয়):
+We can declare reactive state using [Reactivity APIs](./reactivity-core) and expose them to the template by returning an object from `setup()`. The properties on the returned object will also be made available on the component instance (if other options are used):
 
 ```vue
 <script>
@@ -21,7 +21,7 @@ export default {
   setup() {
     const count = ref(0)
 
-    // টেমপ্লেট এবং অনান্য options API hooks-কে প্রকাশ করা
+    // expose to template and other options API hooks
     return {
       count
     }
@@ -38,15 +38,15 @@ export default {
 </template>
 ```
 
-[refs](/api/reactivity-core#ref) `setup` থেকে রিটার্ন করা হয় [automatically shallow unwrapped](/guide/essentials/reactivity-fundamentals#deep-reactivity) যখন টেমপ্লেটে অ্যাক্সেস করা হয় তাই আপনাকে `.value` ব্যবহার করার প্রয়োজন নেই তাদের অ্যাক্সেস করার সময় । `this`-এ অ্যাক্সেস করার সময় সেগুলিও একইভাবে unwrapperd হয়।
+[refs](/api/reactivity-core#ref) returned from `setup` are [automatically shallow unwrapped](/guide/essentials/reactivity-fundamentals#deep-reactivity) when accessed in the template so you do not need to use `.value` when accessing them. They are also unwrapped in the same way when accessed on `this`.
 
-`setup()`-এর নিজেই কম্পোনেন্ট ইনস্ট্যান্সে অ্যাক্সেস নেই - `this` এর value `setup()`-এর ভিতরে `undefined` থাকবে। আপনি অপশন এপিআই থেকে কম্পোজিশন-এপিআই-উন্মুক্ত মানগুলি অ্যাক্সেস করতে পারেন, কিন্তু অন্য উপায়ে নয়।
+`setup()` itself does not have access to the component instance - `this` will have a value of `undefined` inside `setup()`. You can access Composition-API-exposed values from Options API, but not the other way around.
 
-`setup()` একটি অবজেক্টকে  _synchronously_ রিটার্ন দিতে হবে। একমাত্র ক্ষেত্রে যখন `async setup()` ব্যবহার করা যেতে পারে যখন কম্পোনেন্টটি একটি [Suspense](../guide/built-ins/suspense) কম্পোনেন্টের উত্তরাধিকারী হবে।
+`setup()` should return an object _synchronously_. The only case when `async setup()` can be used is when the component is a descendant of a [Suspense](../guide/built-ins/suspense) component.
 
 ## Accessing Props {#accessing-props}
 
-`setup` ফাংশনের প্রথম আর্গুমেন্ট হল `props` আর্গুমেন্ট। আপনি যেমন একটি আদর্শ কম্পোনেন্ট আশা করবেন, একটি `setup` ফাংশনের ভিতরে `props` রিয়েক্টিভ এবং নতুন প্রপস পাস করা হলে তা আপডেট করা হবে।
+The first argument in the `setup` function is the `props` argument. Just as you would expect in a standard component, `props` inside of a `setup` function are reactive and will be updated when new props are passed in.
 
 ```js
 export default {
@@ -59,21 +59,21 @@ export default {
 }
 ```
 
-মনে রাখবেন যে আপনি যদি `props` অবজেক্টটিকে ডিস্ট্রাকচার করেন, ডিস্ট্রাকচার করা ভেরিয়েবলগুলি রিয়েক্টিভিটি হারাবে। তাই সবসময় `props.xxx` আকারে প্রপস অ্যাক্সেস করার পরামর্শ দেওয়া হয়।
+Note that if you destructure the `props` object, the destructured variables will lose reactivity. It is therefore recommended to always access props in the form of `props.xxx`.
 
-আপনার যদি সত্যিই প্রপসগুলিকে ডিস্ট্রাকচার করতে হয়, বা রিয়েক্টিভিটি বজায় রাখার সময় একটি বহিরাগত ফাংশনে একটি প্রপ pass করতে হয়, আপনি [toRefs()](./reactivity-utilities#torefs) এবং [toRef()](/api/reactivity-utilities#toref) এর সাথে এটি করতে পারেন। ইউটিলিটি API:
+If you really need to destructure the props, or need to pass a prop into an external function while retaining reactivity, you can do so with the [toRefs()](./reactivity-utilities#torefs) and [toRef()](/api/reactivity-utilities#toref) utility APIs:
 
 ```js
 import { toRefs, toRef } from 'vue'
 
 export default {
   setup(props) {
-    // `props` কে রেফের একটি অবজেক্টে পরিণত করুন, তারপর ডিস্ট্রাকচার করুন
+    // turn `props` into an object of refs, then destructure
     const { title } = toRefs(props)
-    // `title` হচ্ছে একটি ref যা `props.title` কে ট্র্যাক করে। 
+    // `title` is a ref that tracks `props.title`
     console.log(title.value)
 
-    // অথবা, `props`-কে একটি সিঙ্গেল প্রপার্টিতে পরিণত করুন
+    // OR, turn a single property on `props` into a ref
     const title = toRef(props, 'title')
   }
 }
