@@ -81,7 +81,7 @@ export default {
 
 ## Setup Context {#setup-context}
 
-The second argument passed to the `setup` function is a **Setup Context** object. The context object exposes other values that may be useful inside `setup`:
+`setup` ফাংশনে pass করা দ্বিতীয় আর্গুমেন্ট হল একটি **Setup Context** অবজেক্ট। প্রসঙ্গ অবজেক্টটি অন্যান্য ভ্যালু-গুলোকে প্রকাশ করে যা `setup` ভিতরে দরকারী হতে পারে:
 
 ```js
 export default {
@@ -101,7 +101,7 @@ export default {
 }
 ```
 
-The context object is not reactive and can be safely destructured:
+কন্টেক্সট অবজেক্টটি রিয়েক্টিভ নয় এবং নিরাপদে ডিস্ট্রাকচার করা যেতে পারে:
 
 ```js
 export default {
@@ -111,7 +111,7 @@ export default {
 }
 ```
 
-`attrs` and `slots` are stateful objects that are always updated when the component itself is updated. This means you should avoid destructuring them and always reference properties as `attrs.x` or `slots.x`. Also note that, unlike `props`, the properties of `attrs` and `slots` are **not** reactive. If you intend to apply side effects based on changes to `attrs` or `slots`, you should do so inside an `onBeforeUpdate` lifecycle hook.
+`attrs` এবং `slots` হল স্টেটফুল অবজেক্ট যেগুলো সবসময় আপডেট করা হয় যখন কম্পোনেন্ট নিজেই আপডেট করা হয়। এর অর্থ হল আপনার সেগুলিকে ডিস্ট্রাকচার করা এড়ানো উচিত এবং সর্বদা `attrs.x` বা `slots.x` হিসাবে বৈশিষ্ট্য উল্লেখ করা উচিত। এছাড়াও মনে রাখবেন, `প্রপস` এর বিপরীতে, `attrs` এবং `slots`-এর বৈশিষ্ট্য **not** রিয়েক্টিভ। আপনি যদি `attrs` বা `slots`-এ পরিবর্তনের উপর ভিত্তি করে পার্শ্বপ্রতিক্রিয়া প্রয়োগ করতে চান, তাহলে আপনার তা `onBeforeUpdate` লাইফসাইকেল হুকের মধ্যে করা উচিত।
 
 ### Exposing Public Properties {#exposing-public-properties}
 
