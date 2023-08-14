@@ -2,7 +2,7 @@
 
 ## createRenderer() {#createrenderer}
 
-Creates a custom renderer. By providing platform-specific node creation and manipulation APIs, you can leverage Vue's core runtime to target non-DOM environments.
+একটি কাস্টম রেন্ডারার তৈরি করে। আপনি  Vue-এর মূল রানটাইম ব্যবহার করতে পারেন non-DOM এনভারনমেন্ট লক্ষ্য করার জন্য এবং প্ল্যাটফর্ম-নির্দিষ্ট নোড তৈরি এবং ম্যানিপুলেশন API প্রদান করে ।
 
 - **Type**
 
@@ -82,4 +82,4 @@ Creates a custom renderer. By providing platform-specific node creation and mani
   export * from '@vue/runtime-core'
   ```
 
-  Vue's own `@vue/runtime-dom` is [implemented using the same API](https://github.com/vuejs/core/blob/main/packages/runtime-dom/src/index.ts). For a simpler implementation, check out [`@vue/runtime-test`](https://github.com/vuejs/core/blob/main/packages/runtime-test/src/index.ts) which is a private package for Vue's own unit testing.
+Vue-এর নিজস্ব `@vue/runtime-dom` হল [implemented using the same API](https://github.com/vuejs/core/blob/main/packages/runtime-dom/src/index.ts)। সহজ বাস্তবায়নের জন্য, দেখুন [`@vue/runtime-test`](https://github.com/vuejs/core/blob/main/packages/runtime-test/src/index.ts) যা একটি প্রাইভেট প্যাকেজ Vue এর নিজস্ব ইউনিট টেস্টের জন্য।
