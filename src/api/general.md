@@ -2,11 +2,11 @@
 
 ## version {#version}
 
-Exposes the current version of Vue.
+Vue এর বর্তমান সংস্করন দেখার জন্য। 
 
-- **Type:** `string`
+- **প্রকার:** `string`
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import { version } from 'vue'
@@ -16,21 +16,21 @@ Exposes the current version of Vue.
 
 ## nextTick() {#nexttick}
 
-A utility for waiting for the next DOM update flush.
+পরবর্তী DOM আপডেট ফ্লাশের অপেক্ষা করার জন্য একটি ইউটিলিটি।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function nextTick(callback?: () => void): Promise<void>
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  When you mutate reactive state in Vue, the resulting DOM updates are not applied synchronously. Instead, Vue buffers them until the "next tick" to ensure that each component updates only once no matter how many state changes you have made.
+  যখন আপনি Vue-তে রিয়েক্টিভ স্টেটকে পরিবর্তন করেন, তখন ফলস্বরূপ DOM আপডেটগুলি সিঙ্ক্রোনাসভাবে প্রয়োগ করা হয় না। পরিবর্তে, Vue এগুলিকে "পরবর্তী টিক" না হওয়া পর্যন্ত বাফার করে যাতে প্রতিটি কম্পোনেন্ট শুধুমাত্র একবার আপডেট হয় তা আপনি যতই স্টেট পরিবর্তন করেন না কেন।
 
-  `nextTick()` can be used immediately after a state change to wait for the DOM updates to complete. You can either pass a callback as an argument, or await the returned Promise.
+  `nextTick()` DOM আপডেট সম্পূর্ণ হওয়ার জন্য অপেক্ষা করার জন্য একটি স্টেট পরিবর্তনের সাথে সাথে ব্যবহার করা যেতে পারে। আপনি একটি আরগুমেন্ট হিসাবে একটি কলব্যাক পাস করতে পারেন, অথবা রিটার্ন প্রমিজের জন্য অপেক্ষা করতে পারেন৷
 
-- **Example**
+- **উদাহরন**
 
   <div class="composition-api">
 
@@ -92,13 +92,13 @@ A utility for waiting for the next DOM update flush.
 
   </div>
 
-- **See also** [`this.$nextTick()`](/api/component-instance#nexttick)
+- **আরোও দেখুন** [`this.$nextTick()`](/api/component-instance#nexttick)
 
 ## defineComponent() {#definecomponent}
 
-A type helper for defining a Vue component with type inference.
+টাইপ ইনফারেন্স সহ একটি Vue কম্পোনেন্ট সংজ্ঞায়িত করার জন্য একটি টাইপ হেল্পার।
 
-- **Type**
+- **ধরন**
 
   ```ts
   // options syntax
@@ -113,15 +113,15 @@ A type helper for defining a Vue component with type inference.
   ): () => any
   ```
 
-  > Type is simplified for readability.
+  > সহজে পাঠ করার জন্য টাইপ সিম্পলীফাইড
 
-- **Details**
+- **বিস্তারিত**
 
-  The first argument expects a component options object. The return value will be the same options object, since the function is essentially a runtime no-op for type inference purposes only.
+  প্রথম আর্গুমেন্টটি একটি কম্পোনেন্ট অপশন অবজেক্ট এক্সপেক্ট করে। রিটার্ন ভ্যালু একই অপশন অবজেক্ট হবে, যেহেতু ফাংশনটি মূলত টাইপ ইনফারেন্সের উদ্দেশ্যে একটি রানটাইম নো-অপ।
 
-  Note that the return type is a bit special: it will be a constructor type whose instance type is the inferred component instance type based on the options. This is used for type inference when the returned type is used as a tag in TSX.
+  লক্ষ্য করুন যে রিটার্ন টাইপটি একটু বিশেষ: এটি একটি কনস্ট্রাক্টর টাইপ হবে যার ইনস্ট্যান্স টাইপ হল অপশনের উপর ভিত্তি করে অনুমানকৃত কম্পোনেন্ট ইনস্ট্যান্স টাইপ। এটি টাইপ অনুমানের জন্য ব্যবহৃত হয় যখন রিটার্ন টাইপটি TSX-এ ট্যাগ হিসাবে ব্যবহার করা হয়।
 
-  You can extract the instance type of a component (equivalent to the type of `this` in its options) from the return type of `defineComponent()` like this:
+  আপনি এইভাবে `defineComponent()` এর রিটার্ন টাইপ থেকে একটি কম্পোনেন্টের ইনস্ট্যান্স টাইপ (এর অপশনগুলোতে `this` এর টাইপের সমতুল্য) বের করতে পারেন:
 
   ```ts
   const Foo = defineComponent(/* ... */)
@@ -131,9 +131,9 @@ A type helper for defining a Vue component with type inference.
 
   ### Function Signature <sup class="vt-badge" data-text="3.3+" /> {#function-signature}
 
-  `defineComponent()` also has an alternative signature that is meant to be used with Composition API and [render functions or JSX](/guide/extras/render-function.html).
+  `defineComponent()` এর সাথে একটি বিকল্প সিগনেচার রয়েছে যা Composition API এর সাথে ব্যবহার করা হয় এবং [render functions or JSX](/guide/extras/render-function.html).
 
-  Instead of passing in an options object, a function is expected instead. This function works the same as the Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) function: it receives the props and the setup context. The return value should be a render function - both `h()` and JSX are supported:
+  একটি অপশন অবজেক্টে পাস করার পরিবর্তে একটি ফাংশন এক্সপেক্টেড। এই ফাংশনটি Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) ফাংশনের মতোই কাজ করে: এটি প্রপস এবং সেটআপ কন্টেক্সট গ্রহণ করে। রিটার্ন ভ্যালু একটি রেন্ডার ফাংশন হওয়া উচিত - উভয় `h()` এবং JSX সমর্থিত:
 
   ```js
   import { ref, h } from 'vue'
