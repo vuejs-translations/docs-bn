@@ -157,7 +157,7 @@ Vue এর বর্তমান সংস্করন দেখার জন্
   )
   ```
 
-  The main use case for this signature is with TypeScript (and in particular with TSX), as it supports generics:
+  এই সিগনেচারের জন্য প্রধান ব্যবহারের ক্ষেত্রে হল TypeScript (এবং বিশেষ করে TSX-এর সাথে), কারণ এটি জেনেরিক সাপোর্ট করে:
 
   ```tsx
   const Comp = defineComponent(
@@ -177,7 +177,7 @@ Vue এর বর্তমান সংস্করন দেখার জন্
   )
   ```
 
-  In the future, we plan to provide a Babel plugin that automatically infers and injects the runtime props (like for `defineProps` in SFCs) so that the runtime props declaration can be omitted.
+  ভবিষ্যতে, আমরা একটি ব্যাবেল প্লাগইন প্রদান করার পরিকল্পনা করছি, যা স্বয়ংক্রিয়ভাবে রানটাইম প্রপস অনুমান করে এবং ইনজেক্ট করে (যেমন SFC-তে `defineProps` এর জন্য) যাতে রানটাইম প্রপস ডিক্লেয়ার বাদ দেওয়া যায়।
 
   ### Note on webpack Treeshaking {#note-on-webpack-treeshaking}
 
