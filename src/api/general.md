@@ -227,7 +227,7 @@ Vue এর বর্তমান সংস্করন দেখার জন্
 ## defineCustomElement() {#definecustomelement}
 
 এই মেথডটি [`defineComponent`](#definecomponent) এর মত একই আরগুমেন্ট গ্রহণ করে, কিন্তু রিটার্নে একটি নেটিভ [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) ক্লাস কন্সট্রাক্টর প্রদান করে। 
-- **Type**
+- **ধরন**
 
   ```ts
   function defineCustomElement(
@@ -239,15 +239,15 @@ Vue এর বর্তমান সংস্করন দেখার জন্
   }
   ```
 
-  > Type is simplified for readability.
+  > সহজে পাঠ করার জন্য টাইপ সিম্পলীফাইড
 
-- **Details**
+- **বিস্তারিত**
 
-  In addition to normal component options, `defineCustomElement()` also supports a special option `styles`, which should be an array of inlined CSS strings, for providing CSS that should be injected into the element's shadow root.
+  সাধারণ কম্পোনেন্ট অপশনগুলি ছাড়াও, `defineCustomElement()` একটি বিশেষ অপশন `styles` সমর্থন করে, যা কম্পোনেন্টের শ্যাডো রুটে ইনজেক্ট করা উচিত এমন CSS প্রদানের জন্য ইনলাইনযুক্ত CSS স্ট্রিংগুলির একটি অ্যারে হওয়া উচিত।
 
-  The return value is a custom element constructor that can be registered using [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define).
+  রিটার্ন ভ্যালু হল একটি কাস্টম এলিমেন্ট কনস্ট্রাক্টর যা [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define) ব্যবহার করে রেজিস্ট্রাড হতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import { defineCustomElement } from 'vue'
@@ -260,8 +260,8 @@ Vue এর বর্তমান সংস্করন দেখার জন্
   customElements.define('my-vue-element', MyVueElement)
   ```
 
-- **See also**
+- **আরও দেখুন**
 
   - [Guide - Building Custom Elements with Vue](/guide/extras/web-components#building-custom-elements-with-vue)
 
-  - Also note that `defineCustomElement()` requires [special config](/guide/extras/web-components#sfc-as-custom-element) when used with Single-File Components.
+  - এছাড়াও লক্ষ্য রাখবেন যে একক-ফাইল কম্পোনেন্টগুলির সাথে ব্যবহার করার সময় `defineCustomElement()` এর জন্য [special config](/guide/extras/web-components#sfc-as-custom-element) প্রয়োজন।
