@@ -2,11 +2,11 @@
 
 ## version {#version}
 
-Exposes the current version of Vue.
+Vue এর বর্তমান সংস্করন দেখার জন্য। 
 
-- **Type:** `string`
+- **প্রকার:** `string`
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import { version } from 'vue'
@@ -16,21 +16,21 @@ Exposes the current version of Vue.
 
 ## nextTick() {#nexttick}
 
-A utility for waiting for the next DOM update flush.
+পরবর্তী DOM আপডেট ফ্লাশের অপেক্ষা করার জন্য একটি ইউটিলিটি।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function nextTick(callback?: () => void): Promise<void>
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  When you mutate reactive state in Vue, the resulting DOM updates are not applied synchronously. Instead, Vue buffers them until the "next tick" to ensure that each component updates only once no matter how many state changes you have made.
+  যখন আপনি Vue-তে রিয়েক্টিভ স্টেটকে পরিবর্তন করেন, তখন ফলস্বরূপ DOM আপডেটগুলি সিঙ্ক্রোনাসভাবে প্রয়োগ করা হয় না। পরিবর্তে, Vue এগুলিকে "পরবর্তী টিক" না হওয়া পর্যন্ত বাফার করে যাতে প্রতিটি কম্পোনেন্ট শুধুমাত্র একবার আপডেট হয় তা আপনি যতই স্টেট পরিবর্তন করেন না কেন।
 
-  `nextTick()` can be used immediately after a state change to wait for the DOM updates to complete. You can either pass a callback as an argument, or await the returned Promise.
+  `nextTick()` DOM আপডেট সম্পূর্ণ হওয়ার জন্য অপেক্ষা করার জন্য একটি স্টেট পরিবর্তনের সাথে সাথে ব্যবহার করা যেতে পারে। আপনি একটি আরগুমেন্ট হিসাবে একটি কলব্যাক পাস করতে পারেন, অথবা রিটার্ন প্রমিজের জন্য অপেক্ষা করতে পারেন৷
 
-- **Example**
+- **উদাহরন**
 
   <div class="composition-api">
 
@@ -92,13 +92,13 @@ A utility for waiting for the next DOM update flush.
 
   </div>
 
-- **See also** [`this.$nextTick()`](/api/component-instance#nexttick)
+- **আরোও দেখুন** [`this.$nextTick()`](/api/component-instance#nexttick)
 
 ## defineComponent() {#definecomponent}
 
-A type helper for defining a Vue component with type inference.
+টাইপ ইনফারেন্স সহ একটি Vue কম্পোনেন্ট সংজ্ঞায়িত করার জন্য একটি টাইপ হেল্পার।
 
-- **Type**
+- **ধরন**
 
   ```ts
   // options syntax
@@ -113,15 +113,15 @@ A type helper for defining a Vue component with type inference.
   ): () => any
   ```
 
-  > Type is simplified for readability.
+  > সহজে পাঠ করার জন্য টাইপ সিম্পলীফাইড
 
-- **Details**
+- **বিস্তারিত**
 
-  The first argument expects a component options object. The return value will be the same options object, since the function is essentially a runtime no-op for type inference purposes only.
+  প্রথম আর্গুমেন্টটি একটি কম্পোনেন্ট অপশন অবজেক্ট এক্সপেক্ট করে। রিটার্ন ভ্যালু একই অপশন অবজেক্ট হবে, যেহেতু ফাংশনটি মূলত টাইপ ইনফারেন্সের উদ্দেশ্যে একটি রানটাইম নো-অপ।
 
-  Note that the return type is a bit special: it will be a constructor type whose instance type is the inferred component instance type based on the options. This is used for type inference when the returned type is used as a tag in TSX.
+  লক্ষ্য করুন যে রিটার্ন টাইপটি একটু বিশেষ: এটি একটি কনস্ট্রাক্টর টাইপ হবে যার ইনস্ট্যান্স টাইপ হল অপশনের উপর ভিত্তি করে অনুমানকৃত কম্পোনেন্ট ইনস্ট্যান্স টাইপ। এটি টাইপ অনুমানের জন্য ব্যবহৃত হয় যখন রিটার্ন টাইপটি TSX-এ ট্যাগ হিসাবে ব্যবহার করা হয়।
 
-  You can extract the instance type of a component (equivalent to the type of `this` in its options) from the return type of `defineComponent()` like this:
+  আপনি এইভাবে `defineComponent()` এর রিটার্ন টাইপ থেকে একটি কম্পোনেন্টের ইনস্ট্যান্স টাইপ (এর অপশনগুলোতে `this` এর টাইপের সমতুল্য) বের করতে পারেন:
 
   ```ts
   const Foo = defineComponent(/* ... */)
@@ -131,9 +131,9 @@ A type helper for defining a Vue component with type inference.
 
   ### Function Signature <sup class="vt-badge" data-text="3.3+" /> {#function-signature}
 
-  `defineComponent()` also has an alternative signature that is meant to be used with Composition API and [render functions or JSX](/guide/extras/render-function.html).
+  `defineComponent()` এর সাথে একটি বিকল্প সিগনেচার রয়েছে যা Composition API এর সাথে ব্যবহার করা হয় এবং [render functions or JSX](/guide/extras/render-function.html).
 
-  Instead of passing in an options object, a function is expected instead. This function works the same as the Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) function: it receives the props and the setup context. The return value should be a render function - both `h()` and JSX are supported:
+  একটি অপশন অবজেক্টে পাস করার পরিবর্তে একটি ফাংশন এক্সপেক্টেড। এই ফাংশনটি Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) ফাংশনের মতোই কাজ করে: এটি প্রপস এবং সেটআপ কন্টেক্সট গ্রহণ করে। রিটার্ন ভ্যালু একটি রেন্ডার ফাংশন হওয়া উচিত - উভয় `h()` এবং JSX সমর্থিত:
 
   ```js
   import { ref, h } from 'vue'
@@ -157,7 +157,7 @@ A type helper for defining a Vue component with type inference.
   )
   ```
 
-  The main use case for this signature is with TypeScript (and in particular with TSX), as it supports generics:
+  এই সিগনেচারের জন্য প্রধান ব্যবহারের ক্ষেত্রে হল TypeScript (এবং বিশেষ করে TSX-এর সাথে), কারণ এটি জেনেরিক সাপোর্ট করে:
 
   ```tsx
   const Comp = defineComponent(
@@ -177,27 +177,27 @@ A type helper for defining a Vue component with type inference.
   )
   ```
 
-  In the future, we plan to provide a Babel plugin that automatically infers and injects the runtime props (like for `defineProps` in SFCs) so that the runtime props declaration can be omitted.
+  ভবিষ্যতে, আমরা একটি ব্যাবেল প্লাগইন প্রদান করার পরিকল্পনা করছি, যা স্বয়ংক্রিয়ভাবে রানটাইম প্রপস অনুমান করে এবং ইনজেক্ট করে (যেমন SFC-তে `defineProps` এর জন্য) যাতে রানটাইম প্রপস ডিক্লেয়ার বাদ দেওয়া যায়।
 
   ### Note on webpack Treeshaking {#note-on-webpack-treeshaking}
 
-  Because `defineComponent()` is a function call, it could look like that it would produce side-effects to some build tools, e.g. webpack. This will prevent the component from being tree-shaken even when the component is never used.
+  কারণ `defineComponent()` হল একটি ফাংশন কল, এটি এমন হতে পারে যে এটি কিছু বিল্ড টুলে পার্শ্ব-প্রতিক্রিয়া সৃষ্টি করবে, যেমন ওয়েবপ্যাক এটি কম্পোনেন্টকে ট্রি-শেকেন থেকে প্রতিরোধ করবে এমনকি যখন কম্পোনেন্টটি ব্যবহার করা হয় না।
 
-  To tell webpack that this function call is safe to be tree-shaken, you can add a `/*#__PURE__*/` comment notation before the function call:
+  ওয়েবপ্যাককে জানাতে যে এই ফাংশন কলটি ট্রি-শেক করা নিরাপদ, আপনি ফাংশন কলের আগে একটি `/*#__PURE__*/` নোটেশন স্বরলিপি যোগ করতে পারেন:
 
   ```js
   export default /*#__PURE__*/ defineComponent(/* ... */)
   ```
 
-  Note this is not necessary if you are using Vite, because Rollup (the underlying production bundler used by Vite) is smart enough to determine that `defineComponent()` is in fact side-effect-free without the need for manual annotations.
+  লক্ষ্য রাখবেন আপনি যদি Vite ব্যবহার করেন তবে এটি প্রয়োজনীয় নয়, কারণ Rollup (Vite দ্বারা ব্যবহৃত অন্তর্নিহিত প্রোডাকশন বান্ডলার) যথেষ্ট স্মার্ট যে `defineComponent()` আসলে ম্যানুয়াল টীকাগুলির প্রয়োজন ছাড়াই পার্শ্ব-প্রতিক্রিয়া-মুক্ত।
 
-- **See also** [Guide - Using Vue with TypeScript](/guide/typescript/overview#general-usage-notes)
+- **আরও দেখুন** [Guide - Using Vue with TypeScript](/guide/typescript/overview#general-usage-notes)
 
 ## defineAsyncComponent() {#defineasynccomponent}
 
-Define an async component which is lazy loaded only when it is rendered. The argument can either be a loader function, or an options object for more advanced control of the loading behavior.
+একটি অ্যাসিঙ্ক উপাদান ডিফাইন করে যা লেজি লোড হয় যখন এটি রেন্ডার করা হয়। আরগুমেন্টটি হয় একটি লোডার ফাংশন, অথবা লোডিং আচরণের আরও উন্নত নিয়ন্ত্রণের জন্য একটি অপশন অবজেক্ট হতে পারে।
 
-- **Type**
+- **ধরন**
 
   ```ts
   function defineAsyncComponent(
@@ -222,13 +222,12 @@ Define an async component which is lazy loaded only when it is rendered. The arg
   }
   ```
 
-- **See also** [Guide - Async Components](/guide/components/async)
+- **আরও দেখুন** [Guide - Async Components](/guide/components/async)
 
 ## defineCustomElement() {#definecustomelement}
 
-This method accepts the same argument as [`defineComponent`](#definecomponent), but instead returns a native [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) class constructor.
-
-- **Type**
+এই মেথডটি [`defineComponent`](#definecomponent) এর মত একই আরগুমেন্ট গ্রহণ করে, কিন্তু রিটার্নে একটি নেটিভ [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) ক্লাস কন্সট্রাক্টর প্রদান করে। 
+- **ধরন**
 
   ```ts
   function defineCustomElement(
@@ -240,15 +239,15 @@ This method accepts the same argument as [`defineComponent`](#definecomponent), 
   }
   ```
 
-  > Type is simplified for readability.
+  > সহজে পাঠ করার জন্য টাইপ সিম্পলীফাইড
 
-- **Details**
+- **বিস্তারিত**
 
-  In addition to normal component options, `defineCustomElement()` also supports a special option `styles`, which should be an array of inlined CSS strings, for providing CSS that should be injected into the element's shadow root.
+  সাধারণ কম্পোনেন্ট অপশনগুলি ছাড়াও, `defineCustomElement()` একটি বিশেষ অপশন `styles` সমর্থন করে, যা কম্পোনেন্টের শ্যাডো রুটে ইনজেক্ট করা উচিত এমন CSS প্রদানের জন্য ইনলাইনযুক্ত CSS স্ট্রিংগুলির একটি অ্যারে হওয়া উচিত।
 
-  The return value is a custom element constructor that can be registered using [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define).
+  রিটার্ন ভ্যালু হল একটি কাস্টম এলিমেন্ট কনস্ট্রাক্টর যা [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define) ব্যবহার করে রেজিস্ট্রাড হতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import { defineCustomElement } from 'vue'
@@ -261,8 +260,8 @@ This method accepts the same argument as [`defineComponent`](#definecomponent), 
   customElements.define('my-vue-element', MyVueElement)
   ```
 
-- **See also**
+- **আরও দেখুন**
 
   - [Guide - Building Custom Elements with Vue](/guide/extras/web-components#building-custom-elements-with-vue)
 
-  - Also note that `defineCustomElement()` requires [special config](/guide/extras/web-components#sfc-as-custom-element) when used with Single-File Components.
+  - এছাড়াও লক্ষ্য রাখবেন যে একক-ফাইল কম্পোনেন্টগুলির সাথে ব্যবহার করার সময় `defineCustomElement()` এর জন্য [special config](/guide/extras/web-components#sfc-as-custom-element) প্রয়োজন।
