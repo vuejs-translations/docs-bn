@@ -181,23 +181,23 @@ Vue এর বর্তমান সংস্করন দেখার জন্
 
   ### Note on webpack Treeshaking {#note-on-webpack-treeshaking}
 
-  Because `defineComponent()` is a function call, it could look like that it would produce side-effects to some build tools, e.g. webpack. This will prevent the component from being tree-shaken even when the component is never used.
+  কারণ `defineComponent()` হল একটি ফাংশন কল, এটি এমন হতে পারে যে এটি কিছু বিল্ড টুলে পার্শ্ব-প্রতিক্রিয়া সৃষ্টি করবে, যেমন ওয়েবপ্যাক এটি কম্পোনেন্টকে ট্রি-শেকেন থেকে প্রতিরোধ করবে এমনকি যখন কম্পোনেন্টটি ব্যবহার করা হয় না।
 
-  To tell webpack that this function call is safe to be tree-shaken, you can add a `/*#__PURE__*/` comment notation before the function call:
+  ওয়েবপ্যাককে জানাতে যে এই ফাংশন কলটি ট্রি-শেক করা নিরাপদ, আপনি ফাংশন কলের আগে একটি `/*#__PURE__*/` নোটেশন স্বরলিপি যোগ করতে পারেন:
 
   ```js
   export default /*#__PURE__*/ defineComponent(/* ... */)
   ```
 
-  Note this is not necessary if you are using Vite, because Rollup (the underlying production bundler used by Vite) is smart enough to determine that `defineComponent()` is in fact side-effect-free without the need for manual annotations.
+  লক্ষ্য রাখবেন আপনি যদি Vite ব্যবহার করেন তবে এটি প্রয়োজনীয় নয়, কারণ Rollup (Vite দ্বারা ব্যবহৃত অন্তর্নিহিত প্রোডাকশন বান্ডলার) যথেষ্ট স্মার্ট যে `defineComponent()` আসলে ম্যানুয়াল টীকাগুলির প্রয়োজন ছাড়াই পার্শ্ব-প্রতিক্রিয়া-মুক্ত।
 
-- **See also** [Guide - Using Vue with TypeScript](/guide/typescript/overview#general-usage-notes)
+- **আরও দেখুন** [Guide - Using Vue with TypeScript](/guide/typescript/overview#general-usage-notes)
 
 ## defineAsyncComponent() {#defineasynccomponent}
 
-Define an async component which is lazy loaded only when it is rendered. The argument can either be a loader function, or an options object for more advanced control of the loading behavior.
+একটি অ্যাসিঙ্ক উপাদান ডিফাইন করে যা লেজি লোড হয় যখন এটি রেন্ডার করা হয়। আরগুমেন্টটি হয় একটি লোডার ফাংশন, অথবা লোডিং আচরণের আরও উন্নত নিয়ন্ত্রণের জন্য একটি অপশন অবজেক্ট হতে পারে।
 
-- **Type**
+- **ধরন**
 
   ```ts
   function defineAsyncComponent(
@@ -222,12 +222,11 @@ Define an async component which is lazy loaded only when it is rendered. The arg
   }
   ```
 
-- **See also** [Guide - Async Components](/guide/components/async)
+- **আরও দেখুন** [Guide - Async Components](/guide/components/async)
 
 ## defineCustomElement() {#definecustomelement}
 
-This method accepts the same argument as [`defineComponent`](#definecomponent), but instead returns a native [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) class constructor.
-
+এই মেথডটি [`defineComponent`](#definecomponent) এর মত একই আরগুমেন্ট গ্রহণ করে, কিন্তু রিটার্নে একটি নেটিভ [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) ক্লাস কন্সট্রাক্টর প্রদান করে। 
 - **Type**
 
   ```ts
