@@ -38,15 +38,15 @@
 
 ## triggerRef() {#triggerref}
 
-Force trigger effects that depends on a [shallow ref](#shallowref). This is typically used after making deep mutations to the inner value of a shallow ref.
+ফোর্স  ট্রিগার ইফেক্টস যা একটি [shallow ref](#shallowref) এর উপর নির্ভর করে। এটি সাধারণত একটি শ্যালো রেফের ইনার ভ্যালু ডীপ মিউটেশন করার পরে ব্যবহৃত হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function triggerRef(ref: ShallowRef): void
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const shallow = shallowRef({
