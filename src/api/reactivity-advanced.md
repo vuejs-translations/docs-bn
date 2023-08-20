@@ -2,9 +2,9 @@
 
 ## shallowRef() {#shallowref}
 
-Shallow version of [`ref()`](./reactivity-core#ref).
+শ্যালো ভার্সনের [`ref()`](./reactivity-core#ref).
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function shallowRef<T>(value: T): ShallowRef<T>
@@ -14,13 +14,13 @@ Shallow version of [`ref()`](./reactivity-core#ref).
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Unlike `ref()`, the inner value of a shallow ref is stored and exposed as-is, and will not be made deeply reactive. Only the `.value` access is reactive.
+  `ref()`-এ, একটি শ্যালো রেফের অভ্যন্তরীণ ভ্যালু সংরক্ষণ করা হয় এবং S-2 প্রকাশ করা হয় এবং এটিকে ডাবল-রিয়েক্টিভ করা হবে না। শুধুমাত্র t `.value` রিয়েক্টিভলি 2 অ্যাক্সেস করে।
 
-  `shallowRef()` is typically used for performance optimizations of large data structures, or integration with external state management systems.
+  `shallowRef()` সাধারণত বড় ডেটা স্ট্রাকচারের পারফরম্যান্স অপ্টিমাইজেশান বা এক্সটারনাল স্টেট ম্যানেজমেন্ট সিস্টেমের সাথে ইন্ট্রিগ্রেশনের জন্য ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const state = shallowRef({ count: 1 })
@@ -32,7 +32,7 @@ Shallow version of [`ref()`](./reactivity-core#ref).
   state.value = { count: 2 }
   ```
 
-- **See also**
+- **আরও দেখুন**
   - [Guide - Reduce Reactivity Overhead for Large Immutable Structures](/guide/best-practices/performance#reduce-reactivity-overhead-for-large-immutable-structures)
   - [Guide - Integration with External State Systems](/guide/extras/reactivity-in-depth#integration-with-external-state-systems)
 
