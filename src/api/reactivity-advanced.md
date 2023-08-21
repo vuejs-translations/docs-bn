@@ -133,23 +133,23 @@
 
 ## shallowReactive() {#shallowreactive}
 
-Shallow version of [`reactive()`](./reactivity-core#reactive).
+শ্যালো ভার্সনের [`reactive()`](./reactivity-core#reactive).
 
-- **Type**
+- **টাইপ**
 
   ```ts
   function shallowReactive<T extends object>(target: T): T
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Unlike `reactive()`, there is no deep conversion: only root-level properties are reactive for a shallow reactive object. Property values are stored and exposed as-is - this also means properties with ref values will **not** be automatically unwrapped.
+  `reactive()` এর বিপরীতে, কোনো ডীপ ভার্সন নেই: শুধুমাত্র রুট-লেভেলের প্রপার্টিগুলি একটি শ্যালো রিয়েক্টিভ অবজেক্টের জন্য রিয়েক্টিভ। প্রপার্টির ভ্যালু-গুলি যেমন আছে সেভাবে সংরক্ষিত এবং প্রকাশ করা হয় - এর মানে রেফ ভ্যালুর সহ প্রপার্টিগুলি স্বয়ংক্রিয়ভাবে **not** হবে না।
 
-  :::warning Use with Caution
-  Shallow data structures should only be used for root level state in a component. Avoid nesting it inside a deep reactive object as it creates a tree with inconsistent reactivity behavior which can be difficult to understand and debug.
+  :::warning সতর্কতার সাথে ব্যবহার করুন
+  শ্যালো ডেটা স্ট্রাকচার শুধুমাত্র একটি কম্পোনেন্টে রুট লেভেল স্টেটের জন্য ব্যবহার করা উচিত। একটি ডীপ রিয়েক্টিভ অবজেক্টের ভিতরে নেস্টিং এড়িয়ে চলুন কারণ এটি অসঙ্গত রিয়েক্টিভ আচরণ সহ একটি ট্রি তৈরি করে যা বোঝা এবং ডিবাগ করা কঠিন হতে পারে।
   :::
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const state = shallowReactive({
