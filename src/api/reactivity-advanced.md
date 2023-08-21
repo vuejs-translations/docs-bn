@@ -67,9 +67,9 @@
 
 ## customRef() {#customref}
 
-Creates a customized ref with explicit control over its dependency tracking and updates triggering.
+ডিফেন্ডেন্সি ট্র্যাকিং এবং আপডেট ট্রিগারিং এর উপর স্পষ্ট নিয়ন্ত্রণ সহ একটি কাস্টমাইজড রেফ তৈরি করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function customRef<T>(factory: CustomRefFactory<T>): Ref<T>
@@ -83,15 +83,15 @@ Creates a customized ref with explicit control over its dependency tracking and 
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  `customRef()` expects a factory function, which receives `track` and `trigger` functions as arguments and should return an object with `get` and `set` methods.
+  `customRef()` একটি ফ্যাক্টরি ফাংশন আশা করে, যেটি আর্গুমেন্ট হিসেবে `track` এবং `trigger` ফাংশন গ্রহণ করে এবং `get` এবং `set` মেথড সহ একটি অবজেক্ট রিটার্ন দেয়।
 
-  In general, `track()` should be called inside `get()`, and `trigger()` should be called inside `set()`. However, you have full control over when they should be called, or whether they should be called at all.
+  সাধারণভাবে, `track()` কে `get()` এর ভিতরে কল করা  এবং `trigger()`কে `set()` এর মধ্যে কল করা উচিত। যাইহোক, কখন তাদের কল করা উচিত, বা আদৌ কল করা উচিত কিনা তার উপর আপনার সম্পূর্ণ নিয়ন্ত্রণ রয়েছে।
 
-- **Example**
+- **উদাহরন**
 
-  Creating a debounced ref that only updates the value after a certain timeout after the latest set call:
+  একটি ডিবাউন্সড রেফ তৈরি করে যাতে সর্বশেষ সেট কলের পরে একটি নির্দিষ্ট সময়সীমার পরে ভ্যালু আপডেট করে:
 
   ```js
   import { customRef } from 'vue'
@@ -116,7 +116,7 @@ Creates a customized ref with explicit control over its dependency tracking and 
   }
   ```
 
-  Usage in component:
+  কম্পোনেন্টে ব্যবহার:
 
   ```vue
   <script setup>
