@@ -171,23 +171,24 @@
 
 ## shallowReadonly() {#shallowreadonly}
 
-Shallow version of [`readonly()`](./reactivity-core#readonly).
+শ্যালো ভার্সনের [`readonly()`](./reactivity-core#readonly).
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function shallowReadonly<T extends object>(target: T): Readonly<T>
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Unlike `readonly()`, there is no deep conversion: only root-level properties are made readonly. Property values are stored and exposed as-is - this also means properties with ref values will **not** be automatically unwrapped.
+  'readonly()' এর বিপরীতে, কোন ডীপ কনভার্সন নেই: শুধুমাত্র রুট-লেভেল প্রপার্টিগুলি কেবল পঠনযোগ্য। প্রপার্টির ভ্যালুগুলি যেমন আছে সেভাবে সংরক্ষিত এবং প্রকাশ করা হয় - এর মানে রেফ ভ্যালু সহ প্রপার্টিগুলি স্বয়ংক্রিয়ভাবে **not** হবে না।
 
-  :::warning Use with Caution
-  Shallow data structures should only be used for root level state in a component. Avoid nesting it inside a deep reactive object as it creates a tree with inconsistent reactivity behavior which can be difficult to understand and debug.
+
+  :::warning সতর্কতার সাথে ব্যবহার করুন
+  শ্যালো ডেটা স্ট্রাকচার শুধুমাত্র একটি কম্পোনেন্টে রুট লেভেল স্টেটের জন্য ব্যবহার করা উচিত। একটি ডীপ রিয়েক্টিভ অবজেক্টের ভিতরে নেস্টিং এড়িয়ে চলুন কারণ এটি অসঙ্গত রিয়েক্টিভ আচরণ সহ একটি ট্রি তৈরি করে যা বোঝা এবং ডিবাগ করা কঠিন হতে পারে।
   :::
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const state = shallowReadonly({
