@@ -235,15 +235,15 @@ Vue-তৈরি করা প্রক্সির Raw, অরিজিনা�
 
 ## markRaw() {#markraw}
 
-Marks an object so that it will never be converted to a proxy. Returns the object itself.
+একটি অবজেক্টকে চিহ্নিত করে যাতে এটি কখনই প্রক্সিতে রূপান্তরিত না হয়। অবজেক্টটি নিজেই রিটার্ন দেয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function markRaw<T extends object>(value: T): T
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const foo = markRaw({})
@@ -254,14 +254,14 @@ Marks an object so that it will never be converted to a proxy. Returns the objec
   console.log(isReactive(bar.foo)) // false
   ```
 
-  :::warning Use with Caution
-  `markRaw()` and shallow APIs such as `shallowReactive()` allow you to selectively opt-out of the default deep reactive/readonly conversion and embed raw, non-proxied objects in your state graph. They can be used for various reasons:
+  :::warning সতর্কতার সাথে ব্যবহার করুন
+  `markRaw()` এবং শ্যালো API যেমন `shallowReactive()` আপনাকে ডিফল্ট ডীপ reactive/readonly রূপান্তর থেকে বেছে বেছে অপ্ট-আউট করতে এবং আপনার স্টেট গ্রাফে raw, নন-প্রক্সিড অবজেক্ট এম্বেড করার অনুমতি দেয়। এগুলি বিভিন্ন কারণে ব্যবহার করা যেতে পারে:
 
-  - Some values simply should not be made reactive, for example a complex 3rd party class instance, or a Vue component object.
+  - কিছু ভ্যালু সহজভাবে রিয়েক্টিভ করা উচিত নয়, উদাহরণস্বরূপ একটি জটিল থার্ড-পার্টি  ক্লাস ইনস্ট্যান্স, বা একটি Vue কম্পোনেন্ট অবজেক্ট।
 
-  - Skipping proxy conversion can provide performance improvements when rendering large lists with immutable data sources.
+  - অপরিবর্তনীয় ডেটা উৎস সহ বড় লিস্ট রেন্ডার করার সময় প্রক্সি কনভার্সন স্কীপ করা পারফরমেন্স উন্নতি করতে পারে।
 
-  They are considered advanced because the raw opt-out is only at the root level, so if you set a nested, non-marked raw object into a reactive object and then access it again, you get the proxied version back. This can lead to **identity hazards** - i.e. performing an operation that relies on object identity but using both the raw and the proxied version of the same object:
+  এগুলিকে অ্যাডভান্সড হিসাবে বিবেচনা করা হয় কারণ raw অপ্ট-আউট শুধুমাত্র রুট লেভেলে থাকে, তাই আপনি যদি একটি নেস্টেড, নন-মার্কড raw অবজেক্টকে একটি রিয়েক্টিভ অবজেক্টে সেট করেন এবং তারপরে এটিকে আবার অ্যাক্সেস করেন, আপনি প্রক্সি সংস্করণটি ফিরে পাবেন। এর ফলে **identify hazards** হতে পারে - যেমন একটি অপারেশন করা যা অবজেক্টের পরিচয়ের উপর নির্ভর করে কিন্তু একই অবজেক্টের raw এবং প্রক্সি ভার্সন উভয়ই ব্যবহার করে:
 
   ```js
   const foo = markRaw({
@@ -276,15 +276,15 @@ Marks an object so that it will never be converted to a proxy. Returns the objec
   console.log(foo.nested === bar.nested) // false
   ```
 
-  Identity hazards are in general rare. However, to properly utilize these APIs while safely avoiding identity hazards requires a solid understanding of how the reactivity system works.
+  আইডেন্টিফাই হ্যাজার্ড সাধারণত রেয়ার। যাইহোক, নিরাপদে পরিচয়ের ঝুঁকি এড়ানোর সময় এই APIগুলি সঠিকভাবে ব্যবহার করার জন্য রিয়েক্টিভিটি সিস্টেম কীভাবে কাজ করে তার একটি দৃঢ় বোঝার প্রয়োজন।
 
   :::
 
 ## effectScope() {#effectscope}
 
-Creates an effect scope object which can capture the reactive effects (i.e. computed and watchers) created within it so that these effects can be disposed together. For detailed use cases of this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
+একটি ইফেক্ট স্কোপ অবজেক্ট তৈরি করে যা এটির মধ্যে তৈরি রিয়েক্টিভ ইফেক্টগুলি (i.e. computed and watchers) ক্যাপচার করতে পারে যাতে এই ইফেক্টগুলি একসাথে নিষ্পত্তি করা যায়। এই API-এর বিস্তারিত ব্যবহারের ক্ষেত্রে, অনুগ্রহ করে এর সংশ্লিষ্ট [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md) এর সাথে পরামর্শ করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function effectScope(detached?: boolean): EffectScope
@@ -295,7 +295,7 @@ Creates an effect scope object which can capture the reactive effects (i.e. comp
   }
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const scope = effectScope()
@@ -314,9 +314,9 @@ Creates an effect scope object which can capture the reactive effects (i.e. comp
 
 ## getCurrentScope() {#getcurrentscope}
 
-Returns the current active [effect scope](#effectscope) if there is one.
+কারেন্ট এক্টিভ [effect scope](#effectcope) রিটার্ন করে যদি একটি থাকে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function getCurrentScope(): EffectScope | undefined
@@ -324,11 +324,11 @@ Returns the current active [effect scope](#effectscope) if there is one.
 
 ## onScopeDispose() {#onscopedispose}
 
-Registers a dispose callback on the current active [effect scope](#effectscope). The callback will be invoked when the associated effect scope is stopped.
+কারেন্ট অ্যাক্টিভ [effect scope](#effectcope) এ একটি নিষ্পত্তি কলব্যাক রেজিস্ট্রার করে। অ্যাসোসিয়েটিভ ইফেক্ট সুযোগ বন্ধ হয়ে গেলে কলব্যাক ডাকা হবে।
 
-This method can be used as a non-component-coupled replacement of `onUnmounted` in reusable composition functions, since each Vue component's `setup()` function is also invoked in an effect scope.
+এই  পুনঃব্যবহারযোগ্য কম্পোজিশন ফাংশনে `onUnmounted`-এর একটি নন-কম্পোনেন্ট-কাপল রিপ্লেসমেন্ট হিসাবে ব্যবহার করা যেতে পারে, যেহেতু প্রতিটি Vue কম্পোনেন্টের `setup()` ফাংশনও একটি ইফেক্ট স্কোপে ডাকা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function onScopeDispose(fn: () => void): void
