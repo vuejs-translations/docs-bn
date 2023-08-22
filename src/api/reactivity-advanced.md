@@ -210,21 +210,21 @@
 
 ## toRaw() {#toraw}
 
-Returns the raw, original object of a Vue-created proxy.
+Vue-তৈরি করা প্রক্সির Raw, অরিজিনাল অবজেক্ট রিটার্ন দেয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function toRaw<T>(proxy: T): T
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  `toRaw()` can return the original object from proxies created by [`reactive()`](./reactivity-core#reactive), [`readonly()`](./reactivity-core#readonly), [`shallowReactive()`](#shallowreactive) or [`shallowReadonly()`](#shallowreadonly).
+  `toRaw()` [`reactive()`](./reactivity-core#reactive), [`readonly()`](./reactivity-core#readonly), [`shallowReactive()`](#shallowreactive) দ্বারা তৈরি প্রক্সি থেকে অরিজিনাল অবজেক্টটি রিটার্ন দিতে পারে।  বা [`shallowReadonly()`](#shallowreadonly)
 
-  This is an escape hatch that can be used to temporarily read without incurring proxy access / tracking overhead or write without triggering changes. It is **not** recommended to hold a persistent reference to the original object. Use with caution.
+  এটি একটি এস্কেপ হ্যাচ যা অস্থায়ীভাবে প্রক্সি অ্যাক্সেস / ট্র্যাকিং ওভারহেড বা পরিবর্তনগুলি ট্রিগার না করে লেখার জন্য অস্থায়ীভাবে পড়তে ব্যবহার করা যেতে পারে। আসল অবজেক্টের একটা অবিরাম রেফারেন্স রাখা **not** বাঞ্ছনীয়। সতর্কতার সাথে ব্যবহার করুন.
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const foo = {}
