@@ -1,7 +1,7 @@
 # Reactivity API: Core {#reactivity-api-core}
 
-:::info See also
-To better understand the Reactivity APIs, it is recommended to read the following chapters in the guide:
+:::info আরোও দেখুন
+রিঅ্যাকটিভিটি এপিআইগুলিকে আরও ভালভাবে বোঝার জন্য, গাইডের নিম্নলিখিত অধ্যায়গুলি পড়ার পরামর্শ দেওয়া হলো:
 
 - [Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals) (with the API preference set to Composition API)
 - [Reactivity in Depth](/guide/extras/reactivity-in-depth)
@@ -9,9 +9,9 @@ To better understand the Reactivity APIs, it is recommended to read the followin
 
 ## ref() {#ref}
 
-Takes an inner value and returns a reactive and mutable ref object, which has a single property `.value` that points to the inner value.
+একটি ইনার ভ্যালু নেয় এবং একটি রিয়েক্টিভ এবং পরিবর্তনযোগ্য রেফ অবজেক্ট প্রদান করে, যার একটি সিঙ্গেল প্রপার্টি `.value` আছে যা ইনার ভ্যালুকে নির্দেশ করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function ref<T>(value: T): Ref<UnwrapRef<T>>
@@ -21,15 +21,15 @@ Takes an inner value and returns a reactive and mutable ref object, which has a 
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The ref object is mutable - i.e. you can assign new values to `.value`. It is also reactive - i.e. any read operations to `.value` are tracked, and write operations will trigger associated effects.
+  রেফ অবজেক্টটি পরিবর্তনযোগ্য - যেমন আপনি `.value`-এ নতুন ভ্যালু নির্ধারণ করতে পারেন। এটি রিয়েক্টিভও - যেমন `.value`-তে যে কোনো রিড অপারেশন ট্র্যাক করা হয় এবং রাইট অপারেশন অ্যাসোসিয়েটিভ ইফেক্টগুলিকে ট্রিগার করবে৷
 
-  If an object is assigned as a ref's value, the object is made deeply reactive with [reactive()](#reactive). This also means if the object contains nested refs, they will be deeply unwrapped.
+  যদি একটি অবজেক্টকে রেফের ভ্যালু হিসাবে অ্যাসাইন করা হয়, তবে অবজেক্টটিকে [reactive()](#reactive) দিয়ে ডীপলি রিয়েক্টিভ করা হয়। এর মানে হল যদি অবজেক্টটিতে নেস্টেড রেফ থাকে তবে সেগুলি ডীপলি মোড়ানো হবে।
 
-  To avoid the deep conversion, use [`shallowRef()`](./reactivity-advanced#shallowref) instead.
+  ডীপ কনভার্সন এড়াতে, পরিবর্তে [`shallowRef()`](./reactivity-advanced#shallowref) ব্যবহার করুন।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const count = ref(0)
@@ -39,7 +39,7 @@ Takes an inner value and returns a reactive and mutable ref object, which has a 
   console.log(count.value) // 1
   ```
 
-- **See also**
+- **আরোও দেখুন**
   - [Guide - Reactive Variables with `ref()`](/guide/essentials/reactivity-fundamentals#reactive-variables-with-ref)
   - [Guide - Typing `ref()`](/guide/typescript/composition-api#typing-ref) <sup class="vt-badge ts" />
 
