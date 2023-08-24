@@ -45,9 +45,9 @@
 
 ## computed() {#computed}
 
-Takes a getter function and returns a readonly reactive [ref](#ref) object for the returned value from the getter. It can also take an object with `get` and `set` functions to create a writable ref object.
+একটি গেটার ফাংশন নেয় এবং গেটার থেকে রিটার্ন ভ্যালুরর জন্য একটি পঠনযোগ্য রিয়েক্টিভ [ref](#ref) অবজেক্ট প্রদান করে। এটি একটি লিখনযোগ্য রেফ অবজেক্ট তৈরি করতে `get` এবং `set` ফাংশন সহ একটি অবজেক্টও নিতে পারে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   // read-only
@@ -67,9 +67,9 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   ): Ref<T>
   ```
 
-- **Example**
+- **উদাহরন**
 
-  Creating a readonly computed ref:
+ একটি রিডঅনলি কম্পিউটেড রেফ তৈরি করা হচ্ছে:
 
   ```js
   const count = ref(1)
@@ -80,7 +80,7 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   plusOne.value++ // error
   ```
 
-  Creating a writable computed ref:
+  একটি রাইটঅনলি কম্পিউটেড রেফ তৈরি করা হচ্ছে:
 
   ```js
   const count = ref(1)
@@ -95,7 +95,7 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   console.log(count.value) // 0
   ```
 
-  Debugging:
+  ডিবাগিং:
 
   ```js
   const plusOne = computed(() => count.value + 1, {
@@ -108,34 +108,34 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   })
   ```
 
-- **See also**
+- **আরোও দেখুন**
   - [Guide - Computed Properties](/guide/essentials/computed)
   - [Guide - Computed Debugging](/guide/extras/reactivity-in-depth#computed-debugging)
   - [Guide - Typing `computed()`](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
 
 ## reactive() {#reactive}
 
-Returns a reactive proxy of the object.
+অবজেক্টের একটি রিয়েক্টিভ প্রক্সি প্রদান করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function reactive<T extends object>(target: T): UnwrapNestedRefs<T>
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The reactive conversion is "deep": it affects all nested properties. A reactive object also deeply unwraps any properties that are [refs](#ref) while maintaining reactivity.
+  রিয়েক্টিভ রূপান্তর হল "ডীপ": এটি সমস্ত নেস্টেড প্রপার্টিগুলোকে প্রভাবিত করে। একটি রিয়েক্টিভ অবজেক্ট রিয়েক্টিভতা বজায় রাখার সময় [refs](#ref) যে কোনো প্রপার্টিকে ডীপলি  খুলে দেয়।
 
-  It should also be noted that there is no ref unwrapping performed when the ref is accessed as an element of a reactive array or a native collection type like `Map`.
+  এটিও উল্লেখ করা উচিত যে যখন রেফটিকে একটি রিয়েক্টিভ অ্যারের একটি উপাদান বা 'Map' এর মতো একটি নেটিভ কালেকশন টাইপ হিসাবে অ্যাক্সেস করা হয় তখন কোনও রেফ আনর্যাপিং করা হয় না।
 
-  To avoid the deep conversion and only retain reactivity at the root level, use [shallowReactive()](./reactivity-advanced#shallowreactive) instead.
+  ডীপ কনভার্সন এড়াতে এবং শুধুমাত্র রুট লেভেল রিয়েক্টিভিটি বজায় রাখতে, পরিবর্তে [shallowReactive()](./reactivity-advanced#shallowreactive) ব্যবহার করুন।
 
-  The returned object and its nested objects are wrapped with [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) and **not** equal to the original objects. It is recommended to work exclusively with the reactive proxy and avoid relying on the original object.
+  রিটার্ন অবজেক্ট এবং এর নেস্টেড অবজেক্টগুলি [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) দিয়ে মোড়ানো হয় এবং **not** এর সমান অরিজিনাল অবজেক্ট। রিয়েক্টিভ প্রক্সির সাথে একচেটিয়াভাবে কাজ করার এবং অরিজিনাল অবজেক্টের উপর নির্ভর করা এড়াতে রিকোমেন্ড করা হয়।
 
-- **Example**
+- **উদাহরন**
 
-  Creating a reactive object:
+  একটি রিয়েক্টিভ অবজেক্ট তৈরি করা:
 
   ```js
   const obj = reactive({ count: 0 })
@@ -162,7 +162,7 @@ Returns a reactive proxy of the object.
   console.log(count.value) // 3
   ```
 
-  Note that refs are **not** unwrapped when accessed as array or collection elements:
+  মনে রাখবেন যে রেফগুলি অ্যারে বা কালেকশন ইলিমেন্ট হিসাবে অ্যাক্সেস করার সময় **not** unwrapped হয় না:
 
   ```js
   const books = reactive([ref('Vue 3 Guide')])
@@ -174,7 +174,7 @@ Returns a reactive proxy of the object.
   console.log(map.get('count').value)
   ```
 
-  When assigning a [ref](#ref) to a `reactive` property, that ref will also be automatically unwrapped:
+  একটি `রিয়েক্টিভ` প্রপার্টিতে একটি [ref](#ref) অ্যাসাইন করার সময়, সেই রেফটিও অটোমেটিকলি unwrapped হবে:
 
   ```ts
   const count = ref(1)
@@ -186,15 +186,15 @@ Returns a reactive proxy of the object.
   console.log(obj.count === count.value) // true
   ```
 
-- **See also**
+- **আরোও দেখুন**
   - [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals)
   - [Guide - Typing `reactive()`](/guide/typescript/composition-api#typing-reactive) <sup class="vt-badge ts" />
 
 ## readonly() {#readonly}
 
-Takes an object (reactive or plain) or a [ref](#ref) and returns a readonly proxy to the original.
+একটি অবজেক্ট (রিয়েক্টিভ বা প্লেইন) বা একটি [ref](#ref) নেয় এবং অরিজিনাল একটি রিডুঅনলি প্রক্সি রিটার্ন দেয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function readonly<T extends object>(
@@ -202,13 +202,13 @@ Takes an object (reactive or plain) or a [ref](#ref) and returns a readonly prox
   ): DeepReadonly<UnwrapNestedRefs<T>>
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  A readonly proxy is deep: any nested property accessed will be readonly as well. It also has the same ref-unwrapping behavior as `reactive()`, except the unwrapped values will also be made readonly.
+ একটি রিডঅনলি প্রক্সি হচ্ছে ডীপ: যে কোনো নেস্টেড প্রপার্টি অ্যাক্সেস করা হবে রিডঅনলি। এটিতে `reactive()` এর মতো একই রেফ-আনর্যাপিং আচরণ রয়েছে, ব্যতীত মোড়ানো মানগুলিও রিডঅনলি হবে।
 
-  To avoid the deep conversion, use [shallowReadonly()](./reactivity-advanced#shallowreadonly) instead.
+  ডীপ কনভার্সন এড়াতে, পরিবর্তে [shallowReadonly()](./reactivity-advanced#shallowreadonly) ব্যবহার করুন।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const original = reactive({ count: 0 })
@@ -229,9 +229,9 @@ Takes an object (reactive or plain) or a [ref](#ref) and returns a readonly prox
 
 ## watchEffect() {#watcheffect}
 
-Runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
+রিয়েক্টিভভাবে তার ডিপেন্ডেন্সিগুলো ট্র্যাক করার সময় অবিলম্বে একটি ফাংশন রান হয় এবং যখনই ডিপেন্ডেন্সিগুলো পরিবর্তন করা হয় তখন এটি পুনরায় রান হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function watchEffect(
@@ -250,17 +250,17 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   type StopHandle = () => void
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The first argument is the effect function to be run. The effect function receives a function that can be used to register a cleanup callback. The cleanup callback will be called right before the next time the effect is re-run, and can be used to clean up invalidated side effects, e.g. a pending async request (see example below).
+  প্রথম আর্গুমেন্ট হচ্ছে ইফেক্ট ফাংশন রান করা। ইফেক্ট ফাংশন একটি ফাংশন গ্রহণ করে যা একটি ক্লিনআপ কলব্যাক রেজিস্ট্রার করতে ব্যবহার করা যেতে পারে। পরের বার ইফেক্টটি পুনরায় রান করার ঠিক আগে ক্লিনআপ কলব্যাক কল করা হবে, এবং ইনভ্যালিড সাইড ইফেক্টগুলি ক্লিনআপ করতে ব্যবহার করা যেতে পারে, যেমন একটি পেন্ডিং অ্যাসিঙ্ক রিকোয়েস্ট (নীচের উদাহরণ দেখুন)।
 
-  The second argument is an optional options object that can be used to adjust the effect's flush timing or to debug the effect's dependencies.
+  দ্বিতীয় আরগুমেন্ট হল একটি অপশনাল অপশন অবজেক্ট যা ইফেক্টের ফ্লাশ টাইমিং সামঞ্জস্য করতে বা ইফেক্টের ডিপেন্ডেন্সিগুলো ডিবাগ করতে ব্যবহার করা যেতে পারে।
 
-  By default, watchers will run just prior to component rendering. Setting `flush: 'post'` will defer the watcher until after component rendering. See [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) for more information. In rare cases, it might be necessary to trigger a watcher immediately when a reactive dependency changes, e.g. to invalidate a cache. This can be achieved using `flush: 'sync'`. However, this setting should be used with caution, as it can lead to problems with performance and data consistency if multiple properties are being updated at the same time.
+  ডিফল্টভাবে, কম্পোনেন্ট রেন্ডারিংয়ের ঠিক আগে ওয়াচার্স চলবে। `flush: 'post'` সেট করা কম্পোনেন্ট রেন্ডারিং না হওয়া পর্যন্ত ওয়াচারকে পিছিয়ে দেবে। আরও তথ্যের জন্য [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) দেখুন। বিরল ক্ষেত্রে, রিয়েক্টিভ ডিপেন্ডেন্সির পরিবর্তিত হলে অবিলম্বে একটি ওয়াচার ট্রিগার করার প্রয়োজন হতে পারে, যেমন একটি ক্যাশে ইনভ্যালিড করতে। এটি `flush: 'sync` ব্যবহার করে অর্জন করা যেতে পারে। যাইহোক, এই সেটিংটি সতর্কতার সাথে ব্যবহার করা উচিত, কারণ এটি কর্মক্ষমতা এবং ডেটা সামঞ্জস্য নিয়ে সমস্যা হতে পারে যদি একই সময়ে একাধিক প্রপার্টি আপডেট করা হয়।
 
-  The return value is a handle function that can be called to stop the effect from running again.
+  রিটার্ন ভ্যালু হল একটি হ্যান্ডেল ফাংশন যেটিকে আবার রান করা থেকে ইফেক্ট বন্ধ করতে বলা যেতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const count = ref(0)
@@ -294,7 +294,7 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   stop()
   ```
 
-  Options:
+  অপশন:
 
   ```js
   watchEffect(() => {}, {
@@ -308,7 +308,7 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   })
   ```
 
-- **See also**
+- **আরোও দেখুন**
   - [Guide - Watchers](/guide/essentials/watchers#watcheffect)
   - [Guide - Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging)
 
