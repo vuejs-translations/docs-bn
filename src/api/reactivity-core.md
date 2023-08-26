@@ -322,9 +322,9 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
 
 ## watch() {#watch}
 
-Watches one or more reactive data sources and invokes a callback function when the sources change.
+এক বা একাধিক রিয়েক্টিভ ডেটা সোর্স ওয়াচ করে এবং সোর্স পরিবর্তন হলে একটি কলব্যাক ফাংশন কল করে৷
 
-- **Type**
+- **প্রকার**
 
   ```ts
   // watching single source
@@ -363,39 +363,39 @@ Watches one or more reactive data sources and invokes a callback function when t
   }
   ```
 
-  > Types are simplified for readability.
+  > টাইপগুলি রিডঅ্যাবিলিটির জন্য সিমপ্লিফাইড।
 
-- **Details**
+- **বিস্তারিত**
 
-  `watch()` is lazy by default - i.e. the callback is only called when the watched source has changed.
+  `watch()` ডিফল্টরূপে lazy - অর্থাৎ কলব্যাক শুধুমাত্র তখনই কল করা হয় যখন ওয়াচ সোর্স পরিবর্তন হয়।
 
-  The first argument is the watcher's **source**. The source can be one of the following:
+  প্রথম আরগুমেন্ট হল ওয়াচার্স-এর **source**। সোর্স নিম্নলিখিতগুলির মধ্যে একটি হতে পারে:
 
-  - A getter function that returns a value
-  - A ref
-  - A reactive object
-  - ...or an array of the above.
+  - একটি গেটার ফাংশন যা একটি ভ্যালু প্রদান করে
+  - একটি রেফ
+  - একটি রিয়েক্টিভ বস্তু
+  - ...অথবা উপরের একটি অ্যারে.
 
-  The second argument is the callback that will be called when the source changes. The callback receives three arguments: the new value, the old value, and a function for registering a side effect cleanup callback. The cleanup callback will be called right before the next time the effect is re-run, and can be used to clean up invalidated side effects, e.g. a pending async request.
+  দ্বিতীয় আরগুমেন্ট হল কলব্যাক যা সোর্স পরিবর্তন হলে কল করা হবে। কলব্যাক তিনটি আর্গুমেন্ট পায়: নিউ ভ্যালু, ওল্ড ভ্যালু এবং একটি সাইড ইফেক্ট ক্লিনআপ কলব্যাক রেজিস্ট্রারের জন্য একটি ফাংশন। পরের বার ইফেক্টি পুনরায় চালানোর ঠিক আগে ক্লিনআপ কলব্যাক কল করা হবে, এবং ইনভ্যালিড সাইড ইফেক্টগুলি ক্লিন আপ করতে ব্যবহার করা যেতে পারে, যেমন একটি পেন্ডিং অ্যাসিঙ্ক রিকোয়েস্ট।
 
-  When watching multiple sources, the callback receives two arrays containing new / old values corresponding to the source array.
+  একাধিক সোর্স ওয়াচ সময়, কলব্যাক সোর্স অ্যারের সাথে সম্পর্কিত নতুন/পুরনো ভ্যালুগুলো ধারণকারী দুটি অ্যারে পায়।
 
-  The third optional argument is an options object that supports the following options:
+  তৃতীয় অপশনাল আরগুমেন্ট হল একটি অপশন অবজেক্ট যা নিম্নলিখিত অপশনগুলোকে সমর্থন করে:
 
-  - **`immediate`**: trigger the callback immediately on watcher creation. Old value will be `undefined` on the first call.
-  - **`deep`**: force deep traversal of the source if it is an object, so that the callback fires on deep mutations. See [Deep Watchers](/guide/essentials/watchers#deep-watchers).
-  - **`flush`**: adjust the callback's flush timing. See [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) and [`watchEffect()`](/api/reactivity-core#watcheffect).
-  - **`onTrack / onTrigger`**: debug the watcher's dependencies. See [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging).
+  - **`immediate`**: ওয়াচার তৈরিতে অবিলম্বে কলব্যাক ট্রিগার করুন। প্রথম কলে পুরানো ভ্যালু 'undefined' হবে।
+  - **`deep`**: সোর্সের ডীপ ট্র্যাভার্সাল ফোর্স করে যদি এটি কোনো অবজেক্ট হয়, যাতে কলব্যাক ডীপ মিউটেশনের উপর  ফায়ারস করে। [Deep Watchers](/guide/essentials/watchers#deep-watchers) দেখুন।
+  - **`flush`**: কলব্যাকের ফ্লাশের সময় সামঞ্জস্য করুন। [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) এবং [`watchEffect()`](/api/reactivity-core#watcheffect) দেখুন।
+  - **`onTrack / onTrigger`**: ওয়াচার-এর ডিপেন্ডেন্সি ডিবাগ করুন। [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging) দেখুন।
 
-  Compared to [`watchEffect()`](#watcheffect), `watch()` allows us to:
+  [`watchEffect()`](#watcheffect) এর তুলনায়, `watch()` আমাদের অ্যালাউ করে:
 
-  - Perform the side effect lazily;
-  - Be more specific about what state should trigger the watcher to re-run;
-  - Access both the previous and current value of the watched state.
+  - লেইজিলি সাইড ইফেক্ট পারফর্ম করে;
+  - কোন স্টেটে ওয়াচার পুনরায় চালানোর জন্য ট্রিগার করা উচিত সে সম্পর্কে আরও সুনির্দিষ্ট হন;
+  - ওয়াচার স্টেটের আগের এবং বর্তমান ভ্যালু উভয়ই অ্যাক্সেস করুন।
 
-- **Example**
+- **উদাহরন**
 
-  Watching a getter:
+  একটি গেটারকে ওয়াচিং করা হচ্ছে:
 
   ```js
   const state = reactive({ count: 0 })
@@ -407,7 +407,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   )
   ```
 
-  Watching a ref:
+  একটি রেফ-কে ওয়াচিং করা হচ্ছে:
 
   ```js
   const count = ref(0)
@@ -416,7 +416,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  When watching multiple sources, the callback receives arrays containing new / old values corresponding to the source array:
+  একাধিক সোর্স ওয়াচ করার সময়, কলব্যাক সোর্স অ্যারের সাথে সম্পর্কিত নতুন / পুরানো ভ্যালু ধারণকারী অ্যারেগুলি গ্রহণ করে:
 
   ```js
   watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {
@@ -424,7 +424,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  When using a getter source, the watcher only fires if the getter's return value has changed. If you want the callback to fire even on deep mutations, you need to explicitly force the watcher into deep mode with `{ deep: true }`. Note in deep mode, the new value and the old will be the same object if the callback was triggered by a deep mutation:
+  গেটার সোর্স ব্যবহার করার সময়, গেটারস রিটার্ন ভ্যালু পরিবর্তিত হলে ওয়াচার শুধুমাত্র ফায়ার হয়। আপনি যদি ডীপ মিউটেশনেও কলব্যাক চালু করতে চান, তাহলে আপনাকে স্পষ্টভাবে ওয়াচারকে `{ deep: true }` দিয়ে ডীপ মোডে ফোর্স করতে হবে। ডীপ মোডে নোট করুন, নতুন ভ্যালু এবং পুরানো একই অবজেক্ট হবে যদি কলব্যাকটি একটি ডীপ মিউটেশন দ্বারা ট্রিগার হয়:
 
   ```js
   const state = reactive({ count: 0 })
@@ -437,7 +437,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   )
   ```
 
-  When directly watching a reactive object, the watcher is automatically in deep mode:
+  একটি রিয়েক্টিভ অবজেক্ট সরাসরি ওয়াচ করার সময়, ওয়াচার স্বয়ংক্রিয়ভাবে ডীপ মোডে থাকে:
 
   ```js
   const state = reactive({ count: 0 })
@@ -446,7 +446,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  `watch()` shares the same flush timing and debugging options with [`watchEffect()`](#watcheffect):
+  `watch()` একই ফ্লাশ টাইমিং এবং ডিবাগিং অপশনগুলি [`watchEffect()`](#watcheffect) এর সাথে শেয়ার করে:
 
   ```js
   watch(source, callback, {
@@ -460,7 +460,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  Stopping the watcher:
+  ওয়াচারকে বন্ধ করা হচ্ছে:
 
   ```js
   const stop = watch(source, callback)
@@ -469,7 +469,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   stop()
   ```
 
-  Side effect cleanup:
+  সাইড ইফেক্ট ক্লিনআপ:
 
   ```js
   watch(id, async (newId, oldId, onCleanup) => {
@@ -481,7 +481,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-- **See also**
+- **আরোও দেখুন**
 
   - [Guide - Watchers](/guide/essentials/watchers)
   - [Guide - Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging)
