@@ -242,9 +242,9 @@
 
 ## isReactive() {#isreactive}
 
-Checks if an object is a proxy created by [`reactive()`](./reactivity-core#reactive) or [`shallowReactive()`](./reactivity-advanced#shallowreactive).
+একটি অবজেক্ট [`reactive()`](./reactivity-core#reactive) বা [`shallowReactive()`](./reactivity-advanced#shallowreactive) দ্বারা তৈরি প্রক্সি কিনা তা পরীক্ষা করা ।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function isReactive(value: unknown): boolean
@@ -252,11 +252,10 @@ Checks if an object is a proxy created by [`reactive()`](./reactivity-core#react
 
 ## isReadonly() {#isreadonly}
 
-Checks whether the passed value is a readonly object. The properties of a readonly object can change, but they can't be assigned directly via the passed object.
+পাস করা ভ্যালুটি একটি রিডঅনলি অবজেক্ট কিনা তা পরীক্ষা করে। একটি রিডঅনলি অবজেক্টের প্রপার্টি পরিবর্তন হতে পারে, কিন্তু  পাস করা অবজেক্টের মাধ্যমে তারা সরাসরি অ্যাসাইন হবে না।
 
-The proxies created by [`readonly()`](./reactivity-core#readonly) and [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) are both considered readonly, as is a [`computed()`](./reactivity-core#computed) ref without a `set` function.
-
-- **Type**
+[`readonly()`](./reactivity-core#readonly) এবং [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) দ্বারা সৃষ্ট প্রক্সি উভয়ই শুধুমাত্র রিডঅনলি হিসাবে বিবেচিত হয়, যেমন একটি [`computed()`](./reactivity-core#computed) রেফ একটি `set` ফাংশন ছাড়াই।
+- **প্রকার**
 
   ```ts
   function isReadonly(value: unknown): boolean
