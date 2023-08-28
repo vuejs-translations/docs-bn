@@ -2,9 +2,9 @@
 
 ## shallowRef() {#shallowref}
 
-Shallow version of [`ref()`](./reactivity-core#ref).
+শ্যালো ভার্সনের [`ref()`](./reactivity-core#ref).
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function shallowRef<T>(value: T): ShallowRef<T>
@@ -14,13 +14,13 @@ Shallow version of [`ref()`](./reactivity-core#ref).
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Unlike `ref()`, the inner value of a shallow ref is stored and exposed as-is, and will not be made deeply reactive. Only the `.value` access is reactive.
+  `ref()`-এ, একটি শ্যালো রেফের অভ্যন্তরীণ ভ্যালু সংরক্ষণ করা হয় এবং S-2 প্রকাশ করা হয় এবং এটিকে ডাবল-রিয়েক্টিভ করা হবে না। শুধুমাত্র t `.value` রিয়েক্টিভলি 2 অ্যাক্সেস করে।
 
-  `shallowRef()` is typically used for performance optimizations of large data structures, or integration with external state management systems.
+  `shallowRef()` সাধারণত বড় ডেটা স্ট্রাকচারের পারফরম্যান্স অপ্টিমাইজেশান বা এক্সটারনাল স্টেট ম্যানেজমেন্ট সিস্টেমের সাথে ইন্ট্রিগ্রেশনের জন্য ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const state = shallowRef({ count: 1 })
@@ -32,21 +32,21 @@ Shallow version of [`ref()`](./reactivity-core#ref).
   state.value = { count: 2 }
   ```
 
-- **See also**
+- **আরও দেখুন**
   - [Guide - Reduce Reactivity Overhead for Large Immutable Structures](/guide/best-practices/performance#reduce-reactivity-overhead-for-large-immutable-structures)
   - [Guide - Integration with External State Systems](/guide/extras/reactivity-in-depth#integration-with-external-state-systems)
 
 ## triggerRef() {#triggerref}
 
-Force trigger effects that depends on a [shallow ref](#shallowref). This is typically used after making deep mutations to the inner value of a shallow ref.
+ফোর্স  ট্রিগার ইফেক্টস যা একটি [shallow ref](#shallowref) এর উপর নির্ভর করে। এটি সাধারণত একটি শ্যালো রেফের ইনার ভ্যালু ডীপ মিউটেশন করার পরে ব্যবহৃত হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function triggerRef(ref: ShallowRef): void
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const shallow = shallowRef({
@@ -67,9 +67,9 @@ Force trigger effects that depends on a [shallow ref](#shallowref). This is typi
 
 ## customRef() {#customref}
 
-Creates a customized ref with explicit control over its dependency tracking and updates triggering.
+ডিফেন্ডেন্সি ট্র্যাকিং এবং আপডেট ট্রিগারিং এর উপর স্পষ্ট নিয়ন্ত্রণ সহ একটি কাস্টমাইজড রেফ তৈরি করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function customRef<T>(factory: CustomRefFactory<T>): Ref<T>
@@ -83,15 +83,15 @@ Creates a customized ref with explicit control over its dependency tracking and 
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  `customRef()` expects a factory function, which receives `track` and `trigger` functions as arguments and should return an object with `get` and `set` methods.
+  `customRef()` একটি ফ্যাক্টরি ফাংশন আশা করে, যেটি আর্গুমেন্ট হিসেবে `track` এবং `trigger` ফাংশন গ্রহণ করে এবং `get` এবং `set` মেথড সহ একটি অবজেক্ট রিটার্ন দেয়।
 
-  In general, `track()` should be called inside `get()`, and `trigger()` should be called inside `set()`. However, you have full control over when they should be called, or whether they should be called at all.
+  সাধারণভাবে, `track()` কে `get()` এর ভিতরে কল করা  এবং `trigger()`কে `set()` এর মধ্যে কল করা উচিত। যাইহোক, কখন তাদের কল করা উচিত, বা আদৌ কল করা উচিত কিনা তার উপর আপনার সম্পূর্ণ নিয়ন্ত্রণ রয়েছে।
 
-- **Example**
+- **উদাহরন**
 
-  Creating a debounced ref that only updates the value after a certain timeout after the latest set call:
+  একটি ডিবাউন্সড রেফ তৈরি করে যাতে সর্বশেষ সেট কলের পরে একটি নির্দিষ্ট সময়সীমার পরে ভ্যালু আপডেট করে:
 
   ```js
   import { customRef } from 'vue'
@@ -116,7 +116,7 @@ Creates a customized ref with explicit control over its dependency tracking and 
   }
   ```
 
-  Usage in component:
+  কম্পোনেন্টে ব্যবহার:
 
   ```vue
   <script setup>
@@ -133,23 +133,23 @@ Creates a customized ref with explicit control over its dependency tracking and 
 
 ## shallowReactive() {#shallowreactive}
 
-Shallow version of [`reactive()`](./reactivity-core#reactive).
+শ্যালো ভার্সনের [`reactive()`](./reactivity-core#reactive).
 
-- **Type**
+- **টাইপ**
 
   ```ts
   function shallowReactive<T extends object>(target: T): T
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Unlike `reactive()`, there is no deep conversion: only root-level properties are reactive for a shallow reactive object. Property values are stored and exposed as-is - this also means properties with ref values will **not** be automatically unwrapped.
+  `reactive()` এর বিপরীতে, কোনো ডীপ ভার্সন নেই: শুধুমাত্র রুট-লেভেলের প্রপার্টিগুলি একটি শ্যালো রিয়েক্টিভ অবজেক্টের জন্য রিয়েক্টিভ। প্রপার্টির ভ্যালু-গুলি যেমন আছে সেভাবে সংরক্ষিত এবং প্রকাশ করা হয় - এর মানে রেফ ভ্যালুর সহ প্রপার্টিগুলি স্বয়ংক্রিয়ভাবে **not** হবে না।
 
-  :::warning Use with Caution
-  Shallow data structures should only be used for root level state in a component. Avoid nesting it inside a deep reactive object as it creates a tree with inconsistent reactivity behavior which can be difficult to understand and debug.
+  :::warning সতর্কতার সাথে ব্যবহার করুন
+  শ্যালো ডেটা স্ট্রাকচার শুধুমাত্র একটি কম্পোনেন্টে রুট লেভেল স্টেটের জন্য ব্যবহার করা উচিত। একটি ডীপ রিয়েক্টিভ অবজেক্টের ভিতরে নেস্টিং এড়িয়ে চলুন কারণ এটি অসঙ্গত রিয়েক্টিভ আচরণ সহ একটি ট্রি তৈরি করে যা বোঝা এবং ডিবাগ করা কঠিন হতে পারে।
   :::
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const state = shallowReactive({
@@ -171,23 +171,24 @@ Shallow version of [`reactive()`](./reactivity-core#reactive).
 
 ## shallowReadonly() {#shallowreadonly}
 
-Shallow version of [`readonly()`](./reactivity-core#readonly).
+শ্যালো ভার্সনের [`readonly()`](./reactivity-core#readonly).
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function shallowReadonly<T extends object>(target: T): Readonly<T>
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Unlike `readonly()`, there is no deep conversion: only root-level properties are made readonly. Property values are stored and exposed as-is - this also means properties with ref values will **not** be automatically unwrapped.
+  'readonly()' এর বিপরীতে, কোন ডীপ কনভার্সন নেই: শুধুমাত্র রুট-লেভেল প্রপার্টিগুলি কেবল পঠনযোগ্য। প্রপার্টির ভ্যালুগুলি যেমন আছে সেভাবে সংরক্ষিত এবং প্রকাশ করা হয় - এর মানে রেফ ভ্যালু সহ প্রপার্টিগুলি স্বয়ংক্রিয়ভাবে **not** হবে না।
 
-  :::warning Use with Caution
-  Shallow data structures should only be used for root level state in a component. Avoid nesting it inside a deep reactive object as it creates a tree with inconsistent reactivity behavior which can be difficult to understand and debug.
+
+  :::warning সতর্কতার সাথে ব্যবহার করুন
+  শ্যালো ডেটা স্ট্রাকচার শুধুমাত্র একটি কম্পোনেন্টে রুট লেভেল স্টেটের জন্য ব্যবহার করা উচিত। একটি ডীপ রিয়েক্টিভ অবজেক্টের ভিতরে নেস্টিং এড়িয়ে চলুন কারণ এটি অসঙ্গত রিয়েক্টিভ আচরণ সহ একটি ট্রি তৈরি করে যা বোঝা এবং ডিবাগ করা কঠিন হতে পারে।
   :::
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const state = shallowReadonly({
@@ -209,21 +210,21 @@ Shallow version of [`readonly()`](./reactivity-core#readonly).
 
 ## toRaw() {#toraw}
 
-Returns the raw, original object of a Vue-created proxy.
+Vue-তৈরি করা প্রক্সির Raw, অরিজিনাল অবজেক্ট রিটার্ন দেয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function toRaw<T>(proxy: T): T
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  `toRaw()` can return the original object from proxies created by [`reactive()`](./reactivity-core#reactive), [`readonly()`](./reactivity-core#readonly), [`shallowReactive()`](#shallowreactive) or [`shallowReadonly()`](#shallowreadonly).
+  `toRaw()` [`reactive()`](./reactivity-core#reactive), [`readonly()`](./reactivity-core#readonly), [`shallowReactive()`](#shallowreactive) দ্বারা তৈরি প্রক্সি থেকে অরিজিনাল অবজেক্টটি রিটার্ন দিতে পারে।  বা [`shallowReadonly()`](#shallowreadonly)
 
-  This is an escape hatch that can be used to temporarily read without incurring proxy access / tracking overhead or write without triggering changes. It is **not** recommended to hold a persistent reference to the original object. Use with caution.
+  এটি একটি এস্কেপ হ্যাচ যা অস্থায়ীভাবে প্রক্সি অ্যাক্সেস / ট্র্যাকিং ওভারহেড বা পরিবর্তনগুলি ট্রিগার না করে লেখার জন্য অস্থায়ীভাবে পড়তে ব্যবহার করা যেতে পারে। আসল অবজেক্টের একটা অবিরাম রেফারেন্স রাখা **not** বাঞ্ছনীয়। সতর্কতার সাথে ব্যবহার করুন.
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const foo = {}
@@ -234,15 +235,15 @@ Returns the raw, original object of a Vue-created proxy.
 
 ## markRaw() {#markraw}
 
-Marks an object so that it will never be converted to a proxy. Returns the object itself.
+একটি অবজেক্টকে চিহ্নিত করে যাতে এটি কখনই প্রক্সিতে রূপান্তরিত না হয়। অবজেক্টটি নিজেই রিটার্ন দেয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function markRaw<T extends object>(value: T): T
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const foo = markRaw({})
@@ -253,14 +254,14 @@ Marks an object so that it will never be converted to a proxy. Returns the objec
   console.log(isReactive(bar.foo)) // false
   ```
 
-  :::warning Use with Caution
-  `markRaw()` and shallow APIs such as `shallowReactive()` allow you to selectively opt-out of the default deep reactive/readonly conversion and embed raw, non-proxied objects in your state graph. They can be used for various reasons:
+  :::warning সতর্কতার সাথে ব্যবহার করুন
+  `markRaw()` এবং শ্যালো API যেমন `shallowReactive()` আপনাকে ডিফল্ট ডীপ reactive/readonly রূপান্তর থেকে বেছে বেছে অপ্ট-আউট করতে এবং আপনার স্টেট গ্রাফে raw, নন-প্রক্সিড অবজেক্ট এম্বেড করার অনুমতি দেয়। এগুলি বিভিন্ন কারণে ব্যবহার করা যেতে পারে:
 
-  - Some values simply should not be made reactive, for example a complex 3rd party class instance, or a Vue component object.
+  - কিছু ভ্যালু সহজভাবে রিয়েক্টিভ করা উচিত নয়, উদাহরণস্বরূপ একটি জটিল থার্ড-পার্টি  ক্লাস ইনস্ট্যান্স, বা একটি Vue কম্পোনেন্ট অবজেক্ট।
 
-  - Skipping proxy conversion can provide performance improvements when rendering large lists with immutable data sources.
+  - অপরিবর্তনীয় ডেটা উৎস সহ বড় লিস্ট রেন্ডার করার সময় প্রক্সি কনভার্সন স্কীপ করা পারফরমেন্স উন্নতি করতে পারে।
 
-  They are considered advanced because the raw opt-out is only at the root level, so if you set a nested, non-marked raw object into a reactive object and then access it again, you get the proxied version back. This can lead to **identity hazards** - i.e. performing an operation that relies on object identity but using both the raw and the proxied version of the same object:
+  এগুলিকে অ্যাডভান্সড হিসাবে বিবেচনা করা হয় কারণ raw অপ্ট-আউট শুধুমাত্র রুট লেভেলে থাকে, তাই আপনি যদি একটি নেস্টেড, নন-মার্কড raw অবজেক্টকে একটি রিয়েক্টিভ অবজেক্টে সেট করেন এবং তারপরে এটিকে আবার অ্যাক্সেস করেন, আপনি প্রক্সি সংস্করণটি ফিরে পাবেন। এর ফলে **identify hazards** হতে পারে - যেমন একটি অপারেশন করা যা অবজেক্টের পরিচয়ের উপর নির্ভর করে কিন্তু একই অবজেক্টের raw এবং প্রক্সি ভার্সন উভয়ই ব্যবহার করে:
 
   ```js
   const foo = markRaw({
@@ -275,15 +276,15 @@ Marks an object so that it will never be converted to a proxy. Returns the objec
   console.log(foo.nested === bar.nested) // false
   ```
 
-  Identity hazards are in general rare. However, to properly utilize these APIs while safely avoiding identity hazards requires a solid understanding of how the reactivity system works.
+  আইডেন্টিফাই হ্যাজার্ড সাধারণত রেয়ার। যাইহোক, নিরাপদে পরিচয়ের ঝুঁকি এড়ানোর সময় এই APIগুলি সঠিকভাবে ব্যবহার করার জন্য রিয়েক্টিভিটি সিস্টেম কীভাবে কাজ করে তার একটি দৃঢ় বোঝার প্রয়োজন।
 
   :::
 
 ## effectScope() {#effectscope}
 
-Creates an effect scope object which can capture the reactive effects (i.e. computed and watchers) created within it so that these effects can be disposed together. For detailed use cases of this API, please consult its corresponding [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md).
+একটি ইফেক্ট স্কোপ অবজেক্ট তৈরি করে যা এটির মধ্যে তৈরি রিয়েক্টিভ ইফেক্টগুলি (i.e. computed and watchers) ক্যাপচার করতে পারে যাতে এই ইফেক্টগুলি একসাথে নিষ্পত্তি করা যায়। এই API-এর বিস্তারিত ব্যবহারের ক্ষেত্রে, অনুগ্রহ করে এর সংশ্লিষ্ট [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0041-reactivity-effect-scope.md) এর সাথে পরামর্শ করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function effectScope(detached?: boolean): EffectScope
@@ -294,7 +295,7 @@ Creates an effect scope object which can capture the reactive effects (i.e. comp
   }
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const scope = effectScope()
@@ -313,9 +314,9 @@ Creates an effect scope object which can capture the reactive effects (i.e. comp
 
 ## getCurrentScope() {#getcurrentscope}
 
-Returns the current active [effect scope](#effectscope) if there is one.
+কারেন্ট এক্টিভ [effect scope](#effectcope) রিটার্ন করে যদি একটি থাকে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function getCurrentScope(): EffectScope | undefined
@@ -323,11 +324,11 @@ Returns the current active [effect scope](#effectscope) if there is one.
 
 ## onScopeDispose() {#onscopedispose}
 
-Registers a dispose callback on the current active [effect scope](#effectscope). The callback will be invoked when the associated effect scope is stopped.
+কারেন্ট অ্যাক্টিভ [effect scope](#effectcope) এ একটি নিষ্পত্তি কলব্যাক রেজিস্ট্রার করে। অ্যাসোসিয়েটিভ ইফেক্ট সুযোগ বন্ধ হয়ে গেলে কলব্যাক ডাকা হবে।
 
-This method can be used as a non-component-coupled replacement of `onUnmounted` in reusable composition functions, since each Vue component's `setup()` function is also invoked in an effect scope.
+এই  পুনঃব্যবহারযোগ্য কম্পোজিশন ফাংশনে `onUnmounted`-এর একটি নন-কম্পোনেন্ট-কাপল রিপ্লেসমেন্ট হিসাবে ব্যবহার করা যেতে পারে, যেহেতু প্রতিটি Vue কম্পোনেন্টের `setup()` ফাংশনও একটি ইফেক্ট স্কোপে ডাকা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function onScopeDispose(fn: () => void): void
