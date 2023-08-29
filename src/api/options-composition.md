@@ -56,9 +56,9 @@
 
 ## inject {#inject}
 
-Declare properties to inject into the current component by locating them from ancestor providers.
+অ্যানচেস্টর প্রোভাইডারদের থেকে সনাক্ত করে বর্তমান কম্পোনেন্টে ইনজেক্ট করার প্রোপার্টিগুলি ডিকলার করুন৷
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -75,24 +75,24 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The `inject` option should be either:
+  `inject` অপশনটি হতে হবেঃ
 
-  - An array of strings, or
-  - An object where the keys are the local binding name and the value is either:
-    - The key (string or Symbol) to search for in available injections, or
-    - An object where:
-      - The `from` property is the key (string or Symbol) to search for in available injections, and
-      - The `default` property is used as fallback value. Similar to props default values, a factory function is needed for object types to avoid value sharing between multiple component instances.
+  - স্ট্রিংস এর একটি অ্যারে, বা
+  - একটি অবজেক্ট যেখানে কীগুলি লোকাল বাইন্ডিং নেইম এবং ভ্যালু হয়:
+    - অ্যাভেইলঅ্যাবল ইনজেকশনে সার্চ করার জন্য কী (string বা Symbol), অথবা 
+    - একটি অবজেক্ট যেখানে:
+      - অ্যাভেইলঅ্যাবল ইনজেকশনগুলিতে সার্চ করার জন্য `from` প্রোপার্টি হল key (string বা Symbol), এবং
+      - `default` প্রোপারটি ফলব্যাক ভ্যালু হিসাবে ব্যবহৃত হয়। প্রপস ডিফল্ট ভ্যালুর অনুরূপ, একাধিক কম্পোনেন্ট ইন্সট্যান্সের মধ্যে ভ্যালু শেয়ারিং এড়াতে অবজেক্টের টাইপগুলির জন্য একটি ফ্যাক্টরি ফাংশন প্রয়োজন।
 
-  An injected property will be `undefined` if neither a matching property nor a default value was provided.
+  একটি ইনজেকটেক  প্রোপার্টি `undefined` হবে যদি কোনো ম্যাচিং প্রোপার্টি বা কোনো ডিফল্ট ভ্যালু প্রদান করা না হয়।
 
-  Note that injected bindings are NOT reactive. This is intentional. However, if the injected value is a reactive object, properties on that object do remain reactive. See [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) for more details.
+  লক্ষ্য করুন যে ইনজেকশন বাইন্ডিং রিয়েক্টিভ নয়। এটা ইচ্ছাকৃত। যাইহোক, যদি ইনজেকশনের মানটি একটি রিয়েক্টিভ অবজেক্ট হয়, তবে সেই অবজেক্টের প্রোপার্টিগুলি রিয়েক্টিভ থাকে। আরো বিস্তারিত জানার জন্য [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) দেখুন।
 
-- **Example**
+- **উদাহরন**
 
-  Basic usage:
+  মৌলিক ব্যবহার:
 
   ```js
   export default {
@@ -103,7 +103,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Using an injected value as the default for a prop:
+  একটি প্রপের জন্য ডিফল্ট হিসাবে একটি ইনজেকটেড ভ্যালু ব্যবহার করা:
 
   ```js
   const Child = {
@@ -118,7 +118,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Using an injected value as data entry:
+  ডেটা এন্ট্রি হিসাবে একটি ইনজেকটেড ভ্যালু ব্যবহার করা:
 
   ```js
   const Child = {
@@ -131,7 +131,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Injections can be optional with default value:
+  ইনজেকশনগুলি ডিফল্ট ভ্যালুসহ অপশনাল হতে পারে:
 
   ```js
   const Child = {
@@ -141,7 +141,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  যদি এটি একটি ভিন্ন নামের একটি প্রোপার্টি থেকে ইনজেকশনের প্রয়োজন হয়, সোর্স প্রোপার্টি বোঝাতে `from` ব্যবহার করুন:
 
   ```js
   const Child = {
@@ -154,7 +154,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non-primitive values:
+  প্রপ ডিফল্টের মতো, আপনাকে নন-প্রিমিটিভ ভ্যালুগুলির জন্য একটি ফ্যাক্টরি ফাংশন ব্যবহার করতে হবে:
 
   ```js
   const Child = {
@@ -167,7 +167,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-- **See also** [Provide / Inject](/guide/components/provide-inject)
+- **আরো দেখুন** [Provide / Inject](/guide/components/provide-inject)
 
 ## mixins {#mixins}
 
