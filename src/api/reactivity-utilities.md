@@ -2,15 +2,15 @@
 
 ## isRef() {#isref}
 
-Checks if a value is a ref object.
+একটি রেফ অবজেক্ট একটি ভ্যালু কিনা পরিক্ষা করা । 
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function isRef<T>(r: Ref<T> | unknown): r is Ref<T>
   ```
 
-  Note the return type is a [type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates), which means `isRef` can be used as a type guard:
+  খেয়াল রাখবেন রিটার্ন টাইপ হল একটি [type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates), যার মানে `isRef` টাইপ গার্ড হিসেবে ব্যবহার করা যেতে পারে :
 
   ```ts
   let foo: unknown
@@ -22,15 +22,15 @@ Checks if a value is a ref object.
 
 ## unref() {#unref}
 
-Returns the inner value if the argument is a ref, otherwise return the argument itself. This is a sugar function for `val = isRef(val) ? val.value : val`.
+আর্গুমেন্টটি রেফ হলে ইনার ভ্যালু রিটার্ন করে, অন্যথায় আর্গুমেন্ট নিজেই রিটার্ন করে। এটি  একটি সুগার ফাংশন এর জন্য `val = isRef(val) ? val.value : val` ।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function unref<T>(ref: T | Ref<T>): T
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   function useFoo(x: number | Ref<number>) {
@@ -41,11 +41,11 @@ Returns the inner value if the argument is a ref, otherwise return the argument 
 
 ## toRef() {#toref}
 
-Can be used to normalize values / refs / getters into refs (3.3+).
+ভ্যালু/রেফ/গেটারকে রেফসে (3.3+) নরমালাইজ করতে ব্যবহার করা যেতে পারে।
 
-Can also be used to create a ref for a property on a source reactive object. The created ref is synced with its source property: mutating the source property will update the ref, and vice-versa.
+একটি সোর্স রিয়েক্টিভ অবজেক্টের একটি প্রপার্টির জন্য একটি রেফ তৈরি করতেও ব্যবহার করা যেতে পারে। তৈরি করা রেফ এর সোর্স প্রপার্টির সাথে সিঙ্ক করা হয়েছে: সোর্স প্রপার্টি পরিবর্তন করলে রেফ আপডেট হবে এবং এর বিপরীত হবে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   // normalization signature (3.3+)
@@ -67,7 +67,7 @@ Can also be used to create a ref for a property on a source reactive object. The
   type ToRef<T> = T extends Ref ? T : Ref<T>
   ```
 
-- **Example**
+- **উদাহরন**
 
   Normalization signature (3.3+):
 
@@ -109,9 +109,9 @@ Can also be used to create a ref for a property on a source reactive object. The
   const fooRef = ref(state.foo)
   ```
 
-  The above ref is **not** synced with `state.foo`, because the `ref()` receives a plain number value.
+  উপরের রেফটি `state.foo`-এর সাথে **not** সিঙ্ক করা হয়নি, কারণ `ref()` একটি প্লেইন নম্বর ভ্যালু রিসিভ করে।
 
-  `toRef()` is useful when you want to pass the ref of a prop to a composable function:
+  `toRef()` ইউজফুল যখন আপনি একটি কম্পোজেবল ফাংশনে একটি প্রপের রেফ পাস করতে চান:
 
   ```vue
   <script setup>
@@ -128,23 +128,23 @@ Can also be used to create a ref for a property on a source reactive object. The
   </script>
   ```
 
-  When `toRef` is used with component props, the usual restrictions around mutating the props still apply. Attempting to assign a new value to the ref is equivalent to trying to modify the prop directly and is not allowed. In that scenario you may want to consider using [`computed`](./reactivity-core#computed) with `get` and `set` instead. See the guide to [using `v-model` with components](/guide/components/v-model) for more information.
+  যখন `toRef` কম্পোনেন্ট প্রপসের সাথে ব্যবহার করা হয়, তখনও প্রপগুলিকে পরিবর্তন করার জন্য সাধারণ বিধিনিষেধ প্রযোজ্য। রেফের জন্য একটি নতুন ভ্যালু অ্যাসাইন করার চেষ্টা করা সরাসরি প্রপ পরিবর্তন করার চেষ্টা করার সমতুল্য এবং অনুমোদিত নয়। এই পরিস্থিতিতে আপনি পরিবর্তে `get` এবং `set` এর সাথে [`computed`](./reactivity-core#computed) ব্যবহার করার কথা বিবেচনা করতে পারেন। আরও তথ্যের জন্য  [using `v-model` with components](/guide/components/v-model) নির্দেশিকা দেখুন।
 
-  When using the object property signature, `toRef()` will return a usable ref even if the source property doesn't currently exist. This makes it possible to work with optional properties, which wouldn't be picked up by [`toRefs`](#torefs).
+  অবজেক্ট প্রপার্টি সিগনেচার ব্যবহার করার সময়, `toRef()` একটি ব্যবহারযোগ্য রেফ প্রদান করবে এমনকি যদি সোর্স প্রপার্টি বর্তমানে বিদ্যমান না থাকে। এটি অপশনাল প্রপার্টিগুলির সাথে কাজ করা সম্ভব করে, যা [`toRefs`](#torefs) দ্বারা বাছাই করা হবে না।
 
 ## toValue() <sup class="vt-badge" data-text="3.3+" /> {#tovalue}
 
-Normalizes values / refs / getters to values. This is similar to [unref()](#unref), except that it also normalizes getters. If the argument is a getter, it will be invoked and its return value will be returned.
+ভ্যালুস/রেফ/গেটারকে ভ্যালুকে স্বাভাবিক করে তোলে। এটি [unref()](#unref) এর অনুরূপ, ব্যতীত এটি গেটারকেও স্বাভাবিক করে। যদি আর্গুমেন্টটি একটি গেটার হয়, তবে এটি কল করা হবে এবং এর রিটার্ন ভ্যালু রিটার্ন দেওয়া হবে।
 
-This can be used in [Composables](/guide/reusability/composables.html) to normalize an argument that can be either a value, a ref, or a getter.
+এটি একটি আরগুমেন্টকে স্বাভাবিক করার জন্য [Composables](/guide/reusability/composables.html) এ ব্যবহার করা যেতে পারে যা হয় একটি ভ্যালু, একটি রেফ বা একটি গেটার হতে পারে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function toValue<T>(source: T | Ref<T> | (() => T)): T
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   toValue(1) //       --> 1
@@ -171,9 +171,9 @@ This can be used in [Composables](/guide/reusability/composables.html) to normal
 
 ## toRefs() {#torefs}
 
-Converts a reactive object to a plain object where each property of the resulting object is a ref pointing to the corresponding property of the original object. Each individual ref is created using [`toRef()`](#toref).
+একটি রিয়েক্টিভ অবজেক্টকে একটি প্লেইন অবজেক্টে রূপান্তরিত করে যেখানে ফলস্বরূপ অবজেক্টের প্রতিটি প্রপার্টি মূল অবজেক্টের সংশ্লিষ্ট প্রপার্টির দিকে নির্দেশ করে। প্রতিটি পৃথক রেফ [`toRef()`](#toref) ব্যবহার করে তৈরি করা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function toRefs<T extends object>(
@@ -185,7 +185,7 @@ Converts a reactive object to a plain object where each property of the resultin
   type ToRef = T extends Ref ? T : Ref<T>
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const state = reactive({
@@ -209,7 +209,7 @@ Converts a reactive object to a plain object where each property of the resultin
   console.log(state.foo) // 3
   ```
 
-  `toRefs` is useful when returning a reactive object from a composable function so that the consuming component can destructure/spread the returned object without losing reactivity:
+  একটি কম্পোসেবল ফাংশন থেকে একটি রিয়েক্টিভ অবজেক্ট রিটার্ন দেওয়ার সময় `toRefs` দরকারী যাতে কনজিউমিং কম্পোনেন্ট রিয়েক্টিভতা না হারিয়ে রিটার্ন আসা অবজেক্টকে ডিস্ট্রাকচার/স্প্রেড করতে পারে:
 
   ```js
   function useFeatureX() {
@@ -228,13 +228,13 @@ Converts a reactive object to a plain object where each property of the resultin
   const { foo, bar } = useFeatureX()
   ```
 
-  `toRefs` will only generate refs for properties that are enumerable on the source object at call time. To create a ref for a property that may not exist yet, use [`toRef`](#toref) instead.
+  `toRefs` শুধুমাত্র সেই প্রপার্টিগুলির জন্য refs তৈরি করবে যা কলের সময় সোর্স অবজেক্টে গণনাযোগ্য। এখনও বিদ্যমান নাও থাকতে পারে এমন একটি প্রপার্টির জন্য একটি রেফ তৈরি করতে, পরিবর্তে [`toRef`](#toref) ব্যবহার করুন।
 
 ## isProxy() {#isproxy}
 
-Checks if an object is a proxy created by [`reactive()`](./reactivity-core#reactive), [`readonly()`](./reactivity-core#readonly), [`shallowReactive()`](./reactivity-advanced#shallowreactive) or [`shallowReadonly()`](./reactivity-advanced#shallowreadonly).
+একটি অবজেক্ট [`reactive()`](./reactivity-core#reactive), [`readonly()`](./reactivity-core#readonly), [`shallowReactive()`] দ্বারা তৈরি প্রক্সি কিনা তা পরীক্ষা করে। (./reactivity-advanced#shallowreactive) বা [`shallowReadonly()`](./reactivity-advanced#shallowreadonly)।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function isProxy(value: unknown): boolean
@@ -242,9 +242,9 @@ Checks if an object is a proxy created by [`reactive()`](./reactivity-core#react
 
 ## isReactive() {#isreactive}
 
-Checks if an object is a proxy created by [`reactive()`](./reactivity-core#reactive) or [`shallowReactive()`](./reactivity-advanced#shallowreactive).
+একটি অবজেক্ট [`reactive()`](./reactivity-core#reactive) বা [`shallowReactive()`](./reactivity-advanced#shallowreactive) দ্বারা তৈরি প্রক্সি কিনা তা পরীক্ষা করা ।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function isReactive(value: unknown): boolean
@@ -252,11 +252,11 @@ Checks if an object is a proxy created by [`reactive()`](./reactivity-core#react
 
 ## isReadonly() {#isreadonly}
 
-Checks whether the passed value is a readonly object. The properties of a readonly object can change, but they can't be assigned directly via the passed object.
+পাস করা ভ্যালুটি একটি রিডঅনলি অবজেক্ট কিনা তা পরীক্ষা করে। একটি রিডঅনলি অবজেক্টের প্রপার্টি পরিবর্তন হতে পারে, কিন্তু  পাস করা অবজেক্টের মাধ্যমে তারা সরাসরি অ্যাসাইন হবে না।
 
-The proxies created by [`readonly()`](./reactivity-core#readonly) and [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) are both considered readonly, as is a [`computed()`](./reactivity-core#computed) ref without a `set` function.
+[`readonly()`](./reactivity-core#readonly) এবং [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) দ্বারা সৃষ্ট প্রক্সি উভয়ই শুধুমাত্র রিডঅনলি হিসাবে বিবেচিত হয়, যেমন একটি [`computed()`](./reactivity-core#computed) রেফ একটি `set` ফাংশন ছাড়াই।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function isReadonly(value: unknown): boolean
