@@ -1,7 +1,7 @@
 # Reactivity API: Core {#reactivity-api-core}
 
-:::info See also
-To better understand the Reactivity APIs, it is recommended to read the following chapters in the guide:
+:::info আরোও দেখুন
+রিঅ্যাকটিভিটি এপিআইগুলিকে আরও ভালভাবে বোঝার জন্য, গাইডের নিম্নলিখিত অধ্যায়গুলি পড়ার পরামর্শ দেওয়া হলো:
 
 - [Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals) (with the API preference set to Composition API)
 - [Reactivity in Depth](/guide/extras/reactivity-in-depth)
@@ -9,9 +9,9 @@ To better understand the Reactivity APIs, it is recommended to read the followin
 
 ## ref() {#ref}
 
-Takes an inner value and returns a reactive and mutable ref object, which has a single property `.value` that points to the inner value.
+একটি ইনার ভ্যালু নেয় এবং একটি রিয়েক্টিভ এবং পরিবর্তনযোগ্য রেফ অবজেক্ট প্রদান করে, যার একটি সিঙ্গেল প্রপার্টি `.value` আছে যা ইনার ভ্যালুকে নির্দেশ করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function ref<T>(value: T): Ref<UnwrapRef<T>>
@@ -21,15 +21,15 @@ Takes an inner value and returns a reactive and mutable ref object, which has a 
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The ref object is mutable - i.e. you can assign new values to `.value`. It is also reactive - i.e. any read operations to `.value` are tracked, and write operations will trigger associated effects.
+  রেফ অবজেক্টটি পরিবর্তনযোগ্য - যেমন আপনি `.value`-এ নতুন ভ্যালু নির্ধারণ করতে পারেন। এটি রিয়েক্টিভও - যেমন `.value`-তে যে কোনো রিড অপারেশন ট্র্যাক করা হয় এবং রাইট অপারেশন অ্যাসোসিয়েটিভ ইফেক্টগুলিকে ট্রিগার করবে৷
 
-  If an object is assigned as a ref's value, the object is made deeply reactive with [reactive()](#reactive). This also means if the object contains nested refs, they will be deeply unwrapped.
+  যদি একটি অবজেক্টকে রেফের ভ্যালু হিসাবে অ্যাসাইন করা হয়, তবে অবজেক্টটিকে [reactive()](#reactive) দিয়ে ডীপলি রিয়েক্টিভ করা হয়। এর মানে হল যদি অবজেক্টটিতে নেস্টেড রেফ থাকে তবে সেগুলি ডীপলি মোড়ানো হবে।
 
-  To avoid the deep conversion, use [`shallowRef()`](./reactivity-advanced#shallowref) instead.
+  ডীপ কনভার্সন এড়াতে, পরিবর্তে [`shallowRef()`](./reactivity-advanced#shallowref) ব্যবহার করুন।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const count = ref(0)
@@ -39,15 +39,15 @@ Takes an inner value and returns a reactive and mutable ref object, which has a 
   console.log(count.value) // 1
   ```
 
-- **See also**
+- **আরোও দেখুন**
   - [Guide - Reactive Variables with `ref()`](/guide/essentials/reactivity-fundamentals#reactive-variables-with-ref)
   - [Guide - Typing `ref()`](/guide/typescript/composition-api#typing-ref) <sup class="vt-badge ts" />
 
 ## computed() {#computed}
 
-Takes a getter function and returns a readonly reactive [ref](#ref) object for the returned value from the getter. It can also take an object with `get` and `set` functions to create a writable ref object.
+একটি গেটার ফাংশন নেয় এবং গেটার থেকে রিটার্ন ভ্যালুরর জন্য একটি পঠনযোগ্য রিয়েক্টিভ [ref](#ref) অবজেক্ট প্রদান করে। এটি একটি লিখনযোগ্য রেফ অবজেক্ট তৈরি করতে `get` এবং `set` ফাংশন সহ একটি অবজেক্টও নিতে পারে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   // read-only
@@ -67,9 +67,9 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   ): Ref<T>
   ```
 
-- **Example**
+- **উদাহরন**
 
-  Creating a readonly computed ref:
+ একটি রিডঅনলি কম্পিউটেড রেফ তৈরি করা হচ্ছে:
 
   ```js
   const count = ref(1)
@@ -80,7 +80,7 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   plusOne.value++ // error
   ```
 
-  Creating a writable computed ref:
+  একটি রাইটঅনলি কম্পিউটেড রেফ তৈরি করা হচ্ছে:
 
   ```js
   const count = ref(1)
@@ -95,7 +95,7 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   console.log(count.value) // 0
   ```
 
-  Debugging:
+  ডিবাগিং:
 
   ```js
   const plusOne = computed(() => count.value + 1, {
@@ -108,34 +108,34 @@ Takes a getter function and returns a readonly reactive [ref](#ref) object for t
   })
   ```
 
-- **See also**
+- **আরোও দেখুন**
   - [Guide - Computed Properties](/guide/essentials/computed)
   - [Guide - Computed Debugging](/guide/extras/reactivity-in-depth#computed-debugging)
   - [Guide - Typing `computed()`](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
 
 ## reactive() {#reactive}
 
-Returns a reactive proxy of the object.
+অবজেক্টের একটি রিয়েক্টিভ প্রক্সি প্রদান করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function reactive<T extends object>(target: T): UnwrapNestedRefs<T>
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The reactive conversion is "deep": it affects all nested properties. A reactive object also deeply unwraps any properties that are [refs](#ref) while maintaining reactivity.
+  রিয়েক্টিভ রূপান্তর হল "ডীপ": এটি সমস্ত নেস্টেড প্রপার্টিগুলোকে প্রভাবিত করে। একটি রিয়েক্টিভ অবজেক্ট রিয়েক্টিভতা বজায় রাখার সময় [refs](#ref) যে কোনো প্রপার্টিকে ডীপলি  খুলে দেয়।
 
-  It should also be noted that there is no ref unwrapping performed when the ref is accessed as an element of a reactive array or a native collection type like `Map`.
+  এটিও উল্লেখ করা উচিত যে যখন রেফটিকে একটি রিয়েক্টিভ অ্যারের একটি উপাদান বা `Map` এর মতো একটি নেটিভ কালেকশন টাইপ হিসাবে অ্যাক্সেস করা হয় তখন কোনও রেফ আনর্যাপিং করা হয় না।
 
-  To avoid the deep conversion and only retain reactivity at the root level, use [shallowReactive()](./reactivity-advanced#shallowreactive) instead.
+  ডীপ কনভার্সন এড়াতে এবং শুধুমাত্র রুট লেভেল রিয়েক্টিভিটি বজায় রাখতে, পরিবর্তে [shallowReactive()](./reactivity-advanced#shallowreactive) ব্যবহার করুন।
 
-  The returned object and its nested objects are wrapped with [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) and **not** equal to the original objects. It is recommended to work exclusively with the reactive proxy and avoid relying on the original object.
+  রিটার্ন অবজেক্ট এবং এর নেস্টেড অবজেক্টগুলি [ES Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) দিয়ে মোড়ানো হয় এবং **not** এর সমান অরিজিনাল অবজেক্ট। রিয়েক্টিভ প্রক্সির সাথে একচেটিয়াভাবে কাজ করার এবং অরিজিনাল অবজেক্টের উপর নির্ভর করা এড়াতে রিকোমেন্ড করা হয়।
 
-- **Example**
+- **উদাহরন**
 
-  Creating a reactive object:
+  একটি রিয়েক্টিভ অবজেক্ট তৈরি করা:
 
   ```js
   const obj = reactive({ count: 0 })
@@ -162,7 +162,7 @@ Returns a reactive proxy of the object.
   console.log(count.value) // 3
   ```
 
-  Note that refs are **not** unwrapped when accessed as array or collection elements:
+  মনে রাখবেন যে রেফগুলি অ্যারে বা কালেকশন ইলিমেন্ট হিসাবে অ্যাক্সেস করার সময় **not** unwrapped হয় না:
 
   ```js
   const books = reactive([ref('Vue 3 Guide')])
@@ -174,7 +174,7 @@ Returns a reactive proxy of the object.
   console.log(map.get('count').value)
   ```
 
-  When assigning a [ref](#ref) to a `reactive` property, that ref will also be automatically unwrapped:
+  একটি `রিয়েক্টিভ` প্রপার্টিতে একটি [ref](#ref) অ্যাসাইন করার সময়, সেই রেফটিও অটোমেটিকলি unwrapped হবে:
 
   ```ts
   const count = ref(1)
@@ -186,15 +186,15 @@ Returns a reactive proxy of the object.
   console.log(obj.count === count.value) // true
   ```
 
-- **See also**
+- **আরোও দেখুন**
   - [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals)
   - [Guide - Typing `reactive()`](/guide/typescript/composition-api#typing-reactive) <sup class="vt-badge ts" />
 
 ## readonly() {#readonly}
 
-Takes an object (reactive or plain) or a [ref](#ref) and returns a readonly proxy to the original.
+একটি অবজেক্ট (রিয়েক্টিভ বা প্লেইন) বা একটি [ref](#ref) নেয় এবং অরিজিনাল একটি রিডুঅনলি প্রক্সি রিটার্ন দেয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function readonly<T extends object>(
@@ -202,13 +202,13 @@ Takes an object (reactive or plain) or a [ref](#ref) and returns a readonly prox
   ): DeepReadonly<UnwrapNestedRefs<T>>
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  A readonly proxy is deep: any nested property accessed will be readonly as well. It also has the same ref-unwrapping behavior as `reactive()`, except the unwrapped values will also be made readonly.
+ একটি রিডঅনলি প্রক্সি হচ্ছে ডীপ: যে কোনো নেস্টেড প্রপার্টি অ্যাক্সেস করা হবে রিডঅনলি। এটিতে `reactive()` এর মতো একই রেফ-আনর্যাপিং আচরণ রয়েছে, ব্যতীত মোড়ানো মানগুলিও রিডঅনলি হবে।
 
-  To avoid the deep conversion, use [shallowReadonly()](./reactivity-advanced#shallowreadonly) instead.
+  ডীপ কনভার্সন এড়াতে, পরিবর্তে [shallowReadonly()](./reactivity-advanced#shallowreadonly) ব্যবহার করুন।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const original = reactive({ count: 0 })
@@ -229,9 +229,9 @@ Takes an object (reactive or plain) or a [ref](#ref) and returns a readonly prox
 
 ## watchEffect() {#watcheffect}
 
-Runs a function immediately while reactively tracking its dependencies and re-runs it whenever the dependencies are changed.
+রিয়েক্টিভভাবে তার ডিপেন্ডেন্সিগুলো ট্র্যাক করার সময় অবিলম্বে একটি ফাংশন রান হয় এবং যখনই ডিপেন্ডেন্সিগুলো পরিবর্তন করা হয় তখন এটি পুনরায় রান হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function watchEffect(
@@ -250,17 +250,17 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   type StopHandle = () => void
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The first argument is the effect function to be run. The effect function receives a function that can be used to register a cleanup callback. The cleanup callback will be called right before the next time the effect is re-run, and can be used to clean up invalidated side effects, e.g. a pending async request (see example below).
+  প্রথম আর্গুমেন্ট হচ্ছে ইফেক্ট ফাংশন রান করা। ইফেক্ট ফাংশন একটি ফাংশন গ্রহণ করে যা একটি ক্লিনআপ কলব্যাক রেজিস্ট্রার করতে ব্যবহার করা যেতে পারে। পরের বার ইফেক্টটি পুনরায় রান করার ঠিক আগে ক্লিনআপ কলব্যাক কল করা হবে, এবং ইনভ্যালিড সাইড ইফেক্টগুলি ক্লিনআপ করতে ব্যবহার করা যেতে পারে, যেমন একটি পেন্ডিং অ্যাসিঙ্ক রিকোয়েস্ট (নীচের উদাহরণ দেখুন)।
 
-  The second argument is an optional options object that can be used to adjust the effect's flush timing or to debug the effect's dependencies.
+  দ্বিতীয় আরগুমেন্ট হল একটি অপশনাল অপশন অবজেক্ট যা ইফেক্টের ফ্লাশ টাইমিং সামঞ্জস্য করতে বা ইফেক্টের ডিপেন্ডেন্সিগুলো ডিবাগ করতে ব্যবহার করা যেতে পারে।
 
-  By default, watchers will run just prior to component rendering. Setting `flush: 'post'` will defer the watcher until after component rendering. See [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) for more information. In rare cases, it might be necessary to trigger a watcher immediately when a reactive dependency changes, e.g. to invalidate a cache. This can be achieved using `flush: 'sync'`. However, this setting should be used with caution, as it can lead to problems with performance and data consistency if multiple properties are being updated at the same time.
+  ডিফল্টভাবে, কম্পোনেন্ট রেন্ডারিংয়ের ঠিক আগে ওয়াচার্স চলবে। `flush: 'post'` সেট করা কম্পোনেন্ট রেন্ডারিং না হওয়া পর্যন্ত ওয়াচারকে পিছিয়ে দেবে। আরও তথ্যের জন্য [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) দেখুন। বিরল ক্ষেত্রে, রিয়েক্টিভ ডিপেন্ডেন্সির পরিবর্তিত হলে অবিলম্বে একটি ওয়াচার ট্রিগার করার প্রয়োজন হতে পারে, যেমন একটি ক্যাশে ইনভ্যালিড করতে। এটি `flush: 'sync` ব্যবহার করে অর্জন করা যেতে পারে। যাইহোক, এই সেটিংটি সতর্কতার সাথে ব্যবহার করা উচিত, কারণ এটি কর্মক্ষমতা এবং ডেটা সামঞ্জস্য নিয়ে সমস্যা হতে পারে যদি একই সময়ে একাধিক প্রপার্টি আপডেট করা হয়।
 
-  The return value is a handle function that can be called to stop the effect from running again.
+  রিটার্ন ভ্যালু হল একটি হ্যান্ডেল ফাংশন যেটিকে আবার রান করা থেকে ইফেক্ট বন্ধ করতে বলা যেতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const count = ref(0)
@@ -294,7 +294,7 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   stop()
   ```
 
-  Options:
+  অপশন:
 
   ```js
   watchEffect(() => {}, {
@@ -308,7 +308,7 @@ Runs a function immediately while reactively tracking its dependencies and re-ru
   })
   ```
 
-- **See also**
+- **আরোও দেখুন**
   - [Guide - Watchers](/guide/essentials/watchers#watcheffect)
   - [Guide - Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging)
 
@@ -322,9 +322,9 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
 
 ## watch() {#watch}
 
-Watches one or more reactive data sources and invokes a callback function when the sources change.
+এক বা একাধিক রিয়েক্টিভ ডেটা সোর্স ওয়াচ করে এবং সোর্স পরিবর্তন হলে একটি কলব্যাক ফাংশন কল করে৷
 
-- **Type**
+- **প্রকার**
 
   ```ts
   // watching single source
@@ -363,39 +363,39 @@ Watches one or more reactive data sources and invokes a callback function when t
   }
   ```
 
-  > Types are simplified for readability.
+  > টাইপগুলি রিডঅ্যাবিলিটির জন্য সিমপ্লিফাইড।
 
-- **Details**
+- **বিস্তারিত**
 
-  `watch()` is lazy by default - i.e. the callback is only called when the watched source has changed.
+  `watch()` ডিফল্টরূপে lazy - অর্থাৎ কলব্যাক শুধুমাত্র তখনই কল করা হয় যখন ওয়াচ সোর্স পরিবর্তন হয়।
 
-  The first argument is the watcher's **source**. The source can be one of the following:
+  প্রথম আরগুমেন্ট হল ওয়াচার্স-এর **source**। সোর্স নিম্নলিখিতগুলির মধ্যে একটি হতে পারে:
 
-  - A getter function that returns a value
-  - A ref
-  - A reactive object
-  - ...or an array of the above.
+  - একটি গেটার ফাংশন যা একটি ভ্যালু প্রদান করে
+  - একটি রেফ
+  - একটি রিয়েক্টিভ বস্তু
+  - ...অথবা উপরের একটি অ্যারে.
 
-  The second argument is the callback that will be called when the source changes. The callback receives three arguments: the new value, the old value, and a function for registering a side effect cleanup callback. The cleanup callback will be called right before the next time the effect is re-run, and can be used to clean up invalidated side effects, e.g. a pending async request.
+  দ্বিতীয় আরগুমেন্ট হল কলব্যাক যা সোর্স পরিবর্তন হলে কল করা হবে। কলব্যাক তিনটি আর্গুমেন্ট পায়: নিউ ভ্যালু, ওল্ড ভ্যালু এবং একটি সাইড ইফেক্ট ক্লিনআপ কলব্যাক রেজিস্ট্রারের জন্য একটি ফাংশন। পরের বার ইফেক্টি পুনরায় চালানোর ঠিক আগে ক্লিনআপ কলব্যাক কল করা হবে, এবং ইনভ্যালিড সাইড ইফেক্টগুলি ক্লিন আপ করতে ব্যবহার করা যেতে পারে, যেমন একটি পেন্ডিং অ্যাসিঙ্ক রিকোয়েস্ট।
 
-  When watching multiple sources, the callback receives two arrays containing new / old values corresponding to the source array.
+  একাধিক সোর্স ওয়াচ সময়, কলব্যাক সোর্স অ্যারের সাথে সম্পর্কিত নতুন/পুরনো ভ্যালুগুলো ধারণকারী দুটি অ্যারে পায়।
 
-  The third optional argument is an options object that supports the following options:
+  তৃতীয় অপশনাল আরগুমেন্ট হল একটি অপশন অবজেক্ট যা নিম্নলিখিত অপশনগুলোকে সমর্থন করে:
 
-  - **`immediate`**: trigger the callback immediately on watcher creation. Old value will be `undefined` on the first call.
-  - **`deep`**: force deep traversal of the source if it is an object, so that the callback fires on deep mutations. See [Deep Watchers](/guide/essentials/watchers#deep-watchers).
-  - **`flush`**: adjust the callback's flush timing. See [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) and [`watchEffect()`](/api/reactivity-core#watcheffect).
-  - **`onTrack / onTrigger`**: debug the watcher's dependencies. See [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging).
+  - **`immediate`**: ওয়াচার তৈরিতে অবিলম্বে কলব্যাক ট্রিগার করুন। প্রথম কলে পুরানো ভ্যালু 'undefined' হবে।
+  - **`deep`**: সোর্সের ডীপ ট্র্যাভার্সাল ফোর্স করে যদি এটি কোনো অবজেক্ট হয়, যাতে কলব্যাক ডীপ মিউটেশনের উপর  ফায়ারস করে। [Deep Watchers](/guide/essentials/watchers#deep-watchers) দেখুন।
+  - **`flush`**: কলব্যাকের ফ্লাশের সময় সামঞ্জস্য করুন। [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) এবং [`watchEffect()`](/api/reactivity-core#watcheffect) দেখুন।
+  - **`onTrack / onTrigger`**: ওয়াচার-এর ডিপেন্ডেন্সি ডিবাগ করুন। [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging) দেখুন।
 
-  Compared to [`watchEffect()`](#watcheffect), `watch()` allows us to:
+  [`watchEffect()`](#watcheffect) এর তুলনায়, `watch()` আমাদের অ্যালাউ করে:
 
-  - Perform the side effect lazily;
-  - Be more specific about what state should trigger the watcher to re-run;
-  - Access both the previous and current value of the watched state.
+  - লেইজিলি সাইড ইফেক্ট পারফর্ম করে;
+  - কোন স্টেটে ওয়াচার পুনরায় চালানোর জন্য ট্রিগার করা উচিত সে সম্পর্কে আরও সুনির্দিষ্ট হন;
+  - ওয়াচার স্টেটের আগের এবং বর্তমান ভ্যালু উভয়ই অ্যাক্সেস করুন।
 
-- **Example**
+- **উদাহরন**
 
-  Watching a getter:
+  একটি গেটারকে ওয়াচিং করা হচ্ছে:
 
   ```js
   const state = reactive({ count: 0 })
@@ -407,7 +407,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   )
   ```
 
-  Watching a ref:
+  একটি রেফ-কে ওয়াচিং করা হচ্ছে:
 
   ```js
   const count = ref(0)
@@ -416,7 +416,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  When watching multiple sources, the callback receives arrays containing new / old values corresponding to the source array:
+  একাধিক সোর্স ওয়াচ করার সময়, কলব্যাক সোর্স অ্যারের সাথে সম্পর্কিত নতুন / পুরানো ভ্যালু ধারণকারী অ্যারেগুলি গ্রহণ করে:
 
   ```js
   watch([fooRef, barRef], ([foo, bar], [prevFoo, prevBar]) => {
@@ -424,7 +424,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  When using a getter source, the watcher only fires if the getter's return value has changed. If you want the callback to fire even on deep mutations, you need to explicitly force the watcher into deep mode with `{ deep: true }`. Note in deep mode, the new value and the old will be the same object if the callback was triggered by a deep mutation:
+  গেটার সোর্স ব্যবহার করার সময়, গেটারস রিটার্ন ভ্যালু পরিবর্তিত হলে ওয়াচার শুধুমাত্র ফায়ার হয়। আপনি যদি ডীপ মিউটেশনেও কলব্যাক চালু করতে চান, তাহলে আপনাকে স্পষ্টভাবে ওয়াচারকে `{ deep: true }` দিয়ে ডীপ মোডে ফোর্স করতে হবে। ডীপ মোডে নোট করুন, নতুন ভ্যালু এবং পুরানো একই অবজেক্ট হবে যদি কলব্যাকটি একটি ডীপ মিউটেশন দ্বারা ট্রিগার হয়:
 
   ```js
   const state = reactive({ count: 0 })
@@ -437,7 +437,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   )
   ```
 
-  When directly watching a reactive object, the watcher is automatically in deep mode:
+  একটি রিয়েক্টিভ অবজেক্ট সরাসরি ওয়াচ করার সময়, ওয়াচার স্বয়ংক্রিয়ভাবে ডীপ মোডে থাকে:
 
   ```js
   const state = reactive({ count: 0 })
@@ -446,7 +446,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  `watch()` shares the same flush timing and debugging options with [`watchEffect()`](#watcheffect):
+  `watch()` একই ফ্লাশ টাইমিং এবং ডিবাগিং অপশনগুলি [`watchEffect()`](#watcheffect) এর সাথে শেয়ার করে:
 
   ```js
   watch(source, callback, {
@@ -460,7 +460,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-  Stopping the watcher:
+  ওয়াচারকে বন্ধ করা হচ্ছে:
 
   ```js
   const stop = watch(source, callback)
@@ -469,7 +469,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   stop()
   ```
 
-  Side effect cleanup:
+  সাইড ইফেক্ট ক্লিনআপ:
 
   ```js
   watch(id, async (newId, oldId, onCleanup) => {
@@ -481,7 +481,7 @@ Watches one or more reactive data sources and invokes a callback function when t
   })
   ```
 
-- **See also**
+- **আরোও দেখুন**
 
   - [Guide - Watchers](/guide/essentials/watchers)
   - [Guide - Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging)
