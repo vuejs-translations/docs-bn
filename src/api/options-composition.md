@@ -2,9 +2,9 @@
 
 ## provide {#provide}
 
-Provide values that can be injected by descendant components.
+প্রোভাইড ভ্যালু যা ডিসেনডেন্ট কম্পোনেন্ট দ্বারা ইনজেকশন করা যেতে পারে । 
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -12,15 +12,15 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  `provide` and [`inject`](#inject) are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain.
+  `provide` এবং [`inject`](#inject) একসাথে ব্যবহার করা হয় একটি অ্যানচেস্টর কম্পোনেন্টকে তার সমস্ত ডিসেনডেন্টদের জন্য ডিপেনডেন্সি ইনজেক্টর হিসাবে সারভ করার অনুমতি দেওয়ার জন্য, কম্পোনেন্ট হায়ারার্কি যতটা ডীপ হোক না কেন, যতক্ষণ তারা একই প্যারন্ট চেইন মধ্যে থাকে ।  
 
-  The `provide` option should be either an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use Symbols as keys in this object.
+  `provide` অপশন হয় কোনো অবজেক্ট বা কোনো ফাংশন হতে হবে যা কোনো অবজেক্টকে রিটার্ন দেয়। এই অবজেক্টটি ঐ প্রোপার্টিগুলোকে কন্টেইন করে যা তার বংশধরদের মধ্যে ইনজেকশনের জন্য অ্যাভেইঅ্যাবল । আপনি এই অবজেক্টটিতে কী হিসাবে সিম্বল ব্যবহার করতে পারেন।
 
-- **Example**
+- **উদাহরন**
 
-  Basic usage:
+  মৌলিক ব্যবহার:
 
   ```js
   const s = Symbol()
@@ -33,7 +33,7 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-  Using a function to provide per-component state:
+  প্রতি-কম্পোনেন্ট স্টেইট প্রোভাইড করতে একটি ফাংশন ব্যবহার করা:
 
   ```js
   export default {
@@ -50,9 +50,9 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-  Note in the above example, the provided `msg` will NOT be reactive. See [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) for more details.
+ উপরের উদাহরনে লক্ষ্য রাখবেন, প্রদত্ত `msg` রিয়েক্টিভ হবে না। আরো বিস্তারিত জানার জন্য [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) দেখুন।
 
-- **See also** [Provide / Inject](/guide/components/provide-inject)
+- **আরো দেখুন** [Provide / Inject](/guide/components/provide-inject)
 
 ## inject {#inject}
 
