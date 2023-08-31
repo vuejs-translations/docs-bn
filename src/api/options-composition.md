@@ -213,9 +213,9 @@
 
 ## extends {#extends}
 
-A "base class" component to extend from.
+এক্সটেন্ড ফরম থেকে একটি "base class" কম্পোনেন্ট।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -223,17 +223,17 @@ A "base class" component to extend from.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Allows one component to extend another, inheriting its component options.
+  একটি কম্পোনেন্টকে অন্যটি এক্সটেন্ড করার অনুমতি দেয়, এর কম্পোনেট অপশনগুলিকে ইনহেরিট্যান্স করে৷
 
-  From an implementation perspective, `extends` is almost identical to `mixins`. The component specified by `extends` will be treated as though it were the first mixin.
+  বাস্তবায়নের দৃষ্টিকোণ থেকে, `extends` প্রায় `mixins` এর সাথে অভিন্ন। `extends` দ্বারা নির্দিষ্ট করা কম্পোনেন্টকে প্রথম মিশ্রণ হিসাবে বিবেচনা করা হবে৷
 
-  However, `extends` and `mixins` express different intents. The `mixins` option is primarily used to compose chunks of functionality, whereas `extends` is primarily concerned with inheritance.
+  যাইহোক, `extends` এবং `mixins` ভিন্ন অভিপ্রায় প্রকাশ করে। `mixins` অপশনটি প্রাথমিকভাবে ফাংশনালিটির অংশগুলি কম্পোজ করতে ব্যবহৃত হয়, যেখানে `extends` প্রাথমিকভাবে ইনহেরিট্যান্স এর সাথে সম্পর্কিত।
 
-  As with `mixins`, any options (except for `setup()`) will be merged using the relevant merge strategy.
+  `mixins`-এর মতো, যেকোনো অপশন (`setup()` ছাড়া) প্রাসঙ্গিক মার্জ কৌশল ব্যবহার করে মার্জ করা হবে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const CompA = { ... }
@@ -244,12 +244,12 @@ A "base class" component to extend from.
   }
   ```
 
-  :::warning Not Recommended for Composition API
-  `extends` is designed for Options API and does not handle the merging of the `setup()` hook.
+  :::warning কম্পোজিশন API এর জন্য রিকোমেন্ডেড নয়
+  `extends` অপশন API-এর জন্য ডিজাইন করা হয়েছে এবং `setup()` হুকের মার্জিং হ্যান্ডল করে না।
 
-  In Composition API, the preferred mental model for logic reuse is "compose" over "inheritance". If you have logic from a component that needs to be reused in another one, consider extracting the relevant logic into a [Composable](/guide/reusability/composables#composables).
+  কম্পোজিশন এপিআই-এ, লজিক রি-ইউজ এর জন্য পছন্দের মেন্টাল মডেল হল "ইনহেরিট্যান্স" এর চেয়ে "কম্পোজ"। আপনার যদি এমন একটি কম্পোনেন্ট থেকে লজিক থাকে যা অন্য একটিতে পুনরায় ব্যবহার করা প্রয়োজন, তাহলে রিলেভ্যান্ট লজিকটিকে একটি [Composable](/guide/reusability/composables#composables) এ বের করার কথা বিবেচনা করুন।
 
-  If you still intend to "extend" a component using Composition API, you can call the base component's `setup()` in the extending component's `setup()`:
+  আপনি যদি এখনও কম্পোজিশন এপিআই ব্যবহার করে একটি কম্পোনেন্টকে "extend" করতে চান, তাহলে আপনি এক্সটেন্ডিং কম্পোনেন্টের `setup()`-এ বেস কম্পোনেন্টের `setup()` কল করতে পারেন:
 
   ```js
   import Base from './Base.js'
