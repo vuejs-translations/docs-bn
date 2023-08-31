@@ -171,9 +171,9 @@
 
 ## mixins {#mixins}
 
-An array of option objects to be mixed into the current component.
+কারেন্ট কম্পোনেন্টে মিক্সড, অপশন অবজক্টের একটি অ্যারে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -181,17 +181,17 @@ An array of option objects to be mixed into the current component.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the certain option merging logic. For example, if your mixin contains a `created` hook and the component itself also has one, both functions will be called.
+  `mixins` অপশনটি মিক্সিন অবজেক্টের একটি অ্যারে গ্রহণ করে। এই মিক্সিন অবজেক্টে স্বাভাবিক ইনস্ট্যান্স অবজেক্টের মত ইনস্ট্যান্স অপশন থাকতে পারে এবং নির্দিষ্ট অপশন মার্জিং লজিক ব্যবহার করে এগুলি ইভেনচুয়াল অপশনের সাথে মার্জ করা হবে। উদাহরণস্বরূপ, যদি আপনার মিক্সিনে একটি `create` হুক থাকে এবং কম্পোনেন্টটিতেও একটি থাকে, উভয় ফাংশন কল করা হবে।
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  মিক্সিন হুকগুলিকে যে ক্রমে দেওয়া হয় সেই ক্রমে কল করা হয় এবং কম্পোনেন্টের নিজস্ব হুকের আগে কল করা হয়।
 
-  :::warning No Longer Recommended
-  In Vue 2, mixins were the primary mechanism for creating reusable chunks of component logic. While mixins continue to be supported in Vue 3, [Composable functions using Composition API](/guide/reusability/composables) is now the preferred approach for code reuse between components.
+  :::warning এখন আর রিকোমেন্ডেড নয়
+  Vue 2-এ, কম্পোনেন্ট লজিক, পুনরায় ব্যবহারযোগ্য অংশগুলি তৈরি করার জন্য মিক্সিনগুলি ছিল প্রাথমিক প্রক্রিয়া। Vue 3-তে মিক্সিনগুলিকে সাপোর্ট করা অব্যাহত থাকলেও, [Composable functions using Composition API](/guide/reusability/composables) এখন কম্পোনেন্টগুলির মধ্যে কোড পুনঃব্যবহারের জন্য পছন্দের পদ্ধতি।
   :::
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const mixin = {
