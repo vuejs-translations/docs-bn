@@ -2,9 +2,9 @@
 
 ## provide {#provide}
 
-Provide values that can be injected by descendant components.
+প্রোভাইড ভ্যালু যা ডিসেনডেন্ট কম্পোনেন্ট দ্বারা ইনজেকশন করা যেতে পারে । 
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -12,15 +12,15 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  `provide` and [`inject`](#inject) are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain.
+  `provide` এবং [`inject`](#inject) একসাথে ব্যবহার করা হয় একটি অ্যানচেস্টর কম্পোনেন্টকে তার সমস্ত ডিসেনডেন্টদের জন্য ডিপেনডেন্সি ইনজেক্টর হিসাবে সারভ করার অনুমতি দেওয়ার জন্য, কম্পোনেন্ট হায়ারার্কি যতটা ডীপ হোক না কেন, যতক্ষণ তারা একই প্যারন্ট চেইন মধ্যে থাকে ।  
 
-  The `provide` option should be either an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use Symbols as keys in this object.
+  `provide` অপশন হয় কোনো অবজেক্ট বা কোনো ফাংশন হতে হবে যা কোনো অবজেক্টকে রিটার্ন দেয়। এই অবজেক্টটি ঐ প্রোপার্টিগুলোকে কন্টেইন করে যা তার বংশধরদের মধ্যে ইনজেকশনের জন্য অ্যাভেইঅ্যাবল । আপনি এই অবজেক্টটিতে কী হিসাবে সিম্বল ব্যবহার করতে পারেন।
 
-- **Example**
+- **উদাহরন**
 
-  Basic usage:
+  মৌলিক ব্যবহার:
 
   ```js
   const s = Symbol()
@@ -33,7 +33,7 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-  Using a function to provide per-component state:
+  প্রতি-কম্পোনেন্ট স্টেইট প্রোভাইড করতে একটি ফাংশন ব্যবহার করা:
 
   ```js
   export default {
@@ -50,15 +50,15 @@ Provide values that can be injected by descendant components.
   }
   ```
 
-  Note in the above example, the provided `msg` will NOT be reactive. See [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) for more details.
+ উপরের উদাহরনে লক্ষ্য রাখবেন, প্রদত্ত `msg` রিয়েক্টিভ হবে না। আরো বিস্তারিত জানার জন্য [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) দেখুন।
 
-- **See also** [Provide / Inject](/guide/components/provide-inject)
+- **আরো দেখুন** [Provide / Inject](/guide/components/provide-inject)
 
 ## inject {#inject}
 
-Declare properties to inject into the current component by locating them from ancestor providers.
+অ্যানচেস্টর প্রোভাইডারদের থেকে সনাক্ত করে বর্তমান কম্পোনেন্টে ইনজেক্ট করার প্রোপার্টিগুলি ডিকলার করুন৷
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -75,24 +75,24 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The `inject` option should be either:
+  `inject` অপশনটি হতে হবেঃ
 
-  - An array of strings, or
-  - An object where the keys are the local binding name and the value is either:
-    - The key (string or Symbol) to search for in available injections, or
-    - An object where:
-      - The `from` property is the key (string or Symbol) to search for in available injections, and
-      - The `default` property is used as fallback value. Similar to props default values, a factory function is needed for object types to avoid value sharing between multiple component instances.
+  - স্ট্রিংস এর একটি অ্যারে, বা
+  - একটি অবজেক্ট যেখানে কীগুলি লোকাল বাইন্ডিং নেইম এবং ভ্যালু হয়:
+    - অ্যাভেইলঅ্যাবল ইনজেকশনে সার্চ করার জন্য কী (string বা Symbol), অথবা 
+    - একটি অবজেক্ট যেখানে:
+      - অ্যাভেইলঅ্যাবল ইনজেকশনগুলিতে সার্চ করার জন্য `from` প্রোপার্টি হল key (string বা Symbol), এবং
+      - `default` প্রোপারটি ফলব্যাক ভ্যালু হিসাবে ব্যবহৃত হয়। প্রপস ডিফল্ট ভ্যালুর অনুরূপ, একাধিক কম্পোনেন্ট ইন্সট্যান্সের মধ্যে ভ্যালু শেয়ারিং এড়াতে অবজেক্টের টাইপগুলির জন্য একটি ফ্যাক্টরি ফাংশন প্রয়োজন।
 
-  An injected property will be `undefined` if neither a matching property nor a default value was provided.
+  একটি ইনজেকটেক  প্রোপার্টি `undefined` হবে যদি কোনো ম্যাচিং প্রোপার্টি বা কোনো ডিফল্ট ভ্যালু প্রদান করা না হয়।
 
-  Note that injected bindings are NOT reactive. This is intentional. However, if the injected value is a reactive object, properties on that object do remain reactive. See [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) for more details.
+  লক্ষ্য করুন যে ইনজেকশন বাইন্ডিং রিয়েক্টিভ নয়। এটা ইচ্ছাকৃত। যাইহোক, যদি ইনজেকশনের মানটি একটি রিয়েক্টিভ অবজেক্ট হয়, তবে সেই অবজেক্টের প্রোপার্টিগুলি রিয়েক্টিভ থাকে। আরো বিস্তারিত জানার জন্য [Working with Reactivity](/guide/components/provide-inject#working-with-reactivity) দেখুন।
 
-- **Example**
+- **উদাহরন**
 
-  Basic usage:
+  মৌলিক ব্যবহার:
 
   ```js
   export default {
@@ -103,7 +103,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Using an injected value as the default for a prop:
+  একটি প্রপের জন্য ডিফল্ট হিসাবে একটি ইনজেকটেড ভ্যালু ব্যবহার করা:
 
   ```js
   const Child = {
@@ -118,7 +118,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Using an injected value as data entry:
+  ডেটা এন্ট্রি হিসাবে একটি ইনজেকটেড ভ্যালু ব্যবহার করা:
 
   ```js
   const Child = {
@@ -131,7 +131,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Injections can be optional with default value:
+  ইনজেকশনগুলি ডিফল্ট ভ্যালুসহ অপশনাল হতে পারে:
 
   ```js
   const Child = {
@@ -141,7 +141,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  If it needs to be injected from a property with a different name, use `from` to denote the source property:
+  যদি এটি একটি ভিন্ন নামের একটি প্রোপার্টি থেকে ইনজেকশনের প্রয়োজন হয়, সোর্স প্রোপার্টি বোঝাতে `from` ব্যবহার করুন:
 
   ```js
   const Child = {
@@ -154,7 +154,7 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-  Similar to prop defaults, you need to use a factory function for non-primitive values:
+  প্রপ ডিফল্টের মতো, আপনাকে নন-প্রিমিটিভ ভ্যালুগুলির জন্য একটি ফ্যাক্টরি ফাংশন ব্যবহার করতে হবে:
 
   ```js
   const Child = {
@@ -167,13 +167,13 @@ Declare properties to inject into the current component by locating them from an
   }
   ```
 
-- **See also** [Provide / Inject](/guide/components/provide-inject)
+- **আরো দেখুন** [Provide / Inject](/guide/components/provide-inject)
 
 ## mixins {#mixins}
 
-An array of option objects to be mixed into the current component.
+কারেন্ট কম্পোনেন্টে মিক্সড, অপশন অবজক্টের একটি অ্যারে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -181,17 +181,17 @@ An array of option objects to be mixed into the current component.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The `mixins` option accepts an array of mixin objects. These mixin objects can contain instance options like normal instance objects, and they will be merged against the eventual options using the certain option merging logic. For example, if your mixin contains a `created` hook and the component itself also has one, both functions will be called.
+  `mixins` অপশনটি মিক্সিন অবজেক্টের একটি অ্যারে গ্রহণ করে। এই মিক্সিন অবজেক্টে স্বাভাবিক ইনস্ট্যান্স অবজেক্টের মত ইনস্ট্যান্স অপশন থাকতে পারে এবং নির্দিষ্ট অপশন মার্জিং লজিক ব্যবহার করে এগুলি ইভেনচুয়াল অপশনের সাথে মার্জ করা হবে। উদাহরণস্বরূপ, যদি আপনার মিক্সিনে একটি `create` হুক থাকে এবং কম্পোনেন্টটিতেও একটি থাকে, উভয় ফাংশন কল করা হবে।
 
-  Mixin hooks are called in the order they are provided, and called before the component's own hooks.
+  মিক্সিন হুকগুলিকে যে ক্রমে দেওয়া হয় সেই ক্রমে কল করা হয় এবং কম্পোনেন্টের নিজস্ব হুকের আগে কল করা হয়।
 
-  :::warning No Longer Recommended
-  In Vue 2, mixins were the primary mechanism for creating reusable chunks of component logic. While mixins continue to be supported in Vue 3, [Composable functions using Composition API](/guide/reusability/composables) is now the preferred approach for code reuse between components.
+  :::warning এখন আর রিকোমেন্ডেড নয়
+  Vue 2-এ, কম্পোনেন্ট লজিক, পুনরায় ব্যবহারযোগ্য অংশগুলি তৈরি করার জন্য মিক্সিনগুলি ছিল প্রাথমিক প্রক্রিয়া। Vue 3-তে মিক্সিনগুলিকে সাপোর্ট করা অব্যাহত থাকলেও, [Composable functions using Composition API](/guide/reusability/composables) এখন কম্পোনেন্টগুলির মধ্যে কোড পুনঃব্যবহারের জন্য পছন্দের পদ্ধতি।
   :::
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const mixin = {
@@ -213,9 +213,9 @@ An array of option objects to be mixed into the current component.
 
 ## extends {#extends}
 
-A "base class" component to extend from.
+এক্সটেন্ড ফরম থেকে একটি "base class" কম্পোনেন্ট।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -223,17 +223,17 @@ A "base class" component to extend from.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Allows one component to extend another, inheriting its component options.
+  একটি কম্পোনেন্টকে অন্যটি এক্সটেন্ড করার অনুমতি দেয়, এর কম্পোনেট অপশনগুলিকে ইনহেরিট্যান্স করে৷
 
-  From an implementation perspective, `extends` is almost identical to `mixins`. The component specified by `extends` will be treated as though it were the first mixin.
+  বাস্তবায়নের দৃষ্টিকোণ থেকে, `extends` প্রায় `mixins` এর সাথে অভিন্ন। `extends` দ্বারা নির্দিষ্ট করা কম্পোনেন্টকে প্রথম মিশ্রণ হিসাবে বিবেচনা করা হবে৷
 
-  However, `extends` and `mixins` express different intents. The `mixins` option is primarily used to compose chunks of functionality, whereas `extends` is primarily concerned with inheritance.
+  যাইহোক, `extends` এবং `mixins` ভিন্ন অভিপ্রায় প্রকাশ করে। `mixins` অপশনটি প্রাথমিকভাবে ফাংশনালিটির অংশগুলি কম্পোজ করতে ব্যবহৃত হয়, যেখানে `extends` প্রাথমিকভাবে ইনহেরিট্যান্স এর সাথে সম্পর্কিত।
 
-  As with `mixins`, any options (except for `setup()`) will be merged using the relevant merge strategy.
+  `mixins`-এর মতো, যেকোনো অপশন (`setup()` ছাড়া) প্রাসঙ্গিক মার্জ কৌশল ব্যবহার করে মার্জ করা হবে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   const CompA = { ... }
@@ -244,12 +244,12 @@ A "base class" component to extend from.
   }
   ```
 
-  :::warning Not Recommended for Composition API
-  `extends` is designed for Options API and does not handle the merging of the `setup()` hook.
+  :::warning কম্পোজিশন API এর জন্য রিকোমেন্ডেড নয়
+  `extends` অপশন API-এর জন্য ডিজাইন করা হয়েছে এবং `setup()` হুকের মার্জিং হ্যান্ডল করে না।
 
-  In Composition API, the preferred mental model for logic reuse is "compose" over "inheritance". If you have logic from a component that needs to be reused in another one, consider extracting the relevant logic into a [Composable](/guide/reusability/composables#composables).
+  কম্পোজিশন এপিআই-এ, লজিক রি-ইউজ এর জন্য পছন্দের মেন্টাল মডেল হল "ইনহেরিট্যান্স" এর চেয়ে "কম্পোজ"। আপনার যদি এমন একটি কম্পোনেন্ট থেকে লজিক থাকে যা অন্য একটিতে পুনরায় ব্যবহার করা প্রয়োজন, তাহলে রিলেভ্যান্ট লজিকটিকে একটি [Composable](/guide/reusability/composables#composables) এ বের করার কথা বিবেচনা করুন।
 
-  If you still intend to "extend" a component using Composition API, you can call the base component's `setup()` in the extending component's `setup()`:
+  আপনি যদি এখনও কম্পোজিশন এপিআই ব্যবহার করে একটি কম্পোনেন্টকে "extend" করতে চান, তাহলে আপনি এক্সটেন্ডিং কম্পোনেন্টের `setup()`-এ বেস কম্পোনেন্টের `setup()` কল করতে পারেন:
 
   ```js
   import Base from './Base.js'
