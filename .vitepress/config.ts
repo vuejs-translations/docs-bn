@@ -1,8 +1,8 @@
+import type { Config as ThemeConfig } from '@vue/theme'
+import baseConfig from '@vue/theme/config'
 import fs from 'fs'
 import path from 'path'
 import { defineConfigWithTheme } from 'vitepress'
-import type { Config as ThemeConfig } from '@vue/theme'
-import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
 // import { textAdPlugin } from './textAdMdPlugin'
 
@@ -555,26 +555,26 @@ export const sidebar: ThemeConfig['sidebar'] = {
 // Placeholder of the i18n config for @vuejs-translations.
 const i18n: ThemeConfig['i18n'] = {
   search: 'অনুসন্ধান করুন',
-    menu: 'তালিকা',
-    toc: 'এই পৃষ্ঠায়',
-    returnToTop: 'শুরুতে ফিরে যান',
-    appearance: 'উপস্থিতি',
-    previous: 'আগের পৃষ্ঠা',
-    next: 'পরবর্তী পৃষ্ঠা',
-    pageNotFound: 'পৃষ্ঠা খুঁজে পাওয়া যায়নি',
-    deadLink: {
-      before: 'আপনি একটি লিঙ্ক খুলেছেন যা বিদ্যমান নেই:',
-      after: '',
-    },
-    deadLinkReport: {
-      before: 'অনুগ্রহ,',
-      link: 'আমাদের জানতে দাও',
-      after: 'তাই আমরা এটা ঠিক করতে পারি'
-    },
-    footerLicense: {
-      before: '',
-      after: ''
-    }
+  menu: 'তালিকা',
+  toc: 'এই পৃষ্ঠায়',
+  returnToTop: 'শুরুতে ফিরে যান',
+  appearance: 'উপস্থিতি',
+  previous: 'আগের পৃষ্ঠা',
+  next: 'পরবর্তী পৃষ্ঠা',
+  pageNotFound: 'পৃষ্ঠা খুঁজে পাওয়া যায়নি',
+  deadLink: {
+    before: 'আপনি একটি লিঙ্ক খুলেছেন যা বিদ্যমান নেই:',
+    after: ''
+  },
+  deadLinkReport: {
+    before: 'অনুগ্রহ,',
+    link: 'আমাদের জানতে দাও',
+    after: 'তাই আমরা এটা ঠিক করতে পারি'
+  },
+  footerLicense: {
+    before: '',
+    after: ''
+  }
 }
 
 export default defineConfigWithTheme<ThemeConfig>({
@@ -602,6 +602,22 @@ export default defineConfigWithTheme<ThemeConfig>({
       {
         rel: 'preconnect',
         href: 'https://sponsors.vuejs.org'
+      }
+    ],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    [
+      'link',
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: ''
+      }
+    ],
+    [
+      'link',
+      {
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap',
+        rel: 'stylesheet'
       }
     ],
     [
@@ -663,7 +679,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         isTranslationsDesc: true
       }
     ],
-    
+
     algolia: {
       indexName: 'vuejs',
       appId: 'ML0LEBN7FQ',
@@ -701,7 +717,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   markdown: {
     config(md) {
       md.use(headerPlugin)
-        // .use(textAdPlugin)
+      // .use(textAdPlugin)
     }
   },
 
