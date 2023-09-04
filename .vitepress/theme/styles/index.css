@@ -10,3 +10,8 @@
 .vt-flyout-menu {
   max-height: calc(100vh - var(--vt-nav-height) - var(--vt-banner-height, 0px)) !important;
 }
+
+:root {
+  --vp-font-family-base: 'Noto Sans Bengali';
+  --vp-font-family-mono: sans-serif;
+}

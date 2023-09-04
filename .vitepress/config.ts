@@ -604,6 +604,22 @@ export default defineConfigWithTheme<ThemeConfig>({
         href: 'https://sponsors.vuejs.org'
       }
     ],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    [
+      'link',
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: ''
+      }
+    ],
+    [
+      'link',
+      {
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap',
+        rel: 'stylesheet'
+      }
+    ],
     [
       'script',
       {},
