@@ -166,9 +166,9 @@
 
 ## errorCaptured {#errorcaptured}
 
-Called when an error propagating from a descendant component has been captured.
+একটি ডিসেন্ডেন্ট কম্পোনেন্ট থেকে প্রচারিত একটি এ্যারর ক্যাপচার করা হলে কল করা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -181,23 +181,23 @@ Called when an error propagating from a descendant component has been captured.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Errors can be captured from the following sources:
+  নিম্নলিখিত সোর্স থেকে এ্যাররগুলি ক্যাপচার করা যেতে পারে:
 
-  - Component renders
-  - Event handlers
-  - Lifecycle hooks
-  - `setup()` function
-  - Watchers
-  - Custom directive hooks
-  - Transition hooks
+  - কম্পোনেন্ট রেন্ডারস
+  - ইভেন্ট হ্যান্ডলার
+  - লাইফসাইকেল হুক
+  - `setup()` ফাংশন
+  - ওয়াচার্স
+  - কাস্টম ডিরেক্টিভ হুক
+  - ট্রানজিশন হুক
 
-  The hook receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
+  হুক তিনটি আর্গুমেন্ট রিসিভ করে: এ্যারর, কম্পোনেন্ট ইন্সট্যান্স যা এ্যরর-টিকে  ট্রিগার করে এবং একটি ইনফরমেইশন স্ট্রিং যা এ্যারর উৎসের ধরন নির্দিষ্ট করে।
 
-  You can modify component state in `errorCaptured()` to display an error state to the user. However, it is important that the error state should not render the original content that caused the error; otherwise the component will be thrown into an infinite render loop.
+  ব্যবহারকারীর কাছে একটি এ্যারর স্টেট প্রদর্শন করতে আপনি `errorCaptured()` এ কম্পোনেন্টের স্টেট পরিবর্তন করতে পারেন। যাইহোক, এটি গুরুত্বপূর্ণ যে এ্যাররের অবস্থাটি অরিজিনাল কন্টেন্টকে রেন্ডার করা উচিত নয় যা এ্যারর সৃষ্টি করেছে; অন্যথায় কম্পোনেন্টটি একটি ইনফিনিট রেন্ডার লুপে নিক্ষিপ্ত হবে।
 
-  The hook can return `false` to stop the error from propagating further. See error propagation details below.
+  এ্যাররটিকে আরও প্রচার করা থেকে থামাতে হুকটি `false` রিটার্ন দিতে পারে। নীচে ত্রুটি বিস্তার বিবরণ দেখুন.
 
   **Error Propagation Rules**
 
