@@ -199,7 +199,7 @@
 
   এ্যাররটিকে আরও প্রচার করা থেকে থামাতে হুকটি `false` রিটার্ন দিতে পারে। নীচে ত্রুটি বিস্তার বিবরণ দেখুন.
 
-  **Error Propagation Rules**
+  **এ্যারর প্রচারের নিয়ম**
 
   - ডিফল্টরূপে, সমস্ত এ্যারর এখনও অ্যাপ্লিকেশন-লেভেলে পাঠানো হয় [`app.config.errorHandler`](/api/application#app-config-errorhandler) যদি এটি ডিফাইনড করা হয়, যাতে এই এ্যাররগুলি এখনও একটি বিশ্লেষণে রিপোর্ট করা যায় একটি সিঙ্গেল জায়গায়।
 
@@ -211,11 +211,11 @@
 
 ## renderTracked <sup class="vt-badge dev-only" /> {#rendertracked}
 
-Called when a reactive dependency has been tracked by the component's render effect.
+কম্পোনেন্টের রেন্ডার ইফেক্ট দ্বারা একটি রিয়েক্টিভ ডিপেন্ডেন্সি ট্র্যাক করা হলে কল করা হয়।
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**এই হুকটি শুধুমাত্র ডেভেলপমেন্ট-মোড এবং সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় না।**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -230,15 +230,15 @@ Called when a reactive dependency has been tracked by the component's render eff
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **আরো দেখুন** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## renderTriggered <sup class="vt-badge dev-only" /> {#rendertriggered}
 
-Called when a reactive dependency triggers the component's render effect to be re-run.
+যখন একটি রিয়েক্টিভ ডিপেন্ডেন্সি কম্পোনেন্টের রেন্ডার ইফেক্টেকে পুনরায় চালানোর জন্য ট্রিগার করে তখন কল করা হয়।
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**এই হুকটি শুধুমাত্র ডেভেলপমেন্ট-মোড এবং সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় না।**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -256,15 +256,15 @@ Called when a reactive dependency triggers the component's render effect to be r
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **আরো দেখুন** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## activated {#activated}
 
-Called after the component instance is inserted into the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+[`<KeepAlive>`](/api/built-in-components#keepalive) দ্বারা ক্যাশে করা একটি ট্রি-এর অংশ হিসাবে DOM-এ কম্পোনেন্ট ইনস্ট্যান্স ইনসার্টের পরে কল করা হয়।
 
-**This hook is not called during server-side rendering.**
+**এই হুকটি সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় না।**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -272,15 +272,15 @@ Called after the component instance is inserted into the DOM as part of a tree c
   }
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **আরো দেখুন** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## deactivated {#deactivated}
 
-Called after the component instance is removed from the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+[`<KeepAlive>`](/api/built-in-components#keepalive) দ্বারা ক্যাশে করা একটি ট্রি-এর অংশ হিসাবে DOM থেকে কম্পোনেন্ট ইন্সট্যান্স রিমুভ করার পরে কল করা হয়।
 
-**This hook is not called during server-side rendering.**
+**এই হুকটি সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় না।**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -288,13 +288,13 @@ Called after the component instance is removed from the DOM as part of a tree ca
   }
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **আরো দেখুন** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## serverPrefetch <sup class="vt-badge" data-text="SSR only" /> {#serverprefetch}
 
-Async function to be resolved before the component instance is to be rendered on the server.
+কম্পোনেন্ট ইনস্ট্যান্স সার্ভারে রেন্ডার করার আগে অ্যাসিঙ্ক ফাংশন সমাধান করা হবে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -302,13 +302,13 @@ Async function to be resolved before the component instance is to be rendered on
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  If the hook returns a Promise, the server renderer will wait until the Promise is resolved before rendering the component.
+  যদি হুকটি একটি প্রমিজ রিটার্ন করে, সার্ভার রেন্ডারার কম্পোনেন্ট রেন্ডার করার আগে প্রমিজটি সমাধান না হওয়া পর্যন্ত অপেক্ষা করবে।
 
-  This hook is only called during server-side rendering can be used to perform server-only data fetching.
+  এই হুকটি শুধুমাত্র সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় সার্ভার-শুধু ডেটা আনার জন্য ব্যবহার করা যেতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -333,4 +333,4 @@ Async function to be resolved before the component instance is to be rendered on
   }
   ```
 
-- **See also** [Server-Side Rendering](/guide/scaling-up/ssr)
+- **আরো দেখুন** [Server-Side Rendering](/guide/scaling-up/ssr)
