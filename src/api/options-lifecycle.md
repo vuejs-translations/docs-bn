@@ -201,13 +201,13 @@
 
   **Error Propagation Rules**
 
-  - By default, all errors are still sent to the application-level [`app.config.errorHandler`](/api/application#app-config-errorhandler) if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - ডিফল্টরূপে, সমস্ত এ্যারর এখনও অ্যাপ্লিকেশন-লেভেলে পাঠানো হয় [`app.config.errorHandler`](/api/application#app-config-errorhandler) যদি এটি ডিফাইনড করা হয়, যাতে এই এ্যাররগুলি এখনও একটি বিশ্লেষণে রিপোর্ট করা যায় একটি সিঙ্গেল জায়গায়।
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error, in the order of bottom to top. This is similar to the bubbling mechanism of native DOM events.
+  - একটি কম্পোনেন্টের ইনহেরিট্যান্স চেইন বা প্যারেন্ট চেইনে একাধিক `errorCaptured` হুক বিদ্যমান থাকলে, নিচে থেকে উপরের ক্রমানুসারে তাদের সকলকে একই এ্যাররের জন্য আহ্বান করা হবে। এটি নেটিভ DOM ইভেন্টগুলির বাবলিং করার পদ্ধতির অনুরূপ।
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to `app.config.errorHandler`.
+  - যদি `errorCaptured` হুক নিজেই একটি এ্যারর ছুড়ে দেয়, তাহলে এই এ্যারর এবং মূল ক্যাপচার করা এ্যারর উভয়ই `app.config.errorHandler`-এ পাঠানো হবে।
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or `app.config.errorHandler` from being invoked for this error.
+  - একটি `errorCaptured` হুক `false` রিটার্ন দিতে পারে যাতে ত্রুটিটিকে আরও প্রচার করা থেকে রোধ করা যায়। এটি মূলত বলছে "এই এ্যাররটি হ্যান্ডল করা হয়েছে এবং ইগনোর করা উচিত।" এটি কোনো অতিরিক্ত `errorCaptured` হুক বা `app.config.errorHandler`কে এই এ্যররের জন্য আহ্বান করা থেকে বাধা দেবে।
 
 ## renderTracked <sup class="vt-badge dev-only" /> {#rendertracked}
 
