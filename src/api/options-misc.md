@@ -126,9 +126,9 @@
 
 ## components {#components}
 
-An object that registers components to be made available to the component instance.
+একটি অবজেক্ট যা কম্পোনেন্ট ইনস্ট্যান্সে অ্যাভইলএবল করার জন্য কম্পোনেন্ট রেজিস্ট্রার করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -136,7 +136,7 @@ An object that registers components to be made available to the component instan
   }
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import Foo from './Foo.vue'
@@ -152,13 +152,13 @@ An object that registers components to be made available to the component instan
   }
   ```
 
-- **See also** [Component Registration](/guide/components/registration)
+- **আরো দেখুন** [Component Registration](/guide/components/registration)
 
 ## directives {#directives}
 
-An object that registers directives to be made available to the component instance.
+একটি অবজেক্ট যা কম্পোনেন্ট ইনস্ট্যান্সের জন্য অ্যাভইলএবল করার নির্দেশাবলী রেজিস্ট্রার করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -166,7 +166,7 @@ An object that registers directives to be made available to the component instan
   }
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -185,6 +185,6 @@ An object that registers directives to be made available to the component instan
   <input v-focus>
   ```
 
-  A hash of directives to be made available to the component instance.
+  ডিরেক্টিভগুলো একটি হ্যাশ কম্পোনেন্টের উদাহরণ অ্যাভইলএবল করা হবে.
 
-- **See also** [Custom Directives](/guide/reusability/custom-directives)
+- **আরো দেখুন** [Custom Directives](/guide/reusability/custom-directives)
