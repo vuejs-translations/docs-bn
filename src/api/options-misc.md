@@ -34,9 +34,9 @@
 
 ## inheritAttrs {#inheritattrs}
 
-Controls whether the default component attribute fallthrough behavior should be enabled.
+ডিফল্ট কম্পোনেন্ট অ্যাট্রিবিউট ব্যর্থ বেহিভিয়ার এনাবল করা উচিত কিনা তা নিয়ন্ত্রণ করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -44,11 +44,11 @@ Controls whether the default component attribute fallthrough behavior should be 
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough". This means that when we have a single-root component, these bindings will be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property and can be explicitly bound to a non-root element using `v-bind`.
+  ডিফল্টরূপে, প্যারেন্ট স্কোপ অ্যাট্রিবিউট বাইন্ডিং যা প্রপস হিসাবে স্বীকৃত নয় "fallthrough" হবে। এর মানে হল যে যখন আমাদের একটি একক-মূল কম্পোনেন্ট থাকে, তখন এই বাইন্ডিংগুলি সাধারণ HTML বৈশিষ্ট্য হিসাবে চাইল্ড কম্পোনেন্টের রুট এলিমেন্টে প্রয়োগ করা হবে। একটি টার্গেট ইলিমেন্ট বা অন্য কম্পোনেন্ট  মোড়ানো একটি ইলিমেন্ট রচনা করার সময়, এটি সবসময় পছন্দসই আচরণ নাও হতে পারে। `false` তে `inheritAttrs` সেট করে, এই ডিফল্ট আচরণটি নিষ্ক্রিয় করা যেতে পারে। অ্যাট্রিবিউটগুলি `$attrs` ইনস্ট্যান্স প্রপার্টির মাধ্যমে পাওয়া যায় এবং `v-bind` ব্যবহার করে একটি নন-রুট এলিমেন্টের সাথে স্পষ্টভাবে আবদ্ধ হতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   <div class="options-api">
 
@@ -76,7 +76,7 @@ Controls whether the default component attribute fallthrough behavior should be 
   </div>
   <div class="composition-api">
 
-  When declaring this option in a component that uses `<script setup>`, you can use the [`defineOptions`](/api/sfc-script-setup#defineoptions) macro:
+  `<script setup>` ব্যবহার করে এমন একটি কম্পোনেন্টে এই অপশনটি ঘোষণা করার সময়, আপনি [`defineOptions`](/api/sfc-script-setup#defineoptions) ম্যাক্রো ব্যবহার করতে পারেন:
 
   ```vue
   <script setup>
@@ -99,7 +99,7 @@ Controls whether the default component attribute fallthrough behavior should be 
   </template>
   ```
 
-  Since 3.3 you can also use `defineOptions` directly in `<script setup>`:
+  3.3 থেকে আপনি সরাসরি `<script setup>`-এ `defineOptions` ব্যবহার করতে পারেন:
 
   ```vue
   <script setup>
@@ -122,7 +122,7 @@ Controls whether the default component attribute fallthrough behavior should be 
 
   </div>
 
-- **See also** [Fallthrough Attributes](/guide/components/attrs)
+- **আরো দেখুন** [Fallthrough Attributes](/guide/components/attrs)
 
 ## components {#components}
 
