@@ -2,9 +2,9 @@
 
 ## template {#template}
 
-A string template for the component.
+কম্পোনেন্টের জন্য একটি স্ট্রিং টেমপ্লেট.
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -12,18 +12,18 @@ A string template for the component.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  A template provided via the `template` option will be compiled on-the-fly at runtime. It is only supported when using a build of Vue that includes the template compiler. The template compiler is **NOT** included in Vue builds that have the word `runtime` in their names, e.g. `vue.runtime.esm-bundler.js`. Consult the [dist file guide](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) for more details about the different builds.
+  `template` অপশনের মাধ্যমে প্রদত্ত একটি টেমপ্লেট রানটাইমে সাথে সাথে  কম্পাইল করা হবে। টেমপ্লেট কম্পাইলার অন্তর্ভুক্ত Vue-এর একটি বিল্ড ব্যবহার করার সময় এটি শুধুমাত্র সমর্থিত। টেমপ্লেট কম্পাইলার **NOT** Vue বিল্ডে অন্তর্ভুক্ত যেগুলির নামে `runtime` শব্দ আছে, যেমন `vue.runtime.esm-bundler.js`। বিভিন্ন বিল্ড সম্পর্কে আরও বিস্তারিত জানার জন্য [dist file guide](https://github.com/vuejs/core/tree/main/packages/vue#which-dist-file-to-use) দেখুন।
 
-  If the string starts with `#` it will be used as a `querySelector` and use the selected element's `innerHTML` as the template string. This allows the source template to be authored using native `<template>` elements.
+  যদি স্ট্রিংটি `#` দিয়ে শুরু হয় তবে এটি একটি `querySelector` হিসেবে ব্যবহার করা হবে এবং সিলেক্টেড ইলিমেন্টের `innerHTML` টেমপ্লেট স্ট্রিং হিসেবে ব্যবহার করা হবে। এটি সোর্স টেমপ্লেটটিকে নেটিভ `<template>` ইলিমেন্ট ব্যবহার করে লেখার অনুমতি দেয়।
 
-  If the `render` option is also present in the same component, `template` will be ignored.
+  যদি একই কম্পোনেন্টে `render` অপশনটিও উপস্থিত থাকে, তাহলে `template` ইগনোর করা হবে।
 
-  If the root component of your application doesn't have a `template` or `render` option specified, Vue will try to use the `innerHTML` of the mounted element as the template instead.
+  আপনার অ্যাপ্লিকেশনের রুট কম্পোনেন্টে একটি `template` বা `render` অপশন নির্দিষ্ট না থাকলে, Vue পরিবর্তে টেমপ্লেট হিসেবে মাউন্ট করা কম্পোনেন্টের `innerHTML` ব্যবহার করার চেষ্টা করবে।
 
-  :::warning Security Note
-  Only use template sources that you can trust. Do not use user-provided content as your template. See [Security Guide](/guide/best-practices/security#rule-no-1-never-use-non-trusted-templates) for more details.
+  :::warning সিকিউরিটি নোট
+  শুধুমাত্র টেমপ্লেট সোর্স ব্যবহার করুন যা আপনি বিশ্বাস করতে পারেন। আপনার টেমপ্লেট হিসাবে ব্যবহারকারী-প্রদত্ত কন্টেন্ট ব্যবহার করবেন না। আরও বিস্তারিত জানার জন্য [Security Guide](/guide/best-practices/security#rule-no-1-never-use-non-trusted-templates) দেখুন।
   :::
 
 ## render {#render}
