@@ -28,9 +28,9 @@
 
 ## render {#render}
 
-A function that programmatically returns the virtual DOM tree of the component.
+একটি ফাংশন যা প্রোগ্রাম্যাটিকভাবে কম্পোনেন্টের ভার্চুয়াল DOM ট্রি রিটার্ন করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -51,21 +51,21 @@ A function that programmatically returns the virtual DOM tree of the component.
   type VNodeArrayChildren = (VNodeArrayChildren | VNodeChildAtom)[]
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  `render` is an alternative to string templates that allows you to leverage the full programmatic power of JavaScript to declare the render output of the component.
+  `render` হল স্ট্রিং টেমপ্লেটগুলির একটি বিকল্প যা আপনাকে কম্পোনেন্টের রেন্ডার আউটপুট ডিকলার করতে জাভাস্ক্রিপ্টের সম্পূর্ণ প্রোগ্রাম্যাটিক শক্তির সুবিধা নিতে দেয়।
 
-  Pre-compiled templates, for example those in Single-File Components, are compiled into the `render` option at build time. If both `render` and `template` are present in a component, `render` will take higher priority.
+  প্রি-কম্পাইল করা টেমপ্লেট, যেমন সিঙ্গেল-ফাইল কম্পোনেন্টে, বিল্ড টাইমে `render` অপশনে কম্পাইল করা হয়। যদি একটি কম্পোনেন্টে `render` এবং `template` উভয়ই উপস্থিত থাকে, তাহলে `render` অধিক অগ্রাধিকার নেবে।
 
-- **See also**
+- **আরো দেখুন**
   - [Rendering Mechanism](/guide/extras/rendering-mechanism)
   - [Render Functions](/guide/extras/render-function)
 
 ## compilerOptions {#compileroptions}
 
-Configure runtime compiler options for the component's template.
+কম্পোনেন্টের টেমপ্লেটের জন্য রানটাইম কম্পাইলার অপশন কনফিগার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -78,19 +78,19 @@ Configure runtime compiler options for the component's template.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  This config option is only respected when using the full build (i.e. the standalone `vue.js` that can compile templates in the browser). It supports the same options as the app-level [app.config.compilerOptions](/api/application#app-config-compileroptions), and has higher priority for the current component.
+  এই কনফিগার অপশনটি শুধুমাত্র সম্পূর্ণ বিল্ড ব্যবহার করার সময় রেসপেক্টেড করা হয় (অর্থাৎ স্বতন্ত্র `vue.js` যা ব্রাউজারে টেমপ্লেট কম্পাইল করতে পারে)। এটি অ্যাপ-লেভেল [app.config.compilerOptions](/api/application#app-config-compileroptions) এর মতো একই অপশনগুলিকে সমর্থন করে এবং বর্তমান কম্পোনেন্টের জন্য অধিক অগ্রাধিকার রয়েছে৷
 
-- **See also** [app.config.compilerOptions](/api/application#app-config-compileroptions)
+- **আরো দেখুন** [app.config.compilerOptions](/api/application#app-config-compileroptions)
 
 ## slots<sup class="vt-badge ts"/> {#slots}
 
-An option to assist with type inference when using slots programmatically in render functions. Only supported in 3.3+.
+রেন্ডার ফাংশনে প্রোগ্রাম্যাটিকভাবে স্লট ব্যবহার করার সময় টাইপ ইনফারেন্সে সহায়তা করার একটি অপশন। শুধুমাত্র 3.3+ এ সমর্থিত।
 
-- **Details**
+- **বিস্তারিত**
 
-  This option's runtime value is not used. The actual types should be declared via type casting using the `SlotsType` type helper:
+  এই অপশনের রানটাইম ভ্যালু ব্যবহার করা হয় না। প্রকৃত টাইপগুলি `SlotsType` টাইপ হেল্পার ব্যবহার করে টাইপ কাস্টিংয়ের মাধ্যমে ডিকলার করা উচিত:
 
   ```ts
   import { SlotsType } from 'vue'
