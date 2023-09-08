@@ -2,9 +2,9 @@
 
 ## name {#name}
 
-Explicitly declare a display name for the component.
+স্পষ্টভাবে কম্পোনেন্টের জন্য একটি ডিসপ্লে নাম ডিক্লেয়ার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -12,24 +12,24 @@ Explicitly declare a display name for the component.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The name of a component is used for the following:
+  একটি কম্পোনেন্টের নাম নিম্নলিখিত জন্য ব্যবহৃত হয়:
 
-  - Recursive self-reference in the component's own template
-  - Display in Vue DevTools' component inspection tree
-  - Display in warning component traces
+  - কম্পোনেন্টের নিজস্ব টেমপ্লেটে পুনরাবৃত্ত সেলফ-রেফারেন্স
+  - Vue DevTools এর উপাদান ইনসেপশন ট্রি ডিসপ্লেই করুন
+  - ওয়ার্নিং  কম্পোনেন্ট ট্রেস প্রদর্শন ডিসপ্লেই করুন
 
-  When you use Single-File Components, the component already infers its own name from the filename. For example, a file named `MyComponent.vue` will have the inferred display name "MyComponent".
+  আপনি যখন সিঙ্গেল-ফাইল কম্পোনেন্ট ব্যবহার করেন, তখন কম্পোনেন্টটি ইতিমধ্যেই ফাইলের নাম থেকে তার নিজস্ব নাম অনুমান করে। উদাহরণ স্বরূপ, `MyComponent.vue` নামের একটি ফাইলে অনুমানকৃত ডিসপ্লে নাম "MyComponent" থাকবে।
 
-  Another case is that when a component is registered globally with [`app.component`](/api/application#app-component), the global ID is automatically set as its name.
+  আরেকটি ক্ষেত্রে হল যে যখন একটি কম্পোনেন্ট গ্লোবালি [`app.component`](/api/application#app-component) এর সাথে রেজিস্ট্রাড হয়, তখন গ্লোবাল আইডি স্বয়ংক্রিয়ভাবে তার নাম হিসাবে সেট হয়ে যায়।
 
-  The `name` option allows you to override the inferred name, or to explicitly provide a name when no name can be inferred (e.g. when not using build tools, or an inlined non-SFC component).
+  `name` অপশনটি আপনাকে অনুমানকৃত নামটিকে ওভাররাইড করতে বা কোনো নাম অনুমান করা না গেলে স্পষ্টভাবে একটি নাম প্রদান করতে দেয় (যেমন যখন বিল্ড টুল ব্যবহার করা হয় না, বা একটি ইনলাইনড নন-এসএফসি কম্পোনেন্ট)।
 
-  There is one case where `name` is explicitly necessary: when matching against cacheable components in [`<KeepAlive>`](/guide/built-ins/keep-alive) via its `include / exclude` props.
+  একটি কেস আছে যেখানে `name` স্পষ্টভাবে প্রয়োজনীয়: যখন ক্যাশেযোগ্য কম্পোনেন্টগুলির সাথে মিলিত হয় [`<KeepAlive>`](/guide/built-ins/keep-alive) এর `include/exclude` প্রপসের মাধ্যমে।
 
   :::tip
-  Since version 3.2.34, a single-file component using `<script setup>` will automatically infer its `name` option based on the filename, removing the need to manually declare the name even when used with `<KeepAlive>`.
+  ভার্সন 3.2.34 থেকে, `<script setup>` ব্যবহার করে একটি সিঙ্গেল-ফাইল কম্পোনেন্ট স্বয়ংক্রিয়ভাবে ফাইলের নামের উপর ভিত্তি করে তার `name` অপশনটি অনুমান করবে, এমনকি `<KeepAlive>` ব্যবহার করলেও নামটি ম্যানুয়ালি ঘোষণা করার প্রয়োজনীয়তা দূর করে।
   :::
 
 ## inheritAttrs {#inheritattrs}
