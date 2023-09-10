@@ -2,9 +2,9 @@
 
 ## h() {#h}
 
-Creates virtual DOM nodes (vnodes).
+ভার্চুয়াল DOM নোড (vnodes) তৈরি করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   // full signature
@@ -24,19 +24,19 @@ Creates virtual DOM nodes (vnodes).
   type Slots = { [name: string]: Slot }
   ```
 
-  > Types are simplified for readability.
+  > টাইপগুলি রিডিবিলিটির জন্য সরলীকৃত।
 
-- **Details**
+- **বিস্তারিত**
 
-  The first argument can either be a string (for native elements) or a Vue component definition. The second argument is the props to be passed, and the third argument is the children.
+  প্রথম আরগুমেন্টটি হয় একটি স্ট্রিং (নেটিভ ইলিমেন্টগুলির জন্য) বা একটি Vue কম্পোনেন্ট ডেফিনেইশন হতে পারে। দ্বিতীয় আরগুমেন্টটি হল প্রপস পাস করা, এবং তৃতীয় আর্গুমেন্ট হল চিল্ডেন।
 
-  When creating a component vnode, the children must be passed as slot functions. A single slot function can be passed if the component expects only the default slot. Otherwise, the slots must be passed as an object of slot functions.
+  একটি কম্পোনেন্ট vnode তৈরি করার সময়, চিল্ডেনকে স্লট ফাংশন হিসাবে পাস করা আবশ্যক. একটি সিঙ্গেল স্লট ফাংশন পাস করা যেতে পারে যদি কম্পোনেন্টটি শুধুমাত্র ডিফল্ট স্লট এক্সপেক্ট করে। অন্যথায়, স্লটগুলিকে স্লট ফাংশনগুলির একটি অবজেক্ট হিসাবে পাস করতে হবে।
 
-  For convenience, the props argument can be omitted when the children is not a slots object.
+  সুবিধার জন্য, প্রপস আর্গুমেন্ট বাদ দেওয়া যেতে পারে যখন চিল্ডেন স্লট অবজেক্ট না হয়।
 
-- **Example**
+- **উদাহরন**
 
-  Creating native elements:
+  নেটিভ ইলিমেন্টস তৈরি করা:
 
   ```js
   import { h } from 'vue'
@@ -67,7 +67,7 @@ Creates virtual DOM nodes (vnodes).
   h('div', ['hello', h('span', 'hello')])
   ```
 
-  Creating components:
+  কম্পোনেন্টস তৈরি করা:
 
   ```js
   import Foo from './Foo.vue'
@@ -93,29 +93,29 @@ Creates virtual DOM nodes (vnodes).
   })
   ```
 
-- **See also** [Guide - Render Functions - Creating VNodes](/guide/extras/render-function#creating-vnodes)
+- **আরো দেখুন** [Guide - Render Functions - Creating VNodes](/guide/extras/render-function#creating-vnodes)
 
 ## mergeProps() {#mergeprops}
 
-Merge multiple props objects with special handling for certain props.
+নির্দিষ্ট প্রপসের জন্য বিশেষ হ্যান্ডলিং সহ একাধিক প্রপস অবজেক্ট মার্জ করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function mergeProps(...args: object[]): object
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  `mergeProps()` supports merging multiple props objects with special handling for the following props:
+  `mergeProps()` নিম্নলিখিত প্রপসের জন্য বিশেষ হ্যান্ডলিং সহ একাধিক প্রপস অবজেক্ট মার্জিং সাপোর্ট করে:
 
   - `class`
   - `style`
-  - `onXxx` event listeners - multiple listeners with the same name will be merged into an array.
+  - `onXxx` ইভেন্ট লিসেনার - একই নামের একাধিক লিসেনার একটি অ্যারেতে মার্জ হবে।
 
-  If you do not need the merge behavior and want simple overwrites, native object spread can be used instead.
+  আপনার যদি মার্জ বিহ্যেভিয়ার প্রয়োজন না হয় এবং সিম্পল ওভাররাইট চান, তাহলে এর পরিবর্তে নেটিভ অবজেক্ট স্প্রেড ব্যবহার করা যেতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import { mergeProps } from 'vue'
@@ -141,23 +141,23 @@ Merge multiple props objects with special handling for certain props.
 
 ## cloneVNode() {#clonevnode}
 
-Clones a vnode.
+ একটি vnode তৈরি করা।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function cloneVNode(vnode: VNode, extraProps?: object): VNode
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Returns a cloned vnode, optionally with extra props to merge with the original.
+  একটি ক্লোন করা Vnode রিটার্ন দেয়, অপশনালি অরিজিনালটির সাথে মার্জ করার জন্য এক্সট্রা প্রপস সহ।
 
-  Vnodes should be considered immutable once created, and you should not mutate the props of an existing vnode. Instead, clone it with different / extra props.
+  একবার তৈরি হয়ে গেলে Vnode-গুলিকে অপরিবর্তনীয় হিসাবে বিবেচনা করা উচিত এবং আপনার বিদ্যমান vnode-এর প্রপসগুলিকে পরিবর্তন করা উচিত নয়। পরিবর্তে, এটি বিভিন্ন / অতিরিক্ত প্রপস দিয়ে ক্লোন করুন।
 
-  Vnodes have special internal properties, so cloning them is not as simple as an object spread. `cloneVNode()` handles most of the internal logic.
+  vnode-এর বিশেষ ইন্টারন্যাল প্রোপার্টিস রয়েছে, তাই তাদের ক্লোন করা একটি অবজেক্টের স্পেডের মতো সিম্পল নয়। `cloneVNode()` বেশিরভাগ ইন্টারন্যাল লজিক পরিচালনা করে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import { h, cloneVNode } from 'vue'
