@@ -168,9 +168,9 @@
 
 ## isVNode() {#isvnode}
 
-Checks if a value is a vnode.
+একটি ভ্যালু vnode কিনা পরীক্ষা করে.
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function isVNode(value: unknown): boolean
@@ -178,23 +178,23 @@ Checks if a value is a vnode.
 
 ## resolveComponent() {#resolvecomponent}
 
-For manually resolving a registered component by name.
+নেইম অনুসারে একটি রেজিস্ট্রাড কম্পোনেন্ট ম্যানুয়ালি সমাধানের জন্য।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function resolveComponent(name: string): Component | string
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  **Note: you do not need this if you can import the component directly.**
+  **Note: আপনি যদি সরাসরি কম্পোনেন্ট ইম্পোর্ট করতে পারেন তবে আপনার এটির প্রয়োজন নেই।**
 
-  `resolveComponent()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  `resolveComponent()` কে অবশ্যই <span class="composition-api"> হয় `setup()` অথবা </span> রেন্ডার ফাংশনের ভিতরে কল করতে হবে, যাতে কারেক্ট কম্পোনেন্টের কন্টেক্স থেকে সমাধান করা যায়।
 
-  If the component is not found, a runtime warning will be emitted, and the name string is returned.
+  যদি কম্পোনেন্টটি পাওয়া না যায়, একটি রানটাইম সতর্কতা নির্গত হবে এবং নেইম স্ট্রিংটি রিটার্ন দেওয়া হবে।
 
-- **Example**
+- **উদাহরন**
 
   <div class="composition-api">
 
@@ -228,27 +228,27 @@ For manually resolving a registered component by name.
 
   </div>
 
-- **See also** [Guide - Render Functions - Components](/guide/extras/render-function#components)
+- **আরো দেখুন** [Guide - Render Functions - Components](/guide/extras/render-function#components)
 
 ## resolveDirective() {#resolvedirective}
 
-For manually resolving a registered directive by name.
+নেইম দ্বারা একটি রেজিস্ট্রাড ডিরেক্টিভ ম্যানুয়ালি সমাধানের জন্য।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function resolveDirective(name: string): Directive | undefined
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  **Note: you do not need this if you can import the directive directly.**
+  **Note: আপনি যদি সরাসরি কম্পোনেন্ট ইম্পোর্ট করতে পারেন তবে আপনার এটির প্রয়োজন নেই।**
 
-  `resolveDirective()` must be called inside<span class="composition-api"> either `setup()` or</span> the render function in order to resolve from the correct component context.
+  কারেক্ট কম্পোনেন্ট কনটেক্স থেকে সমাধান করার জন্য `resolveDirective()` কে অবশ্যই <span class="composition-api"> হয় `setup()` অথবা </span> রেন্ডার ফাংশনের ভিতরে কল করতে হবে।
 
-  If the directive is not found, a runtime warning will be emitted, and the function returns `undefined`.
+  যদি ডিরেক্টিভটি না পাওয়া যায়, একটি রানটাইম সতর্কতা নির্গত হবে, এবং ফাংশনটি `undefined` প্রদান করে।
 
-- **See also** [Guide - Render Functions - Custom Directives](/guide/extras/render-function#custom-directives)
+- **আরো দেখুন** [Guide - Render Functions - Custom Directives](/guide/extras/render-function#custom-directives)
 
 ## withDirectives() {#withdirectives}
 
