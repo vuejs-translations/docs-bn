@@ -1,14 +1,14 @@
 # Options: Lifecycle {#options-lifecycle}
 
-:::info See also
-For shared usage of lifecycle hooks, see [Guide - Lifecycle Hooks](/guide/essentials/lifecycle)
+:::info আরো দেখুন
+লাইফসাইকেল হুকগুলির শেয়ারড ব্যবহারের জন্য, [Guide - Lifecycle Hooks](/guide/essentials/lifecycle)
 :::
 
 ## beforeCreate {#beforecreate}
 
-Called when the instance is initialized.
+ইনস্ট্যান্স ইনিশিয়ালাইজড হলে কল করা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -16,17 +16,17 @@ Called when the instance is initialized.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Called immediately when the instance is initialized, after props resolution, before processing other options such as `data()` or `computed`.
+  `data()` বা `computed`-এর মতো অন্যান্য অপশনগুলি প্রসেস করার আগে, প্রপস রেজোলিউশনের পরে, ইনস্ট্যান্স ইনিশিয়ালাইজড হলে অবিলম্বে কল করা হয়।
 
-  Note that the `setup()` hook of Composition API is called before any Options API hooks, even `beforeCreate()`.
+  লক্ষ্য রাখবেন যে কম্পোজিশন API-এর `setup()` হুক কোনো অপশন API হুকের আগে কল করা হয়, এমনকি `beforeCreate()`।
 
 ## created {#created}
 
-Called after the instance has finished processing all state-related options.
+সকল স্টেট-সম্পর্কিত অপশনগুলি  কল করা হয় ইন্সট্যান্সটি প্রসেসিং শেষ করার পরে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -34,15 +34,15 @@ Called after the instance has finished processing all state-related options.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  When this hook is called, the following have been set up: reactive data, computed properties, methods, and watchers. However, the mounting phase has not been started, and the `$el` property will not be available yet.
+  যখন এই হুকটি কল করা হয়, তখন নিম্নলিখিতগুলি সেট আপ করা হয়েছে: রিয়েক্টিভ ডেটা, কম্পিউটেড প্রোপার্টিস, মেথডস এবং ওয়াচার্স। যাইহোক, মাউন্টিং পর্ব শুরু করা হয়নি, এবং `$el` প্রোপার্টি এখনও এভেইলঅ্যাবল হবে না।
 
 ## beforeMount {#beforemount}
 
-Called right before the component is to be mounted.
+কম্পোনেন্ট মাউন্ট করার ঠিক আগে কল করা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -50,17 +50,17 @@ Called right before the component is to be mounted.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  When this hook is called, the component has finished setting up its reactive state, but no DOM nodes have been created yet. It is about to execute its DOM render effect for the first time.
+  যখন এই হুকটি কল করা হয়, কম্পোনেন্টটি তার রিয়েক্টিভ স্টেট সেট আপ করা শেষ করেছে, কিন্তু এখনও কোন DOM নোড তৈরি করা হয়নি। এটি প্রথমবারের মতো এর DOM রেন্ডার ইফেক্ট এক্সিকিউট করতে চলেছে৷
 
-  **This hook is not called during server-side rendering.**
+  **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি কল করা হয় না।**
 
 ## mounted {#mounted}
 
-Called after the component has been mounted.
+কল করার পরে কম্পোনেন্ট মাউন্ট করা হয়েছে.
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -68,23 +68,23 @@ Called after the component has been mounted.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  A component is considered mounted after:
+  একটি কম্পোনেন্ট  বিবেচনা করা হয় মাউন্টেড এর পরে:
 
-  - All of its synchronous child components have been mounted (does not include async components or components inside `<Suspense>` trees).
+  - এর সকল সিঙ্ক্রোনাস চাইল্ড কম্পোনেন্ট মাউন্ট করা হয়েছে (`<Suspense>` ট্রি এর  ভিতরে অ্যাসিঙ্ক কম্পোনেন্ট বা কম্পোনেন্ট অন্তর্ভুক্ত নয়)।
 
-  - Its own DOM tree has been created and inserted into the parent container. Note it only guarantees that the component's DOM tree is in-document if the application's root container is also in-document.
+  - এর নিজস্ব DOM ট্রি তৈরি করে প্যারেন্ট কন্টেইনারে ইনসার্ট করা হয়েছে। খেয়াল রাখবেন এটি শুধুমাত্র নিশ্চিত করে যে কম্পোনেন্টের DOM ট্রি ইন-ডকুমেন্ট আছে কিনা যদি অ্যাপ্লিকেশনের রুট কন্টেনারটিও ইন-ডকুমেন্ট হয়।
 
-  This hook is typically used for performing side effects that need access to the component's rendered DOM, or for limiting DOM-related code to the client in a [server-rendered application](/guide/scaling-up/ssr).
+  এই হুকটি সাধারণত সাইড ইফেক্ট সম্পাদনের জন্য ব্যবহৃত হয় যার জন্য কম্পোনেন্টের রেন্ডার করা DOM-এ অ্যাক্সেস প্রয়োজন, অথবা  [server-rendered application](/guide/scaling-up/ssr) এ ক্লায়েন্টের কাছে DOM-সম্পর্কিত কোড লিমিট করার জন্য।
 
-  **This hook is not called during server-side rendering.**
+  **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি কল করা হয় না।**
 
 ## beforeUpdate {#beforeupdate}
 
-Called right before the component is about to update its DOM tree due to a reactive state change.
+একটি রিয়েক্টিভ স্টেট পরিবর্তনের কারণে কম্পোনেন্টটি তার DOM ট্রি আপডেট করার  ঠিক আগে কল করা হয়েছে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -92,17 +92,17 @@ Called right before the component is about to update its DOM tree due to a react
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  This hook can be used to access the DOM state before Vue updates the DOM. It is also safe to modify component state inside this hook.
+  Vue DOM আপডেট করার আগে এই হুকটি DOM স্টেট অ্যাক্সেস করতে ব্যবহার করা যেতে পারে। এই হুকের ভিতরে কম্পোনেন্ট স্টেট পরিবর্তন করাও সেইফ।
 
-  **This hook is not called during server-side rendering.**
+  **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি কল করা হয় না।**
 
 ## updated {#updated}
 
-Called after the component has updated its DOM tree due to a reactive state change.
+একটি রিয়েক্টিভ স্টেট পরিবর্তনের কারণে কম্পোনেন্টটি তার DOM ট্রি আপডেট করার পরে কল করা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -110,23 +110,23 @@ Called after the component has updated its DOM tree due to a reactive state chan
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  A parent component's updated hook is called after that of its child components.
+  একটি প্যারেন্ট কম্পোনেন্টের আপডেটেড হুককে এর চাইল্ড কম্পোনেন্টের পরে কল করা হয়।
 
-  This hook is called after any DOM update of the component, which can be caused by different state changes. If you need to access the updated DOM after a specific state change, use [nextTick()](/api/general#nexttick) instead.
+  এই হুকটিকে কম্পোনেন্টের যেকোনো DOM আপডেটের পর কল করা হয়, যা বিভিন্ন স্টেটের পরিবর্তনের কারণে হতে পারে। আপনি যদি একটি নির্দিষ্ট স্টেটের পরিবর্তনের পরে আপডেট হওয়া DOM অ্যাক্সেস করতে চান তবে পরিবর্তে [nextTick()](/api/general#nexttick) ব্যবহার করুন।
 
-  **This hook is not called during server-side rendering.**
+  **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি কল করা হয় না।**
 
   :::warning
-  Do not mutate component state in the updated hook - this will likely lead to an infinite update loop!
+  আপডেট করা হুকে কম্পোনেন্টের স্টেটের পরিবর্তন করবেন না - এটি সম্ভবত একটি ইনফিনিট আপডেট লুপের দিকে নিয়ে যাবে!
   :::
 
 ## beforeUnmount {#beforeunmount}
 
-Called right before a component instance is to be unmounted.
+একটি কম্পোনেন্ট ইনস্ট্যান্স আনমাউন্ট করার ঠিক আগে কল করা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -134,17 +134,17 @@ Called right before a component instance is to be unmounted.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  When this hook is called, the component instance is still fully functional.
+  যখন এই হুক কল করা হয়, তখনও কম্পোনেন্ট ইনস্ট্যান্স সম্পূর্ণরূপে ফাংশনাল থাকে।
 
-  **This hook is not called during server-side rendering.**
+  **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি কল করা হয় না।**
 
 ## unmounted {#unmounted}
 
-Called after the component has been unmounted.
+কম্পোনেন্ট আনমাউন্ট করার পরে কল করা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -152,23 +152,23 @@ Called after the component has been unmounted.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  A component is considered unmounted after:
+  একটি কম্পোনেন্ট পরে আনমাউন্ট হিসেবে বিবেচনা করা হয়:
 
-  - All of its child components have been unmounted.
+  - এর সমস্ত চাইল্ড কম্পোনেন্ট আনমাউন্ট করা হয়েছে।
 
-  - All of its associated reactive effects (render effect and computed / watchers created during `setup()`) have been stopped.
+  - এর সমস্ত এ্যাসোসিয়েটেড রিয়েক্টিভ ইফেক্ট (render effect and computed / watchers created during `setup()`) স্টপ করা হয়েছে।
 
-  Use this hook to clean up manually created side effects such as timers, DOM event listeners or server connections.
+  টাইমার, DOM ইভেন্ট লিসেনার বা সার্ভার কানেকশন এর মতো ম্যানুয়ালি তৈরি করা সাইড ইফেক্টগুলি ক্লিন আপ করতে এই হুকটি ব্যবহার করুন।
 
-  **This hook is not called during server-side rendering.**
+  **এই হুকটি সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় না.**
 
 ## errorCaptured {#errorcaptured}
 
-Called when an error propagating from a descendant component has been captured.
+একটি ডিসেন্ডেন্ট কম্পোনেন্ট থেকে প্রচারিত একটি এ্যারর ক্যাপচার করা হলে কল করা হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -181,41 +181,41 @@ Called when an error propagating from a descendant component has been captured.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Errors can be captured from the following sources:
+  নিম্নলিখিত সোর্স থেকে এ্যাররগুলি ক্যাপচার করা যেতে পারে:
 
-  - Component renders
-  - Event handlers
-  - Lifecycle hooks
-  - `setup()` function
-  - Watchers
-  - Custom directive hooks
-  - Transition hooks
+  - কম্পোনেন্ট রেন্ডারস
+  - ইভেন্ট হ্যান্ডলার
+  - লাইফসাইকেল হুক
+  - `setup()` ফাংশন
+  - ওয়াচার্স
+  - কাস্টম ডিরেক্টিভ হুক
+  - ট্রানজিশন হুক
 
-  The hook receives three arguments: the error, the component instance that triggered the error, and an information string specifying the error source type.
+  হুক তিনটি আর্গুমেন্ট রিসিভ করে: এ্যারর, কম্পোনেন্ট ইন্সট্যান্স যা এ্যরর-টিকে  ট্রিগার করে এবং একটি ইনফরমেইশন স্ট্রিং যা এ্যারর উৎসের ধরন নির্দিষ্ট করে।
 
-  You can modify component state in `errorCaptured()` to display an error state to the user. However, it is important that the error state should not render the original content that caused the error; otherwise the component will be thrown into an infinite render loop.
+  ব্যবহারকারীর কাছে একটি এ্যারর স্টেট প্রদর্শন করতে আপনি `errorCaptured()` এ কম্পোনেন্টের স্টেট পরিবর্তন করতে পারেন। যাইহোক, এটি গুরুত্বপূর্ণ যে এ্যাররের অবস্থাটি অরিজিনাল কন্টেন্টকে রেন্ডার করা উচিত নয় যা এ্যারর সৃষ্টি করেছে; অন্যথায় কম্পোনেন্টটি একটি ইনফিনিট রেন্ডার লুপে নিক্ষিপ্ত হবে।
 
-  The hook can return `false` to stop the error from propagating further. See error propagation details below.
+  এ্যাররটিকে আরও প্রচার করা থেকে থামাতে হুকটি `false` রিটার্ন দিতে পারে। নীচে ত্রুটি বিস্তার বিবরণ দেখুন.
 
-  **Error Propagation Rules**
+  **এ্যারর প্রচারের নিয়ম**
 
-  - By default, all errors are still sent to the application-level [`app.config.errorHandler`](/api/application#app-config-errorhandler) if it is defined, so that these errors can still be reported to an analytics service in a single place.
+  - ডিফল্টরূপে, সমস্ত এ্যারর এখনও অ্যাপ্লিকেশন-লেভেলে পাঠানো হয় [`app.config.errorHandler`](/api/application#app-config-errorhandler) যদি এটি ডিফাইনড করা হয়, যাতে এই এ্যাররগুলি এখনও একটি বিশ্লেষণে রিপোর্ট করা যায় একটি সিঙ্গেল জায়গায়।
 
-  - If multiple `errorCaptured` hooks exist on a component's inheritance chain or parent chain, all of them will be invoked on the same error, in the order of bottom to top. This is similar to the bubbling mechanism of native DOM events.
+  - একটি কম্পোনেন্টের ইনহেরিট্যান্স চেইন বা প্যারেন্ট চেইনে একাধিক `errorCaptured` হুক বিদ্যমান থাকলে, নিচে থেকে উপরের ক্রমানুসারে তাদের সকলকে একই এ্যাররের জন্য আহ্বান করা হবে। এটি নেটিভ DOM ইভেন্টগুলির বাবলিং করার পদ্ধতির অনুরূপ।
 
-  - If the `errorCaptured` hook itself throws an error, both this error and the original captured error are sent to `app.config.errorHandler`.
+  - যদি `errorCaptured` হুক নিজেই একটি এ্যারর ছুড়ে দেয়, তাহলে এই এ্যারর এবং মূল ক্যাপচার করা এ্যারর উভয়ই `app.config.errorHandler`-এ পাঠানো হবে।
 
-  - An `errorCaptured` hook can return `false` to prevent the error from propagating further. This is essentially saying "this error has been handled and should be ignored." It will prevent any additional `errorCaptured` hooks or `app.config.errorHandler` from being invoked for this error.
+  - একটি `errorCaptured` হুক `false` রিটার্ন দিতে পারে যাতে ত্রুটিটিকে আরও প্রচার করা থেকে রোধ করা যায়। এটি মূলত বলছে "এই এ্যাররটি হ্যান্ডল করা হয়েছে এবং ইগনোর করা উচিত।" এটি কোনো অতিরিক্ত `errorCaptured` হুক বা `app.config.errorHandler`কে এই এ্যররের জন্য আহ্বান করা থেকে বাধা দেবে।
 
 ## renderTracked <sup class="vt-badge dev-only" /> {#rendertracked}
 
-Called when a reactive dependency has been tracked by the component's render effect.
+কম্পোনেন্টের রেন্ডার ইফেক্ট দ্বারা একটি রিয়েক্টিভ ডিপেন্ডেন্সি ট্র্যাক করা হলে কল করা হয়।
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**এই হুকটি শুধুমাত্র ডেভেলপমেন্ট-মোড এবং সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় না।**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -230,15 +230,15 @@ Called when a reactive dependency has been tracked by the component's render eff
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **আরো দেখুন** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## renderTriggered <sup class="vt-badge dev-only" /> {#rendertriggered}
 
-Called when a reactive dependency triggers the component's render effect to be re-run.
+যখন একটি রিয়েক্টিভ ডিপেন্ডেন্সি কম্পোনেন্টের রেন্ডার ইফেক্টেকে পুনরায় চালানোর জন্য ট্রিগার করে তখন কল করা হয়।
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**এই হুকটি শুধুমাত্র ডেভেলপমেন্ট-মোড এবং সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় না।**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -256,15 +256,15 @@ Called when a reactive dependency triggers the component's render effect to be r
   }
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **আরো দেখুন** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## activated {#activated}
 
-Called after the component instance is inserted into the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+[`<KeepAlive>`](/api/built-in-components#keepalive) দ্বারা ক্যাশে করা একটি ট্রি-এর অংশ হিসাবে DOM-এ কম্পোনেন্ট ইনস্ট্যান্স ইনসার্টের পরে কল করা হয়।
 
-**This hook is not called during server-side rendering.**
+**এই হুকটি সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় না।**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -272,15 +272,15 @@ Called after the component instance is inserted into the DOM as part of a tree c
   }
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **আরো দেখুন** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## deactivated {#deactivated}
 
-Called after the component instance is removed from the DOM as part of a tree cached by [`<KeepAlive>`](/api/built-in-components#keepalive).
+[`<KeepAlive>`](/api/built-in-components#keepalive) দ্বারা ক্যাশে করা একটি ট্রি-এর অংশ হিসাবে DOM থেকে কম্পোনেন্ট ইন্সট্যান্স রিমুভ করার পরে কল করা হয়।
 
-**This hook is not called during server-side rendering.**
+**এই হুকটি সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় না।**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -288,13 +288,13 @@ Called after the component instance is removed from the DOM as part of a tree ca
   }
   ```
 
-- **See also** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
+- **আরো দেখুন** [Guide - Lifecycle of Cached Instance](/guide/built-ins/keep-alive#lifecycle-of-cached-instance)
 
 ## serverPrefetch <sup class="vt-badge" data-text="SSR only" /> {#serverprefetch}
 
-Async function to be resolved before the component instance is to be rendered on the server.
+কম্পোনেন্ট ইনস্ট্যান্স সার্ভারে রেন্ডার করার আগে অ্যাসিঙ্ক ফাংশন সমাধান করা হবে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -302,13 +302,13 @@ Async function to be resolved before the component instance is to be rendered on
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  If the hook returns a Promise, the server renderer will wait until the Promise is resolved before rendering the component.
+  যদি হুকটি একটি প্রমিজ রিটার্ন করে, সার্ভার রেন্ডারার কম্পোনেন্ট রেন্ডার করার আগে প্রমিজটি সমাধান না হওয়া পর্যন্ত অপেক্ষা করবে।
 
-  This hook is only called during server-side rendering can be used to perform server-only data fetching.
+  এই হুকটি শুধুমাত্র সার্ভার-সাইড রেন্ডারিংয়ের সময় কল করা হয় সার্ভার-শুধু ডেটা আনার জন্য ব্যবহার করা যেতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -333,4 +333,4 @@ Async function to be resolved before the component instance is to be rendered on
   }
   ```
 
-- **See also** [Server-Side Rendering](/guide/scaling-up/ssr)
+- **আরো দেখুন** [Server-Side Rendering](/guide/scaling-up/ssr)
