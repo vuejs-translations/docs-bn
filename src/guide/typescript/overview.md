@@ -34,7 +34,7 @@ Vue টাইপস্ক্রিপ্টে লেখা হয় এবং 
 
   - [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) টিএস ফাইলগুলিতে `*.vue` আমদানির জন্য টাইপ সমর্থন পেতেও প্রয়োজন।
 
-- [WebStorm](https://www.jetbrains.com/webstorm/) এছাড়াও TypeScript এবং Vue উভয়ের জন্য আউট-অফ-দ্য-বক্স সমর্থন প্রদান করে। অন্যান্য JetBrains IDE গুলিও তাদের সমর্থন করে, হয় বাক্সের বাইরে বা [একটি বিনামূল্যের প্লাগইন](https://plugins.jetbrains.com/plugin/9442-vue-js) এর মাধ্যমে।
+- [WebStorm](https://www.jetbrains.com/webstorm/) এছাড়াও TypeScript এবং Vue উভয়ের জন্য আউট-অফ-দ্য-বক্স সমর্থন প্রদান করে। অন্যান্য JetBrains IDE গুলিও তাদের সমর্থন করে, বাক্সের বাইরে বা [a free plugin](https://plugins.jetbrains.com/plugin/9442-vue-js) এর মাধ্যমে। 2023.2 সংস্করণ অনুসারে, WebStorm এবং Vue প্লাগইন Vue ভাষা সার্ভারের জন্য অন্তর্নির্মিত সমর্থন সহ আসে। আপনি সেটিংস > ভাষা এবং ফ্রেমওয়ার্ক > টাইপস্ক্রিপ্ট > Vue-এর অধীনে সমস্ত TypeScript সংস্করণে Volar ইন্টিগ্রেশন ব্যবহার করার জন্য Vue পরিষেবা সেট করতে পারেন। ডিফল্টরূপে, Volar টাইপস্ক্রিপ্ট সংস্করণ 5.0 এবং উচ্চতর জন্য ব্যবহার করা হবে।
 
 ### Configuring `tsconfig.json` {#configuring-tsconfig-json}
 
