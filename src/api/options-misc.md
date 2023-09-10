@@ -2,9 +2,9 @@
 
 ## name {#name}
 
-Explicitly declare a display name for the component.
+স্পষ্টভাবে কম্পোনেন্টের জন্য একটি ডিসপ্লে নাম ডিক্লেয়ার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -12,31 +12,31 @@ Explicitly declare a display name for the component.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The name of a component is used for the following:
+  একটি কম্পোনেন্টের নাম নিম্নলিখিত জন্য ব্যবহৃত হয়:
 
-  - Recursive self-reference in the component's own template
-  - Display in Vue DevTools' component inspection tree
-  - Display in warning component traces
+  - কম্পোনেন্টের নিজস্ব টেমপ্লেটে পুনরাবৃত্ত সেলফ-রেফারেন্স
+  - Vue DevTools এর উপাদান ইনসেপশন ট্রি ডিসপ্লেই করুন
+  - ওয়ার্নিং  কম্পোনেন্ট ট্রেস প্রদর্শন ডিসপ্লেই করুন
 
-  When you use Single-File Components, the component already infers its own name from the filename. For example, a file named `MyComponent.vue` will have the inferred display name "MyComponent".
+  আপনি যখন সিঙ্গেল-ফাইল কম্পোনেন্ট ব্যবহার করেন, তখন কম্পোনেন্টটি ইতিমধ্যেই ফাইলের নাম থেকে তার নিজস্ব নাম অনুমান করে। উদাহরণ স্বরূপ, `MyComponent.vue` নামের একটি ফাইলে অনুমানকৃত ডিসপ্লে নাম "MyComponent" থাকবে।
 
-  Another case is that when a component is registered globally with [`app.component`](/api/application#app-component), the global ID is automatically set as its name.
+  আরেকটি ক্ষেত্রে হল যে যখন একটি কম্পোনেন্ট গ্লোবালি [`app.component`](/api/application#app-component) এর সাথে রেজিস্ট্রাড হয়, তখন গ্লোবাল আইডি স্বয়ংক্রিয়ভাবে তার নাম হিসাবে সেট হয়ে যায়।
 
-  The `name` option allows you to override the inferred name, or to explicitly provide a name when no name can be inferred (e.g. when not using build tools, or an inlined non-SFC component).
+  `name` অপশনটি আপনাকে অনুমানকৃত নামটিকে ওভাররাইড করতে বা কোনো নাম অনুমান করা না গেলে স্পষ্টভাবে একটি নাম প্রদান করতে দেয় (যেমন যখন বিল্ড টুল ব্যবহার করা হয় না, বা একটি ইনলাইনড নন-এসএফসি কম্পোনেন্ট)।
 
-  There is one case where `name` is explicitly necessary: when matching against cacheable components in [`<KeepAlive>`](/guide/built-ins/keep-alive) via its `include / exclude` props.
+  একটি কেস আছে যেখানে `name` স্পষ্টভাবে প্রয়োজনীয়: যখন ক্যাশেযোগ্য কম্পোনেন্টগুলির সাথে মিলিত হয় [`<KeepAlive>`](/guide/built-ins/keep-alive) এর `include/exclude` প্রপসের মাধ্যমে।
 
   :::tip
-  Since version 3.2.34, a single-file component using `<script setup>` will automatically infer its `name` option based on the filename, removing the need to manually declare the name even when used with `<KeepAlive>`.
+  ভার্সন 3.2.34 থেকে, `<script setup>` ব্যবহার করে একটি সিঙ্গেল-ফাইল কম্পোনেন্ট স্বয়ংক্রিয়ভাবে ফাইলের নামের উপর ভিত্তি করে তার `name` অপশনটি অনুমান করবে, এমনকি `<KeepAlive>` ব্যবহার করলেও নামটি ম্যানুয়ালি ঘোষণা করার প্রয়োজনীয়তা দূর করে।
   :::
 
 ## inheritAttrs {#inheritattrs}
 
-Controls whether the default component attribute fallthrough behavior should be enabled.
+ডিফল্ট কম্পোনেন্ট অ্যাট্রিবিউট ব্যর্থ বেহিভিয়ার এনাবল করা উচিত কিনা তা নিয়ন্ত্রণ করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -44,11 +44,11 @@ Controls whether the default component attribute fallthrough behavior should be 
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  By default, parent scope attribute bindings that are not recognized as props will "fallthrough". This means that when we have a single-root component, these bindings will be applied to the root element of the child component as normal HTML attributes. When authoring a component that wraps a target element or another component, this may not always be the desired behavior. By setting `inheritAttrs` to `false`, this default behavior can be disabled. The attributes are available via the `$attrs` instance property and can be explicitly bound to a non-root element using `v-bind`.
+  ডিফল্টরূপে, প্যারেন্ট স্কোপ অ্যাট্রিবিউট বাইন্ডিং যা প্রপস হিসাবে স্বীকৃত নয় "fallthrough" হবে। এর মানে হল যে যখন আমাদের একটি একক-মূল কম্পোনেন্ট থাকে, তখন এই বাইন্ডিংগুলি সাধারণ HTML বৈশিষ্ট্য হিসাবে চাইল্ড কম্পোনেন্টের রুট এলিমেন্টে প্রয়োগ করা হবে। একটি টার্গেট ইলিমেন্ট বা অন্য কম্পোনেন্ট  মোড়ানো একটি ইলিমেন্ট রচনা করার সময়, এটি সবসময় পছন্দসই আচরণ নাও হতে পারে। `false` তে `inheritAttrs` সেট করে, এই ডিফল্ট আচরণটি নিষ্ক্রিয় করা যেতে পারে। অ্যাট্রিবিউটগুলি `$attrs` ইনস্ট্যান্স প্রপার্টির মাধ্যমে পাওয়া যায় এবং `v-bind` ব্যবহার করে একটি নন-রুট এলিমেন্টের সাথে স্পষ্টভাবে আবদ্ধ হতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   <div class="options-api">
 
@@ -76,7 +76,7 @@ Controls whether the default component attribute fallthrough behavior should be 
   </div>
   <div class="composition-api">
 
-  When declaring this option in a component that uses `<script setup>`, you can use the [`defineOptions`](/api/sfc-script-setup#defineoptions) macro:
+  `<script setup>` ব্যবহার করে এমন একটি কম্পোনেন্টে এই অপশনটি ঘোষণা করার সময়, আপনি [`defineOptions`](/api/sfc-script-setup#defineoptions) ম্যাক্রো ব্যবহার করতে পারেন:
 
   ```vue
   <script setup>
@@ -99,7 +99,7 @@ Controls whether the default component attribute fallthrough behavior should be 
   </template>
   ```
 
-  Since 3.3 you can also use `defineOptions` directly in `<script setup>`:
+  3.3 থেকে আপনি সরাসরি `<script setup>`-এ `defineOptions` ব্যবহার করতে পারেন:
 
   ```vue
   <script setup>
@@ -122,13 +122,13 @@ Controls whether the default component attribute fallthrough behavior should be 
 
   </div>
 
-- **See also** [Fallthrough Attributes](/guide/components/attrs)
+- **আরো দেখুন** [Fallthrough Attributes](/guide/components/attrs)
 
 ## components {#components}
 
-An object that registers components to be made available to the component instance.
+একটি অবজেক্ট যা কম্পোনেন্ট ইনস্ট্যান্সে অ্যাভইলএবল করার জন্য কম্পোনেন্ট রেজিস্ট্রার করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -136,7 +136,7 @@ An object that registers components to be made available to the component instan
   }
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import Foo from './Foo.vue'
@@ -152,13 +152,13 @@ An object that registers components to be made available to the component instan
   }
   ```
 
-- **See also** [Component Registration](/guide/components/registration)
+- **আরো দেখুন** [Component Registration](/guide/components/registration)
 
 ## directives {#directives}
 
-An object that registers directives to be made available to the component instance.
+একটি অবজেক্ট যা কম্পোনেন্ট ইনস্ট্যান্সের জন্য অ্যাভইলএবল করার নির্দেশাবলী রেজিস্ট্রার করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -166,7 +166,7 @@ An object that registers directives to be made available to the component instan
   }
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -185,6 +185,6 @@ An object that registers directives to be made available to the component instan
   <input v-focus>
   ```
 
-  A hash of directives to be made available to the component instance.
+  ডিরেক্টিভগুলো একটি হ্যাশ কম্পোনেন্টের উদাহরণ অ্যাভইলএবল করা হবে.
 
-- **See also** [Custom Directives](/guide/reusability/custom-directives)
+- **আরো দেখুন** [Custom Directives](/guide/reusability/custom-directives)
