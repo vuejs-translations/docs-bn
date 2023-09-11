@@ -252,9 +252,9 @@
 
 ## withDirectives() {#withdirectives}
 
-For adding custom directives to vnodes.
+vnodes-এ কাস্টম ডিরেক্টিভ অ্যাড করার জন্য.
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function withDirectives(
@@ -271,11 +271,11 @@ For adding custom directives to vnodes.
   >
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Wraps an existing vnode with custom directives. The second argument is an array of custom directives. Each custom directive is also represented as an array in the form of `[Directive, value, argument, modifiers]`. Tailing elements of the array can be omitted if not needed.
+  কাস্টম ডিরেক্টিভসহ একটি বিদ্যমান vnode মোড়ানো। দ্বিতীয় আরগুমেন্টটি কাস্টম ডিরেক্টিভগুলোর একটি অ্যারে। প্রতিটি কাস্টম ডিরেক্টিভ `[Directive, value, argument, modifiers]` আকারে একটি অ্যারে হিসাবেও উপস্থাপন করা হয়। প্রয়োজন না হলে অ্যারের টেইলিং ইলিমেন্টগুলি বাদ দেওয়া যেতে পারে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import { h, withDirectives } from 'vue'
@@ -296,19 +296,19 @@ For adding custom directives to vnodes.
   ])
   ```
 
-- **See also** [Guide - Render Functions - Custom Directives](/guide/extras/render-function#custom-directives)
+- **আরো দেখুন** [Guide - Render Functions - Custom Directives](/guide/extras/render-function#custom-directives)
 
 ## withModifiers() {#withmodifiers}
 
-For adding built-in [`v-on` modifiers](/guide/essentials/event-handling#event-modifiers) to an event handler function.
+একটি ইভেন্ট হ্যান্ডলার ফাংশনে বিল্ট-ইন [`v-on` modifiers](/guide/essentials/event-handling#event-modifiers) যোগ করার জন্য।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function withModifiers(fn: Function, modifiers: string[]): Function
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import { h, withModifiers } from 'vue'
@@ -321,4 +321,4 @@ For adding built-in [`v-on` modifiers](/guide/essentials/event-handling#event-mo
   })
   ```
 
-- **See also** [Guide - Render Functions - Event Modifiers](/guide/extras/render-function#event-modifiers)
+- **আরো দেখুন** [Guide - Render Functions - Event Modifiers](/guide/extras/render-function#event-modifiers)
