@@ -140,7 +140,7 @@
 
 ### Usage with Composition API {#usage-with-composition-api}
 
-The injected classes can be accessed in `setup()` and `<script setup>` via the `useCssModule` API. For `<style module>` blocks with custom injection names, `useCssModule` accepts the matching `module` attribute value as the first argument:
+ইনজেকশন করা ক্লাসগুলি `setup()` এবং `<script setup>`-এ `useCssModule` API এর মাধ্যমে অ্যাক্সেস করা যেতে পারে। কাস্টম ইনজেকশন নাম সহ `<style module>` ব্লকের জন্য, `useCssModule` প্রথম আর্গুমেন্ট হিসাবে ম্যাচিং `module` অ্যাট্রিবিউট ভ্যালুকে রিসিভ করে:
 
 ```js
 import { useCssModule } from 'vue'
@@ -155,7 +155,7 @@ useCssModule('classes')
 
 ## `v-bind()` in CSS {#v-bind-in-css}
 
-SFC `<style>` tags support linking CSS values to dynamic component state using the `v-bind` CSS function:
+SFC `<style>` ট্যাগগুলি `v-bind` CSS ফাংশন ব্যবহার করে CSS ভ্যালুগুলিকে ডাইনামিক কম্পোনেন্ট অবস্থায় লিঙ্ক করতে সাপোর্ট করে:
 
 ```vue
 <template>
@@ -179,7 +179,7 @@ export default {
 </style>
 ```
 
-The syntax works with [`<script setup>`](./sfc-script-setup), and supports JavaScript expressions (must be wrapped in quotes):
+সিনট্যাক্স [`<script setup>`](./sfc-script-setup) এর সাথে কাজ করে, এবং জাভাস্ক্রিপ্ট এক্সপ্রেশন সাপোর্ট করে (কোর্ট দ্বারা আবৃত করা আবশ্যক):
 
 ```vue
 <script setup>
@@ -199,4 +199,4 @@ p {
 </style>
 ```
 
-The actual value will be compiled into a hashed CSS custom property, so the CSS is still static. The custom property will be applied to the component's root element via inline styles and reactively updated if the source value changes.
+একচুয়াল ভ্যালু একটি হ্যাশ করা CSS কাস্টম প্রপার্টিতে কম্পাইল করা হবে, তাই CSS এখনও স্ট্যাটিক। কাস্টম প্রপার্টি ইনলাইন স্টাইলের মাধ্যমে কম্পোনেন্টের রুট ইলিমেন্টে প্রয়োগ করা হবে এবং সোর্স ভ্যালু পরিবর্তন হলে রিয়েক্টিভভাবে আপডেট করা হবে।
