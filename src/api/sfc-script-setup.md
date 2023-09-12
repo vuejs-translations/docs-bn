@@ -1,15 +1,15 @@
 # \<script setup> {#script-setup}
 
-`<script setup>` is a compile-time syntactic sugar for using Composition API inside Single-File Components (SFCs). It is the recommended syntax if you are using both SFCs and Composition API. It provides a number of advantages over the normal `<script>` syntax:
+`<script setup>` হল সিঙ্গেল-ফাইল কম্পোনেন্টস (SFCs) এর মধ্যে কম্পোজিশনের API ব্যবহার করার জন্য একটি কম্পাইল-টাইম সিনট্যাকটিক সুগার। আপনি যদি SFCs এবং Composition API উভয়ই ব্যবহার করেন তবে এটি রিকোমেন্ডেড সিনট্যাক্স। এটি সাধারণ `<script>` সিনট্যাক্সের তুলনায় অনেক সুবিধা প্রদান করে:
 
-- More succinct code with less boilerplate
-- Ability to declare props and emitted events using pure TypeScript
-- Better runtime performance (the template is compiled into a render function in the same scope, without an intermediate proxy)
-- Better IDE type-inference performance (less work for the language server to extract types from code)
+- লেস বয়লারপ্লেট সহ আরও সংক্ষিপ্ত কোড
+- পিউর টাইপস্ক্রিপ্ট ব্যবহার করে প্রপস এবং নির্গত ইভেন্ট ডিক্লেয়ার করার ক্ষমতা
+- ভাল রানটাইম পারফরম্যান্স (টেমপ্লেটটি একই সুযোগে একটি রেন্ডার ফাংশনে কম্পাইল্ড হয়, একটি মধ্যবর্তী প্রক্সি ছাড়াই)
+- আরও ভাল আইডিই টাইপ-ইনফারেন্স পারফরম্যান্স (কোড থেকে টাইপগুলি বের করতে ল্যাঙ্গুয়েজ সার্ভারের জন্য কম কাজ)
 
 ## Basic Syntax {#basic-syntax}
 
-To opt-in to the syntax, add the `setup` attribute to the `<script>` block:
+সিনট্যাক্সে opt-in করতে, `<script>` ব্লকে `setup` অ্যাট্রিবিউট যোগ করুন:
 
 ```vue
 <script setup>
@@ -17,11 +17,11 @@ console.log('hello script setup')
 </script>
 ```
 
-The code inside is compiled as the content of the component's `setup()` function. This means that unlike normal `<script>`, which only executes once when the component is first imported, code inside `<script setup>` will **execute every time an instance of the component is created**.
+ভিতরের কোডটি কম্পোনেন্টের `setup()` ফাংশনের কন্টেন্ট হিসেবে কম্পাইল করা হয়। এর মানে হল যে স্বাভাবিক `<script>` থেকে ভিন্ন, যেটি শুধুমাত্র একবার এক্সিকিউট হয় যখন কম্পোনেন্টটি প্রথম ইম্পোর্ট করা হয়, `<script setup>`-এর ভিতরের কোডটি **প্রতিবার কম্পোনেন্টের একটি ইন্সট্যান্স তৈরি করার সময় এক্সিকিউট করবে**।
 
 ### Top-level bindings are exposed to template {#top-level-bindings-are-exposed-to-template}
 
-When using `<script setup>`, any top-level bindings (including variables, function declarations, and imports) declared inside `<script setup>` are directly usable in the template:
+`<script setup>` ব্যবহার করার সময়, `<script setup>`-এর ভিতরে ডিক্লেয়ারড যেকোনো টপ-লেভেল বাইন্ডিং (ভেরিয়েবল, ফাংশন ডিক্লেয়ার এবং ইম্পোর্ট সহ) সরাসরি টেমপ্লেটে ব্যবহারযোগ্য:
 
 ```vue
 <script setup>
@@ -39,7 +39,7 @@ function log() {
 </template>
 ```
 
-Imports are exposed in the same fashion. This means you can directly use an imported helper function in template expressions without having to expose it via the `methods` option:
+ইম্পোর্ট একই ধারায় উন্মুক্ত করা হয়। এর মানে হল আপনি টেমপ্লেট এক্সপ্রেশনে একটি ইম্পোর্ট করা সহায়ক ফাংশন সরাসরি ব্যবহার করতে পারেন এটিকে `methods` অপশনের মাধ্যমে প্রকাশ না করেই:
 
 ```vue
 <script setup>
