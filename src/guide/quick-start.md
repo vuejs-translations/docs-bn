@@ -6,11 +6,11 @@ footer: false
 
 ## Vue অনলাইন চেষ্টা করুন {#try-vue-online}
 
-- দ্রুত Vue এর স্বাদ পেতে, আপনি এটি সরাসরি আমাদের এ চেষ্টা করতে পারেন [Playground](https://play.vuejs.org/#eNo9jcEKwjAMhl/lt5fpQYfXUQfefAMvvRQbddC1pUuHUPrudg4HIcmXjyRZXEM4zYlEJ+T0iEPgXjn6BB8Zhp46WUZWDjCa9f6w9kAkTtH9CRinV4fmRtZ63H20Ztesqiylphqy3R5UYBqD1UyVAPk+9zkvV1CKbCv9poMLiTEfR2/IXpSoXomqZLtti/IFwVtA9A==).
+- দ্রুত Vue এর স্বাদ পেতে, আপনি এটি সরাসরি আমাদের এখানে চেষ্টা করতে পারেন [প্লেগ্রাউন্ড](https://play.vuejs.org/#eNo9jcEKwjAMhl/lt5fpQYfXUQfefAMvvRQbddC1pUuHUPrudg4HIcmXjyRZXEM4zYlEJ+T0iEPgXjn6BB8Zhp46WUZWDjCa9f6w9kAkTtH9CRinV4fmRtZ63H20Ztesqiylphqy3R5UYBqD1UyVAPk+9zkvV1CKbCv9poMLiTEfR2/IXpSoXomqZLtti/IFwVtA9A==)।
 
-- আপনি যদি কোনো বিল্ড স্টেপ ছাড়াই একটি প্লেইন HTML সেটআপ পছন্দ করেন, তাহলে আপনি এটি [JSFiddle](https://jsfiddle.net/yyx990803/2ke1ab0z/) আপনার শুরুর পয়েন্ট হিসেবে ব্যবহার করতে পারেন।
+- আপনি যদি কোনো বিল্ড স্টেপ ছাড়াই একটি প্লেইন HTML সেটআপ পছন্দ করেন, তাহলে আপনি এটি [জেএসফিডল](https://jsfiddle.net/yyx990803/2ke1ab0z/) আপনার শুরুর পয়েন্ট হিসেবে ব্যবহার করতে পারেন।
 
-- আপনি যদি ইতিমধ্যেই Node.js এবং বিল্ড টুলের ধারণার সাথে পরিচিত হন, তাহলে আপনি [StackBlitz](https://vite.new/vue) এ আপনার ব্রাউজারের মধ্যেই একটি সম্পূর্ণ বিল্ড সেটআপ চেষ্টা করতে পারেন।
+- আপনি যদি ইতিমধ্যেই Node.js এবং বিল্ড টুলের ধারণার সাথে পরিচিত হন, তাহলে আপনি [স্ট্যাকব্লিটজ](https://vite.new/vue) এর মাধ্যমে আপনার ব্রাউজারের মধ্যেই একটি সম্পূর্ণ বিল্ড সেটআপ করার চেষ্টা করতে পারেন।
 
 ## Creating a Vue Application {#creating-a-vue-application}
 
@@ -18,10 +18,11 @@ footer: false
 
 - কমান্ড লাইনের সাথে পরিচিতি
 - [Node.js](https://nodejs.org/) 16.0 বা উচ্চতর সংস্করণ ইনস্টল করুন
+  :::
 
-এই বিভাগে আমরা আপনার local মেশিনে কীভাবে একটি Vue [একক পৃষ্ঠা অ্যাপ্লিকেশন](/guide/extras/ways-of-using-vue#single-page-application-spa) ভারাবেন তা পরিচয় করিয়ে দেব। তৈরি করা প্রোজেক্টটি [Vite](https://vitejs.dev) এর উপর ভিত্তি করে একটি বিল্ড সেটআপ ব্যবহার করবে এবং আমাদেরকে Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs) ব্যবহার করার অনুমতি দেবে।
+এই বিভাগে আমরা আপনার local মেশিনে কীভাবে একটি Vue [একক পৃষ্ঠা অ্যাপ্লিকেশন](/guide/extras/ways-of-using-vue#single-page-application-spa) স্ক্যাফল্ড করবেন তার সাথে পরিচয় করিয়ে দেব। তৈরি করা প্রোজেক্টটি [Vite](https://vitejs.dev) এর উপর ভিত্তি করে একটি বিল্ড সেটআপ ব্যবহার করবে এবং আমাদেরকে Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs) ব্যবহার করার অনুমতি দেবে।
 
-নিশ্চিত করুন যে আপনার কাছে [Node.js](https://nodejs.org/) এর একটি আপ-টু-ডেট সংস্করণ ইনস্টল করা আছে এবং আপনার বর্তমান কার্যকারী ডিরেক্টরিটি যেখানে আপনি একটি প্রকল্প তৈরি করতে চান। আপনার কমান্ড লাইনে নিম্নলিখিত কমান্ডটি চালান (`>` চিহ্ন ছাড়া):
+নিশ্চিত করুন যে আপনার কাছে এবং আপনার বর্তমান কার্যকারী ডিরেক্টরিতে যেখানে আপনি একটি প্রকল্প তৈরি করতে চান সেখানে [Node.js](https://nodejs.org/) এর একটি আপ-টু-ডেট সংস্করণ ইনস্টল করা আছে। আপনার কমান্ড লাইনে নিম্নলিখিত কমান্ডটি চালান (`>` চিহ্ন ছাড়া):
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">&gt;</span> <span style="color:#A6ACCD;">npm create vue@latest</span></span></code></pre></div>
 
@@ -40,18 +41,18 @@ footer: false
 <span style="color:#A6ACCD;">Scaffolding project in ./<span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span>...</span>
 <span style="color:#A6ACCD;">Done.</span></code></pre></div>
 
-আপনি যদি একটি বিকল্প সম্পর্কে অনিশ্চিত হন, তাহলে এখনকার জন্য এন্টার টিপে শুধু `No` নির্বাচন করুন। প্রকল্পটি তৈরি হয়ে গেলে, নির্ভরতা ইনস্টল করতে এবং ডেভ সার্ভার শুরু করতে নির্দেশাবলী অনুসরণ করুন:
+আপনি যদি একটি বিকল্প সম্পর্কে অনিশ্চিত হন, তাহলে এখনকার জন্য এন্টার বাটন টিপে শুধু `No` নির্বাচন করুন। প্রকল্পটি তৈরি হয়ে গেলে, আরও ডিপেন্ডেন্সি ইনস্টল করতে এবং ডেভ সার্ভার শুরু করতে নির্দেশাবলী অনুসরণ করুন:
 
 <div class="language-sh"><pre><code><span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">cd</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">&lt;</span><span style="color:#888;">your-project-name</span><span style="color:#89DDFF;">&gt;</span></span>
 <span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm install</span></span>
 <span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm run dev</span></span>
 <span class="line"></span></code></pre></div>
 
-আপনি এখন আপনার প্রথম Vue প্রকল্প চলমান করা উচিত! মনে রাখবেন যে উত্পন্ন প্রকল্পের উদাহরণ উপাদানগুলি [Options API](/guide/introduction#options-এর পরিবর্তে [কম্পোজিশন API](/guide/introduction#composition-api) এবং `<script setup>` ব্যবহার করে লেখা হয়েছে। api)। এখানে কিছু অতিরিক্ত টিপস আছে:
+আপনার প্রথম Vue প্রকল্পটি এখন চালু হয়ে যাওয়া উচিত! মনে রাখবেন যে উৎপন্ন প্রকল্পের উদাহরণ হিসেবে তৈরি হওয়া উপাদানগুলি [Options API](/guide/introduction#options)-এর পরিবর্তে [Composition API](/guide/introduction#composition-api) এবং `<script setup>` ব্যবহার করে লেখা হয়েছে। এখানে কিছু অতিরিক্ত টিপস আছে:
 
 - প্রস্তাবিত IDE সেটআপ হল [ভিজ্যুয়াল স্টুডিও কোড](https://code.visualstudio.com/) + [ভোলার এক্সটেনশন](https://marketplace.visualstudio.com/items?itemName=Vue.volar)। আপনি যদি অন্য এডিটর ব্যবহার করেন তবে [IDE সমর্থন বিভাগ](/guide/scaling-up/tooling#ide-support) দেখুন।
-- ব্যাকএন্ড ফ্রেমওয়ার্কের সাথে ইন্টিগ্রেশন সহ আরও টুলিং বিশদ [টুলিং গাইড]/guide/scaling-up/tooling) এ আলোচনা করা হয়েছে।
-- অন্তর্নিহিত বিল্ড টুল Vite সম্পর্কে আরও জানতে, [Vite docs](https://vitejs.dev) দেখুন।
+- ব্যাকএন্ড ফ্রেমওয়ার্কের সাথে ইন্টিগ্রেশন সহ আরও টুলিং বিশদে [টুলিং গাইড](/guide/scaling-up/tooling) আলোচনা করা হয়েছে।
+- অন্তর্নিহিত বিল্ড টুল Vite সম্পর্কে আরও জানতে [ভাইট ডকস](https://vitejs.dev) দেখুন।
 - আপনি যদি টাইপস্ক্রিপ্ট ব্যবহার করতে চান তবে [টাইপস্ক্রিপ্ট ব্যবহার নির্দেশিকা](typescript/overview) দেখুন।
 
 আপনি যখন আপনার অ্যাপটিকে প্রোডাকশনে পাঠানোর জন্য প্রস্তুত হন, তখন নিম্নলিখিতটি চালান:
@@ -77,7 +78,7 @@ footer: false
 
 ### গ্লোবাল বিল্ড ব্যবহার করে {#using-the-global-build}
 
-উপরের লিঙ্কটি Vue-এর _global build_ লোড করে, যেখানে সমস্ত টপ-লেভেল APIs গ্লোবাল `Vue` অবজেক্টের বৈশিষ্ট্য হিসেবে উন্মুক্ত হয়। এখানে গ্লোবাল বিল্ড ব্যবহার করে একটি সম্পূর্ণ উদাহরণ রয়েছে:
+উপরের লিঙ্কটি Vue-এর _global build_ লোড করে, যেখানে সমস্ত টপ-লেভেল এপিআইগুলো গ্লোবাল `Vue` অবজেক্টের বৈশিষ্ট্য হিসেবে উন্মুক্ত হয়। এখানে গ্লোবাল বিল্ড ব্যবহার করে একটি সম্পূর্ণ উদাহরণ রয়েছে:
 
 <div class="options-api">
 
@@ -127,14 +128,14 @@ footer: false
 [Codepen demo](https://codepen.io/vuejs-examples/pen/eYQpQEG)
 
 :::tip
-Many of the examples for Composition API throughout the guide will be using the `<script setup>` syntax, which requires build tools. If you intend to use Composition API without a build step, consult the usage of the [`setup()` option](/api/composition-api-setup).
+গাইডের সাথে সংযোজিত বেশিরভাগ উদাহরণগুলো `<script setup>` সিনট্যাক্স সম্বলিত, যার জন্য বিল্ড টুলস অবশ্যই প্রয়োজনীয়। আপনি যদি বিল্ডের ধাপ ছাড়াই Composition API ব্যবহার করতে চান তাহলে [`setup()` option](/api/composition-api-setup)-এর ব্যবহার দেখুন।
 :::
 
 </div>
 
 ### ES মডিউল বিল্ড ব্যবহার করে {#using-the-es-module-build}
 
-বাকি ডকুমেন্টেশন জুড়ে, আমরা প্রাথমিকভাবে [ES মডিউল](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) সিনট্যাক্স ব্যবহার করব। বেশিরভাগ আধুনিক ব্রাউজার এখন localভাবে ES মডিউলগুলিকে সমর্থন করে, তাই আমরা একটি CDN থেকে Vue ব্যবহার করতে পারি নেটিভ ES মডিউলগুলির মাধ্যমে:
+বাকি ডকুমেন্টেশন জুড়ে, আমরা প্রাথমিকভাবে [ইএস মডিউল](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) সিনট্যাক্স ব্যবহার করব। বেশিরভাগ আধুনিক ব্রাউজার এখন সাধারণত ইএস মডিউলগুলিকে সমর্থন করে, তাই আমরা একটি CDN থেকে Vue ব্যবহার করতে পারি নেটিভ ইএস মডিউলগুলির মাধ্যমে:
 
 <div class="options-api">
 
@@ -177,7 +178,7 @@ Many of the examples for Composition API throughout the guide will be using the 
 
 </div>
 
-লক্ষ্য করুন যে আমরা `<script type="module">` ব্যবহার করছি, এবং imported CDN URL এর পরিবর্তে Vue-এর **ES মডিউল বিল্ড**-এর দিকে নির্দেশ করছে।
+লক্ষ্য করুন যে আমরা `<script type="module">` ব্যবহার করছি, এবং imported CDN URL এর পরিবর্তে Vue-এর **ইএস মডিউল বিল্ড**-এর দিকে নির্দেশ করছে।
 
 <div class="options-api">
 
@@ -190,7 +191,7 @@ Many of the examples for Composition API throughout the guide will be using the 
 
 </div>
 
-### Import maps ব্যবহার করে {#enabling-import-maps}
+### ইম্পোর্ট ম্যাপস ব্যবহার করে {#enabling-import-maps}
 
 উপরের উদাহরণে, আমরা সম্পূর্ণ CDN URL থেকে import করছি, কিন্তু বাকি ডকুমেন্টেশনে আপনি এইরকম কোড দেখতে পাবেন:
 
@@ -261,19 +262,19 @@ import { createApp } from 'vue'
 
 </div>
 
-আপনি import maps অন্যান্য নির্ভরতার জন্য এন্ট্রি যোগ করতে পারেন - তবে নিশ্চিত করুন যে তারা লাইব্রেরির ES মডিউল সংস্করণের দিকে নির্দেশ করে যা আপনি ব্যবহার করতে চান।
+আপনি import maps এর অন্যান্য নির্ভরতার জন্য এন্ট্রি যোগ করতে পারেন - তবে নিশ্চিত করুন যে তারা লাইব্রেরির ইএস মডিউল সংস্করণের দিকে নির্দেশ করে যা আপনি ব্যবহার করতে চান।
 
-:::tip Import Maps ব্রাউজার সমর্থন
-Import Maps একটি অপেক্ষাকৃত নতুন ব্রাউজার বৈশিষ্ট্য। একটি ব্রাউজার এর [সমর্থন পরিসর](https://caniuse.com/import-maps) এর মধ্যে ব্যবহার করা নিশ্চিত করুন। বিশেষ করে, এটি শুধুমাত্র Safari 16.4+ এ সমর্থিত।
+:::tip ইম্পোর্ট ম্যাপস (Import Maps) ব্রাউজার সমর্থন
+ইম্পোর্ট ম্যাপস একটি অপেক্ষাকৃত নতুন ব্রাউজার বৈশিষ্ট্য। একটি ব্রাউজার এর [সমর্থন পরিসর](https://caniuse.com/import-maps) এর মধ্যে ব্যবহারযোগ্য কিনা নিশ্চিত করুন। বিশেষ করে, এটি শুধুমাত্র Safari 16.4+ এ সমর্থিত।
 :::
 
 :::warning Production ব্যবহারের উপর নোট
-এখন পর্যন্ত উদাহরণগুলি হল Vue-এর ডেভেলপমেন্ট বিল্ড ব্যবহার করা - আপনি যদি প্রোডাকশনে CDN থেকে Vue ব্যবহার করতে চান, তবে [Production স্থাপনার নির্দেশিকা](/guide/best-practices/production-deployment#without-build) পরীক্ষা করে দেখুন -সরঞ্জাম)।
+এখন পর্যন্ত উদাহরণগুলি হল Vue-এর ডেভেলপমেন্ট বিল্ড ব্যবহার করে তৈরি করা - আপনি যদি প্রোডাকশনে CDN থেকে Vue ব্যবহার করতে চান, তবে [প্রোডাকশন ডেপ্লয়মেন্ট নির্দেশিকা](/guide/best-practices/production-deployment#without-build) চেক করে দেখুন।
 :::
 
 ### মডিউলগুলি বিভক্ত করা {#splitting-up-the-modules}
 
-আমরা গাইডের গভীরে ডুব দেওয়ার সাথে সাথে আমাদের কোড আলাদা জাভাস্ক্রিপ্ট ফাইলগুলিতে বিভক্ত করতে হতে পারে যাতে সেগুলি পরিচালনা করা সহজ হয়। উদাহরণ স্বরূপ:
+আমরা গাইডের আরও গভীরে ডুব দেওয়ার সাথে সাথে আমাদের কোড আলাদা জাভাস্ক্রিপ্ট ফাইলগুলিতে বিভক্ত করতে হতে পারে যাতে সেগুলি পরিচালনা করা সহজ হয়। উদাহরণ স্বরূপ:
 
 ```html
 <!-- index.html -->
@@ -316,9 +317,9 @@ export default {
 
 </div>
 
-আপনি যদি সরাসরি আপনার ব্রাউজারে উপরের `index.html` খোলেন, তাহলে আপনি দেখতে পাবেন যে এটি একটি ত্রুটি ছুঁড়েছে কারণ ES মডিউলগুলি `file://` প্রোটোকলের উপর কাজ করতে পারে না, যেটি প্রোটোকল ব্রাউজার ব্যবহার করে যখন আপনি একটি local খুলবেন ফাইল
+আপনি যদি সরাসরি আপনার ব্রাউজারে উপরের `index.html` খোলেন, তাহলে আপনি একটি এরর দেখতে পাবেন কারণ ES মডিউলগুলি `file://` প্রোটোকলের উপর কাজ করতে পারে না, যেটি লোকাল ফাইল খোলার জন্য ব্রাউজার ব্যবহৃত প্রোটোকল।
 
-নিরাপত্তার কারণে, ES মডিউলগুলি শুধুমাত্র `http://` প্রোটোকলের উপর কাজ করতে পারে, যা ওয়েবে পৃষ্ঠা খোলার সময় ব্রাউজার ব্যবহার করে। আমাদের local মেশিনে ES মডিউলগুলি কাজ করার জন্য, আমাদের একটি local HTTP সার্ভারের সাথে `http://` প্রোটোকলের উপর `index.html` পরিবেশন করতে হবে।
+নিরাপত্তাজনিত কারণে, ES মডিউলগুলি শুধুমাত্র `http://` প্রোটোকলের উপর কাজ করতে পারে, যা ওয়েবে পৃষ্ঠা খোলার সময় ব্রাউজার ব্যবহার করে। আমাদের লোকাল মেশিনে ইএস মডিউলগুলি কাজ করার জন্য, আমাদের একটি local HTTP সার্ভারের সাথে `http://` প্রোটোকলের উপর `index.html` পরিবেশন করতে হবে।
 
 একটি local HTTP সার্ভার শুরু করতে, প্রথমে নিশ্চিত করুন যে আপনি [Node.js](https://nodejs.org/en/) ইনস্টল করেছেন, তারপরে আপনার HTML ফাইলটি যেখানে একই ডিরেক্টরিতে কমান্ড লাইন থেকে `npx serve` চালান। আপনি অন্য কোনো HTTP সার্ভারও ব্যবহার করতে পারেন যা সঠিক MIME প্রকারের সাথে স্ট্যাটিক ফাইল পরিবেশন করতে পারে।
 
@@ -331,7 +332,7 @@ export default {
 <div class="vt-box-container next-steps">
   <a class="vt-box" href="/guide/essentials/application.html">
     <p class="next-steps-link">গাইডের সাথে চালিয়ে যান</p>
-    <p class="next-steps-caption">গাইড আপনাকে সম্পূর্ণ বিশদে ফ্রেমওয়ার্কের প্রতিটি দিক দিয়ে চলে।</p>
+    <p class="next-steps-caption">গাইড আপনাকে সম্পূর্ণ বিশদে ফ্রেমওয়ার্কের প্রতিটি দিক দিয়ে নিয়ে যাবে।</p>
   </a>
   <a class="vt-box" href="/tutorial/">
     <p class="next-steps-link">টিউটোরিয়াল ব্যবহার করে দেখুন</p>
