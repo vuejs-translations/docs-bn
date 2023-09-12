@@ -2,7 +2,7 @@
 
 ## Scoped CSS {#scoped-css}
 
-When a `<style>` tag has the `scoped` attribute, its CSS will apply to elements of the current component only. This is similar to the style encapsulation found in Shadow DOM. It comes with some caveats, but doesn't require any polyfills. It is achieved by using PostCSS to transform the following:
+যখন একটি `<style>` ট্যাগে `scoped` অ্যাট্রিবিউট থাকে, তখন এর CSS শুধুমাত্র বর্তমান কম্পোনেন্টের ইলিমেন্টগুলিতে প্রযোজ্য হবে। এটি শ্যাডো ডোমে পাওয়া স্টাইল এনক্যাপসুলেশনের অনুরূপ। এটি কিছু সতর্কতার সাথে আসে, কিন্তু কোনো পলিফিলের প্রয়োজন হয় না। এটি নিম্নলিখিত রূপান্তর করতে PostCSS ব্যবহার করে অর্জন করা হয়:
 
 ```vue
 <style scoped>
@@ -16,7 +16,7 @@ When a `<style>` tag has the `scoped` attribute, its CSS will apply to elements 
 </template>
 ```
 
-Into the following:
+নিম্নলিখিত মধ্যে:
 
 ```vue
 <style>
@@ -32,11 +32,11 @@ Into the following:
 
 ### Child Component Root Elements {#child-component-root-elements}
 
-With `scoped`, the parent component's styles will not leak into child components. However, a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. This is by design so that the parent can style the child root element for layout purposes.
+`scoped` এর সাথে, প্যারেন্ট কম্পোনেন্টের স্টাইল চাইল্ড কম্পোনেন্টে লিক হবে না। যাইহোক, একটি চাইল্ড কম্পোনেন্টের রুট নোড প্যারেন্টস স্কোপড CSS এবং চাইল্ড স্কোপড CSS উভয় দ্বারা এ্যফেক্টেড হবে। এটি ডিজাইনের মাধ্যমে যাতে প্যারেন্ট লেআউটের উদ্দেশ্যে চাইল্ড রুট এলিমেন্টটিকে স্টাইল করতে পারেন।
 
 ### Deep Selectors {#deep-selectors}
 
-If you want a selector in `scoped` styles to be "deep", i.e. affecting child components, you can use the `:deep()` pseudo-class:
+আপনি যদি `scoped` style-এ  একটি সিলেক্টরকে "deep" হতে চান, অর্থাৎ চাইল্ড কম্পোনেন্টগুলিকে প্রভাবিত করে, আপনি `:deep()` pseudo-class ব্যবহার করতে পারেন:
 
 ```vue
 <style scoped>
@@ -46,7 +46,7 @@ If you want a selector in `scoped` styles to be "deep", i.e. affecting child com
 </style>
 ```
 
-The above will be compiled into:
+উপরে কম্পাইল করা হবে:
 
 ```css
 .a[data-v-f3f3eg9] .b {
@@ -55,12 +55,12 @@ The above will be compiled into:
 ```
 
 :::tip
-DOM content created with `v-html` are not affected by scoped styles, but you can still style them using deep selectors.
+`v-html` দিয়ে তৈরি DOM কন্টেন্ট স্কোপড স্টাইল দ্বারা প্রভাবিত হয় না, তবে আপনি এখনও ডীপ সিলেক্টর ব্যবহার করে তাদের স্টাইল করতে পারেন।
 :::
 
 ### Slotted Selectors {#slotted-selectors}
 
-By default, scoped styles do not affect contents rendered by `<slot/>`, as they are considered to be owned by the parent component passing them in. To explicitly target slot content, use the `:slotted` pseudo-class:
+ডিফল্টরূপে, স্কোপড স্টাইলগুলি `<slot/>` দ্বারা রেন্ডার করা কন্টেন্টকে প্রভাবিত করে না, কারণ সেগুলিকে প্যারেন্ট কম্পোনেন্টের মালিকানাধীন বলে মনে করা হয়।
 
 ```vue
 <style scoped>
@@ -72,7 +72,7 @@ By default, scoped styles do not affect contents rendered by `<slot/>`, as they 
 
 ### Global Selectors {#global-selectors}
 
-If you want just one rule to apply globally, you can use the `:global` pseudo-class rather than creating another `<style>` (see below):
+আপনি যদি গ্লোবালি প্রয়োগ করতে চান শুধুমাত্র একটি নিয়ম, আপনি অন্য `<style>` তৈরি করার পরিবর্তে `:global` pseudo-class ব্যবহার করতে পারেন (নীচে দেখুন):
 
 ```vue
 <style scoped>
@@ -84,7 +84,7 @@ If you want just one rule to apply globally, you can use the `:global` pseudo-cl
 
 ### Mixing Local and Global Styles {#mixing-local-and-global-styles}
 
-You can also include both scoped and non-scoped styles in the same component:
+আপনি একই উপাদানে স্কোপড এবং নন-স্কোপড স্টাইল উভয়ই অন্তর্ভুক্ত করতে পারেন:
 
 ```vue
 <style>
@@ -98,13 +98,13 @@ You can also include both scoped and non-scoped styles in the same component:
 
 ### Scoped Style Tips {#scoped-style-tips}
 
-- **Scoped styles do not eliminate the need for classes**. Due to the way browsers render various CSS selectors, `p { color: red }` will be many times slower when scoped (i.e. when combined with an attribute selector). If you use classes or ids instead, such as in `.example { color: red }`, then you virtually eliminate that performance hit.
+- **স্কোপড স্টাইল ক্লাসের প্রয়োজনীয়তা দূর করে না**। ব্রাউজারগুলি যেভাবে বিভিন্ন CSS সিলেক্টরকে রেন্ডার করে তার কারণে, `p { color: red }` স্কোপ করার সময় অনেকগুণ ধীর হবে (অর্থাৎ যখন একটি অ্যাট্রিবিউট সিলেক্টরের সাথে মিলিত হয়)। আপনি যদি এর পরিবর্তে ক্লাস বা আইডি ব্যবহার করেন, যেমন `.example { color: red }`, তাহলে আপনি ভার্চুয়ালি সেই পারফরম্যান্স হিটটি মুছে ফেলবেন।
 
-- **Be careful with descendant selectors in recursive components!** For a CSS rule with the selector `.a .b`, if the element that matches `.a` contains a recursive child component, then all `.b` in that child component will be matched by the rule.
+- **রিকার্সিভ কম্পোনেন্টে ডিসেন্ড্যান্ট সিলেক্টরদের ব্যাপারে সতর্ক থাকুন!** সিএসএস নিয়মের জন্য সিলেক্টর `.a .b` এর সাথে, যদি `.a` এর সাথে মেলে এমন এলিমেন্টে রিকারসিভ চাইল্ড কম্পোনেন্ট থাকে, তাহলে সেই চাইল্ড কম্পোনেন্টের সব `.b` নিয়ম অনুযায়ী মিলবে।
 
 ## CSS Modules {#css-modules}
 
-A `<style module>` tag is compiled as [CSS Modules](https://github.com/css-modules/css-modules) and exposes the resulting CSS classes to the component as an object under the key of `$style`:
+একটি `<style module>` ট্যাগ [CSS Module](https://github.com/css-modules/css-modules) হিসাবে কম্পাইল করা হয় এবং ফলাফলে CSS ক্লাসগুলিকে `$style` -এর অধীনে একটি অবজেক্ট হিসেবে কম্পোনেন্টে প্রকাশ করে:
 
 ```vue
 <template>
@@ -118,13 +118,13 @@ A `<style module>` tag is compiled as [CSS Modules](https://github.com/css-modul
 </style>
 ```
 
-The resulting classes are hashed to avoid collision, achieving the same effect of scoping the CSS to the current component only.
+সংঘর্ষ এড়াতে ফলস্বরূপ ক্লাসগুলি হ্যাশ করা হয়, শুধুমাত্র বর্তমান কম্পোনেন্টে CSS স্কোপ করার একই ইফেক্ট অর্জন করে।
 
-Refer to the [CSS Modules spec](https://github.com/css-modules/css-modules) for more details such as [global exceptions](https://github.com/css-modules/css-modules#exceptions) and [composition](https://github.com/css-modules/css-modules#composition).
+আরও বিস্তারিত জানার জন্য [CSS Module spec](https://github.com/css-modules/css-modules) দেখুন যেমন [global exceptions](https://github.com/css-modules/css-modules) #exceptions) এবং [composition](https://github.com/css-modules/css-modules#composition)।
 
 ### Custom Inject Name {#custom-inject-name}
 
-You can customize the property key of the injected classes object by giving the `module` attribute a value:
+আপনি `module` অ্যাট্রিবিউটকে একটি মান দিয়ে ইনজেকশন করা ক্লাস অবজেক্টের প্রোপার্টি কী কাস্টমাইজ করতে পারেন:
 
 ```vue
 <template>
@@ -140,7 +140,7 @@ You can customize the property key of the injected classes object by giving the 
 
 ### Usage with Composition API {#usage-with-composition-api}
 
-The injected classes can be accessed in `setup()` and `<script setup>` via the `useCssModule` API. For `<style module>` blocks with custom injection names, `useCssModule` accepts the matching `module` attribute value as the first argument:
+ইনজেকশন করা ক্লাসগুলি `setup()` এবং `<script setup>`-এ `useCssModule` API এর মাধ্যমে অ্যাক্সেস করা যেতে পারে। কাস্টম ইনজেকশন নাম সহ `<style module>` ব্লকের জন্য, `useCssModule` প্রথম আর্গুমেন্ট হিসাবে ম্যাচিং `module` অ্যাট্রিবিউট ভ্যালুকে রিসিভ করে:
 
 ```js
 import { useCssModule } from 'vue'
@@ -155,7 +155,7 @@ useCssModule('classes')
 
 ## `v-bind()` in CSS {#v-bind-in-css}
 
-SFC `<style>` tags support linking CSS values to dynamic component state using the `v-bind` CSS function:
+SFC `<style>` ট্যাগগুলি `v-bind` CSS ফাংশন ব্যবহার করে CSS ভ্যালুগুলিকে ডাইনামিক কম্পোনেন্ট অবস্থায় লিঙ্ক করতে সাপোর্ট করে:
 
 ```vue
 <template>
@@ -179,7 +179,7 @@ export default {
 </style>
 ```
 
-The syntax works with [`<script setup>`](./sfc-script-setup), and supports JavaScript expressions (must be wrapped in quotes):
+সিনট্যাক্স [`<script setup>`](./sfc-script-setup) এর সাথে কাজ করে, এবং জাভাস্ক্রিপ্ট এক্সপ্রেশন সাপোর্ট করে (কোর্ট দ্বারা আবৃত করা আবশ্যক):
 
 ```vue
 <script setup>
@@ -199,4 +199,4 @@ p {
 </style>
 ```
 
-The actual value will be compiled into a hashed CSS custom property, so the CSS is still static. The custom property will be applied to the component's root element via inline styles and reactively updated if the source value changes.
+একচুয়াল ভ্যালু একটি হ্যাশ করা CSS কাস্টম প্রপার্টিতে কম্পাইল করা হবে, তাই CSS এখনও স্ট্যাটিক। কাস্টম প্রপার্টি ইনলাইন স্টাইলের মাধ্যমে কম্পোনেন্টের রুট ইলিমেন্টে প্রয়োগ করা হবে এবং সোর্স ভ্যালু পরিবর্তন হলে রিয়েক্টিভভাবে আপডেট করা হবে।
