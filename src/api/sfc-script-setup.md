@@ -53,7 +53,7 @@ import { capitalize } from './helpers'
 
 ## Reactivity {#reactivity}
 
-Reactive state needs to be explicitly created using [Reactivity APIs](./reactivity-core). Similar to values returned from a `setup()` function, refs are automatically unwrapped when referenced in templates:
+[Reactivity APIs](./reactivity-core) ব্যবহার করে রিয়েক্টিভ স্টেট স্পষ্টভাবে তৈরি করা প্রয়োজন। একটি `setup()` ফাংশন থেকে রিটার্নড ভ্যালুগুলির অনুরূপ, টেমপ্লেটগুলিতে উল্লেখ করা হলে রেফগুলি স্বয়ংক্রিয়ভাবে unwrapped হয়:
 
 ```vue
 <script setup>
@@ -69,7 +69,7 @@ const count = ref(0)
 
 ## Using Components {#using-components}
 
-Values in the scope of `<script setup>` can also be used directly as custom component tag names:
+`<script setup>` এর স্কোপ ভ্যালুগুলি সরাসরি কাস্টম কম্পোনেন্টে ট্যাগ নেইম হিসাবে ব্যবহার করা যেতে পারে:
 
 ```vue
 <script setup>
@@ -81,11 +81,11 @@ import MyComponent from './MyComponent.vue'
 </template>
 ```
 
-Think of `MyComponent` as being referenced as a variable. If you have used JSX, the mental model is similar here. The kebab-case equivalent `<my-component>` also works in the template - however PascalCase component tags are strongly recommended for consistency. It also helps differentiating from native custom elements.
+মনে করুন `MyComponent` একটি ভ্যারিয়েবল হিসাবে উল্লেখ করা হচ্ছে । আপনি যদি JSX ব্যবহার করে থাকেন, তাহলে মেন্টাল মডেল এখানে একই রকম। kebab-case সমতুল্য `<my-component>` টেমপ্লেটেও কাজ করে - তবে PascalCase কম্পোনেন্ট ট্যাগগুলি দৃঢ়ভাবে সামঞ্জস্যের জন্য রিকোমেন্ড করা হয়। এটি নেটিভ কাস্টম কম্পোনেন্ট থেকে পার্থক্য করতে সাহায্য করে।
 
 ### Dynamic Components {#dynamic-components}
 
-Since components are referenced as variables instead of registered under string keys, we should use dynamic `:is` binding when using dynamic components inside `<script setup>`:
+যেহেতু কম্পোনেন্টগুলি স্ট্রিং কীগুলির অধীনে রেজিস্ট্রাড না হয়ে ভেরিয়েবল হিসাবে উল্লেখ করা হয়েছে, তাই `<script setup>`-এর ভিতরে ডায়নামিক কম্পোনেন্টগুলি ব্যবহার করার সময় আমাদের ডাইনামিক `:is` বাইন্ডিং ব্যবহার করা উচিত:
 
 ```vue
 <script setup>
@@ -99,21 +99,20 @@ import Bar from './Bar.vue'
 </template>
 ```
 
-Note how the components can be used as variables in a ternary expression.
+লক্ষ্য করুন কিভাবে কম্পোনেন্টগুলিকে একটি টারনারি এক্সপ্রেশনে ভেরিয়েবল হিসাবে ব্যবহার করা যেতে পারে।
 
 ### Recursive Components {#recursive-components}
 
-An SFC can implicitly refer to itself via its filename. E.g. a file named `FooBar.vue` can refer to itself as `<FooBar/>` in its template.
+একটি এসএফসি তার ফাইলের নাম দিয়ে অন্তর্নিহিতভাবে নিজেকে রেফার করতে পারে। যেমন `FooBar.vue` নামের একটি ফাইল তার টেমপ্লেটে নিজেকে `<FooBar/>` হিসেবে রেফার করতে পারে।
 
-Note this has lower priority than imported components. If you have a named import that conflicts with the component's inferred name, you can alias the import:
-
+নোট করুন এটি ইম্পোর্টেড কম্পোনেন্টের তুলনায় কম অগ্রাধিকার রয়েছে। আপনার যদি একটি নেইমড ইম্পোর্ট থাকে যা কম্পোনেন্টটির অনুমিত নামের সাথে কনফ্লিক্ট করে, আপনি ইম্পোর্টের নাম দিতে পারেন:
 ```js
 import { FooBar as FooBarChild } from './components'
 ```
 
 ### Namespaced Components {#namespaced-components}
 
-You can use component tags with dots like `<Foo.Bar>` to refer to components nested under object properties. This is useful when you import multiple components from a single file:
+আপনি অবজেক্টের প্রোপার্টির অধীনে নেস্ট করা কোম্পোনেন্টেগুলিকে উল্লেখ করতে `<Foo.Bar>` এর মতো ডট সহ কম্পোনেন্ট ট্যাগ ব্যবহার করতে পারেন। আপনি যখন একটি ফাইল থেকে একাধিক কম্পোনেন্ট ইম্পোর্ট করেন তখন এটি দরকারী:
 
 ```vue
 <script setup>
@@ -129,7 +128,7 @@ import * as Form from './form-components'
 
 ## Using Custom Directives {#using-custom-directives}
 
-Globally registered custom directives just work as normal. Local custom directives don't need to be explicitly registered with `<script setup>`, but they must follow the naming scheme `vNameOfDirective`:
+গ্লোবালি রেজিস্ট্রাড কাস্টম ডিরেক্টিভগুলো স্বাভাবিক হিসাবে কাজ করে। লোকাল কাস্টম কে `<script setup>`-এর সাথে স্পষ্টভাবে রেজিস্ট্রাড হওয়ার প্রয়োজন নেই, তবে তাদের অবশ্যই নেইমিং স্কিম `vNameOfDirective` অনুসরণ করতে হবে:
 
 ```vue
 <script setup>
@@ -144,7 +143,7 @@ const vMyDirective = {
 </template>
 ```
 
-If you're importing a directive from elsewhere, it can be renamed to fit the required naming scheme:
+আপনি যদি অন্য কোথাও থেকে একটি ডিরেক্টিভ ইম্পোর্ট করে থাকেন, তাহলে প্রয়োজনীয় নেইমিং স্কিমের সাথে মানানসই করার জন্য এটির নাম পরিবর্তন করা যেতে পারে:
 
 ```vue
 <script setup>
@@ -154,7 +153,7 @@ import { myDirective as vMyDirective } from './MyDirective.js'
 
 ## defineProps() & defineEmits() {#defineprops-defineemits}
 
-To declare options like `props` and `emits` with full type inference support, we can use the `defineProps` and `defineEmits` APIs, which are automatically available inside `<script setup>`:
+সম্পূর্ণ প্রকারের অনুমান সমর্থন সহ `props` এবং `emits` এর মতো অপশন ডিক্লেয়ার করতে, আমরা `defineProps` এবং `defineEmits` এপিআই ব্যবহার করতে পারি, যা `<script setup>`-এর মধ্যে অটোমেটিক্লি অ্যাভাইলএবল হবে:
 
 ```vue
 <script setup>
