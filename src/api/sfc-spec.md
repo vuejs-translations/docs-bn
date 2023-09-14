@@ -62,25 +62,25 @@ export default {
 
 ### Custom Blocks {#custom-blocks}
 
-Additional custom blocks can be included in a `*.vue` file for any project-specific needs, for example a `<docs>` block. Some real-world examples of custom blocks include:
+যেকোনো প্রজেক্ট-স্পেসিফিক প্রয়োজনের জন্য একটি `*.vue` ফাইলে অতিরিক্ত কাস্টম ব্লক অন্তর্ভুক্ত করা যেতে পারে, যেমন একটি `<docs>` ব্লক। কাস্টম ব্লকের কিছু রিয়েল-ওয়াল্ড উদাহরণ অন্তর্ভুক্ত:
 
 - [Gridsome: `<page-query>`](https://gridsome.org/docs/querying-data/)
 - [vite-plugin-vue-gql: `<gql>`](https://github.com/wheatjs/vite-plugin-vue-gql)
 - [vue-i18n: `<i18n>`](https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n#i18n-custom-block)
 
-Handling of Custom Blocks will depend on tooling - if you want to build your own custom block integrations, see the [SFC custom block integrations tooling section](/guide/scaling-up/tooling#sfc-custom-block-integrations) for more details.
+কাস্টম ব্লকগুলি পরিচালনা করা টুলিংয়ের উপর নির্ভর করবে - আপনি যদি নিজের কাস্টম ব্লক ইন্টিগ্রেশন তৈরি করতে চান তবে আরও জানতে [SFC কাস্টম ব্লক ইন্টিগ্রেশন টুলিং বিভাগ](/guide/scaling-up/tooling#sfc-custom-block-integrations) দেখুন বিস্তারিত
 
 ## Automatic Name Inference {#automatic-name-inference}
 
-An SFC automatically infers the component's name from its **filename** in the following cases:
+নিম্নলিখিত ক্ষেত্রে একটি SFC অটোমেটিকলি তার **filename** থেকে কম্পোনেন্টটির নাম অনুমান করে:
 
-- Dev warning formatting
-- DevTools inspection
-- Recursive self-reference, e.g. a file named `FooBar.vue` can refer to itself as `<FooBar/>` in its template. This has lower priority than explicitly registered/imported components.
+- ডেভ সতর্কতা ফরম্যাট
+- DevTools পরিদর্শন
+- রিকারসিভ স্ব-রেফারেন্স, যেমন `FooBar.vue` নামের একটি ফাইল তার টেমপ্লেটে নিজেকে `<FooBar/>` হিসেবে উল্লেখ করতে পারে। এটি স্পষ্টভাবে রেজিস্ট্রাড/ইমপোর্টেড করা কম্পোনেন্টগুলির তুলনায় কম অগ্রাধিকার রয়েছে৷
 
 ## Pre-Processors {#pre-processors}
 
-Blocks can declare pre-processor languages using the `lang` attribute. The most common case is using TypeScript for the `<script>` block:
+ব্লকগুলি `lang` অ্যাট্রিবিউট ব্যবহার করে প্রি-প্রসেসর ভাষা ঘোষণা করতে পারে। সবচেয়ে সাধারণ ক্ষেত্রে `<script>` ব্লকের জন্য TypeScript ব্যবহার করা হচ্ছে:
 
 ```vue-html
 <script lang="ts">
@@ -88,7 +88,7 @@ Blocks can declare pre-processor languages using the `lang` attribute. The most 
 </script>
 ```
 
-`lang` can be applied to any block - for example we can use `<style>` with [Sass](https://sass-lang.com/) and `<template>` with [Pug](https://pugjs.org/api/getting-started.html):
+`lang` যেকোনো ব্লকে প্রয়োগ করা যেতে পারে - উদাহরণস্বরূপ আমরা `<style>` ব্যবহার করতে পারি [Sass](https://sass-lang.com/) এর সাথে এবং `<template>` [Pug](https:/) এর সাথে /pugjs.org/api/getting-started.html):
 
 ```vue-html
 <template lang="pug">
@@ -103,7 +103,7 @@ p {{ msg }}
 </style>
 ```
 
-Note that integration with various pre-processors may differ by toolchain. Check out the respective documentation for examples:
+নোট করুন যে বিভিন্ন প্রি-প্রসেসরের সাথে একীকরণ টুলচেইনের দ্বারা পৃথক হতে পারে। উদাহরণের জন্য সংশ্লিষ্ট ডকুমেন্টেশন দেখুন:
 
 - [Vite](https://vitejs.dev/guide/features.html#css-pre-processors)
 - [Vue CLI](https://cli.vuejs.org/guide/css.html#pre-processors)
@@ -111,7 +111,7 @@ Note that integration with various pre-processors may differ by toolchain. Check
 
 ## `src` Imports {#src-imports}
 
-If you prefer splitting up your `*.vue` components into multiple files, you can use the `src` attribute to import an external file for a language block:
+আপনি যদি আপনার `*.vue` কম্পোনেন্টগুলিকে একাধিক ফাইলে বিভক্ত করতে পছন্দ করেন, আপনি একটি ল্যঙ্গুয়েজ ব্লকের জন্য একটি বহিরাগত ফাইল ইম্পোর্ট করতে `src` বৈশিষ্ট্য ব্যবহার করতে পারেন:
 
 ```vue
 <template src="./template.html"></template>
@@ -119,17 +119,17 @@ If you prefer splitting up your `*.vue` components into multiple files, you can 
 <script src="./script.js"></script>
 ```
 
-Beware that `src` imports follow the same path resolution rules as webpack module requests, which means:
+সতর্ক থাকুন যে `src` ইম্পোর্টগুলি ওয়েবপ্যাক মডিউল অনুরোধের মতো একই পথ রেজোলিউশনের নিয়ম অনুসরণ করে, যার অর্থ:
 
-- Relative paths need to start with `./`
-- You can import resources from npm dependencies:
+- রিলিটিভ পাথগুলি `./` দিয়ে শুরু করতে হবে৷
+- আপনি npm নির্ভরতা থেকে রিসোর্স ইম্পোর্ট করতে পারেন:
 
 ```vue
 <!-- import a file from the installed "todomvc-app-css" npm package -->
 <style src="todomvc-app-css/index.css" />
 ```
 
-`src` imports also work with custom blocks, e.g.:
+`src` ইম্পোর্ট কাস্টম ব্লকের সাথেও কাজ করে, যেমন:
 
 ```vue
 <unit-test src="./unit-test.js">
@@ -138,4 +138,4 @@ Beware that `src` imports follow the same path resolution rules as webpack modul
 
 ## Comments {#comments}
 
-Inside each block you shall use the comment syntax of the language being used (HTML, CSS, JavaScript, Pug, etc.). For top-level comments, use HTML comment syntax: `<!-- comment contents here -->`
+প্রতিটি ব্লকের ভিতরে আপনি যে ল্যাঙ্গুয়েজ ব্যবহার করা হচ্ছে তার কমেন্ট সিনট্যাক্স ব্যবহার করবেন (HTML, CSS, JavaScript, Pug, ইত্যাদি)। টপ-লেভেলের কমেন্টের জন্য, HTML কমেন্ট সিনট্যাক্স ব্যবহার করুন: `<!-- কমেন্ট কন্টেন্টস এখানে -->`
