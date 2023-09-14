@@ -250,7 +250,7 @@ defineExpose({
 
 ## defineOptions() {#defineoptions}
 
-This macro can be used to declare component options directly inside `<script setup>` without having to use a separate `<script>` block:
+এই ম্যাক্রোটি একটি পৃথক `<script>` ব্লক ব্যবহার না করে সরাসরি `<script setup>` এর ভিতরে কম্পোনেন্ট অপশন ডিক্লেয়ার করতে ব্যবহার করা যেতে পারে:
 
 ```vue
 <script setup>
@@ -263,16 +263,16 @@ defineOptions({
 </script>
 ```
 
-- Only supported in 3.3+.
-- This is a macro. The options will be hoisted to module scope and cannot access local variables in `<script setup>` that are not literal constants.
+- শুধুমাত্র 3.3+ এ সমর্থিত।
+- এটি একটি ম্যাক্রো. অপশনগুলি মডিউল স্কোপে হোইস্টেড করা হবে এবং `<script setup>`-এ লোকাল ভেরিয়েবল অ্যাক্সেস করতে পারবে না যা লিটারাল কনসট্যান্ট নয়।
 
 ## defineSlots()<sup class="vt-badge ts"/> {#defineslots}
 
-This macro can be used to provide type hints to IDEs for slot name and props type checking.
+স্লট নেইম এবং প্রপস টাইপ চেকিংয়ের জন্য IDE-কে টাইপ হিন্টিং দিতে এই ম্যাক্রো ব্যবহার করা যেতে পারে।
 
-`defineSlots()` only accepts a type parameter and no runtime arguments. The type parameter should be a type literal where the property key is the slot name, and the value type is the slot function. The first argument of the function is the props the slot expects to receive, and its type will be used for slot props in the template. The return type is currently ignored and can be `any`, but we may leverage it for slot content checking in the future.
+`defineSlots()` শুধুমাত্র একটি টাইপ প্যারামিটার রিসিভ করে এবং কোনো রানটাইম আর্গুমেন্ট নেই। টাইপ প্যারামিটার একটি টাইপ লিটারাল হওয়া উচিত যেখানে প্রোপার্টি কী-টি স্লটের নাম এবং ভ্যালুর টাইপটি স্লট ফাংশন। ফাংশনের প্রথম আর্গুমেন্ট হল প্রপস যা স্লট পাওয়ার আশা করে এবং এর টাইপটি টেমপ্লেটের স্লট প্রপসের জন্য ব্যবহার করা হবে। রিটার্নের টাইপটি বর্তমানে উপেক্ষা করা হয়েছে এবং এটি `any` হতে পারে, তবে আমরা ভবিষ্যতে স্লট সামগ্রী চেক করার জন্য এটির সুবিধা নিতে পারি।
 
-It also returns the `slots` object, which is equivalent to the `slots` object exposed on the setup context or returned by `useSlots()`.
+এটি `slots` অবজেক্টও রিটার্ন দেয়, যা সেটআপ প্রসঙ্গে প্রকাশিত `slots` অবজেক্টের সমতুল্য অথবা `useSlots()` দ্বারা রিটার্নড হয়।
 
 ```vue
 <script setup lang="ts">
@@ -282,11 +282,11 @@ const slots = defineSlots<{
 </script>
 ```
 
-- Only supported in 3.3+.
+- শুধুমাত্র 3.3+ এ সমর্থিত।
 
 ## `useSlots()` & `useAttrs()` {#useslots-useattrs}
 
-Usage of `slots` and `attrs` inside `<script setup>` should be relatively rare, since you can access them directly as `$slots` and `$attrs` in the template. In the rare case where you do need them, use the `useSlots` and `useAttrs` helpers respectively:
+`<script setup>`-এর ভিতরে `slots` এবং `attrs`-এর ব্যবহার তুলনামূলকভাবে বিরল হওয়া উচিত, কারণ আপনি টেমপ্লেটে `$slots` এবং `$attrs` হিসেবে সরাসরি অ্যাক্সেস করতে পারবেন। বিরল ক্ষেত্রে যেখানে আপনার প্রয়োজন হয়, যথাক্রমে `useSlots` এবং `useAttrs` হেল্পার ব্যবহার করুন:
 
 ```vue
 <script setup>
@@ -297,15 +297,15 @@ const attrs = useAttrs()
 </script>
 ```
 
-`useSlots` and `useAttrs` are actual runtime functions that return the equivalent of `setupContext.slots` and `setupContext.attrs`. They can be used in normal composition API functions as well.
+`useSlots` এবং `useAttrs` হল প্রকৃত রানটাইম ফাংশন যা `setupContext.slots` এবং `setupContext.attrs` এর সমতুল্য রিটার্ন করে। এগুলি সাধারণ কম্পোজিশন API ফাংশনেও ব্যবহার করা যেতে পারে।
 
 ## Usage alongside normal `<script>` {#usage-alongside-normal-script}
 
-`<script setup>` can be used alongside normal `<script>`. A normal `<script>` may be needed in cases where we need to:
+`<script setup>` সাধারণ `<script>` এর সাথে ব্যবহার করা যেতে পারে। একটি নরমাল `<script>` প্রয়োজন হতে পারে যেই ক্ষেত্রে আমাদের প্রয়োজন:
 
-- Declare options that cannot be expressed in `<script setup>`, for example `inheritAttrs` or custom options enabled via plugins (Can be replaced by [`defineOptions`](/api/sfc-script-setup#defineoptions) in 3.3+).
-- Declaring named exports.
-- Run side effects or create objects that should only execute once.
+- যে অপশনগুলি `<script setup>`-এ প্রকাশ করা যায় না সেগুলি ডিক্লেয়ার করুন, উদাহরণস্বরূপ `inheritAttrs` বা প্লাগইনগুলির মাধ্যমে এনাবল করা কাস্টম অপশনগুলি (3.3-এ [`defineOptions`](/api/sfc-script-setup#defineoptions দ্বারা প্রতিস্থাপিত হতে পারে) +)।
+- নেইমড এক্সপোর্ট ডিক্লেয়ার করা।
+- সাইড ইফেক্ট চালান বা এমন অবজেক্ট তৈরি করুন যা শুধুমাত্র একবার এক্সিকিউট করা উচিত।
 
 ```vue
 <script>
@@ -324,12 +324,12 @@ export default {
 </script>
 ```
 
-Support for combining `<script setup>` and `<script>` in the same component is limited to the scenarios described above. Specifically:
+একই কম্পোনেন্টে `<script setup>` এবং `<script>` একত্রিত করার জন্য সাপোর্টেড, উপরে বর্ণিত পরিস্থিতিতে সীমাবদ্ধ। বিশেষভাবে:
 
-- Do **NOT** use a separate `<script>` section for options that can already be defined using `<script setup>`, such as `props` and `emits`.
-- Variables created inside `<script setup>` are not added as properties to the component instance, making them inaccessible from the Options API. Mixing APIs in this way is strongly discouraged.
+- **NOT** অপশনগুলির জন্য একটি পৃথক `<script>` সেকশন ব্যবহার করবেন না যা `<script setup>` ব্যবহার করে ইতিমধ্যেই ডিফাইনড করা যেতে পারে, যেমন `props` এবং `emits`।
+- `<script setup>`-এর মধ্যে তৈরি ভেরিয়েবলগুলিকে কম্পোনেন্ট ইন্সট্যান্সে প্রপার্টি হিসেবে যোগ করা হয় না, যা অপশন এপিআই থেকে অ্যাক্সেসযোগ্য করে তোলে। এইভাবে Mixing API গুলিকে দৃঢ়ভাবে নিরুৎসাহিত করা হয়৷
 
-If you find yourself in one of the scenarios that is not supported then you should consider switching to an explicit [`setup()`](/api/composition-api-setup) function, instead of using `<script setup>`.
+আপনি যদি সাপোর্টেড নয় এমন পরিস্থিতিতে নিজেকে খুঁজে পান তাহলে `<script setup>` ব্যবহার করার পরিবর্তে আপনার একটি স্পষ্ট [`setup()`](/api/composition-api-setup) ফাংশনে স্যুইচ করার কথা বিবেচনা করা উচিত।
 
 ## Top-level `await` {#top-level-await}
 
