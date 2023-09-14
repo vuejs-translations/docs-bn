@@ -151,11 +151,11 @@
 
 ## renderToSimpleStream() {#rendertosimplestream}
 
-Renders input in streaming mode using a simple readable interface.
+একটি সহজ রিডএ্যাবল ইন্টারফেস ব্যবহার করে স্ট্রিমিং মোডে ইনপুট রেন্ডার করে।
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` থেকে এক্সপোর্ট করা হয়েছে**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function renderToSimpleStream(
@@ -170,7 +170,7 @@ Renders input in streaming mode using a simple readable interface.
   }
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   let res = ''
@@ -196,17 +196,17 @@ Renders input in streaming mode using a simple readable interface.
 
 ## useSSRContext() {#usessrcontext}
 
-A runtime API used to retrieve the context object passed to `renderToString()` or other server render APIs.
+একটি রানটাইম API যা `renderToString()` বা অন্যান্য সার্ভার রেন্ডার API-এ পাস করা কনটেক্স অবজেক্ট পুনরুদ্ধার করতে ব্যবহৃত হয়।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function useSSRContext<T = Record<string, any>>(): T | undefined
   ```
 
-- **Example**
+- **উদাহরন**
 
-  The retrieved context can be used to attach information that is needed for rendering the final HTML (e.g. head metadata).
+  পুনরুদ্ধার করা কনটেক্সটি চূড়ান্ত HTML রেন্ডার করার জন্য প্রয়োজনীয় তথ্য সংযুক্ত করতে ব্যবহার করা যেতে পারে (যেমন হেড মেটাডেটা)।
 
   ```vue
   <script setup>
