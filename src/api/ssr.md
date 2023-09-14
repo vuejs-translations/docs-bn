@@ -2,9 +2,9 @@
 
 ## renderToString() {#rendertostring}
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` থেকে ইমপোর্ট করা হয়েছে**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function renderToString(
@@ -13,7 +13,7 @@
   ): Promise<string>
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   import { createSSRApp } from 'vue'
@@ -32,7 +32,7 @@
 
   ### SSR Context {#ssr-context}
 
-  You can pass an optional context object, which can be used to record additional data during the render, for example [accessing content of Teleports](/guide/scaling-up/ssr#teleports):
+  আপনি একটি অপশনাল কন্টেক্সট অবজেক্ট পাস করতে পারেন, যা রেন্ডারের সময় অতিরিক্ত ডেটা রেকর্ড করতে ব্যবহার করা যেতে পারে, উদাহরণস্বরূপ [টেলিপোর্টের কনটেন্ট অ্যাক্সেস করা](/guide/scaling-up/ssr#teleports):
 
   ```js
   const ctx = {}
@@ -41,17 +41,17 @@
   console.log(ctx.teleports) // { '#teleported': 'teleported content' }
   ```
 
-  Most other SSR APIs on this page also optionally accept a context object. The context object can be accessed in component code via the [useSSRContext](#usessrcontext) helper.
+  এই পেইজের বেশিরভাগ অন্যান্য SSR APIগুলিও ঐচ্ছিকভাবে একটি কন্টেক্সট অবজেক্ট গ্রহণ করে। কন্টেক্সট অবজেক্টটি [useSSRContext](#usessrcontext) হেল্পার মাধ্যমে কম্পোনেন্ট কোডে অ্যাক্সেস করা যেতে পারে।
 
-- **See also** [Guide - Server-Side Rendering](/guide/scaling-up/ssr)
+- **আরো দেখুন** [Guide - Server-Side Rendering](/guide/scaling-up/ssr)
 
 ## renderToNodeStream() {#rendertonodestream}
 
-Renders input as a [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable).
+একটি [Node.js Readable stream](https://nodejs.org/api/stream.html#stream_class_stream_readable) হিসাবে ইনপুট রেন্ডার করে।
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` থেকে এক্সপোর্ট করা হয়েছে**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function renderToNodeStream(
@@ -60,24 +60,24 @@ Renders input as a [Node.js Readable stream](https://nodejs.org/api/stream.html#
   ): Readable
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   // inside a Node.js http handler
   renderToNodeStream(app).pipe(res)
   ```
 
-  :::tip Note
-  This method is not supported in the ESM build of `vue/server-renderer`, which is decoupled from Node.js environments. Use [`pipeToNodeWritable`](#pipetonodewritable) instead.
+  :::tip নোট
+  এই মেথডটি `vue/server-renderer`-এর ESM বিল্ডে সাপোর্টেড নয়, যা Node.js এনভারনমেন্ট থেকে ডিকপল করা হয়েছে। পরিবর্তে [`pipeToNodeWritable`](#pipetonodewritable) ব্যবহার করুন।
   :::
 
 ## pipeToNodeWritable() {#pipetonodewritable}
 
-Render and pipe to an existing [Node.js Writable stream](https://nodejs.org/api/stream.html#stream_writable_streams) instance.
+একটি বিদ্যমান [Node.js Writable stream](https://nodejs.org/api/stream.html#stream_writable_streams) উদাহরণে রেন্ডার এবং পাইপ করুন।
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` থেকে এক্সপোর্ট করার হয়েছে**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function pipeToNodeWritable(
@@ -87,7 +87,7 @@ Render and pipe to an existing [Node.js Writable stream](https://nodejs.org/api/
   ): void
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   // inside a Node.js http handler
@@ -96,11 +96,11 @@ Render and pipe to an existing [Node.js Writable stream](https://nodejs.org/api/
 
 ## renderToWebStream() {#rendertowebstream}
 
-Renders input as a [Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API).
+একটি [Web ReadableStream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) হিসাবে ইনপুট রেন্ডার করে।
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` থেকে এক্সপোর্ট করা হয়েছে**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function renderToWebStream(
@@ -109,24 +109,24 @@ Renders input as a [Web ReadableStream](https://developer.mozilla.org/en-US/docs
   ): ReadableStream
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   // inside an environment with ReadableStream support
   return new Response(renderToWebStream(app))
   ```
 
-  :::tip Note
-  In environments that do not expose `ReadableStream` constructor in the global scope, [`pipeToWebWritable()`](#pipetowebwritable) should be used instead.
+  :::tip নোট
+  যে ইনভারনমেন্টগুলি গ্লোবাল স্কোপে `ReadableStream` কনস্ট্রাক্টরকে প্রকাশ করে না, সেখানে [`pipeToWebWritable()`](#pipetowebwritable) ব্যবহার করা উচিত।
   :::
 
 ## pipeToWebWritable() {#pipetowebwritable}
 
-Render and pipe to an existing [Web WritableStream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) instance.
+একটি বিদ্যমান [Web WritableStream](https://developer.mozilla.org/en-US/docs/Web/API/WritableStream) উদাহরণে রেন্ডার এবং পাইপ করুন।
 
-- **Exported from `vue/server-renderer`**
+- **`vue/server-renderer` থেকে এক্সপোর্ট করা হয়েছে**
 
-- **Type**
+- **প্রকার**
 
   ```ts
   function pipeToWebWritable(
@@ -136,9 +136,9 @@ Render and pipe to an existing [Web WritableStream](https://developer.mozilla.or
   ): void
   ```
 
-- **Example**
+- **উদাহরন**
 
-  This is typically used in combination with [`TransformStream`](https://developer.mozilla.org/en-US/docs/Web/API/TransformStream):
+  এটি সাধারণত [`TransformStream`](https://developer.mozilla.org/en-US/docs/Web/API/TransformStream) এর সাথে ব্যবহার করা হয়:
 
   ```js
   // TransformStream is available in environments such as CloudFlare workers.
