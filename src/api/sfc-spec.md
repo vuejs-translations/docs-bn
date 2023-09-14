@@ -2,9 +2,9 @@
 
 ## Overview {#overview}
 
-A Vue Single-File Component (SFC), conventionally using the `*.vue` file extension, is a custom file format that uses an HTML-like syntax to describe a Vue component. A Vue SFC is syntactically compatible with HTML.
+একটি Vue সিঙ্গেল-ফাইল কম্পোনেন্ট (SFC), প্রচলিতভাবে `*.vue` ফাইল এক্সটেনশন ব্যবহার করে, একটি কাস্টম ফাইল ফরম্যাট যা একটি Vue কম্পোনেন্ট বর্ণনা করার জন্য একটি HTML-এর মতো সিনট্যাক্স ব্যবহার করে। একটি Vue SFC এইচটিএমএল এর সাথে সিনট্যাক্টিভাবে সামঞ্জস্যপূর্ণ।
 
-Each `*.vue` file consists of three types of top-level language blocks: `<template>`, `<script>`, and `<style>`, and optionally additional custom blocks:
+প্রতিটি `*.vue` ফাইলে তিন ধরনের টপ-লেভেলের ভাষা ব্লক থাকে: `<template>`, `<script>`, এবং `<style>`, এবং ঐচ্ছিকভাবে অতিরিক্ত কাস্টম ব্লক:
 
 ```vue
 <template>
@@ -36,29 +36,29 @@ export default {
 
 ### `<template>` {#template}
 
-- Each `*.vue` file can contain at most one top-level `<template>` block.
+- প্রতিটি `*.vue` ফাইলে সর্বাধিক একটি টপ-লেভেলেরর `<template>` ব্লক থাকতে পারে।
 
-- Contents will be extracted and passed on to `@vue/compiler-dom`, pre-compiled into JavaScript render functions, and attached to the exported component as its `render` option.
+- কন্টেন্ট এক্সট্রাক্ট করা হবে এবং `@vue/compiler-dom`-এ পাস করা হবে, জাভাস্ক্রিপ্ট রেন্ডার ফাংশনে প্রি-কম্পাইলড করা হবে এবং এক্সপোর্টেড কম্পোনেন্টেরর সাথে এর `render` অপশন হিসেবে সংযুক্ত করা হবে।
 
 ### `<script>` {#script}
 
-- Each `*.vue` file can contain at most one `<script>` block (excluding [`<script setup>`](/api/sfc-script-setup)).
+- প্রতিটি `*.vue` ফাইলে সর্বাধিক একটি `<script>` ব্লক থাকতে পারে ([`<script setup>`](/api/sfc-script-setup) ব্যতীত)।
 
-- The script is executed as an ES Module.
+- স্ক্রিপ্টটি একটি ES মডিউল হিসাবে এক্সিকিউট করা হয়।
 
-- The **default export** should be a Vue component options object, either as a plain object or as the return value of [defineComponent](/api/general#definecomponent).
+- **ডিফল্ট এক্সপোর্ট** একটি Vue কম্পোনেন্ট অপশন অবজেক্ট হওয়া উচিত, হয় একটি প্লেইন অবজেক্ট হিসাবে বা [defineComponent](/api/general#definecomponent) এর রিটার্ন ভ্যালু হিসাবে।
 
 ### `<script setup>` {#script-setup}
 
-- Each `*.vue` file can contain at most one `<script setup>` block (excluding normal `<script>`).
+- প্রতিটি `*.vue` ফাইলে সর্বাধিক একটি `<script setup>` ব্লক থাকতে পারে (সাধারণ `<script>` ব্যতীত)।
 
-- The script is pre-processed and used as the component's `setup()` function, which means it will be executed **for each instance of the component**. Top-level bindings in `<script setup>` are automatically exposed to the template. For more details, see [dedicated documentation on `<script setup>`](/api/sfc-script-setup).
+- স্ক্রিপ্টটি প্রি-প্রসেস করা হয় এবং কম্পোনেন্টের `setup()` ফাংশন হিসেবে ব্যবহার করা হয়, যার মানে এটি **কম্পোনেন্টের প্রতিটি ইনস্ট্যান্সের জন্য** কার্যকর করা হবে। `<script setup>`-এ টপ-লেভেলের বাইন্ডিংগুলি স্বয়ংক্রিয়ভাবে টেমপ্লেটে এক্সপোজড হয়৷ আরও বিশদ বিবরণের জন্য, [`<script setup>`](/api/sfc-script-setup-এ ডেডিকেটেড ডকুমেন্টেশন) দেখুন।
 
 ### `<style>` {#style}
 
-- A single `*.vue` file can contain multiple `<style>` tags.
+- একটি একক `*.vue` ফাইলে একাধিক `<style>` ট্যাগ থাকতে পারে।
 
-- A `<style>` tag can have `scoped` or `module` attributes (see [SFC Style Features](/api/sfc-css-features) for more details) to help encapsulate the styles to the current component. Multiple `<style>` tags with different encapsulation modes can be mixed in the same component.
+- একটি `<style>` ট্যাগে `scoped` বা `module` অ্যাট্রিবিউট থাকতে পারে (আরো বিশদ বিবরণের জন্য [SFC স্টাইল ফিচারস](/api/sfc-css-features) দেখুন) কারন্ট কম্পোনেন্টে স্টাইলগুলিকে এনক্যাপসুলেট করতে হেল্প করে। বিভিন্ন এনক্যাপসুলেশন মোড সহ একাধিক `<style>` ট্যাগ একই কম্পোনেন্টে মিশ্রিত করা যেতে পারে।
 
 ### Custom Blocks {#custom-blocks}
 
