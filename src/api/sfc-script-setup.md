@@ -333,7 +333,7 @@ export default {
 
 ## Top-level `await` {#top-level-await}
 
-Top-level `await` can be used inside `<script setup>`. The resulting code will be compiled as `async setup()`:
+টপ-লেভেল `await` ব্যবহার করা যেতে পারে `<script setup>` এর মধ্যে। ফলস্বরূপ কোডটি `async setup()` হিসাবে কম্পাইল করা হবে:
 
 ```vue
 <script setup>
@@ -341,15 +341,15 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 </script>
 ```
 
-In addition, the awaited expression will be automatically compiled in a format that preserves the current component instance context after the `await`.
+উপরন্তু, প্রতীক্ষিত এক্সপ্রেশনটি স্বয়ংক্রিয়ভাবে একটি ফরম্যাটে সংকলিত হবে যা `await` এর পরে কারেন্ট কম্পোনেন্ট উদাহরণের কনটেক্স সংরক্ষণ করে।
 
-:::warning Note
-`async setup()` must be used in combination with `Suspense`, which is currently still an experimental feature. We plan to finalize and document it in a future release - but if you are curious now, you can refer to its [tests](https://github.com/vuejs/core/blob/main/packages/runtime-core/__tests__/components/Suspense.spec.ts) to see how it works.
+:::warning নোট
+`async setup()` অবশ্যই `Suspense` এর সাথে ব্যবহার করতে হবে, যা বর্তমানে একটি পরীক্ষামূলক ফিচার। আমরা ভবিষ্যতের রিলিজে এটি চূড়ান্ত এবং নথিভুক্ত করার পরিকল্পনা করছি - তবে আপনি যদি এখনই আগ্রহী হন তবে আপনি এটির [টেস্টস](https://github.com/vuejs/core/blob/main/packages/runtime-core/__tests__/components/Suspense.spec.ts) দেখুন কিভাবে এটি কাজ করে।
 :::
 
 ## Generics <sup class="vt-badge ts" /> {#generics}
 
-Generic type parameters can be declared using the `generic` attribute on the `<script>` tag:
+জেনেরিক টাইপ প্যারামিটারগুলি `<script>` ট্যাগে `generic` অ্যাট্রিবিউট ব্যবহার করে ডিক্লেয়ার করা যেতে পারে:
 
 ```vue
 <script setup lang="ts" generic="T">
@@ -360,7 +360,7 @@ defineProps<{
 </script>
 ```
 
-The value of `generic` works exactly the same as the parameter list between `<...>` in TypeScript. For example, you can use multiple parameters, `extends` constraints, default types, and reference imported types:
+টাইপস্ক্রিপ্টে `<...>`-এর মধ্যে প্যারামিটার লিস্টের মতোই `generic`-এর ভ্যালু ঠিক একইভাবে কাজ করে। উদাহরণস্বরূপ, আপনি একাধিক প্যরামিটার, `extends` সীমাবদ্ধতা, ডিফল্ট টাইপস এবং রেফারেন্স ইম্পোর্টেড করা টাইপগুলি ব্যবহার করতে পারেন:
 
 ```vue
 <script
@@ -378,4 +378,4 @@ defineProps<{
 
 ## Restrictions {#restrictions}
 
-Due to the difference in module execution semantics, code inside `<script setup>` relies on the context of an SFC. When moved into external `.js` or `.ts` files, it may lead to confusion for both developers and tools. Therefore, **`<script setup>`** cannot be used with the `src` attribute.
+মডিউল এক্সিকিউশন সিমান্টিক পার্থক্যের কারণে, `<script setup>`-এর ভিতরের কোড একটি SFC-এর কনটেক্স নির্ভর করে। বাহ্যিক `.js` বা `.ts` ফাইলে মুভ করা হলে, এটি ডেভেলপার এবং টুল উভয়ের জন্যই বিভ্রান্তির কারণ হতে পারে। অতএব, **`<script setup>`** `src` অ্যাট্রিবিউটের সাথে ব্যবহার করা যাবে না।
