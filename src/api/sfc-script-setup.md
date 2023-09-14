@@ -166,17 +166,17 @@ const emit = defineEmits(['change', 'delete'])
 </script>
 ```
 
-- `defineProps` and `defineEmits` are **compiler macros** only usable inside `<script setup>`. They do not need to be imported, and are compiled away when `<script setup>` is processed.
+- `defineProps` এবং `defineEmits` হল **কম্পাইলার ম্যাক্রো** শুধুমাত্র `<script setup>`-এর মধ্যে ব্যবহারযোগ্য। সেগুলি ইম্পোর্ট করার      প্রয়োজন নেই এবং `<script setup>` প্রক্রিয়া করা হলে কম্পাইল করা হয়।
 
-- `defineProps` accepts the same value as the `props` option, while `defineEmits` accepts the same value as the `emits` option.
+- `defineProps` `props` অপশনের মতো একই ভ্যালু গ্রহণ করে, যখন `defineEmits` `emits` অপশনের মতো একই ভ্যালু গ্রহণ করে।
 
-- `defineProps` and `defineEmits` provide proper type inference based on the options passed.
+- `defineProps` এবং `defineEmits` পাস করা অপশনগুলির উপর ভিত্তি করে সঠিক টাইপের ইনফারেন্স প্রদান করে।
 
-- The options passed to `defineProps` and `defineEmits` will be hoisted out of setup into module scope. Therefore, the options cannot reference local variables declared in setup scope. Doing so will result in a compile error. However, it _can_ reference imported bindings since they are in the module scope as well.
+- `defineProps` এবং `defineEmits`-এ পাস করা অপশনগুলি সেটআপের বাইরে মডিউল স্কোপে হোইস্টেড করা হবে। অতএব, অপশনগুলি সেটআপ সুযোগে ডিক্লেয়াড লোকাল ভেরিয়েবলের উল্লেখ করতে পারে না। এটি করার ফলে একটি কম্পাইল এরর হবে। যাইহোক, it _can_ reference  ইম্পোর্ট করা বাইন্ডিং যেহেতু তারা মডিউল স্কোপ রয়েছে।
 
 ### Type-only props/emit declarations<sup class="vt-badge ts" /> {#type-only-props-emit-declarations}
 
-Props and emits can also be declared using pure-type syntax by passing a literal type argument to `defineProps` or `defineEmits`:
+'defineProps' বা 'defineEmits'-এ একটি আক্ষরিক টাইপ আর্গুমেন্ট পাস করে পিউর-টাইপ সিনট্যাক্স ব্যবহার করে প্রপস এবং ইমিট ডিক্লেয়ার করা যেতে পারে:
 
 ```ts
 const props = defineProps<{
@@ -196,21 +196,21 @@ const emit = defineEmits<{
 }>()
 ```
 
-- `defineProps` or `defineEmits` can only use either runtime declaration OR type declaration. Using both at the same time will result in a compile error.
+- `defineProps` বা `defineEmits` শুধুমাত্র রানটাইম ডিক্লেয়ার বা টাইপ ডিক্লেয়ার ব্যবহার করতে পারে। একই সময়ে উভয় ব্যবহার করার ফলে একটি কম্পাইল এরর হবে।
 
-- When using type declaration, the equivalent runtime declaration is automatically generated from static analysis to remove the need for double declaration and still ensure correct runtime behavior.
+- টাইপ ডিক্লেয়ারেশন ব্যবহার করার সময়, ডবল ডিক্লেয়ারেশনের প্রয়োজনীয়তা দূর করতে এবং সঠিক রানটাইম বেহ্যিভিয়ার নিশ্চিত করতে স্ট্যাটিক বিশ্লেষণ থেকে সমতুল্য রানটাইম ঘোষণা স্বয়ংক্রিয়ভাবে তৈরি হয়।
 
-  - In dev mode, the compiler will try to infer corresponding runtime validation from the types. For example here `foo: String` is inferred from the `foo: string` type. If the type is a reference to an imported type, the inferred result will be `foo: null` (equal to `any` type) since the compiler does not have information of external files.
+  - ডেভ মোডে, কম্পাইলার টাইপগুলি থেকে সংশ্লিষ্ট রানটাইম ভ্যালিডেশন ইনফার করার চেষ্টা করবে। উদাহরণস্বরূপ এখানে `foo: String` ইনফারড করা হয়েছে `foo: string` প্রকার থেকে। যদি টাইপটি একটি ইম্পোর্ট করা টাইপের রেফারেন্স হয়, তাহলে ইনফারড করা ফলাফল হবে `foo: null` (`any` টাইপের সমান) যেহেতু কম্পাইলারের কাছে এক্সটারনাল ফাইলের তথ্য নেই।
 
-  - In prod mode, the compiler will generate the array format declaration to reduce bundle size (the props here will be compiled into `['foo', 'bar']`)
+  - প্রোড মোডে, কম্পাইলার বান্ডেলের সাইজ কমাতে অ্যারে ফরম্যাট ডিক্লারেইশন তৈরি করবে (এখানে প্রপগুলি `['foo', 'বার']` এ কম্পাইল করা হবে)
 
-- In version 3.2 and below, the generic type parameter for `defineProps()` were limited to a type literal or a reference to a local interface.
+- সংস্করণ 3.2 এবং নীচে, `defineProps()`-এর জন্য জেনেরিক টাইপ প্যারামিটার একটি লিটারাল টাইপ বা লোকাল ইন্টারফেসের একটি রেফারেন্সের মধ্যে সীমাবদ্ধ ছিল।
 
-  This limitation has been resolved in 3.3. The latest version of Vue supports referencing imported and a limited set of complex types in the type parameter position. However, because the type to runtime conversion is still AST-based, some complex types that require actual type analysis, e.g. conditional types, are not supported. You can use conditional types for the type of a single prop, but not the entire props object.
+  এই সীমাবদ্ধতা 3.3 এ সমাধান করা হয়েছে। Vue-এর সর্বশেষ সংস্করণটি টাইপ প্যারামিটার পজিশনে ইম্পোর্ট করা রেফারেন্সিং এবং জটিল টাইপের একটি সীমিত সেট সমর্থন করে। যাইহোক, যেহেতু রানটাইম কনভারশেন ধরনটি এখনও AST-ভিত্তিক, কিছু কমপ্লেক্স টাইপের প্রকৃত টাইপ অ্যানালাইসিস প্রয়োজন, যেমন কন্ডিশনাল টাইপ, সমর্থিত নয়। আপনি একটি সিঙ্গেল প্রপের ধরণের জন্য শর্তসাপেক্ষ টাইপগুলি ব্যবহার করতে পারেন, তবে সম্পূর্ণ প্রপস অবজেক্ট নয়।
 
 ### Default props values when using type declaration {#default-props-values-when-using-type-declaration}
 
-One drawback of the type-only `defineProps` declaration is that it doesn't have a way to provide default values for the props. To resolve this problem, a `withDefaults` compiler macro is also provided:
+টাইপ-অনলি `defineProps` ডিক্লারেশন একটি এরর হল যে এটিতে প্রপসের জন্য ডিফল্ট ভ্যালু প্রদান করার কোনো উপায় নেই। এই সমস্যাটি সমাধান করার জন্য, একটি 'withDefaults' কম্পাইলার ম্যাক্রোও প্রদান করা হয়েছে:
 
 ```ts
 export interface Props {
@@ -224,13 +224,13 @@ const props = withDefaults(defineProps<Props>(), {
 })
 ```
 
-This will be compiled to equivalent runtime props `default` options. In addition, the `withDefaults` helper provides type checks for the default values, and ensures the returned `props` type has the optional flags removed for properties that do have default values declared.
+এটি সমতুল্য রানটাইম প্রপস `default` অপশনের কম্পাইল করা হবে। উপরন্তু, `withDefaults` হেল্পার ডিফল্ট ভ্যালুগুলির জন্য টাইপ চেক প্রদান করে এবং নিশ্চিত করে যে প্রত্যাবর্তিত `props` টাইপটিতে ডিফল্ট ভ্যালু ডিক্লারড বৈশিষ্ট্যগুলির জন্য অপশনাল ফ্ল্যাগগুলি রিমুভ করা হয়েছে।
 
 ## defineExpose() {#defineexpose}
 
-Components using `<script setup>` are **closed by default** - i.e. the public instance of the component, which is retrieved via template refs or `$parent` chains, will **not** expose any of the bindings declared inside `<script setup>`.
+`<script setup>` ব্যবহার করা কম্পোনেন্টগুলি **ডিফল্টরূপে বন্ধ থাকে** - যেমন কম্পোনেন্টের সর্বজনীন উদাহরণ, যা টেমপ্লেট রেফ বা `$parent` চেইনের মাধ্যমে পুনরুদ্ধার করা হয়, ডিক্লারড কোনো বাইন্ডিং **কে প্রকাশ করবে না** `<script setup>` এর ভিতরে।
 
-To explicitly expose properties in a `<script setup>` component, use the `defineExpose` compiler macro:
+একটি `<script setup>` কম্পোনেন্টে প্রোপার্টিগুলি স্পষ্টভাবে প্রকাশ করতে, `defineExpose` কম্পাইলার ম্যাক্রো ব্যবহার করুন:
 
 ```vue
 <script setup>
@@ -246,7 +246,7 @@ defineExpose({
 </script>
 ```
 
-When a parent gets an instance of this component via template refs, the retrieved instance will be of the shape `{ a: number, b: number }` (refs are automatically unwrapped just like on normal instances).
+যখন একটি প্যারেন্ট টেমপ্লেট রেফের মাধ্যমে এই কম্পোনেন্টটির একটি ইন্সট্যান্স পান, তখন পুনরুদ্ধারকৃত ইন্সট্যান্স `{ a: number, b: number }` আকারের হবে (রেফগুলি স্বয়ংক্রিয়ভাবে স্বাভাবিক উদাহরণের মতোই unwrapped হয়)।
 
 ## defineOptions() {#defineoptions}
 
