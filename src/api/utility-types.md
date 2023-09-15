@@ -151,9 +151,9 @@
 
 ## ComponentCustomProps {#componentcustomprops}
 
-Used to augment allowed TSX props in order to use non-declared props on TSX elements.
+TSX ইলিমেন্টগুলিতে অ-ঘোষিত প্রপগুলি ব্যবহার করার জন্য অনুমোদিত TSX প্রপগুলিকে বৃদ্ধি করতে ব্যবহৃত হয়৷
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   declare module 'vue' {
@@ -171,16 +171,16 @@ Used to augment allowed TSX props in order to use non-declared props on TSX elem
   ```
 
   :::tip
-  Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+  অগমেন্টেশনগুলি অবশ্যই একটি মডিউল `.ts` বা `.d.ts` ফাইলে স্থাপন করতে হবে। আরো বিস্তারিত জানার জন্য [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) দেখুন।
   :::
 
 ## CSSProperties {#cssproperties}
 
-Used to augment allowed values in style property bindings.
+স্টাইল প্রোপার্টি বাইন্ডিং এর এ্যালাউড ভ্যালু বৃদ্ধি করতে ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
-  Allow any custom CSS property
+  যেকোন কাস্টম সিএসএস প্রপার্টির এ্যালাউ করুন। 
 
   ```ts
   declare module 'vue' {
@@ -199,11 +199,11 @@ Used to augment allowed values in style property bindings.
   ```
 
 :::tip
-Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+অগমেন্টেশনগুলি অবশ্যই একটি মডিউল `.ts` বা `.d.ts` ফাইলে স্থাপন করতে হবে। আরো বিস্তারিত জানার জন্য [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) দেখুন।
 :::
 
 :::info See also
-SFC `<style>` tags support linking CSS values to dynamic component state using the `v-bind` CSS function. This allows for custom properties without type augmentation.
+SFC `<style>` ট্যাগগুলি `v-bind` CSS ফাংশন ব্যবহার করে CSS ভ্যালুগুলিকে ডাইনামিক কম্পোনেন্ট স্টেইটে লিঙ্ক করা সাপোর্ট করে। এটি টাইপ বৃদ্ধি ছাড়াই কাস্টম প্রোপার্টির জন্য এ্যালাউ করে।
 
 - [v-bind() in CSS](/api/sfc-css-features#v-bind-in-css)
   :::
