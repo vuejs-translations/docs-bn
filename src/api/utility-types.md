@@ -1,14 +1,14 @@
 # Utility Types {#utility-types}
 
 :::info
-This page only lists a few commonly used utility types that may need explanation for their usage. For a full list of exported types, consult the [source code](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131).
+এই পেইজটি শুধুমাত্র কয়েকটি সাধারণভাবে ব্যবহৃত ইউটিলিটি টাইপের লিস্ট করে যেগুলির ব্যবহারের জন্য ব্যাখ্যার প্রয়োজন হতে পারে। এক্সপোর্টেড করা টাইপের সম্পূর্ণ লিস্টের জন্য, [source code](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131) দেখুন।
 :::
 
 ## PropType\<T> {#proptype-t}
 
-Used to annotate a prop with more advanced types when using runtime props declarations.
+রানটাইম প্রপ ডিক্লেয়ার ব্যবহার করার সময় আরও উন্নত ধরনের সহ একটি প্রপ টীকা করতে ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   import type { PropType } from 'vue'
@@ -30,19 +30,19 @@ Used to annotate a prop with more advanced types when using runtime props declar
   }
   ```
 
-- **See also** [Guide - Typing Component Props](/guide/typescript/options-api#typing-component-props)
+- **আরো দেখুন** [Guide - Typing Component Props](/guide/typescript/options-api#typing-component-props)
 
 ## MaybeRef\<T> {#mayberef}
 
-Alias for `T | Ref<T>`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+`T | এর এলিয়াস রেফারেন্স<T>`। [Composables](/guide/reusability/composables.html) এর আর্গুমেন্ট টীকা করার জন্য দরকারী।
 
-- Only supported in 3.3+.
+- শুধুমাত্র 3.3+ এ সমর্থিত।
 
 ## MaybeRefOrGetter\<T> {#maybereforgetter}
 
-Alias for `T | Ref<T> | (() => T)`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+`T | এর এলিয়াস রেফারেন্স<T>`। [Composables](/guide/reusability/composables.html) এর আর্গুমেন্ট টীকা করার জন্য দরকারী।
 
-- Only supported in 3.3+.
+- শুধুমাত্র 3.3+ এ সমর্থিত।
 
 ## ExtractPropTypes\<T> {#extractproptypes}
 
