@@ -46,11 +46,11 @@
 
 ## ExtractPropTypes\<T> {#extractproptypes}
 
-Extract prop types from a runtime props options object. The extracted types are internal facing - i.e. the resolved props received by the component. This means boolean props and props with default values are always defined, even if they are not required.
+রানটাইম প্রপ অপশন অবজেক্ট থেকে প্রপ টাইপগুলি এক্সট্রাক্ট করুন। এক্সট্রাক্টেড টাইপগুলি অভ্যন্তরীণ মুখোমুখি - অর্থাৎ কম্পোনেন্ট দ্বারা প্রাপ্ত সমাধানকৃত প্রপস৷ এর অর্থ হল বুলিয়ান প্রপস এবং ডিফল্ট ভ্যালুসহ প্রপগুলি সর্বদা ডিফাইনড করা হয়, এমনকি তাদের প্রয়োজন না হলেও।
 
-To extract public facing props, i.e. props that the parent is allowed to pass, use [`ExtractPublicPropTypes`](#extractpublicproptypes).
+পাবলিক ফেসিং প্রপস বের করতে, যেমন প্রপস যা প্যারেন্টকে পাস করার এ্যালাউ করা হয়েছে, [`ExtractPublicPropTypes`](#extractpublicproptypes) ব্যবহার করুন।
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   const propsOptions = {
@@ -77,9 +77,9 @@ To extract public facing props, i.e. props that the parent is allowed to pass, u
 
 ## ExtractPublicPropTypes\<T> {#extractpublicproptypes}
 
-Extract prop types from a runtime props options object. The extracted types are public facing - i.e. the props that the parent is allowed to pass.
+রানটাইম প্রপ অপশন অবজেক্ট থেকে প্রপ টাইপগুলি বের করুন। এক্সট্রাক্টেড টাইপগুলি পাবলিক ফেসিং - যেমন প্রপস যা প্যারেন্টকে পাস করার অনুমতি দেওয়া হয়েছে৷
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   const propsOptions = {
@@ -106,9 +106,9 @@ Extract prop types from a runtime props options object. The extracted types are 
 
 ## ComponentCustomProperties {#componentcustomproperties}
 
-Used to augment the component instance type to support custom global properties.
+কাস্টম গ্লোবাল প্রোপার্টি সমর্থন করার জন্য কম্পোনেন্ট ইন্সট্যান্স টাইপ বৃদ্ধি ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   import axios from 'axios'
@@ -122,16 +122,16 @@ Used to augment the component instance type to support custom global properties.
   ```
 
   :::tip
-  Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+  অগমেন্টেশনগুলি অবশ্যই একটি মডিউল `.ts` বা `.d.ts` ফাইলে স্থাপন করতে হবে। আরো বিস্তারিত জানার জন্য [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) দেখুন।
   :::
 
-- **See also** [Guide - Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties)
+- **আরো দেখুন** [Guide - Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties)
 
 ## ComponentCustomOptions {#componentcustomoptions}
 
-Used to augment the component options type to support custom options.
+কাস্টম টাইপগুলিকে সমর্থন করার জন্য কম্পোনেন্ট অপশনের টাইপ বৃদ্ধি করতে ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   import { Route } from 'vue-router'
@@ -144,10 +144,10 @@ Used to augment the component options type to support custom options.
   ```
 
   :::tip
-  Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+  অগমেন্টেশনগুলি অবশ্যই একটি মডিউল `.ts` বা `.d.ts` ফাইলে স্থাপন করতে হবে। আরো বিস্তারিত জানার জন্য [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) দেখুন।
   :::
 
-- **See also** [Guide - Augmenting Custom Options](/guide/typescript/options-api#augmenting-custom-options)
+- **আরো দেখুন** [Guide - Augmenting Custom Options](/guide/typescript/options-api#augmenting-custom-options)
 
 ## ComponentCustomProps {#componentcustomprops}
 
