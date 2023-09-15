@@ -2,7 +2,7 @@
 
 ## renderToString() {#rendertostring}
 
-- **`vue/server-renderer` থেকে ইমপোর্ট করা হয়েছে**
+- **`vue/server-renderer` থেকে এক্সপোর্ট করা হয়েছে**
 
 - **প্রকার**
 
