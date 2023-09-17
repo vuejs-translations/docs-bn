@@ -2,9 +2,9 @@
 
 ## data {#data}
 
-A function that returns the initial reactive state for the component instance.
+একটি ফাংশন যা কম্পোনেন্ট ইন্সট্যান্সের জন্য ইনিশিয়াল রিয়েক্টিভ স্টেইট রিটার্ন করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -15,17 +15,17 @@ A function that returns the initial reactive state for the component instance.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The function is expected to return a plain JavaScript object, which will be made reactive by Vue. After the instance is created, the reactive data object can be accessed as `this.$data`. The component instance also proxies all the properties found on the data object, so `this.a` will be equivalent to `this.$data.a`.
+  ফাংশনটি একটি প্লেইন জাভাস্ক্রিপ্ট অবজেক্ট রিটার্ন করবে বলে আশা করা হচ্ছে, যা Vue দ্বারা রিয়েক্টিভ করা হবে। ইন্সট্যান্স তৈরি হওয়ার পরে, রিয়েক্টিভ ডেটা অবজেক্টটি `this.$data` হিসাবে অ্যাক্সেস করা যেতে পারে। কম্পোনেন্ট ইনস্ট্যান্স ডেটা অবজেক্টে পাওয়া সমস্ত প্রোপার্টিকেও প্রক্সি করে, তাই `this.a` হবে `this.$data.a` এর সমতুল্য।
 
-  All top-level data properties must be included in the returned data object. Adding new properties to `this.$data` is possible, but it is **not** recommended. If the desired value of a property is not yet available then an empty value such as `undefined` or `null` should be included as a placeholder to ensure that Vue knows that the property exists.
+  সমস্ত টপ-লেভেলের ডেটা প্রোপার্টি অবশ্যই রিটার্নড ডেটা অবজেক্টে অন্তর্ভুক্ত করতে হবে। `this.$data`-এ নতুন প্রপার্টি যোগ করা সম্ভব, কিন্তু এটা **বাঞ্ছনীয় নয়**। যদি একটি প্রপার্টির কাঙ্খিত ভ্যালু এখনও এভ্যাইলএবল না হয় তাহলে একটি এম্পটি ভ্যালু যেমন `undefined` বা `null` একটি প্লেইসহোল্ডার হিসেবে অন্তর্ভুক্ত করা উচিত যাতে Vue জানে যে প্রোপার্টিটি বিদ্যমান।
 
-  Properties that start with `_` or `$` will **not** be proxied on the component instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `this.$data._property`.
+  যে প্রপার্টিগুলি `_` বা `$` দিয়ে শুরু হয় সেগুলি কম্পোনেন্ট ইন্সট্যান্সে প্রক্সি করা হবে না কারণ সেগুলি Vue-এর ইন্টারন্যাল প্রোপার্টি এবং API মেথডের সাথে কনফিলিক্ট হতে পারে। আপনাকে সেগুলিকে `this.$data._property` হিসেবে অ্যাক্সেস করতে হবে।
 
-  It is **not** recommended to return objects with their own stateful behavior like browser API objects and prototype properties. The returned object should ideally be a plain object that only represents the state of the component.
+  ব্রাউজার API অবজেক্ট এবং প্রোটোটাইপ প্রোপার্টির মতো অবজেক্টকে তাদের নিজস্ব স্টেইটফুল আচরণের সাথে রিটার্ন দেওয়ার জন্য **বাঞ্ছনীয় নয়**। রিটার্নড অবজেক্টটি আদর্শভাবে একটি প্লেইন অবজেক্ট হওয়া উচিত যা শুধুমাত্র কম্পোনেন্টটির স্টেইটকে রিপ্রেজেন্ট করে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -39,13 +39,13 @@ A function that returns the initial reactive state for the component instance.
   }
   ```
 
-  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+ মনে রাখবেন যে আপনি যদি `data` প্রপার্টির সাথে একটি অ্যারো ফাংশন ব্যবহার করেন, তাহলে `this` কম্পোনেন্টটির ইন্সট্যান্স হবে না, তবে আপনি এখনও ফাংশনের প্রথম আরগুমেন্ট হিসাবে ইন্সট্যান্সটি অ্যাক্সেস করতে পারেন:
 
   ```js
   data: (vm) => ({ a: vm.myProp })
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **আরো দেখুন** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## props {#props}
 
