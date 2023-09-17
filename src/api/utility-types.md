@@ -1,14 +1,14 @@
 # Utility Types {#utility-types}
 
 :::info
-This page only lists a few commonly used utility types that may need explanation for their usage. For a full list of exported types, consult the [source code](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131).
+এই পেইজটি শুধুমাত্র কয়েকটি সাধারণভাবে ব্যবহৃত ইউটিলিটি টাইপের লিস্ট করে যেগুলির ব্যবহারের জন্য ব্যাখ্যার প্রয়োজন হতে পারে। এক্সপোর্টেড করা টাইপের সম্পূর্ণ লিস্টের জন্য, [source code](https://github.com/vuejs/core/blob/main/packages/runtime-core/src/index.ts#L131) দেখুন।
 :::
 
 ## PropType\<T> {#proptype-t}
 
-Used to annotate a prop with more advanced types when using runtime props declarations.
+রানটাইম প্রপ ডিক্লেয়ার ব্যবহার করার সময় আরও উন্নত ধরনের সহ একটি প্রপ টীকা করতে ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   import type { PropType } from 'vue'
@@ -30,27 +30,27 @@ Used to annotate a prop with more advanced types when using runtime props declar
   }
   ```
 
-- **See also** [Guide - Typing Component Props](/guide/typescript/options-api#typing-component-props)
+- **আরো দেখুন** [Guide - Typing Component Props](/guide/typescript/options-api#typing-component-props)
 
 ## MaybeRef\<T> {#mayberef}
 
-Alias for `T | Ref<T>`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+`T | এর এলিয়াস রেফারেন্স<T>`। [Composables](/guide/reusability/composables.html) এর আর্গুমেন্ট টীকা করার জন্য দরকারী।
 
-- Only supported in 3.3+.
+- শুধুমাত্র 3.3+ এ সমর্থিত।
 
 ## MaybeRefOrGetter\<T> {#maybereforgetter}
 
-Alias for `T | Ref<T> | (() => T)`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
+`T | এর এলিয়াস রেফারেন্স<T>`। [Composables](/guide/reusability/composables.html) এর আর্গুমেন্ট টীকা করার জন্য দরকারী।
 
-- Only supported in 3.3+.
+- শুধুমাত্র 3.3+ এ সমর্থিত।
 
 ## ExtractPropTypes\<T> {#extractproptypes}
 
-Extract prop types from a runtime props options object. The extracted types are internal facing - i.e. the resolved props received by the component. This means boolean props and props with default values are always defined, even if they are not required.
+রানটাইম প্রপ অপশন অবজেক্ট থেকে প্রপ টাইপগুলি এক্সট্রাক্ট করুন। এক্সট্রাক্টেড টাইপগুলি অভ্যন্তরীণ মুখোমুখি - অর্থাৎ কম্পোনেন্ট দ্বারা প্রাপ্ত সমাধানকৃত প্রপস৷ এর অর্থ হল বুলিয়ান প্রপস এবং ডিফল্ট ভ্যালুসহ প্রপগুলি সর্বদা ডিফাইনড করা হয়, এমনকি তাদের প্রয়োজন না হলেও।
 
-To extract public facing props, i.e. props that the parent is allowed to pass, use [`ExtractPublicPropTypes`](#extractpublicproptypes).
+পাবলিক ফেসিং প্রপস বের করতে, যেমন প্রপস যা প্যারেন্টকে পাস করার এ্যালাউ করা হয়েছে, [`ExtractPublicPropTypes`](#extractpublicproptypes) ব্যবহার করুন।
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   const propsOptions = {
@@ -77,9 +77,9 @@ To extract public facing props, i.e. props that the parent is allowed to pass, u
 
 ## ExtractPublicPropTypes\<T> {#extractpublicproptypes}
 
-Extract prop types from a runtime props options object. The extracted types are public facing - i.e. the props that the parent is allowed to pass.
+রানটাইম প্রপ অপশন অবজেক্ট থেকে প্রপ টাইপগুলি বের করুন। এক্সট্রাক্টেড টাইপগুলি পাবলিক ফেসিং - যেমন প্রপস যা প্যারেন্টকে পাস করার অনুমতি দেওয়া হয়েছে৷
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   const propsOptions = {
@@ -106,9 +106,9 @@ Extract prop types from a runtime props options object. The extracted types are 
 
 ## ComponentCustomProperties {#componentcustomproperties}
 
-Used to augment the component instance type to support custom global properties.
+কাস্টম গ্লোবাল প্রোপার্টি সমর্থন করার জন্য কম্পোনেন্ট ইন্সট্যান্স টাইপ বৃদ্ধি ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   import axios from 'axios'
@@ -122,16 +122,16 @@ Used to augment the component instance type to support custom global properties.
   ```
 
   :::tip
-  Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+  অগমেন্টেশনগুলি অবশ্যই একটি মডিউল `.ts` বা `.d.ts` ফাইলে স্থাপন করতে হবে। আরো বিস্তারিত জানার জন্য [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) দেখুন।
   :::
 
-- **See also** [Guide - Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties)
+- **আরো দেখুন** [Guide - Augmenting Global Properties](/guide/typescript/options-api#augmenting-global-properties)
 
 ## ComponentCustomOptions {#componentcustomoptions}
 
-Used to augment the component options type to support custom options.
+কাস্টম টাইপগুলিকে সমর্থন করার জন্য কম্পোনেন্ট অপশনের টাইপ বৃদ্ধি করতে ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   import { Route } from 'vue-router'
@@ -144,16 +144,16 @@ Used to augment the component options type to support custom options.
   ```
 
   :::tip
-  Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+  অগমেন্টেশনগুলি অবশ্যই একটি মডিউল `.ts` বা `.d.ts` ফাইলে স্থাপন করতে হবে। আরো বিস্তারিত জানার জন্য [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) দেখুন।
   :::
 
-- **See also** [Guide - Augmenting Custom Options](/guide/typescript/options-api#augmenting-custom-options)
+- **আরো দেখুন** [Guide - Augmenting Custom Options](/guide/typescript/options-api#augmenting-custom-options)
 
 ## ComponentCustomProps {#componentcustomprops}
 
-Used to augment allowed TSX props in order to use non-declared props on TSX elements.
+TSX ইলিমেন্টগুলিতে অ-ঘোষিত প্রপগুলি ব্যবহার করার জন্য অনুমোদিত TSX প্রপগুলিকে বৃদ্ধি করতে ব্যবহৃত হয়৷
 
-- **Example**
+- **উদাহরন**
 
   ```ts
   declare module 'vue' {
@@ -171,16 +171,16 @@ Used to augment allowed TSX props in order to use non-declared props on TSX elem
   ```
 
   :::tip
-  Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+  অগমেন্টেশনগুলি অবশ্যই একটি মডিউল `.ts` বা `.d.ts` ফাইলে স্থাপন করতে হবে। আরো বিস্তারিত জানার জন্য [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) দেখুন।
   :::
 
 ## CSSProperties {#cssproperties}
 
-Used to augment allowed values in style property bindings.
+স্টাইল প্রোপার্টি বাইন্ডিং এর এ্যালাউড ভ্যালু বৃদ্ধি করতে ব্যবহৃত হয়।
 
-- **Example**
+- **উদাহরন**
 
-  Allow any custom CSS property
+  যেকোন কাস্টম সিএসএস প্রপার্টির এ্যালাউ করুন। 
 
   ```ts
   declare module 'vue' {
@@ -199,11 +199,11 @@ Used to augment allowed values in style property bindings.
   ```
 
 :::tip
-Augmentations must be placed in a module `.ts` or `.d.ts` file. See [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) for more details.
+অগমেন্টেশনগুলি অবশ্যই একটি মডিউল `.ts` বা `.d.ts` ফাইলে স্থাপন করতে হবে। আরো বিস্তারিত জানার জন্য [Type Augmentation Placement](/guide/typescript/options-api#augmenting-global-properties) দেখুন।
 :::
 
 :::info See also
-SFC `<style>` tags support linking CSS values to dynamic component state using the `v-bind` CSS function. This allows for custom properties without type augmentation.
+SFC `<style>` ট্যাগগুলি `v-bind` CSS ফাংশন ব্যবহার করে CSS ভ্যালুগুলিকে ডাইনামিক কম্পোনেন্ট স্টেইটে লিঙ্ক করা সাপোর্ট করে। এটি টাইপ বৃদ্ধি ছাড়াই কাস্টম প্রোপার্টির জন্য এ্যালাউ করে।
 
 - [v-bind() in CSS](/api/sfc-css-features#v-bind-in-css)
   :::
