@@ -131,9 +131,9 @@
 
 ## computed {#computed}
 
-Declare computed properties to be exposed on the component instance.
+কম্পোনেন্ট ইনস্ট্যান্সে এক্সপোজড করা কম্পিউটেড করা প্রপার্টিগুলো ডিক্লার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -158,13 +158,13 @@ Declare computed properties to be exposed on the component instance.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The option accepts an object where the key is the name of the computed property, and the value is either a computed getter, or an object with `get` and `set` methods (for writable computed properties).
+  অপশনটি এমন একটি অবজেক্টকে গ্রহণ করে যেখানে কী টি কম্পিউটেড প্রপার্টির নেইম, এবং ভ্যালুটি হয় একটি কম্পিউটেড গেটার, অথবা `get` এবং `set` মেথড সহ একটি অবজেক্ট (লিখনযোগ্য কম্পিউটেড প্রপার্টিগুলোর জন্য)।
 
-  All getters and setters have their `this` context automatically bound to the component instance.
+  সমস্ত getters এবং setters তাদের `this` কনটেক্সট স্বয়ংক্রিয়ভাবে কম্পোনেন্ট ইনস্ট্যান্সের সাথে আবদ্ধ থাকে।
 
-  Note that if you use an arrow function with a computed property, `this` won't point to the component's instance, but you can still access the instance as the function's first argument:
+  মনে রাখবেন যে আপনি যদি একটি কম্পিউটেড প্রপার্টির সাথে একটি অ্যারো ফাংশন ব্যবহার করেন, তাহলে `this` কম্পোনেন্টটির ইন্সট্যান্সের দিকে নির্দেশ করবে না, তবে আপনি এখনও ফাংশনের প্রথম আরগুমেন্ট হিসাবে ইন্সট্যান্সটি অ্যাক্সেস করতে পারেন:
 
   ```js
   export default {
@@ -174,7 +174,7 @@ Declare computed properties to be exposed on the component instance.
   }
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -207,15 +207,15 @@ Declare computed properties to be exposed on the component instance.
   }
   ```
 
-- **See also**
+- **আরো দেখুন**
   - [Guide - Computed Properties](/guide/essentials/computed)
   - [Guide - Typing Computed Properties](/guide/typescript/options-api#typing-computed-properties) <sup class="vt-badge ts" />
 
 ## methods {#methods}
 
-Declare methods to be mixed into the component instance.
+কম্পোনেন্টটির ইন্সট্যান্সে মিক্সড করার মেথড ঘোষণা করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -225,13 +225,13 @@ Declare methods to be mixed into the component instance.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Declared methods can be directly accessed on the component instance, or used in template expressions. All methods have their `this` context automatically bound to the component instance, even when passed around.
+  ডিক্লারড মেথডগুলি সরাসরি কম্পোনেন্ট ইনস্ট্যান্সে অ্যাক্সেস করা যেতে পারে বা টেমপ্লেট এক্সপ্রেশনে ব্যবহার করা যেতে পারে। সমস্ত মেথডগুলোতে তাদের `this` কনটেক্সট স্বয়ংক্রিয়ভাবে কম্পোনেন্ট ইনস্ট্যান্সের সাথে আবদ্ধ থাকে, এমনকি চারপাশে পাস করার পরেও।
 
-  Avoid using arrow functions when declaring methods, as they will not have access to the component instance via `this`.
+  মেথড ঘোষণা করার সময় অ্যারো ফাংশন ব্যবহার করা এড়িয়ে চলুন, কারণ তারা `this` এর মাধ্যমে কম্পোনেন্ট ইন্সট্যান্সে অ্যাক্সেস পাবে না।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -250,7 +250,7 @@ Declare methods to be mixed into the component instance.
   }
   ```
 
-- **See also** [Event Handling](/guide/essentials/event-handling)
+- **আরো দেখুন** [Event Handling](/guide/essentials/event-handling)
 
 ## watch {#watch}
 
