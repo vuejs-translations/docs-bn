@@ -49,9 +49,9 @@
 
 ## props {#props}
 
-Declare the props of a component.
+একটি কম্পোনেন্টের প্রপস ডিক্লার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -74,30 +74,30 @@ Declare the props of a component.
   type PropType<T> = { new (): T } | { new (): T }[]
   ```
 
-  > Types are simplified for readability.
+  > টাইপগুলি পঠনযোগ্যতার জন্য সহজ করা হয়েছে ।
 
-- **Details**
+- **বিস্তারিত**
 
-  In Vue, all component props need to be explicitly declared. Component props can be declared in two forms:
+  Vue-তে, সমস্ত কম্পোনেন্ট প্রপস স্পষ্টভাবে ডিক্লার করা প্রয়োজন। কম্পোনেন্ট প্রপস দুটি আকারে ডিক্লার করা যেতে পারে:
 
-  - Simple form using an array of strings
-  - Full form using an object where each property key is the name of the prop, and the value is the prop's type (a constructor function) or advanced options.
+  - সিম্পল ফর্ম স্ট্রিংগুলির একটি অ্যারে ব্যবহার করে ।
+  - একটি অবজেক্ট ব্যবহার করে সম্পূর্ণ ফর্ম যেখানে প্রতিটি স্টেইট কী হল প্রপের নাম, এবং ভ্যালু হল প্রপের ধরন (একটি কনস্ট্রাক্টর ফাংশন) বা অ্যাডভ্যান্সড অপশন ।
 
-  With object-based syntax, each prop can further define the following options:
+  অবজেক্ট-ভিত্তিক সিনট্যাক্সের সাথে, প্রতিটি প্রপ নিম্নলিখিত অপশনগুলিকে আরও ডিফাইন করতে পারে:
 
-  - **`type`**: Can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. In development mode, Vue will check if a prop's value matches the declared type, and will throw a warning if it doesn't. See [Prop Validation](/guide/components/props#prop-validation) for more details.
+  - **`type`**: নিম্নলিখিত নেটিভ কনস্ট্রাক্টর হতে পারে: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol` কোনো কাস্টম কনস্ট্রাক্টর ফাংশন বা সেগুলির একটি অ্যারে। ডেভেলপমেন্ট মোডে, Vue একটি প্রপের ভ্যালু ডিক্লারড টাইপের সাথে মেলে কিনা তা পরীক্ষা করবে এবং এটি না হলে একটি ওয়ার্নিং থ্রো করবে। আরো বিস্তারিত জানার জন্য [Prop Validation](/guide/components/props#prop-validation) দেখুন।
 
-    Also note that a prop with `Boolean` type affects its value casting behavior in both development and production. See [Boolean Casting](/guide/components/props#boolean-casting) for more details.
+  এছাড়াও মনে রাখবেন যে  `Boolean` টাইপের একটি প্রপ ডেভেলপমেন্ট এবং প্রোডাকশন উভয় ক্ষেত্রেই এর ভ্যালু কাস্টিং বিহেইভিয়ারকে প্রভাবিত করে। আরো বিস্তারিত জানার জন্য [Boolean Casting](/guide/components/props#boolean-casting) দেখুন।
 
-  - **`default`**: Specifies a default value for the prop when it is not passed by the parent or has `undefined` value. Object or array defaults must be returned using a factory function. The factory function also receives the raw props object as the argument.
+  - **`default`**: প্রপের জন্য একটি ডিফল্ট ভ্যালু নির্দিষ্ট করে যখন এটি প্যারেন্ট দ্বারা পাস করা হয় না বা `undefined` ভ্যালু থাকে৷ অবজেক্ট বা অ্যারে ডিফল্ট একটি ফাক্টরি ফাংশন ব্যবহার করে রিটার্ন দিতে হবে। ফ্যাক্টরি ফাংশন আর্গুমেন্ট হিসাবে র-প্রপস অবজেক্ট রিসিভ করে।
 
-  - **`required`**: Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+  - **`required`**: প্রপ প্রয়োজন হলে ডিফাইন করে। একটি নন-প্রোডাকশন ইনভারনমেন্ট, একটি কনসোল ওয়ার্নিং থ্রো করা হবে যদি এই ভ্যালু সত্য হয় এবং প্রপ পাস না হয়।
 
-  - **`validator`**: Custom validator function that takes the prop value as the sole argument. In development mode, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails).
+  - **`validator`**: কাস্টম ভ্যালিডেটর ফাংশন যা প্রপ ভ্যালুকে একমাত্র আর্গুমেন্ট হিসেবে নেয়। ডেভেলপমেন্ট মোডে, একটি কনসোল ওয়ারনিং থ্রো করা হবে যদি এই ফাংশনটি একটি মিথ্যা ভ্যালু প্রদান করে (অর্থাৎ বৈধতা ব্যর্থ হয়)।
 
-- **Example**
+- **উদাহরন**
 
-  Simple declaration:
+  সিম্পল ডিক্লারেশন:
 
   ```js
   export default {
@@ -105,7 +105,7 @@ Declare the props of a component.
   }
   ```
 
-  Object declaration with validations:
+  ভ্যালিডেইশন সহ অবজেক্ট ডিক্লারেশন:
 
   ```js
   export default {
@@ -125,7 +125,7 @@ Declare the props of a component.
   }
   ```
 
-- **See also**
+- **আরো দেখুন**
   - [Guide - Props](/guide/components/props)
   - [Guide - Typing Component Props](/guide/typescript/options-api#typing-component-props) <sup class="vt-badge ts" />
 
