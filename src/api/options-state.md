@@ -2,9 +2,9 @@
 
 ## data {#data}
 
-A function that returns the initial reactive state for the component instance.
+একটি ফাংশন যা কম্পোনেন্ট ইন্সট্যান্সের জন্য ইনিশিয়াল রিয়েক্টিভ স্টেইট রিটার্ন করে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -15,17 +15,17 @@ A function that returns the initial reactive state for the component instance.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The function is expected to return a plain JavaScript object, which will be made reactive by Vue. After the instance is created, the reactive data object can be accessed as `this.$data`. The component instance also proxies all the properties found on the data object, so `this.a` will be equivalent to `this.$data.a`.
+  ফাংশনটি একটি প্লেইন জাভাস্ক্রিপ্ট অবজেক্ট রিটার্ন করবে বলে আশা করা হচ্ছে, যা Vue দ্বারা রিয়েক্টিভ করা হবে। ইন্সট্যান্স তৈরি হওয়ার পরে, রিয়েক্টিভ ডেটা অবজেক্টটি `this.$data` হিসাবে অ্যাক্সেস করা যেতে পারে। কম্পোনেন্ট ইনস্ট্যান্স ডেটা অবজেক্টে পাওয়া সমস্ত প্রোপার্টিকেও প্রক্সি করে, তাই `this.a` হবে `this.$data.a` এর সমতুল্য।
 
-  All top-level data properties must be included in the returned data object. Adding new properties to `this.$data` is possible, but it is **not** recommended. If the desired value of a property is not yet available then an empty value such as `undefined` or `null` should be included as a placeholder to ensure that Vue knows that the property exists.
+  সমস্ত টপ-লেভেলের ডেটা প্রোপার্টি অবশ্যই রিটার্নড ডেটা অবজেক্টে অন্তর্ভুক্ত করতে হবে। `this.$data`-এ নতুন প্রপার্টি যোগ করা সম্ভব, কিন্তু এটা **বাঞ্ছনীয় নয়**। যদি একটি প্রপার্টির কাঙ্খিত ভ্যালু এখনও এভ্যাইলএবল না হয় তাহলে একটি এম্পটি ভ্যালু যেমন `undefined` বা `null` একটি প্লেইসহোল্ডার হিসেবে অন্তর্ভুক্ত করা উচিত যাতে Vue জানে যে প্রোপার্টিটি বিদ্যমান।
 
-  Properties that start with `_` or `$` will **not** be proxied on the component instance because they may conflict with Vue's internal properties and API methods. You will have to access them as `this.$data._property`.
+  যে প্রপার্টিগুলি `_` বা `$` দিয়ে শুরু হয় সেগুলি কম্পোনেন্ট ইন্সট্যান্সে প্রক্সি করা হবে না কারণ সেগুলি Vue-এর ইন্টারন্যাল প্রোপার্টি এবং API মেথডের সাথে কনফিলিক্ট হতে পারে। আপনাকে সেগুলিকে `this.$data._property` হিসেবে অ্যাক্সেস করতে হবে।
 
-  It is **not** recommended to return objects with their own stateful behavior like browser API objects and prototype properties. The returned object should ideally be a plain object that only represents the state of the component.
+  ব্রাউজার API অবজেক্ট এবং প্রোটোটাইপ প্রোপার্টির মতো অবজেক্টকে তাদের নিজস্ব স্টেইটফুল আচরণের সাথে রিটার্ন দেওয়ার জন্য **বাঞ্ছনীয় নয়**। রিটার্নড অবজেক্টটি আদর্শভাবে একটি প্লেইন অবজেক্ট হওয়া উচিত যা শুধুমাত্র কম্পোনেন্টটির স্টেইটকে রিপ্রেজেন্ট করে।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -39,19 +39,19 @@ A function that returns the initial reactive state for the component instance.
   }
   ```
 
-  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+ মনে রাখবেন যে আপনি যদি `data` প্রপার্টির সাথে একটি অ্যারো ফাংশন ব্যবহার করেন, তাহলে `this` কম্পোনেন্টটির ইন্সট্যান্স হবে না, তবে আপনি এখনও ফাংশনের প্রথম আরগুমেন্ট হিসাবে ইন্সট্যান্সটি অ্যাক্সেস করতে পারেন:
 
   ```js
   data: (vm) => ({ a: vm.myProp })
   ```
 
-- **See also** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
+- **আরো দেখুন** [Reactivity in Depth](/guide/extras/reactivity-in-depth)
 
 ## props {#props}
 
-Declare the props of a component.
+একটি কম্পোনেন্টের প্রপস ডিক্লার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -74,30 +74,30 @@ Declare the props of a component.
   type PropType<T> = { new (): T } | { new (): T }[]
   ```
 
-  > Types are simplified for readability.
+  > টাইপগুলি পঠনযোগ্যতার জন্য সহজ করা হয়েছে ।
 
-- **Details**
+- **বিস্তারিত**
 
-  In Vue, all component props need to be explicitly declared. Component props can be declared in two forms:
+  Vue-তে, সমস্ত কম্পোনেন্ট প্রপস স্পষ্টভাবে ডিক্লার করা প্রয়োজন। কম্পোনেন্ট প্রপস দুটি আকারে ডিক্লার করা যেতে পারে:
 
-  - Simple form using an array of strings
-  - Full form using an object where each property key is the name of the prop, and the value is the prop's type (a constructor function) or advanced options.
+  - সিম্পল ফর্ম স্ট্রিংগুলির একটি অ্যারে ব্যবহার করে ।
+  - একটি অবজেক্ট ব্যবহার করে সম্পূর্ণ ফর্ম যেখানে প্রতিটি স্টেইট কী হল প্রপের নাম, এবং ভ্যালু হল প্রপের ধরন (একটি কনস্ট্রাক্টর ফাংশন) বা অ্যাডভ্যান্সড অপশন ।
 
-  With object-based syntax, each prop can further define the following options:
+  অবজেক্ট-ভিত্তিক সিনট্যাক্সের সাথে, প্রতিটি প্রপ নিম্নলিখিত অপশনগুলিকে আরও ডিফাইন করতে পারে:
 
-  - **`type`**: Can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. In development mode, Vue will check if a prop's value matches the declared type, and will throw a warning if it doesn't. See [Prop Validation](/guide/components/props#prop-validation) for more details.
+  - **`type`**: নিম্নলিখিত নেটিভ কনস্ট্রাক্টর হতে পারে: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol` কোনো কাস্টম কনস্ট্রাক্টর ফাংশন বা সেগুলির একটি অ্যারে। ডেভেলপমেন্ট মোডে, Vue একটি প্রপের ভ্যালু ডিক্লারড টাইপের সাথে মেলে কিনা তা পরীক্ষা করবে এবং এটি না হলে একটি ওয়ার্নিং থ্রো করবে। আরো বিস্তারিত জানার জন্য [Prop Validation](/guide/components/props#prop-validation) দেখুন।
 
-    Also note that a prop with `Boolean` type affects its value casting behavior in both development and production. See [Boolean Casting](/guide/components/props#boolean-casting) for more details.
+  এছাড়াও মনে রাখবেন যে  `Boolean` টাইপের একটি প্রপ ডেভেলপমেন্ট এবং প্রোডাকশন উভয় ক্ষেত্রেই এর ভ্যালু কাস্টিং বিহেইভিয়ারকে প্রভাবিত করে। আরো বিস্তারিত জানার জন্য [Boolean Casting](/guide/components/props#boolean-casting) দেখুন।
 
-  - **`default`**: Specifies a default value for the prop when it is not passed by the parent or has `undefined` value. Object or array defaults must be returned using a factory function. The factory function also receives the raw props object as the argument.
+  - **`default`**: প্রপের জন্য একটি ডিফল্ট ভ্যালু নির্দিষ্ট করে যখন এটি প্যারেন্ট দ্বারা পাস করা হয় না বা `undefined` ভ্যালু থাকে৷ অবজেক্ট বা অ্যারে ডিফল্ট একটি ফাক্টরি ফাংশন ব্যবহার করে রিটার্ন দিতে হবে। ফ্যাক্টরি ফাংশন আর্গুমেন্ট হিসাবে র-প্রপস অবজেক্ট রিসিভ করে।
 
-  - **`required`**: Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+  - **`required`**: প্রপ প্রয়োজন হলে ডিফাইন করে। একটি নন-প্রোডাকশন ইনভারনমেন্ট, একটি কনসোল ওয়ার্নিং থ্রো করা হবে যদি এই ভ্যালু সত্য হয় এবং প্রপ পাস না হয়।
 
-  - **`validator`**: Custom validator function that takes the prop value as the sole argument. In development mode, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails).
+  - **`validator`**: কাস্টম ভ্যালিডেটর ফাংশন যা প্রপ ভ্যালুকে একমাত্র আর্গুমেন্ট হিসেবে নেয়। ডেভেলপমেন্ট মোডে, একটি কনসোল ওয়ারনিং থ্রো করা হবে যদি এই ফাংশনটি একটি মিথ্যা ভ্যালু প্রদান করে (অর্থাৎ বৈধতা ব্যর্থ হয়)।
 
-- **Example**
+- **উদাহরন**
 
-  Simple declaration:
+  সিম্পল ডিক্লারেশন:
 
   ```js
   export default {
@@ -105,7 +105,7 @@ Declare the props of a component.
   }
   ```
 
-  Object declaration with validations:
+  ভ্যালিডেইশন সহ অবজেক্ট ডিক্লারেশন:
 
   ```js
   export default {
@@ -125,15 +125,15 @@ Declare the props of a component.
   }
   ```
 
-- **See also**
+- **আরো দেখুন**
   - [Guide - Props](/guide/components/props)
   - [Guide - Typing Component Props](/guide/typescript/options-api#typing-component-props) <sup class="vt-badge ts" />
 
 ## computed {#computed}
 
-Declare computed properties to be exposed on the component instance.
+কম্পোনেন্ট ইনস্ট্যান্সে এক্সপোজড করা কম্পিউটেড করা প্রপার্টিগুলো ডিক্লার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -158,13 +158,13 @@ Declare computed properties to be exposed on the component instance.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  The option accepts an object where the key is the name of the computed property, and the value is either a computed getter, or an object with `get` and `set` methods (for writable computed properties).
+  অপশনটি এমন একটি অবজেক্টকে গ্রহণ করে যেখানে কী টি কম্পিউটেড প্রপার্টির নেইম, এবং ভ্যালুটি হয় একটি কম্পিউটেড গেটার, অথবা `get` এবং `set` মেথড সহ একটি অবজেক্ট (লিখনযোগ্য কম্পিউটেড প্রপার্টিগুলোর জন্য)।
 
-  All getters and setters have their `this` context automatically bound to the component instance.
+  সমস্ত getters এবং setters তাদের `this` কনটেক্সট স্বয়ংক্রিয়ভাবে কম্পোনেন্ট ইনস্ট্যান্সের সাথে আবদ্ধ থাকে।
 
-  Note that if you use an arrow function with a computed property, `this` won't point to the component's instance, but you can still access the instance as the function's first argument:
+  মনে রাখবেন যে আপনি যদি একটি কম্পিউটেড প্রপার্টির সাথে একটি অ্যারো ফাংশন ব্যবহার করেন, তাহলে `this` কম্পোনেন্টটির ইন্সট্যান্সের দিকে নির্দেশ করবে না, তবে আপনি এখনও ফাংশনের প্রথম আরগুমেন্ট হিসাবে ইন্সট্যান্সটি অ্যাক্সেস করতে পারেন:
 
   ```js
   export default {
@@ -174,7 +174,7 @@ Declare computed properties to be exposed on the component instance.
   }
   ```
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -207,15 +207,15 @@ Declare computed properties to be exposed on the component instance.
   }
   ```
 
-- **See also**
+- **আরো দেখুন**
   - [Guide - Computed Properties](/guide/essentials/computed)
   - [Guide - Typing Computed Properties](/guide/typescript/options-api#typing-computed-properties) <sup class="vt-badge ts" />
 
 ## methods {#methods}
 
-Declare methods to be mixed into the component instance.
+কম্পোনেন্টটির ইন্সট্যান্সে মিক্সড করার মেথড ঘোষণা করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -225,13 +225,13 @@ Declare methods to be mixed into the component instance.
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Declared methods can be directly accessed on the component instance, or used in template expressions. All methods have their `this` context automatically bound to the component instance, even when passed around.
+  ডিক্লারড মেথডগুলি সরাসরি কম্পোনেন্ট ইনস্ট্যান্সে অ্যাক্সেস করা যেতে পারে বা টেমপ্লেট এক্সপ্রেশনে ব্যবহার করা যেতে পারে। সমস্ত মেথডগুলোতে তাদের `this` কনটেক্সট স্বয়ংক্রিয়ভাবে কম্পোনেন্ট ইনস্ট্যান্সের সাথে আবদ্ধ থাকে, এমনকি চারপাশে পাস করার পরেও।
 
-  Avoid using arrow functions when declaring methods, as they will not have access to the component instance via `this`.
+  মেথড ঘোষণা করার সময় অ্যারো ফাংশন ব্যবহার করা এড়িয়ে চলুন, কারণ তারা `this` এর মাধ্যমে কম্পোনেন্ট ইন্সট্যান্সে অ্যাক্সেস পাবে না।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -250,13 +250,13 @@ Declare methods to be mixed into the component instance.
   }
   ```
 
-- **See also** [Event Handling](/guide/essentials/event-handling)
+- **আরো দেখুন** [Event Handling](/guide/essentials/event-handling)
 
 ## watch {#watch}
 
-Declare watch callbacks to be invoked on data change.
+ওয়াচ কলব্যাককে ডিক্লার করুন ডেটা পরিবর্তনের জন্য আহ্বান করা হবে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -283,24 +283,24 @@ Declare watch callbacks to be invoked on data change.
   }
   ```
 
-  > Types are simplified for readability.
+  > টাইপগুলি পঠনযোগ্যতার জন্য সহজ করা হয়েছে ।
 
-- **Details**
+- **বিস্তারিত**
 
-  The `watch` option expects an object where keys are the reactive component instance properties to watch (e.g. properties declared via `data` or `computed`) — and values are the corresponding callbacks. The callback receives the new value and the old value of the watched source.
+  `watch` অপশনটি এমন একটি অবজেক্ট প্রত্যাশা করে যেখানে কী গুলি হল রিয়েক্টিভ কম্পোনেন্ট ইন্সট্যান্স প্রপার্টিগুলি দেখার জন্য (যেমন বৈশিষ্ট্যগুলি `data` বা `computed` এর মাধ্যমে ডিক্লারড) — এবং ভ্যালুগুলি সংশ্লিষ্ট কলব্যাক। কলব্যাক নতুন ভ্যালু এবং প্রেক্ষিত উৎসের পুরানো ভ্যালু গ্রহণ করে।
 
-  In addition to a root-level property, the key can also be a simple dot-delimited path, e.g. `a.b.c`. Note that this usage does **not** support complex expressions - only dot-delimited paths are supported. If you need to watch complex data sources, use the imperative [`$watch()`](/api/component-instance#watch) API instead.
+  একটি রুট-লেভেল প্রপার্টি ছাড়াও, কী টি একটি সাধারণ ডট-ডিলিমিটেড পাথও হতে পারে, যেমন `a.b.c` মনে রাখবেন যে এই ব্যবহার জটিল এক্সপ্রেশনগুলিকে **সাপোর্ট করে না** - শুধুমাত্র ডট-ডিলিমিটেড পাথ সমর্থিত। আপনি যদি জটিল ডেটা সোর্সগুলি দেখতে চান তবে এর পরিবর্তে ইম্পারেটিভ [`$watch()`](/api/component-instance#watch) API ব্যবহার করুন।
 
-  The value can also be a string of a method name (declared via `methods`), or an object that contains additional options. When using the object syntax, the callback should be declared under the `handler` field. Additional options include:
+  ভ্যালুটি একটি মেথডের নামের একটি স্ট্রিংও হতে পারে (`method` এর মাধ্যমে ডিক্লার করা হয়েছে), বা এডিশনাল অপশন রয়েছে এমন একটি অবজেক্ট। অবজেক্ট সিনট্যাক্স ব্যবহার করার সময়, `handler` ক্ষেত্রের অধীনে কলব্যাক ডিক্লার করা উচিত। এডিশনাল অপশন অন্তর্ভুক্ত:
 
-  - **`immediate`**: trigger the callback immediately on watcher creation. Old value will be `undefined` on the first call.
-  - **`deep`**: force deep traversal of the source if it is an object or an array, so that the callback fires on deep mutations. See [Deep Watchers](/guide/essentials/watchers#deep-watchers).
-  - **`flush`**: adjust the callback's flush timing. See [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) and [`watchEffect()`](/api/reactivity-core#watcheffect).
-  - **`onTrack / onTrigger`**: debug the watcher's dependencies. See [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging).
+  - **`immediate`**: ওয়াচার তৈরিতে অবিলম্বে কলব্যাক ট্রিগার করুন। প্রথম কলে পুরানো ভ্যালু `undefined` হবে।
+  - **`deep`**: সোর্সের ডীপ ট্র্যাভার্সাল ফোর্স করে যদি এটি কোনো অবজেক্ট বা অ্যারে হয়, যাতে কলব্যাক ডীপ মিউটেশনের উপর সক্রিয় হয়। [Deep Watchers](/guide/essentials/watchers#deep-watchers) দেখুন।
+  - **`flush`**: কলব্যাকের ফ্লাশের সময় সামঞ্জস্য করুন। [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) এবং [`watchEffect()`](/api/reactivity-core#watcheffect) দেখুন।
+  - **`onTrack / onTrigger`**: ওয়াচারের ডিপেন্ডেন্সিসমূহ ডিবাগ করুন। [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging) দেখুন।
 
-  Avoid using arrow functions when declaring watch callbacks as they will not have access to the component instance via `this`.
+  ওয়াচ কলব্যাক ডিক্লার করার সময় অ্যারো ফাংশন ব্যবহার করা এড়িয়ে চলুন কারণ তারা `this` এর মাধ্যমে কম্পোনেন্ট ইন্সট্যান্সে অ্যাক্সেস পাবে না।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -368,13 +368,13 @@ Declare watch callbacks to be invoked on data change.
   }
   ```
 
-- **See also** [Watchers](/guide/essentials/watchers)
+- **আরো দেখুন** [Watchers](/guide/essentials/watchers)
 
 ## emits {#emits}
 
-Declare the custom events emitted by the component.
+কম্পোনেন্ট দ্বারা কাস্টম ইভেন্ট ইমিটেড ডিক্লার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -388,18 +388,18 @@ Declare the custom events emitted by the component.
   type EmitValidator = (...args: unknown[]) => boolean
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Emitted events can be declared in two forms:
+  ইমিটেড ইভেন্ট দুটি ফর্মস ডিক্লার করা যেতে পারে:
 
-  - Simple form using an array of strings
-  - Full form using an object where each property key is the name of the event, and the value is either `null` or a validator function.
+  - সহজ ফর্ম ব্যবহার করে স্ট্রিংগুলির একটি অ্যারে। 
+  - একটি অবজেক্ট ব্যবহার করে সম্পূর্ণ ফর্ম যেখানে প্রতিটি প্রপার্টি কী ইভেন্টের নাম, এবং ভ্যালুটি হয় `null` বা একটি ভ্যালিডেটর ফাংশন।
 
-  The validation function will receive the additional arguments passed to the component's `$emit` call. For example, if `this.$emit('foo', 1)` is called, the corresponding validator for `foo` will receive the argument `1`. The validator function should return a boolean to indicate whether the event arguments are valid.
+  ভ্যালিডেশন ফাংশন কম্পোনেন্টটির `$emit` কলে পাস করা অ্যাডিশনাল আর্গুমেন্টগুলি পাবে। উদাহরণস্বরূপ, যদি `this.$emit('foo', 1)` বলা হয়, তাহলে `foo` এর জন্য সংশ্লিষ্ট যাচাইকারী আর্গুমেন্ট `1` পাবে। ইভেন্ট আর্গুমেন্ট বৈধ কিনা তা নির্দেশ করতে ভ্যালিডেটর ফাংশন একটি বুলিয়ান রিটার্ন করবে।
 
-  Note that the `emits` option affects which event listeners are considered component event listeners, rather than native DOM event listeners. The listeners for declared events will be removed from the component's `$attrs` object, so they will not be passed through to the component's root element. See [Fallthrough Attributes](/guide/components/attrs) for more details.
+  মনে রাখবেন যে `emits` অপশনটি প্রভাবিত করে কোন ইভেন্ট লিসেনারকে কম্পোনেন্ট ইভেন্ট লিসেনারস হিসাবে বিবেচনা করা হয়, নেটিভ DOM ইভেন্ট লিসেনারস এর পরিবর্তে। ডিক্লারড ইভেন্টেস লিসেনারস কম্পোনেন্টের `$attrs` অবজেক্ট থেকে রিমুভ করা হবে, তাই সেগুলিকে কম্পোনেন্টের রুট এলিমেন্টে পাস করা হবে না। আরও বিস্তারিত জানার জন্য [Fallthrough Attributes](/guide/components/attrs) দেখুন।
 
-- **Example**
+- **উদাহরন**
 
   Array syntax:
 
@@ -433,15 +433,15 @@ Declare the custom events emitted by the component.
   }
   ```
 
-- **See also**
+- **আরো দেখুন**
   - [Guide - Fallthrough Attributes](/guide/components/attrs)
   - [Guide - Typing Component Emits](/guide/typescript/options-api#typing-component-emits) <sup class="vt-badge ts" />
 
 ## expose {#expose}
 
-Declare exposed public properties when the component instance is accessed by a parent via template refs.
+টেমপ্লেট রেফের মাধ্যমে প্যারেন্টের দ্বারা কম্পোনেন্টের ইন্সট্যান্স অ্যাক্সেস করা হলে এক্সপোজড করা পাব্লিক প্রপার্টিগুলো ডিক্লার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -449,15 +449,15 @@ Declare exposed public properties when the component instance is accessed by a p
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  By default, a component instance exposes all instance properties to the parent when accessed via `$parent`, `$root`, or template refs. This can be undesirable, since a component most likely has internal state or methods that should be kept private to avoid tight coupling.
+  ডিফল্টভাবে, `$parent`, `$root`, বা টেমপ্লেট রেফের মাধ্যমে অ্যাক্সেস করার সময় একটি কম্পোনেন্ট ইনস্ট্যান্স প্যারেন্টের কাছে সমস্ত ইন্সট্যান্স প্রপার্টিগুলো প্রকাশ করে। এটি অবাঞ্ছিত হতে পারে, যেহেতু একটি কম্পোনেন্টের সম্ভবত ইন্টারন্যাল স্টেইট বা মেথড রয়েছে যা টাইট কাপলিং এড়াতে প্রাইভেট রাখা উচিত।
 
-  The `expose` option expects a list of property name strings. When `expose` is used, only the properties explicitly listed will be exposed on the component's public instance.
+  `expose` অপশনটি প্রপার্টির নামের স্ট্রিংগুলির একটি লিস্ট এক্সপেক্ট করে। যখন `expose` ব্যবহার করা হয়, শুধুমাত্র সুস্পষ্টভাবে তালিকাভুক্ত প্রপার্টিগুলো কম্পোনেন্টের পাব্লিক ইন্সট্যান্সে এক্সপোজড করা হবে।
 
-  `expose` only affects user-defined properties - it does not filter out built-in component instance properties.
+  `expose` শুধুমাত্র ইউজার-ডিফাইনড প্রপার্টিগুলোকে প্রভাবিত করে - এটি বিল্ট-ইন  কম্পোনেন্ট ইন্সট্যান্স প্রপার্টিগুলোকে ফিল্টার করে না।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
