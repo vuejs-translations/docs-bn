@@ -254,9 +254,9 @@
 
 ## watch {#watch}
 
-Declare watch callbacks to be invoked on data change.
+ওয়াচ কলব্যাককে ডিক্লার করুন ডেটা পরিবর্তনের জন্য আহ্বান করা হবে।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -283,24 +283,24 @@ Declare watch callbacks to be invoked on data change.
   }
   ```
 
-  > Types are simplified for readability.
+  > টাইপগুলি পঠনযোগ্যতার জন্য সহজ করা হয়েছে ।
 
-- **Details**
+- **বিস্তারিত**
 
-  The `watch` option expects an object where keys are the reactive component instance properties to watch (e.g. properties declared via `data` or `computed`) — and values are the corresponding callbacks. The callback receives the new value and the old value of the watched source.
+  `watch` অপশনটি এমন একটি অবজেক্ট প্রত্যাশা করে যেখানে কী গুলি হল রিয়েক্টিভ কম্পোনেন্ট ইন্সট্যান্স প্রপার্টিগুলি দেখার জন্য (যেমন বৈশিষ্ট্যগুলি `data` বা `computed` এর মাধ্যমে ডিক্লারড) — এবং ভ্যালুগুলি সংশ্লিষ্ট কলব্যাক। কলব্যাক নতুন ভ্যালু এবং প্রেক্ষিত উৎসের পুরানো ভ্যালু গ্রহণ করে।
 
-  In addition to a root-level property, the key can also be a simple dot-delimited path, e.g. `a.b.c`. Note that this usage does **not** support complex expressions - only dot-delimited paths are supported. If you need to watch complex data sources, use the imperative [`$watch()`](/api/component-instance#watch) API instead.
+  একটি রুট-লেভেল প্রপার্টি ছাড়াও, কী টি একটি সাধারণ ডট-ডিলিমিটেড পাথও হতে পারে, যেমন `a.b.c` মনে রাখবেন যে এই ব্যবহার জটিল এক্সপ্রেশনগুলিকে **সাপোর্ট করে না** - শুধুমাত্র ডট-ডিলিমিটেড পাথ সমর্থিত। আপনি যদি জটিল ডেটা সোর্সগুলি দেখতে চান তবে এর পরিবর্তে ইম্পারেটিভ [`$watch()`](/api/component-instance#watch) API ব্যবহার করুন।
 
-  The value can also be a string of a method name (declared via `methods`), or an object that contains additional options. When using the object syntax, the callback should be declared under the `handler` field. Additional options include:
+  ভ্যালুটি একটি মেথডের নামের একটি স্ট্রিংও হতে পারে (`method` এর মাধ্যমে ডিক্লার করা হয়েছে), বা এডিশনাল অপশন রয়েছে এমন একটি অবজেক্ট। অবজেক্ট সিনট্যাক্স ব্যবহার করার সময়, `handler` ক্ষেত্রের অধীনে কলব্যাক ডিক্লার করা উচিত। এডিশনাল অপশন অন্তর্ভুক্ত:
 
-  - **`immediate`**: trigger the callback immediately on watcher creation. Old value will be `undefined` on the first call.
-  - **`deep`**: force deep traversal of the source if it is an object or an array, so that the callback fires on deep mutations. See [Deep Watchers](/guide/essentials/watchers#deep-watchers).
-  - **`flush`**: adjust the callback's flush timing. See [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) and [`watchEffect()`](/api/reactivity-core#watcheffect).
-  - **`onTrack / onTrigger`**: debug the watcher's dependencies. See [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging).
+  - **`immediate`**: ওয়াচার তৈরিতে অবিলম্বে কলব্যাক ট্রিগার করুন। প্রথম কলে পুরানো ভ্যালু `undefined` হবে।
+  - **`deep`**: সোর্সের ডীপ ট্র্যাভার্সাল ফোর্স করে যদি এটি কোনো অবজেক্ট বা অ্যারে হয়, যাতে কলব্যাক ডীপ মিউটেশনের উপর সক্রিয় হয়। [Deep Watchers](/guide/essentials/watchers#deep-watchers) দেখুন।
+  - **`flush`**: কলব্যাকের ফ্লাশের সময় সামঞ্জস্য করুন। [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) এবং [`watchEffect()`](/api/reactivity-core#watcheffect) দেখুন।
+  - **`onTrack / onTrigger`**: ওয়াচারের ডিপেন্ডেন্সিসমূহ ডিবাগ করুন। [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging) দেখুন।
 
-  Avoid using arrow functions when declaring watch callbacks as they will not have access to the component instance via `this`.
+  ওয়াচ কলব্যাক ডিক্লার করার সময় অ্যারো ফাংশন ব্যবহার করা এড়িয়ে চলুন কারণ তারা `this` এর মাধ্যমে কম্পোনেন্ট ইন্সট্যান্সে অ্যাক্সেস পাবে না।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
@@ -368,13 +368,13 @@ Declare watch callbacks to be invoked on data change.
   }
   ```
 
-- **See also** [Watchers](/guide/essentials/watchers)
+- **আরো দেখুন** [Watchers](/guide/essentials/watchers)
 
 ## emits {#emits}
 
-Declare the custom events emitted by the component.
+কম্পোনেন্ট দ্বারা কাস্টম ইভেন্ট ইমিটেড ডিক্লার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -388,18 +388,18 @@ Declare the custom events emitted by the component.
   type EmitValidator = (...args: unknown[]) => boolean
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  Emitted events can be declared in two forms:
+  ইমিটেড ইভেন্ট দুটি ফর্মস ডিক্লার করা যেতে পারে:
 
-  - Simple form using an array of strings
-  - Full form using an object where each property key is the name of the event, and the value is either `null` or a validator function.
+  - সহজ ফর্ম ব্যবহার করে স্ট্রিংগুলির একটি অ্যারে। 
+  - একটি অবজেক্ট ব্যবহার করে সম্পূর্ণ ফর্ম যেখানে প্রতিটি প্রপার্টি কী ইভেন্টের নাম, এবং ভ্যালুটি হয় `null` বা একটি ভ্যালিডেটর ফাংশন।
 
-  The validation function will receive the additional arguments passed to the component's `$emit` call. For example, if `this.$emit('foo', 1)` is called, the corresponding validator for `foo` will receive the argument `1`. The validator function should return a boolean to indicate whether the event arguments are valid.
+  ভ্যালিডেশন ফাংশন কম্পোনেন্টটির `$emit` কলে পাস করা অ্যাডিশনাল আর্গুমেন্টগুলি পাবে। উদাহরণস্বরূপ, যদি `this.$emit('foo', 1)` বলা হয়, তাহলে `foo` এর জন্য সংশ্লিষ্ট যাচাইকারী আর্গুমেন্ট `1` পাবে। ইভেন্ট আর্গুমেন্ট বৈধ কিনা তা নির্দেশ করতে ভ্যালিডেটর ফাংশন একটি বুলিয়ান রিটার্ন করবে।
 
-  Note that the `emits` option affects which event listeners are considered component event listeners, rather than native DOM event listeners. The listeners for declared events will be removed from the component's `$attrs` object, so they will not be passed through to the component's root element. See [Fallthrough Attributes](/guide/components/attrs) for more details.
+  মনে রাখবেন যে `emits` অপশনটি প্রভাবিত করে কোন ইভেন্ট লিসেনারকে কম্পোনেন্ট ইভেন্ট লিসেনারস হিসাবে বিবেচনা করা হয়, নেটিভ DOM ইভেন্ট লিসেনারস এর পরিবর্তে। ডিক্লারড ইভেন্টেস লিসেনারস কম্পোনেন্টের `$attrs` অবজেক্ট থেকে রিমুভ করা হবে, তাই সেগুলিকে কম্পোনেন্টের রুট এলিমেন্টে পাস করা হবে না। আরও বিস্তারিত জানার জন্য [Fallthrough Attributes](/guide/components/attrs) দেখুন।
 
-- **Example**
+- **উদাহরন**
 
   Array syntax:
 
@@ -433,15 +433,15 @@ Declare the custom events emitted by the component.
   }
   ```
 
-- **See also**
+- **আরো দেখুন**
   - [Guide - Fallthrough Attributes](/guide/components/attrs)
   - [Guide - Typing Component Emits](/guide/typescript/options-api#typing-component-emits) <sup class="vt-badge ts" />
 
 ## expose {#expose}
 
-Declare exposed public properties when the component instance is accessed by a parent via template refs.
+টেমপ্লেট রেফের মাধ্যমে প্যারেন্টের দ্বারা কম্পোনেন্টের ইন্সট্যান্স অ্যাক্সেস করা হলে এক্সপোজড করা পাব্লিক প্রপার্টিগুলো ডিক্লার করুন।
 
-- **Type**
+- **প্রকার**
 
   ```ts
   interface ComponentOptions {
@@ -449,15 +449,15 @@ Declare exposed public properties when the component instance is accessed by a p
   }
   ```
 
-- **Details**
+- **বিস্তারিত**
 
-  By default, a component instance exposes all instance properties to the parent when accessed via `$parent`, `$root`, or template refs. This can be undesirable, since a component most likely has internal state or methods that should be kept private to avoid tight coupling.
+  ডিফল্টভাবে, `$parent`, `$root`, বা টেমপ্লেট রেফের মাধ্যমে অ্যাক্সেস করার সময় একটি কম্পোনেন্ট ইনস্ট্যান্স প্যারেন্টের কাছে সমস্ত ইন্সট্যান্স প্রপার্টিগুলো প্রকাশ করে। এটি অবাঞ্ছিত হতে পারে, যেহেতু একটি কম্পোনেন্টের সম্ভবত ইন্টারন্যাল স্টেইট বা মেথড রয়েছে যা টাইট কাপলিং এড়াতে প্রাইভেট রাখা উচিত।
 
-  The `expose` option expects a list of property name strings. When `expose` is used, only the properties explicitly listed will be exposed on the component's public instance.
+  `expose` অপশনটি প্রপার্টির নামের স্ট্রিংগুলির একটি লিস্ট এক্সপেক্ট করে। যখন `expose` ব্যবহার করা হয়, শুধুমাত্র সুস্পষ্টভাবে তালিকাভুক্ত প্রপার্টিগুলো কম্পোনেন্টের পাব্লিক ইন্সট্যান্সে এক্সপোজড করা হবে।
 
-  `expose` only affects user-defined properties - it does not filter out built-in component instance properties.
+  `expose` শুধুমাত্র ইউজার-ডিফাইনড প্রপার্টিগুলোকে প্রভাবিত করে - এটি বিল্ট-ইন  কম্পোনেন্ট ইন্সট্যান্স প্রপার্টিগুলোকে ফিল্টার করে না।
 
-- **Example**
+- **উদাহরন**
 
   ```js
   export default {
