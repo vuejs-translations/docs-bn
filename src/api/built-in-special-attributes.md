@@ -95,7 +95,7 @@ Used for binding [dynamic components](/guide/essentials/component-basics#dynamic
 
   যখন একটি নেটিভ HTML এলিমেন্টে `is` অ্যাট্রিবিউট ব্যবহার করা হয়, তখন এটিকে [কাস্টমাইজ করা বিল্ট-ইন এলিমেন্ট](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example) হিসেবে ব্যাখ্যা করা হবে, যা একটি নেটিভ ওয়েব প্ল্যাটফর্ম বৈশিষ্ট্য।
 
-  যাইহোক, একটি ব্যবহারের ক্ষেত্রে রয়েছে যেখানে আপনাকে একটি Vue উপাদান দিয়ে একটি নেটিভ উপাদান প্রতিস্থাপন করতে Vue-এর প্রয়োজন হতে পারে, যেমনটি [DOM টেমপ্লেট পার্সিং ক্যাভেটস](/guide/essentials/component-basics#dom-template-parsing-caveats) এ ব্যাখ্যা করা হয়েছে। . আপনি `is` অ্যাট্রিবিউটের মানকে `vue:` দিয়ে প্রিফিক্স করতে পারেন যাতে Vue উপাদানটিকে Vue কম্পোনেন্ট হিসেবে রেন্ডার করবে:
+  যাইহোক, একটি ব্যবহারের ক্ষেত্রে রয়েছে যেখানে আপনাকে একটি Vue উপাদান দিয়ে একটি নেটিভ উপাদান প্রতিস্থাপন করতে Vue-এর প্রয়োজন হতে পারে, যেমনটি [in-DOM Template Parsing Caveats](/guide/essentials/component-basics#in-dom-template-parsing-caveats) এ ব্যাখ্যা করা হয়েছে। আপনি `is` অ্যাট্রিবিউটের মানকে `vue:` দিয়ে প্রিফিক্স করতে পারেন যাতে Vue উপাদানটিকে Vue কম্পোনেন্ট হিসেবে রেন্ডার করবে:
 
   ```vue-html
   <table>

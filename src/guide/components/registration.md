@@ -136,6 +136,6 @@ export default {
 
 2. `<PascalCase />` এটিকে আরও স্পষ্ট করে তোলে যে এটি টেমপ্লেটগুলিতে একটি নেটিভ HTML উপাদানের পরিবর্তে একটি Vue উপাদান। এটি কাস্টম উপাদান (ওয়েব উপাদান) থেকে Vue উপাদানগুলিকেও আলাদা করে।
 
-এসএফসি বা স্ট্রিং টেমপ্লেটগুলির সাথে কাজ করার সময় এটি প্রস্তাবিত শৈলী। যাইহোক, [DOM Template Parsing Caveats](/guide/essentials/component-basics#dom-template-parsing-caveats) এ আলোচনা করা হয়েছে, PascalCase ট্যাগগুলি DOM টেমপ্লেটে ব্যবহারযোগ্য নয়।
+SFC বা স্ট্রিং টেমপ্লেটগুলির সাথে কাজ করার সময় এটি recommended style। যাইহোক, [in-DOM Template Parsing Caveats](/guide/essentials/component-basics#in-dom-template-parsing-caveats) এ আলোচনা করা হয়েছে, PascalCase ট্যাগগুলি DOM টেমপ্লেটগুলিতে ব্যবহারযোগ্য নয়।
 
 ভাগ্যক্রমে, Vue PascalCase ব্যবহার করে নিবন্ধিত উপাদানগুলিতে কাবাব-কেস ট্যাগগুলি সমাধান করতে সমর্থন করে। এর অর্থ হল `MyComponent` হিসেবে নিবন্ধিত একটি উপাদান টেমপ্লেটে `<MyComponent>` এবং `<my-component>` উভয়ের মাধ্যমে উল্লেখ করা যেতে পারে। এটি আমাদের টেমপ্লেট উত্স নির্বিশেষে একই জাভাস্ক্রিপ্ট উপাদান নিবন্ধন কোড ব্যবহার করার অনুমতি দেয়।

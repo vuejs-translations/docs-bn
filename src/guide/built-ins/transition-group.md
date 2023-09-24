@@ -21,7 +21,7 @@ import ListStagger from './transition-demos/ListStagger.vue'
 - সিএসএস ট্রানজিশন ক্লাসগুলি তালিকার পৃথক উপাদানগুলিতে প্রয়োগ করা হবে, **নই** গ্রুপ/কন্টেইনারে।
 
 :::tip
-[DOM টেমপ্লেট](/guide/essentials/component-basics#dom-template-parsing-caveats) এ ব্যবহার করা হলে, এটিকে `<transition-group>` হিসেবে উল্লেখ করা উচিত।
+যখন [in-DOM টেমপ্লেট](/guide/essentials/component-basics#in-dom-template-parsing-caveats) ব্যবহার করা হয়, তখন এটিকে `<transition-group>` হিসেবে উল্লেখ করা উচিত।
 :::
 
 ## Enter / Leave Transitions {#enter-leave-transitions}
