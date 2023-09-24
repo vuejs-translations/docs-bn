@@ -47,7 +47,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 </div>
 
 :::tip
-যখন [DOM টেমপ্লেট](/guide/essentials/component-basics#dom-template-parsing-caveats) ব্যবহার করা হয়, তখন এটিকে `<keep-alive>` হিসেবে উল্লেখ করা উচিত।
+যখন [in-DOM টেমপ্লেট](/guide/essentials/component-basics#in-dom-template-parsing-caveats) ব্যবহার করা হয়, তখন এটিকে `<keep-alive>` হিসেবে উল্লেখ করা উচিত।
 :::
 
 ## Include / Exclude {#include-exclude}

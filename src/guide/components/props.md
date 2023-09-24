@@ -148,7 +148,7 @@ export default {
 <span>{{ greetingMessage }}</span>
 ```
 
-টেকনিক্যালি, আপনি চাইল্ড কম্পোনেন্টে প্রপস দেওয়ার সময় ক্যামেলকেস ব্যবহার করতে পারেন ([DOM টেমপ্লেট](/guide/essentials/component-basics#dom-template-parsing-caveats) ছাড়া)। যাইহোক, কনভেনশন এইচটিএমএল বৈশিষ্ট্যের সাথে সারিবদ্ধ করার জন্য সব ক্ষেত্রে কাবাব-কেস ব্যবহার করছে:
+টেকনিক্যালি, আপনি চাইল্ড কম্পোনেন্টে প্রপস দেওয়ার সময় ক্যামেলকেস ব্যবহার করতে পারেন (except in [in-DOM templates](/guide/essentials/component-basics#in-dom-template-parsing-caveats))। যাইহোক, কনভেনশন এইচটিএমএল বৈশিষ্ট্যের সাথে সারিবদ্ধ করার জন্য সব ক্ষেত্রে কাবাব-কেস ব্যবহার করছে:
 
 ```vue-html
 <MyComponent greeting-message="hello" />
