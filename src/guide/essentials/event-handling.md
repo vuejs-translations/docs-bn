@@ -270,7 +270,7 @@ methods: {
 <div @scroll.passive="onScroll">...</div>
 ```
 
-`.প্যাসিভ` সংশোধকটি সাধারণত স্পর্শ ইভেন্ট শ্রোতাদের জন্য ব্যবহৃত হয়[improving performance on mobile devices](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scrolling_performance_with_passive_listeners).
+`.passive` মডিফায়ারটি সাধারণত [মোবাইল ডিভাইসে পারফরম্যান্সের উন্নতি করার জন্য](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#improving_scroll_performance_using_passive_listeners) টাচ ইভেন্ট listeners সাথে ব্যবহার করা হয়।
 
 ::: tip
 `.passive` এবং `.prevent` একসাথে ব্যবহার করবেন না, কারণ `.passive` ইতিমধ্যেই ব্রাউজারকে নির্দেশ করে যে আপনি ইভেন্টের ডিফল্ট আচরণ রোধ করতে চান না, এবং আপনি যদি তা করেন তাহলে সম্ভবত আপনি ব্রাউজার থেকে একটি সতর্কতা দেখতে পাবেন .
