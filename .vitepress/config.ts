@@ -673,6 +673,11 @@ export default defineConfigWithTheme<ThemeConfig>({
         repo: 'https://github.com/vuejs-translations/docs-bn'
       },
       {
+        link: 'https://it.vuejs.org',
+        text: 'Italiano',
+        repo: 'https://github.com/vuejs-translations/docs-it'
+      },
+      {
         link: '/translations/',
         text: 'অনুবাদ করতে সাহায্য করুন!',
         isTranslationsDesc: true
