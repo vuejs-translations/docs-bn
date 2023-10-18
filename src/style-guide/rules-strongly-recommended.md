@@ -352,7 +352,7 @@ components/
 ```
 
 ```vue-html
-<!-- In DOM templates -->
+<!-- In in-DOM templates -->
 <my-component/>
 ```
 
@@ -367,7 +367,7 @@ components/
 ```
 
 ```vue-html
-<!-- In DOM templates -->
+<!-- In in-DOM templates -->
 <my-component></my-component>
 ```
 
