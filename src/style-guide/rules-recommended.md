@@ -128,8 +128,8 @@
 
 যখন উপাদানগুলি সঙ্কুচিত বা পড়তে অসুবিধা হতে শুরু করে, বহু-লাইন বৈশিষ্ট্যগুলির মধ্যে স্পেস যোগ করা তাদের আবার স্কিম করা সহজ করে তোলে। কিছু এডিটরে, যেমন Vim, এই ধরনের ফরম্যাটিং বিকল্পগুলি তাদের কীবোর্ড দিয়ে নেভিগেট করা আরও সহজ করে তুলতে পারে।
 
-<div class="style-example style-example-good">
-<h3>Good</h3>
+<div class="style-example style-example-bad">
+<h3>Bad</h3>
 
 ```js
 props: {
@@ -157,6 +157,10 @@ computed: {
   }
 }
 ```
+</div>
+
+<div class="style-example style-example-good">
+<h3>Good</h3>
 
 ```js
 // No spaces are also fine, as long as the component

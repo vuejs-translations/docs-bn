@@ -8,7 +8,7 @@
 
 ## Global Registration {#global-registration}
 
-আমরা `app.component()` পদ্ধতি ব্যবহার করে বর্তমান [Vue অ্যাপ্লিকেশন](/guide/essentials/application) বিশ্বব্যাপী উপাদানগুলি উপলব্ধ করতে পারি:
+আমরা `.component()` পদ্ধতি ব্যবহার করে বর্তমান [Vue অ্যাপ্লিকেশন](/guide/essentials/application) বিশ্বব্যাপী উপাদান উপলব্ধ করতে পারি:
 
 ```js
 import { createApp } from 'vue'
@@ -33,7 +33,7 @@ import MyComponent from './App.vue'
 app.component('MyComponent', MyComponent)
 ```
 
-The `app.component()` method can be chained:
+The `.component()` method can be chained:
 
 ```js
 app
