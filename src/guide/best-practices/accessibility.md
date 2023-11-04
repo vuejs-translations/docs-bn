@@ -163,7 +163,7 @@ watch(
 সমস্ত ফর্ম নিয়ন্ত্রণের উদ্দেশ্য বর্ণনা করার জন্য লেবেল প্রদান করুন; `for`' এবং `id` লিঙ্ক করা:
 
 ```vue-html
-<label for="name">Name</label>
+<label for="name">Name: </label>
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
@@ -191,7 +191,7 @@ watch(
 আপনি ইনপুটটি দিয়ে একটি অ্যাক্সেসযোগ্য নামও দিতে পারেন [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
 
 ```vue-html
-<label for="name">Name</label>
+<label for="name">Name: </label>
 <input
   type="text"
   name="name"
@@ -220,7 +220,7 @@ watch(
 >
   <h1 id="billing">Billing</h1>
   <div class="form-item">
-    <label for="name">Name:</label>
+    <label for="name">Name: </label>
     <input
       type="text"
       name="name"
@@ -250,7 +250,7 @@ watch(
 >
   <h1 id="billing">Billing</h1>
   <div class="form-item">
-    <label for="name">Full Name:</label>
+    <label for="name">Full Name: </label>
     <input
       type="text"
       name="name"
@@ -330,7 +330,7 @@ watch(
 ```vue-html
 <fieldset>
   <legend>Using aria-labelledby</legend>
-  <label id="date-label" for="date">Current Date:</label>
+  <label id="date-label" for="date">Current Date: </label>
   <input
     type="date"
     name="date"
@@ -346,7 +346,7 @@ watch(
 ```vue-html
 <fieldset>
   <legend>Using aria-describedby</legend>
-  <label id="dob" for="dob">Date of Birth:</label>
+  <label id="dob" for="dob">Date of Birth: </label>
   <input type="date" name="dob" id="dob" aria-describedby="dob-instructions" />
   <p id="dob-instructions">MM/DD/YYYY</p>
 </fieldset>
