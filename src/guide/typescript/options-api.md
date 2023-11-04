@@ -30,7 +30,7 @@ export default defineComponent({
 })
 ```
 
-যাইহোক, রানটাইম `props` বিকল্পগুলি শুধুমাত্র কনস্ট্রাক্টর ফাংশনগুলিকে প্রপের ধরণ হিসাবে ব্যবহার করে সমর্থন করে - নেস্টেড বৈশিষ্ট্য বা ফাংশন কল স্বাক্ষর সহ বস্তুর মতো জটিল প্রকারগুলি নির্দিষ্ট করার কোনো উপায় নেই৷
+যাইহোক, রানটাইম `props` বিকল্পগুলি শুধুমাত্র কনস্ট্রাক্টর ফাংশনগুলিকে প্রপের ধরণ হিসাবে ব্যবহার করে সমর্থন করে - নেস্টেড বৈশিষ্ট্য বা ফাংশন কল স্বাক্ষর সহ অবজেক্টর মতো জটিল প্রকারগুলি নির্দিষ্ট করার কোনো উপায় নেই৷
 
 জটিল প্রপ ধরনের টীকা করতে, আমরা `PropType` ইউটিলিটি টাইপ ব্যবহার করতে পারি:
 
@@ -122,7 +122,7 @@ export default defineComponent({
 
 ## Typing Computed Properties {#typing-computed-properties}
 
-একটি গণনাকৃত সম্পত্তি তার রিটার্ন মানের উপর ভিত্তি করে তার ধরন অনুমান করে:
+একটি গণনাকৃত কম্পিউটেড প্রপার্টি তার রিটার্ন মানের উপর ভিত্তি করে তার ধরন অনুমান করে:
 
 ```ts
 import { defineComponent } from 'vue'
@@ -144,7 +144,7 @@ export default defineComponent({
 })
 ```
 
-কিছু ক্ষেত্রে, আপনি একটি গণনা করা সম্পত্তির ধরনটি স্পষ্টভাবে ব্যাখ্যা করতে চাইতে পারেন যাতে এটির বাস্তবায়ন সঠিক হয়:
+কিছু ক্ষেত্রে, আপনি একটি গণনা করা কম্পিউটেড প্রপার্টির ধরনটি স্পষ্টভাবে ব্যাখ্যা করতে চাইতে পারেন যাতে এটির বাস্তবায়ন সঠিক হয়:
 
 ```ts
 import { defineComponent } from 'vue'
@@ -174,7 +174,7 @@ export default defineComponent({
 })
 ```
 
-কিছু প্রান্তের ক্ষেত্রেও স্পষ্ট টীকাগুলির প্রয়োজন হতে পারে যেখানে বৃত্তাকার অনুমান লুপের কারণে টাইপস্ক্রিপ্ট একটি গণনাকৃত সম্পত্তির ধরণ অনুমান করতে ব্যর্থ হয়।
+কিছু প্রান্তের ক্ষেত্রেও স্পষ্ট টীকাগুলির প্রয়োজন হতে পারে যেখানে বৃত্তাকার অনুমান লুপের কারণে টাইপস্ক্রিপ্ট একটি গণনাকৃত কম্পিউটেড প্রপার্টির ধরণ অনুমান করতে ব্যর্থ হয়।
 
 ## Typing Event Handlers {#typing-event-handlers}
 
@@ -215,7 +215,7 @@ export default defineComponent({
 
 ## Augmenting Global Properties {#augmenting-global-properties}
 
-কিছু প্লাগইন [`app.config.globalProperties`](/api/application#app-config-globalproperties) এর মাধ্যমে সমস্ত উপাদান উদাহরণে বিশ্বব্যাপী উপলব্ধ বৈশিষ্ট্যগুলি ইনস্টল করে। উদাহরণস্বরূপ, আমরা ডেটা-ফেচিংয়ের জন্য `this.$http` বা আন্তর্জাতিকীকরণের জন্য `this.$translate` ইনস্টল করতে পারি। TypeScript-এর সাথে এই নাটকটিকে ভালভাবে তৈরি করতে, Vue একটি `কম্পোনেন্ট কাস্টম প্রোপার্টিজ` ইন্টারফেস প্রকাশ করে যা [TypeScript মডিউল অগমেন্টেশন](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) এর মাধ্যমে পরিবর্ধন করার জন্য ডিজাইন করা হয়েছে :
+কিছু প্লাগইন [`app.config.globalProperties`](/api/application#app-config-globalproperties) এর মাধ্যমে সমস্ত কম্পোনেন্ট উদাহরণে বিশ্বব্যাপী উপলব্ধ বৈশিষ্ট্যগুলি ইনস্টল করে। উদাহরণস্বরূপ, আমরা ডেটা-ফেচিংয়ের জন্য `this.$http` বা আন্তর্জাতিকীকরণের জন্য `this.$translate` ইনস্টল করতে পারি। TypeScript-এর সাথে এই নাটকটিকে ভালভাবে তৈরি করতে, Vue একটি ` কম্পোনেন্ট কাস্টম প্রোপার্টিজ` ইন্টারফেস প্রকাশ করে যা [TypeScript মডিউল অগমেন্টেশন](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) এর মাধ্যমে পরিবর্ধন করার জন্য ডিজাইন করা হয়েছে :
 
 ```ts
 import axios from 'axios'
@@ -230,7 +230,7 @@ declare module 'vue' {
 
 আরো দেখুন:
 
-- [কম্পোনেন্ট টাইপ এক্সটেনশনের জন্য TypeScript ইউনিট পরীক্ষা করে](https://github.com/vuejs/core/blob/main/packages/dts-test/componentTypeExtensions.test-d.tsx)
+- [ কম্পোনেন্ট টাইপ এক্সটেনশনের জন্য TypeScript ইউনিট পরীক্ষা করে](https://github.com/vuejs/core/blob/main/packages/dts-test/componentTypeExtensions.test-d.tsx)
 
 ### Type Augmentation Placement {#type-augmentation-placement}
 
@@ -260,7 +260,7 @@ declare module 'vue' {
 
 ## Augmenting Custom Options {#augmenting-custom-options}
 
-কিছু প্লাগইন, উদাহরণস্বরূপ `vue-router`, কাস্টম উপাদান বিকল্পগুলির জন্য সমর্থন প্রদান করে যেমন `beforeRouteEnter`:
+কিছু প্লাগইন, উদাহরণস্বরূপ `vue-router`, কাস্টম কম্পোনেন্ট বিকল্পগুলির জন্য সমর্থন প্রদান করে যেমন `beforeRouteEnter`:
 
 ```ts
 import { defineComponent } from 'vue'
@@ -286,8 +286,8 @@ declare module 'vue' {
 
 এখন `beforeRouteEnter` অপশনটি সঠিকভাবে টাইপ করা হবে। মনে রাখবেন এটি শুধুমাত্র একটি উদাহরণ - ভাল-টাইপ করা লাইব্রেরি যেমন `vue-router` স্বয়ংক্রিয়ভাবে তাদের নিজস্ব টাইপ সংজ্ঞায় এই বৃদ্ধিগুলি সম্পাদন করা উচিত।
 
-এই পরিবর্ধনের স্থান নির্ধারণ [একই বিধিনিষেধ](#type-augmentation-placement) বৈশ্বিক সম্পত্তি বৃদ্ধির বিষয়।
+এই পরিবর্ধনের স্থান নির্ধারণ [একই বিধিনিষেধ](#type-augmentation-placement) বৈশ্বিক কম্পিউটেড প্রপার্টি বৃদ্ধির বিষয়।
 
 আরো দেখুন:
 
-- [কম্পোনেন্ট টাইপ এক্সটেনশনের জন্য TypeScript ইউনিট পরীক্ষা করে](https://github.com/vuejs/core/blob/main/packages/dts-test/componentTypeExtensions.test-d.tsx)
+- [ কম্পোনেন্ট টাইপ এক্সটেনশনের জন্য TypeScript ইউনিট পরীক্ষা করে](https://github.com/vuejs/core/blob/main/packages/dts-test/componentTypeExtensions.test-d.tsx)

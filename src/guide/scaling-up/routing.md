@@ -21,7 +21,7 @@ Vue SPA নির্মাণের জন্য উপযুক্ত। বে
 
 ## Simple Routing from Scratch {#simple-routing-from-scratch}
 
-আপনার যদি খুব সাধারণ রাউটিং প্রয়োজন হয় এবং আপনি একটি পূর্ণ-বৈশিষ্ট্যযুক্ত রাউটার লাইব্রেরি অন্তর্ভুক্ত করতে না চান, তাহলে আপনি [ডাইনামিক কম্পোনেন্ট](/guide/essentials/component-basics#dynamic-components) দিয়ে তা করতে পারেন এবং বর্তমান উপাদানের অবস্থা আপডেট করুন ব্রাউজারে শোনা [`hashchange` ইভেন্ট](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) অথবা [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) ব্যবহার করে। ।
+আপনার যদি খুব সাধারণ রাউটিং প্রয়োজন হয় এবং আপনি একটি পূর্ণ-বৈশিষ্ট্যযুক্ত রাউটার লাইব্রেরি অন্তর্ভুক্ত করতে না চান, তাহলে আপনি [ডাইনামিক কম্পোনেন্ট](/guide/essentials/component-basics#dynamic-components) দিয়ে তা করতে পারেন এবং বর্তমান কম্পোনেন্টের অবস্থা আপডেট করুন ব্রাউজারে শোনা [`hashchange` ইভেন্ট](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) অথবা [History API](https://developer.mozilla.org/en-US/docs/Web/API/History) ব্যবহার করে। ।
 
 এখানে একটি উদাহরণ:
 

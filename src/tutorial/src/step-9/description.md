@@ -1,8 +1,8 @@
 # Lifecycle and Template Refs {#lifecycle-and-template-refs}
 
-এখন পর্যন্ত, Vue আমাদের জন্য সমস্ত DOM আপডেট পরিচালনা করছে, প্রতিক্রিয়াশীলতা এবং ঘোষণামূলক রেন্ডারিংয়ের জন্য ধন্যবাদ। যাইহোক, অনিবার্যভাবে এমন কিছু ক্ষেত্রে থাকবে যেখানে আমাদের DOM-এর সাথে ম্যানুয়ালি কাজ করতে হবে।
+এখন পর্যন্ত, Vue আমাদের জন্য সমস্ত DOM আপডেট পরিচালনা করছে, প্রতিক্রিয়াশীলতা এবং ডিক্লেয়ার রেন্ডারিংয়ের জন্য ধন্যবাদ। যাইহোক, অনিবার্যভাবে এমন কিছু ক্ষেত্রে থাকবে যেখানে আমাদের DOM-এর সাথে ম্যানুয়ালি কাজ করতে হবে।
 
-আমরা <a target="_blank" href="/api/built-in-special-attributes.html#ref">বিশেষ ব্যবহার করে একটি **template ref** - অর্থাৎ টেমপ্লেটের একটি উপাদানের রেফারেন্সের জন্য অনুরোধ করতে পারি `ref` অ্যাট্রিবিউট</a>:
+আমরা <a target="_blank" href="/api/built-in-special-attributes.html#ref">বিশেষ ব্যবহার করে একটি **template ref** - অর্থাৎ টেমপ্লেটের একটি কম্পোনেন্টের রেফারেন্সের জন্য অনুরোধ করতে পারি `ref` অ্যাট্রিবিউট</a>:
 
 ```vue-html
 <p ref="pElementRef">hello</p>
@@ -33,7 +33,7 @@ setup() {
 
 </div>
 
-লক্ষ্য করুন রেফটি `null` মান দিয়ে আরম্ভ করা হয়েছে। কারণ <span class="sfc">`<script setup>`</span><span class="html">`setup()`</span> সম্পাদিত হলে উপাদানটি এখনও বিদ্যমান নেই৷ টেমপ্লেট রেফ শুধুমাত্র কম্পোনেন্ট **mounted** করার পরেই অ্যাক্সেসযোগ্য।
+লক্ষ্য করুন রেফটি `null` মান দিয়ে আরম্ভ করা হয়েছে। কারণ <span class="sfc">`<script setup>`</span><span class="html">`setup()`</span> সম্পাদিত হলে কম্পোনেন্টটি এখনও বিদ্যমান নেই৷ টেমপ্লেট রেফ শুধুমাত্র কম্পোনেন্ট **mounted** করার পরেই অ্যাক্সেসযোগ্য।
 
 মাউন্টের পরে কোড চালানোর জন্য, আমরা `onMounted()` ফাংশন ব্যবহার করতে পারি:
 
@@ -95,6 +95,6 @@ createApp({
 </div>
 </div>
 
-এটিকে **lifecycle hook** বলা হয় - এটি আমাদেরকে কম্পোনেন্টের জীবনচক্রের নির্দিষ্ট সময়ে কল করার জন্য একটি কলব্যাক নিবন্ধন করতে দেয়। অন্যান্য হুক আছে যেমন <span class="options-api">`created` এবং `updated`</span><span class="composition-api">`onUpdated` এবং `onUnmounted`</span>। আরো বিস্তারিত জানার জন্য <a target="_blank" href="/guide/essentials/lifecycle.html#lifecycle-diagram">লাইফসাইকেল ডায়াগ্রাম</a> দেখুন।
+এটিকে **lifecycle hook** বলা হয় - এটি আমাদেরকে কম্পোনেন্টের লাইফসাইকেলের নির্দিষ্ট সময়ে কল করার জন্য একটি কলব্যাক নিবন্ধন করতে দেয়। অন্যান্য হুক আছে যেমন <span class="options-api">`created` এবং `updated`</span><span class="composition-api">`onUpdated` এবং `onUnmounted`</span>। আরো বিস্তারিত জানার জন্য <a target="_blank" href="/guide/essentials/lifecycle.html#lifecycle-diagram">লাইফসাইকেল ডায়াগ্রাম</a> দেখুন।
 
 এখন, <span class="options-api">a `mounted`</span><span class="composition-api">একটি `onMounted`</span> হুক যোগ করার চেষ্টা করুন, `<p>` অ্যাক্সেস করুন <span class="options-api">`this.$refs.pElementRef`</span><span class="composition-api">`pElementRef.value`</span> এর মাধ্যমে, এবং কিছু সরাসরি DOM অপারেশন সম্পাদন করুন এটি (যেমন এর `textContent` পরিবর্তন করা)।

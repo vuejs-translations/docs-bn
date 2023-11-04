@@ -20,7 +20,7 @@ if (typeof window !== 'undefined') {
 
 # Component Events {#component-events}
 
-> এই পৃষ্ঠাটি ধরে নেওয়া হচ্ছে আপনি ইতিমধ্যেই [Components Basics](/guide/essentials/component-basics) পড়েছেন। আপনি যদি উপাদানগুলিতে নতুন হন তবে প্রথমে এটি পড়ুন।
+> এই পৃষ্ঠাটি ধরে নেওয়া হচ্ছে আপনি ইতিমধ্যেই [Components Basics](/guide/essentials/component-basics) পড়েছেন। আপনি যদি কম্পোনেন্টগুলিতে নতুন হন তবে প্রথমে এটি পড়ুন।
 
 <div class="options-api">
   <VueSchoolLink href="https://vueschool.io/lessons/defining-custom-events-emits" title="কাস্টম ইভেন্ট সংজ্ঞায়িত করার জন্য বিনামূল্যে Vue.js পাঠ"/>
@@ -57,7 +57,7 @@ export default {
 <MyComponent @some-event="callback" />
 ```
 
-`.once` সংশোধকটি উপাদান ইভেন্ট শ্রোতাদের জন্যও সমর্থিত:
+`.once` সংশোধকটি কম্পোনেন্ট ইভেন্ট শ্রোতাদের জন্যও সমর্থিত:
 
 ```vue-html
 <MyComponent @some-event.once="callback" />
@@ -66,7 +66,7 @@ export default {
 উপাদান এবং প্রপসের মতো, ইভেন্টের নামগুলি একটি স্বয়ংক্রিয় কেস রূপান্তর প্রদান করে। লক্ষ্য করুন আমরা একটি ক্যামেলকেস ইভেন্ট নির্গত করেছি, কিন্তু পিতামাতার মধ্যে একটি কাবাব-কেসড শ্রোতা ব্যবহার করে এটি শুনতে পারি। [প্রপস কেসিং](/guide/components/props#prop-name-casing) এর মতো, আমরা টেমপ্লেটে কাবাব-কেসড ইভেন্ট শ্রোতাদের ব্যবহার করার পরামর্শ দিই।
 
 :::tip
-নেটিভ DOM ইভেন্টের বিপরীতে, উপাদান নির্গত ইভেন্টগুলি বুদ্বুদ **না** করে। আপনি শুধুমাত্র একটি সরাসরি শিশু উপাদান দ্বারা নির্গত ঘটনা শুনতে পারেন. ভাইবোন বা গভীরভাবে নেস্টেড উপাদানগুলির মধ্যে যোগাযোগ করার প্রয়োজন হলে, একটি বহিরাগত ইভেন্ট বাস বা একটি [গ্লোবাল স্টেট ম্যানেজমেন্ট সলিউশন](/guide/scaling-up/state-management) ব্যবহার করুন।
+নেটিভ DOM ইভেন্টের বিপরীতে, কম্পোনেন্ট নির্গত ইভেন্টগুলি বুদ্বুদ **না** করে। আপনি শুধুমাত্র একটি সরাসরি  চাইল্ড কম্পোনেন্ট দ্বারা নির্গত ঘটনা শুনতে পারেন. ভাইবোন বা গভীরভাবে নেস্টেড কম্পোনেন্টগুলির মধ্যে যোগাযোগ করার প্রয়োজন হলে, একটি বহিরাগত ইভেন্ট বাস বা একটি [গ্লোবাল স্টেট ম্যানেজমেন্ট সলিউশন](/guide/scaling-up/state-management) ব্যবহার করুন।
 :::
 
 ## Event Arguments {#event-arguments}
@@ -120,7 +120,7 @@ function increaseCount(n) {
 
 ## Declaring Emitted Events {#declaring-emitted-events}
 
-একটি উপাদান স্পষ্টভাবে ইভেন্ট ঘোষণা করতে পারে এটি ব্যবহার করে নির্গত হবে <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup#defineprops-defineemits) ম্যাক্রো</span><span class="options-api">[`emits`](/api/options-state#emits) বিকল্প</span>:
+একটি কম্পোনেন্ট স্পষ্টভাবে ইভেন্ট ঘোষণা করতে পারে এটি ব্যবহার করে নির্গত হবে <span class="composition-api">[`defineEmits()`](/api/sfc-script-setup#defineprops-defineemits) ম্যাক্রো</span><span class="options-api">[`emits`](/api/options-state#emits) বিকল্প</span>:
 
 <div class="composition-api">
 
@@ -130,7 +130,7 @@ defineEmits(['inFocus', 'submit'])
 </script>
 ```
 
-আমরা `<template>` এ যে `$emit` পদ্ধতিটি ব্যবহার করেছি সেটি কোনো উপাদানের `<script setup>` বিভাগে অ্যাক্সেসযোগ্য নয়, কিন্তু `defineEmits()` একটি সমতুল্য ফাংশন প্রদান করে যা আমরা পরিবর্তে ব্যবহার করতে পারি:
+আমরা `<template>` এ যে `$emit` পদ্ধতিটি ব্যবহার করেছি সেটি কোনো কম্পোনেন্টের `<script setup>` বিভাগে অ্যাক্সেসযোগ্য নয়, কিন্তু `defineEmits()` একটি সমতুল্য ফাংশন প্রদান করে যা আমরা পরিবর্তে ব্যবহার করতে পারি:
 
 ```vue
 <script setup>
@@ -223,10 +223,10 @@ export default {
 
 </div>
 
-যদিও ঐচ্ছিক, একটি উপাদান কীভাবে কাজ করবে তা আরও ভালভাবে নথি করার জন্য সমস্ত নির্গত ইভেন্টকে সংজ্ঞায়িত করার সুপারিশ করা হয়। এটি Vue-কে পরিচিত শ্রোতাদের [fallthrough attributes](/guide/components/attrs#v-on-listener-inheritance) থেকে বাদ দেওয়ার অনুমতি দেয়, 3য় পক্ষের কোড দ্বারা ম্যানুয়ালি প্রেরিত DOM ইভেন্টের কারণে এজ কেস এড়িয়ে যায়।
+যদিও ঐচ্ছিক, একটি কম্পোনেন্ট কীভাবে কাজ করবে তা আরও ভালভাবে নথি করার জন্য সমস্ত নির্গত ইভেন্টকে সংজ্ঞায়িত করার সুপারিশ করা হয়। এটি Vue-কে পরিচিত শ্রোতাদের [fallthrough attributes](/guide/components/attrs#v-on-listener-inheritance) থেকে বাদ দেওয়ার অনুমতি দেয়, 3য় পক্ষের কোড দ্বারা ম্যানুয়ালি প্রেরিত DOM ইভেন্টের কারণে এজ কেস এড়িয়ে যায়।
 
 :::tip
-যদি একটি নেটিভ ইভেন্ট (যেমন, `click`) `emits` বিকল্পে সংজ্ঞায়িত করা হয়, তাহলে শ্রোতা এখন শুধুমাত্র উপাদান-নির্গত `click` ইভেন্ট শুনবে এবং নেটিভ `click` ইভেন্টে আর সাড়া দেবে না।
+যদি একটি নেটিভ ইভেন্ট (যেমন, `click`) `emits` বিকল্পে সংজ্ঞায়িত করা হয়, তাহলে শ্রোতা এখন শুধুমাত্র কম্পোনেন্ট-নির্গত `click` ইভেন্ট শুনবে এবং নেটিভ `click` ইভেন্টে আর সাড়া দিবে না।
 :::
 
 ## Events Validation {#events-validation}

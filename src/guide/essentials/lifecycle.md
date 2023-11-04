@@ -31,7 +31,7 @@ export default {
 
 </div>
 
-এছাড়াও অন্যান্য হুক রয়েছে যা ইনস্ট্যান্সের জীবনচক্রের বিভিন্ন পর্যায়ে বলা হবে, যার মধ্যে সবচেয়ে বেশি ব্যবহৃত হচ্ছে<span class="composition-api">[`onMounted`](/api/composition-api-lifecycle#onmounted), [`onUpdated`](/api/composition-api-lifecycle#onupdated), and [`onUnmounted`](/api/composition-api-lifecycle#onunmounted).</span><span class="options-api">[`mounted`](/api/options-lifecycle#mounted), [`updated`](/api/options-lifecycle#updated), and [`unmounted`](/api/options-lifecycle#unmounted).</span>
+এছাড়াও অন্যান্য হুক রয়েছে যা ইনস্ট্যান্সের লাইফসাইকেলের বিভিন্ন পর্যায়ে বলা হবে, যার মধ্যে সবচেয়ে বেশি ব্যবহৃত হচ্ছে<span class="composition-api">[`onMounted`](/api/composition-api-lifecycle#onmounted), [`onUpdated`](/api/composition-api-lifecycle#onupdated), and [`onUnmounted`](/api/composition-api-lifecycle#onunmounted).</span><span class="options-api">[`mounted`](/api/options-lifecycle#mounted), [`updated`](/api/options-lifecycle#updated), and [`unmounted`](/api/options-lifecycle#unmounted).</span>
 
 <div class="options-api">
 
@@ -41,7 +41,7 @@ export default {
 
 <div class="composition-api">
 
-'onMounted' কল করার সময়, Vue স্বয়ংক্রিয়ভাবে নিবন্ধিত কলব্যাক ফাংশনকে বর্তমান সক্রিয় উপাদান উদাহরণের সাথে সংযুক্ত করে। এর জন্য এই হুকগুলিকে কম্পোনেন্ট সেটআপের সময় **synchronously** নিবন্ধিত হতে হবে। উদাহরণস্বরূপ, এটি করবেন না:
+'onMounted' কল করার সময়, Vue স্বয়ংক্রিয়ভাবে নিবন্ধিত কলব্যাক ফাংশনকে বর্তমান সক্রিয় কম্পোনেন্ট উদাহরণের সাথে সংযুক্ত করে। এর জন্য এই হুকগুলিকে কম্পোনেন্ট সেটআপের সময় **synchronously** নিবন্ধিত হতে হবে। উদাহরণস্বরূপ, এটি করবেন না:
 
 ```js
 setTimeout(() => {
@@ -57,10 +57,10 @@ setTimeout(() => {
 
 ## Lifecycle Diagram {#lifecycle-diagram}
 
-নীচে উদাহরণ জীবনচক্রের জন্য একটি চিত্র রয়েছে। আপনার এখনই যা চলছে তা সম্পূর্ণরূপে বোঝার দরকার নেই, তবে আপনি যখন আরও শিখবেন এবং আরও তৈরি করবেন, এটি একটি দরকারী রেফারেন্স হবে।
+নীচে উদাহরণ লাইফসাইকেলের জন্য একটি চিত্র রয়েছে। আপনার এখনই যা চলছে তা সম্পূর্ণরূপে বোঝার দরকার নেই, তবে আপনি যখন আরও শিখবেন এবং আরও তৈরি করবেন, এটি একটি দরকারী রেফারেন্স হবে।
 
 ![Component lifecycle diagram](./images/lifecycle.png)
 
 <!-- https://www.figma.com/file/Xw3UeNMOralY6NV7gSjWdS/Vue-Lifecycle -->
 
-পরামর্শ করুন <span class="composition-api">[Lifecycle Hooks API reference](/api/composition-api-lifecycle)</span><span class="options-api">[Lifecycle Hooks API reference](/api/options-lifecycle)</span> সমস্ত জীবনচক্র হুক এবং তাদের নিজ নিজ ব্যবহারের ক্ষেত্রে বিস্তারিত জানার জন্য।
+পরামর্শ করুন <span class="composition-api">[Lifecycle Hooks API reference](/api/composition-api-lifecycle)</span><span class="options-api">[Lifecycle Hooks API reference](/api/options-lifecycle)</span> সমস্ত লাইফসাইকেল হুক এবং তাদের নিজ নিজ ব্যবহারের ক্ষেত্রে বিস্তারিত জানার জন্য।

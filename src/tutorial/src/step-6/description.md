@@ -1,6 +1,6 @@
 # Conditional Rendering {#conditional-rendering}
 
-শর্তসাপেক্ষে একটি উপাদান রেন্ডার করতে আমরা `v-if` নির্দেশ ব্যবহার করতে পারি:
+শর্তসাপেক্ষে একটি কম্পোনেন্ট রেন্ডার করতে আমরা `v-if` নির্দেশ ব্যবহার করতে পারি:
 
 ```vue-html
 <h1 v-if="awesome">Vue is awesome!</h1>

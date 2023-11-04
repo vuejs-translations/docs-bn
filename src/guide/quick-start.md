@@ -6,7 +6,7 @@ footer: false
 
 ## Vue অনলাইন চেষ্টা করুন {#try-vue-online}
 
-- দ্রুত Vue এর স্বাদ পেতে, আপনি এটি সরাসরি আমাদের এখানে চেষ্টা করতে পারেন [প্লেগ্রাউন্ড](https://play.vuejs.org/#eNo9jcEKwjAMhl/lt5fpQYfXUQfefAMvvRQbddC1pUuHUPrudg4HIcmXjyRZXEM4zYlEJ+T0iEPgXjn6BB8Zhp46WUZWDjCa9f6w9kAkTtH9CRinV4fmRtZ63H20Ztesqiylphqy3R5UYBqD1UyVAPk+9zkvV1CKbCv9poMLiTEfR2/IXpSoXomqZLtti/IFwVtA9A==)।
+- দ্রুত Vue ব্যবহার করতে, আপনি এটি সরাসরি আমাদের এখানে চেষ্টা করতে পারেন [প্লেগ্রাউন্ড](https://play.vuejs.org/#eNo9jcEKwjAMhl/lt5fpQYfXUQfefAMvvRQbddC1pUuHUPrudg4HIcmXjyRZXEM4zYlEJ+T0iEPgXjn6BB8Zhp46WUZWDjCa9f6w9kAkTtH9CRinV4fmRtZ63H20Ztesqiylphqy3R5UYBqD1UyVAPk+9zkvV1CKbCv9poMLiTEfR2/IXpSoXomqZLtti/IFwVtA9A==)।
 
 - আপনি যদি কোনো বিল্ড স্টেপ ছাড়াই একটি প্লেইন HTML সেটআপ পছন্দ করেন, তাহলে আপনি এটি [জেএসফিডল](https://jsfiddle.net/yyx990803/2ke1ab0z/) আপনার শুরুর পয়েন্ট হিসেবে ব্যবহার করতে পারেন।
 
@@ -20,7 +20,7 @@ footer: false
 - [Node.js](https://nodejs.org/) 16.0 বা উচ্চতর সংস্করণ ইনস্টল করুন
   :::
 
-এই বিভাগে আমরা আপনার local মেশিনে কীভাবে একটি Vue [একক পৃষ্ঠা অ্যাপ্লিকেশন](/guide/extras/ways-of-using-vue#single-page-application-spa) স্ক্যাফল্ড করবেন তার সাথে পরিচয় করিয়ে দেব। তৈরি করা প্রোজেক্টটি [Vite](https://vitejs.dev) এর উপর ভিত্তি করে একটি বিল্ড সেটআপ ব্যবহার করবে এবং আমাদেরকে Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs) ব্যবহার করার অনুমতি দেবে।
+এই বিভাগে আমরা আপনার local মেশিনে কীভাবে একটি Vue [একক পৃষ্ঠা অ্যাপ্লিকেশন](/guide/extras/ways-of-using-vue#single-page-application-spa) স্ক্যাফল্ড করবেন তার সাথে পরিচয় করিয়ে দিব। তৈরি করা প্রোজেক্টটি [Vite](https://vitejs.dev) এর উপর ভিত্তি করে একটি বিল্ড সেটআপ ব্যবহার করবে এবং আমাদেরকে Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs) ব্যবহার করার অনুমতি দিবে।
 
 নিশ্চিত করুন যে আপনার কাছে এবং আপনার বর্তমান কার্যকারী ডিরেক্টরিতে যেখানে আপনি একটি প্রকল্প তৈরি করতে চান সেখানে [Node.js](https://nodejs.org/) এর একটি আপ-টু-ডেট সংস্করণ ইনস্টল করা আছে। আপনার কমান্ড লাইনে নিম্নলিখিত কমান্ডটি চালান (`>` চিহ্ন ছাড়া):
 
@@ -48,7 +48,7 @@ footer: false
 <span class="line"><span style="color:var(--vt-c-green);">&gt; </span><span style="color:#A6ACCD;">npm run dev</span></span>
 <span class="line"></span></code></pre></div>
 
-আপনার প্রথম Vue প্রকল্পটি এখন চালু হয়ে যাওয়া উচিত! মনে রাখবেন যে উৎপন্ন প্রকল্পের উদাহরণ হিসেবে তৈরি হওয়া উপাদানগুলি [Options API](/guide/introduction#options)-এর পরিবর্তে [Composition API](/guide/introduction#composition-api) এবং `<script setup>` ব্যবহার করে লেখা হয়েছে। এখানে কিছু অতিরিক্ত টিপস আছে:
+আপনার প্রথম Vue প্রকল্পটি এখন চালু হয়ে যাওয়া উচিত! মনে রাখবেন যে উৎপন্ন প্রকল্পের উদাহরণ হিসেবে তৈরি হওয়া কম্পোনেন্টগুলি [Options API](/guide/introduction#options)-এর পরিবর্তে [Composition API](/guide/introduction#composition-api) এবং `<script setup>` ব্যবহার করে লেখা হয়েছে। এখানে কিছু অতিরিক্ত টিপস আছে:
 
 - প্রস্তাবিত IDE সেটআপ হল [ভিজ্যুয়াল স্টুডিও কোড](https://code.visualstudio.com/) + [ভোলার এক্সটেনশন](https://marketplace.visualstudio.com/items?itemName=Vue.volar)। আপনি যদি অন্য এডিটর ব্যবহার করেন তবে [IDE সমর্থন বিভাগ](/guide/scaling-up/tooling#ide-support) দেখুন।
 - ব্যাকএন্ড ফ্রেমওয়ার্কের সাথে ইন্টিগ্রেশন সহ আরও টুলিং বিশদে [টুলিং গাইড](/guide/scaling-up/tooling) আলোচনা করা হয়েছে।
@@ -72,9 +72,9 @@ footer: false
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
 
-এখানে আমরা [unpkg](https://unpkg.com/) ব্যবহার করছি, কিন্তু আপনি যে কোনো CDN ব্যবহার করতে পারেন যা npm প্যাকেজ পরিবেশন করে, উদাহরণস্বরূপ [jsdelivr](https://www.jsdelivr.com/package/npm/ vue) অথবা [cdnjs](https://cdnjs.com/libraries/vue)। অবশ্যই, আপনি এই ফাইলটি ডাউনলোড করতে পারেন এবং এটি নিজে ব্যবহার করতে পারেন।
+এখানে আমরা [unpkg](https://unpkg.com/) ব্যবহার করছি, কিন্তু আপনি যে কোনো CDN ব্যবহার করতে পারেন যা npm প্যাকেজ পরিবেশন করে, উদাহরণস্বরূপ [jsdelivr](https://www.jsdelivr.com/package/npm/vue) অথবা [cdnjs](https://cdnjs.com/libraries/vue)। অবশ্যই, আপনি এই ফাইলটি ডাউনলোড করতে পারেন এবং এটি নিজে ব্যবহার করতে পারেন।
 
-একটি CDN থেকে Vue ব্যবহার করার সময়, কোন "বিল্ড স্টেপ" জড়িত থাকে না। এটি সেটআপটিকে অনেক সহজ করে তোলে এবং স্ট্যাটিক HTML বাড়ানো বা ব্যাকএন্ড ফ্রেমওয়ার্কের সাথে একীভূত করার জন্য উপযুক্ত। যাইহোক, আপনি একক-ফাইল কম্পোনেন্ট (SFC) সিনট্যাক্স ব্যবহার করতে পারবেন না।
+একটি CDN থেকে Vue ব্যবহার করার সময়, কোন "বিল্ড স্টেপ" জড়িত থাকে না। এটি সেটআপটিকে অনেক সহজ করে তোলে এবং স্ট্যাটিক HTML বাড়ানো বা ব্যাকএন্ড ফ্রেমওয়ার্কের সাথে ব্যবহার করার জন্য উপযুক্ত। যাইহোক, আপনি একক-ফাইল কম্পোনেন্ট (SFC) সিনট্যাক্স ব্যবহার করতে পারবেন না।
 
 ### গ্লোবাল বিল্ড ব্যবহার করে {#using-the-global-build}
 
@@ -323,7 +323,7 @@ export default {
 
 একটি local HTTP সার্ভার শুরু করতে, প্রথমে নিশ্চিত করুন যে আপনি [Node.js](https://nodejs.org/en/) ইনস্টল করেছেন, তারপরে আপনার HTML ফাইলটি যেখানে একই ডিরেক্টরিতে কমান্ড লাইন থেকে `npx serve` চালান। আপনি অন্য কোনো HTTP সার্ভারও ব্যবহার করতে পারেন যা সঠিক MIME প্রকারের সাথে স্ট্যাটিক ফাইল পরিবেশন করতে পারে।
 
-আপনি হয়তো লক্ষ্য করেছেন যে import করা উপাদানের টেমপ্লেটটি জাভাস্ক্রিপ্ট স্ট্রিং হিসাবে ইনলাইন করা হয়েছে। আপনি যদি VSCode ব্যবহার করেন তবে আপনি [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) এক্সটেনশন ইনস্টল করতে পারেন এবং একটি `/*html*/` সহ স্ট্রিংগুলি comment করতে পারেন তাদের জন্য সিনট্যাক্স হাইলাইটিং পেতে মন্তব্য করুন।
+আপনি হয়তো লক্ষ্য করেছেন যে import করা কম্পোনেন্টের টেমপ্লেটটি জাভাস্ক্রিপ্ট স্ট্রিং হিসাবে ইনলাইন করা হয়েছে। আপনি যদি VSCode ব্যবহার করেন তবে আপনি [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) এক্সটেনশন ইনস্টল করতে পারেন এবং একটি `/*html*/` সহ স্ট্রিংগুলি comment করতে পারেন তাদের জন্য সিনট্যাক্স হাইলাইটিং পেতে মন্তব্য করুন।
 
 ## Next Steps {#next-steps}
 
