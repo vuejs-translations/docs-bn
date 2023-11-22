@@ -44,7 +44,7 @@ Vue টাইপস্ক্রিপ্টে লেখা হয় এবং 
 
 - [`compilerOptions.isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) `true`-তে সেট করা আছে কারণ Vite TypeScript ট্রান্সপিলিং করার জন্য [esbuild](https://esbuild.github.io/) ব্যবহার করে এবং একক-ফাইল ট্রান্সপিল সীমাবদ্ধতার বিষয়।
 
-- আপনি যদি Options API ব্যবহার করেন, তাহলে আপনাকে [`compilerOptions.strict`](https://www.typescriptlang.org/tsconfig#strict) সেট করতে হবে `true` (অথবা অন্তত [`compilerOptions.noImplicitThis` সক্ষম করুন। ](https://www.typescriptlang.org/tsconfig#noImplicitThis), যা `strict` পতাকার একটি অংশ) কম্পোনেন্ট বিকল্পে `this`-এর টাইপ চেকিংয়ের সুবিধা নিতে। অন্যথায় `this`টিকে `any` হিসাবে গণ্য করা হবে।
+- আপনি যদি Options API ব্যবহার করেন, তাহলে আপনাকে [`compilerOptions.strict`](https://www.typescriptlang.org/tsconfig#strict) সেট করতে হবে `true` (অথবা অন্তত [`compilerOptions.noImplicitThis` সক্ষম করুন। ](https://www.typescriptlang.org/tsconfig#noImplicitThis), যা `strict` ফ্ল্যাগের একটি অংশ) কম্পোনেন্ট বিকল্পে `this`-এর টাইপ চেকিংয়ের সুবিধা নিতে। অন্যথায় `this`টিকে `any` হিসাবে গণ্য করা হবে।
 
 - আপনি যদি আপনার বিল্ড টুলে সমাধানকারী উপনামগুলি কনফিগার করে থাকেন, উদাহরণস্বরূপ `@/*` উপনাম একটি `create-vue` প্রজেক্টে ডিফল্টরূপে কনফিগার করা থাকে, তাহলে আপনাকে [`compilerOptions.paths`](এর মাধ্যমে TypeScript-এর জন্যও কনফিগার করতে হবে https://www.typescriptlang.org/tsconfig#paths)।
 
