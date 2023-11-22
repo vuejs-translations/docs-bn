@@ -70,7 +70,7 @@ onMounted(() => {
 - লুকানো ফোল্ডারগুলি টগল করে দেখান
 - বর্তমান কাজের ডিরেক্টরি পরিবর্তনগুলি পরিচালনা করা
 
-[অরিজিনাল ভার্সন](https://github.com/vuejs/vue-cli/blob/a09407dd5b9f18ace7501ddb603b95e31d6d93c0/packages/@vue/cli-ui/src/components/folder/FolderEpler4or#vueLx4) অপশন এপিআই-এ লেখা ছিল। যদি আমরা কোডের প্রতিটি লাইনকে একটি রঙ দিই যা লজিক্যাল উদ্বেগের সাথে এটি মোকাবেলা করছে, তাহলে এটি দেখতে কেমন হবে:
+[অরিজিনাল ভার্সন](https://github.com/vuejs/vue-cli/blob/a09407dd5b9f18ace7501ddb603b95e31d6d93c0/packages/@vue/cli-ui/src/components/folder/FolderExplorer.vue#L198-L404) অপশন এপিআই-এ লেখা ছিল। যদি আমরা কোডের প্রতিটি লাইনকে একটি রঙ দিই যা লজিক্যাল উদ্বেগের সাথে এটি মোকাবেলা করছে, তাহলে এটি দেখতে কেমন হবে:
 
 <img alt="folder component before" src="./images/options-api.png" width="129" height="500" style="margin: 1.2em auto">
 
@@ -114,7 +114,7 @@ onMounted(() => {
 
 :::
 
-আপনি যদি একচেটিয়াভাবে কম্পোজিশন API (উপরে তালিকাভুক্ত বিকল্পগুলির সাথে) ব্যবহার করতে চান তবে আপনি একটি [কম্পাইল-টাইম পতাকা](https://github.com/vuejs/core/tree/) এর মাধ্যমে আপনার প্রোডাকশন বান্ডিল থেকে কয়েক কেবিএস শেভ করতে পারেন main/packages/vue#bundler-build-feature-flags) যা Vue থেকে অপশন API সম্পর্কিত কোড ড্রপ করে। মনে রাখবেন এটি আপনার নির্ভরতার Vue কম্পোনেন্টগুলিকেও প্রভাবিত করে।
+আপনি যদি একচেটিয়াভাবে কম্পোজিশন API (উপরে তালিকাভুক্ত বিকল্পগুলির সাথে) ব্যবহার করতে চান তবে আপনি একটি [কম্পাইল-টাইম পতাকা](https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags) এর মাধ্যমে আপনার প্রোডাকশন বান্ডিল থেকে কয়েক কেবিএস শেভ করতে পারেন যা Vue থেকে অপশন API সম্পর্কিত কোড ড্রপ করে। মনে রাখবেন এটি আপনার নির্ভরতার Vue কম্পোনেন্টগুলিকেও প্রভাবিত করে।
 
 ### Can I use both APIs in the same component? {#can-i-use-both-apis-in-the-same-component}
 
