@@ -128,6 +128,8 @@
 
 যখন কম্পোনেন্টগুলি সঙ্কুচিত বা পড়তে অসুবিধা হতে শুরু করে, বহু-লাইন বৈশিষ্ট্যগুলির মধ্যে স্পেস যোগ করা তাদের আবার স্কিম করা সহজ করে তোলে। কিছু এডিটরে, যেমন Vim, এই ধরনের ফরম্যাটিং বিকল্পগুলি তাদের কীবোর্ড দিয়ে নেভিগেট করা আরও সহজ করে তুলতে পারে।
 
+<div class="options-api">
+
 <div class="style-example style-example-bad">
 <h3>Bad</h3>
 
@@ -157,6 +159,7 @@ computed: {
   }
 }
 ```
+
 </div>
 
 <div class="style-example style-example-good">
@@ -189,7 +192,69 @@ computed: {
 
 </div>
 
-## একক-ফাইল কম্পোনেন্ট শীর্ষ-স্তরের কম্পোনেন্টের ক্রম {#single-file-component-top-level-element-order}
+</div>
+
+<div class="composition-api">
+
+<div class="style-example style-example-bad">
+<h3>Bad</h3>
+
+```js
+defineProps({
+  value: {
+    type: String,
+    required: true
+  },
+  focused: {
+    type: Boolean,
+    default: false
+  },
+  label: String,
+  icon: String
+})
+const formattedValue = computed(() => {
+  // ...
+})
+const inputClasses = computed(() => {
+  // ...
+})
+```
+
+</div>
+
+<div class="style-example style-example-good">
+<h3>Good</h3>
+
+```js
+defineProps({
+  value: {
+    type: String,
+    required: true
+  },
+
+  focused: {
+    type: Boolean,
+    default: false
+  },
+
+  label: String,
+  icon: String
+})
+
+const formattedValue = computed(() => {
+  // ...
+})
+
+const inputClasses = computed(() => {
+  // ...
+})
+```
+
+</div>
+
+</div>
+
+## Single-file component top-level element order {#single-file-component-top-level-element-order}
 
 **[একক-ফাইল কম্পোনেন্ট]](/guide/scaling-up/sfc) সর্বদা `<script>`, `<টেমপ্লেট>`, এবং `<style>` ট্যাগগুলিকে ধারাবাহিকভাবে, `<style>` শেষের সাথে অর্ডার করতে হবে, কারণ অন্য দুটির মধ্যে অন্তত একটি সর্বদা প্রয়োজনীয়।**
 

@@ -44,6 +44,7 @@
   :::
 
 <div class="options-api">
+
 <div class="style-example style-example-bad">
 <h3>Bad</h3>
 
@@ -83,9 +84,11 @@ props: {
 ```
 
 </div>
+
 </div>
 
 <div class="composition-api">
+
 <div class="style-example style-example-bad">
 <h3>Bad</h3>
 
@@ -123,6 +126,7 @@ const props = defineProps({
 ```
 
 </div>
+
 </div>
 
 ## `v-for`এর সাথে `key` ব্যবহার করুন {#use-keyed-v-for}
@@ -131,6 +135,8 @@ const props = defineProps({
 
 ::: details বিস্তারিত ব্যাখ্যা
 ধরা যাক আপনার কাছে করণীয়গুলির একটি তালিকা রয়েছে:
+
+<div class="options-api">
 
 ```js
 data() {
@@ -149,7 +155,26 @@ data() {
 }
 ```
 
-তারপর আপনি তাদের বর্ণানুক্রমিকভাবে সাজান। DOM আপডেট করার সময়, Vue সম্ভাব্য সবচেয়ে সস্তা DOM মিউটেশনগুলি সম্পাদন করতে রেন্ডারিং অপ্টিমাইজ করবে। এর অর্থ হতে পারে প্রথম করণীয় কম্পোনেন্টটি মুছে ফেলা, তারপর তালিকার শেষে আবার যোগ করা।
+</div>
+
+<div class="composition-api">
+
+```js
+const todos = ref([
+  {
+    id: 1,
+    text: 'Learn to use v-for'
+  },
+  {
+    id: 2,
+    text: 'Learn to use key'
+  }
+])
+```
+
+</div>
+
+তারপর আপনি তাদের বর্ণানুক্রমিকভাবে সাজান। DOM আপডেট করার সময়, Vue সম্ভাব্য সবচেয়ে সস্তা DOM মিউটেশনগুলি সম্পাদন করতে রেন্ডারিং অপ্টিমাইজ করবে। এর অর্থ হতে পারে প্রথম করণীয় উপাদানটি মুছে ফেলা, তারপর তালিকার শেষে আবার যোগ করা।
 
 সমস্যা হল, এমন কিছু ক্ষেত্রে রয়েছে যেখানে DOM-এ থাকা কম্পোনেন্টগুলি মুছে ফেলা গুরুত্বপূর্ণ নয়। উদাহরণস্বরূপ, আপনি তালিকা সাজানোর অ্যানিমেট করতে `<transition-group>` ব্যবহার করতে চাইতে পারেন, অথবা যদি রেন্ডার করা কম্পোনেন্টটি `<input>` হয় তাহলে ফোকাস বজায় রাখতে পারেন। এই ক্ষেত্রে, প্রতিটি আইটেমের জন্য একটি অনন্য কী যোগ করা (যেমন `:key="todo.id"`) Vue কে বলবে কিভাবে আরও অনুমানযোগ্য আচরণ করতে হবে।
 
@@ -214,6 +239,8 @@ data() {
 
 এটি পরিবর্তে একটি গণনাকৃত কম্পিউটেড প্রপার্টির উপর পুনরাবৃত্তি করে ঠিক করা যেতে পারে, যেমন:
 
+<div class="options-api">
+
 ```js
 computed: {
   activeUsers() {
@@ -221,6 +248,18 @@ computed: {
   }
 }
 ```
+
+</div>
+
+<div class="composition-api">
+
+```js
+const activeUsers = computed(() => {
+  return users.filter((user) => user.isActive)
+})
+```
+
+</div>
 
 ```vue-html
 <ul>
