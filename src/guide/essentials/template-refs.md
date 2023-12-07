@@ -67,7 +67,7 @@ export default {
 
 </div>
 
-মনে রাখবেন যে আপনি শুধুমাত্র রেফ অ্যাক্সেস করতে পারবেন ** কম্পোনেন্ট মাউন্ট করার পরে।** আপনি যদি <span class="options-api">`$refs.input`</span><span class="composition- অ্যাক্সেস করার চেষ্টা করেন api">`input`</span> একটি টেমপ্লেট এক্সপ্রেশনে, এটি প্রথম রেন্ডারে `null` হবে। কারণ প্রথম রেন্ডার না হওয়া পর্যন্ত কম্পোনেন্টটির অস্তিত্ব নেই!
+মনে রাখবেন যে আপনি শুধুমাত্র রেফারেন্স অ্যাক্সেস করতে পারবেন **কম্পোনেন্ট মাউন্ট করার পরে।** আপনি যদি একটি টেমপ্লেট এক্সপ্রেশনে <span class="options-api">`$refs.input`</span><span class="composition-api">`ইনপুট`</span> অ্যাক্সেস করার চেষ্টা করেন, তাহলে তা হবে প্রথম রেন্ডারে <span class="options-api">`undefined`</span><span class="composition-api">`null`</span> কারণ প্রথম রেন্ডার না হওয়া পর্যন্ত উপাদানটির অস্তিত্ব নেই!
 
 <div class="composition-api">
 

@@ -177,14 +177,14 @@ export default {
 
 </div>
 
-`emits` বিকল্প এবং `defineEmits()` ম্যাক্রো একটি অবজেক্ট সিনট্যাক্সকেও সমর্থন করে, যা আমাদের ইভেন্টের পেলোডের রানটাইম যাচাইকরণ করতে দেয়:
+`emits` অপশন এবং `defineEmits()` ম্যাক্রোও একটি অবজেক্ট সিনট্যাক্স সমর্থন করে। TypeScript ব্যবহার করলে আপনি আর্গুমেন্ট টাইপ করতে পারেন, যা আমাদের নির্গত ইভেন্টের পেলোডের রানটাইম বৈধতা সম্পাদন করতে দেয়:
 
 <div class="composition-api">
 
 ```vue
 <script setup>
 const emit = defineEmits({
-  submit(payload) {
+  submit(payload: { email: string, password: string }) {
     // return `true` or `false` to indicate
     // validation pass / fail
   }
@@ -211,7 +211,7 @@ const emit = defineEmits<{
 ```js
 export default {
   emits: {
-    submit(payload) {
+    submit(payload: { email: string, password: string }) {
       // return `true` or `false` to indicate
       // validation pass / fail
     }
@@ -288,3 +288,14 @@ export default {
 ```
 
 </div>
+
+## Events as Props {#events-props}
+
+You may also declare and pass `events` as `props`, by prefixing the capitalized event name with `on`
+Using `props.onEvent` has a different behaviour than using `emit('event')`, as the former will pass only handle the property based listener (either `@event` or `:on-event`)
+
+:::warning
+If both `:onEvent` and `@event` are passed `props.onEvent` might be an array of `functions` instead of `function`, this behavior is not stable and might change in the future.
+:::
+
+Because of this, it is recommended to use `emit('event')` instead of `props.onEvent` when emitting events.

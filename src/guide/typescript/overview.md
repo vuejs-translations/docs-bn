@@ -42,7 +42,7 @@ Vue টাইপস্ক্রিপ্টে লেখা হয় এবং 
 
 ম্যানুয়ালি `tsconfig.json` কনফিগার করার সময়, কিছু উল্লেখযোগ্য বিকল্পের মধ্যে রয়েছে:
 
-- [`compilerOptions.isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) `true`-তে সেট করা আছে কারণ Vite TypeScript ট্রান্সপিলিং করার জন্য [esbuild](https://esbuild.github.io/) ব্যবহার করে এবং একক-ফাইল ট্রান্সপিল সীমাবদ্ধতার বিষয়।
+- [`compilerOptions.isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) `true`-তে সেট করা আছে কারণ Vite TypeScript ট্রান্সপিলিং করার জন্য [esbuild](https://esbuild.github.io/) ব্যবহার করে এবং একক-ফাইল ট্রান্সপিল সীমাবদ্ধতার বিষয়। [`compilerOptions.verbatimModuleSyntax`](https://www.typescriptlang.org/tsconfig#verbatimModuleSyntax) হল [`isolatedModules`-এর একটি সুপারসেট](https://github.com/microsoft/TypeScript/issues/53601) এবং একটি ভাল পছন্দও - এটি `[@vue/tsconfig](https://github.com/vuejs/tsconfig)` ব্যবহার করে।
 
 - আপনি যদি Options API ব্যবহার করেন, তাহলে আপনাকে [`compilerOptions.strict`](https://www.typescriptlang.org/tsconfig#strict) সেট করতে হবে `true` (অথবা অন্তত [`compilerOptions.noImplicitThis` সক্ষম করুন। ](https://www.typescriptlang.org/tsconfig#noImplicitThis), যা `strict` ফ্ল্যাগের একটি অংশ) কম্পোনেন্ট বিকল্পে `this`-এর টাইপ চেকিংয়ের সুবিধা নিতে। অন্যথায় `this`টিকে `any` হিসাবে গণ্য করা হবে।
 
