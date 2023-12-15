@@ -118,14 +118,14 @@ watch(
 
 | HTML            | ARIA Role            | Landmark Purpose                                                                                                 |
 | --------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| header          | role="banner"        | Prime heading: title of the page                                                                                 |
-| nav             | role="navigation"    | Collection of links suitable for use when navigating the document or related documents                           |
-| main            | role="main"          | The main or central content of the document.                                                                     |
-| footer          | role="contentinfo"   | Information about the parent document: footnotes/copyrights/links to privacy statement                           |
-| aside           | role="complementary" | Supports the main content, yet is separated and meaningful on its own content                                    |
-| _Not available_ | role="search"        | This section contains the search functionality for the application                                               |
-| form            | role="form"          | Collection of form-associated elements                                                                           |
-| section         | role="region"        | Content that is relevant and that users will likely want to navigate to. Label must be provided for this element |
+| header          | role="banner"        | প্রধান শিরোনাম: পৃষ্ঠার শিরোনাম                                                                                      |
+| nav             | role="navigation"    | নথি বা সংশ্লিষ্ট নথি নেভিগেট করার সময় ব্যবহারের জন্য উপযুক্ত লিঙ্কগুলির সংগ্রহ                                             |
+| main            | role="main"          | নথির প্রধান বা কেন্দ্রীয় বিষয়বস্তু                                                                                       |
+| footer          | role="contentinfo"   | মূল নথি সম্পর্কে তথ্য: পাদটীকা/কপিরাইট/প্রাইভেসি স্টেটমেন্টের লিঙ্ক                                                       |
+| aside           | role="complementary" | মূল বিষয়বস্তু সমর্থন করে, তবুও আলাদা এবং নিজস্ব বিষয়বস্তুতে অর্থবহ                                                      |
+| search          | role="search"        | এই বিভাগে অ্যাপ্লিকেশনের জন্য অনুসন্ধান কার্যকারিতা রয়েছে                                                              |
+| form            | role="form"          | ফর্ম-সম্পর্কিত উপাদানের সংগ্রহ                                                                                       |
+| section         | role="region"        | যে বিষয়বস্তু প্রাসঙ্গিক এবং ব্যবহারকারীরা সম্ভবত নেভিগেট করতে চাইবেন। এই উপাদানের জন্য লেবেল প্রদান করা আবশ্যক           |
 
 :::tip Tip:
 লিগ্যাসি [HTML5 শব্দার্থিক কম্পোনেন্ট সমর্থন করে না এমন ব্রাউজার](https://caniuse.com/#feat=html5semantic) এর সাথে সামঞ্জস্যপূর্ণতা বাড়াতে অপ্রয়োজনীয় ল্যান্ডমার্ক ভূমিকা বৈশিষ্ট্য সহ ল্যান্ডমার্ক HTML কম্পোনেন্টগুলি ব্যবহার করার পরামর্শ দেওয়া হয়।

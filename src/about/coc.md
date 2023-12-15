@@ -42,4 +42,6 @@
 
 এই আচরণবিধিটি [অবদানকারী চুক্তি][হোমপেজ], সংস্করণ 1.4, https://www.contributor-covenant.org/version/1/4/code-of-conduct.html এ উপলব্ধ থেকে অভিযোজিত হয়েছে
 
+এই আচরণবিধি সম্পর্কে সাধারণ প্রশ্নের উত্তরের জন্য, দেখুন https://www.contributor-covenant.org/faq
+
 [হোমপেজ]: https://www.contributor-covenant.org

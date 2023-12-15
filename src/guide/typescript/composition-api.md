@@ -50,6 +50,16 @@ const props = defineProps<Props>()
 </script>
 ```
 
+This also works if `Props` is imported from an external source. This feature requires TypeScript to be a peer dependency of Vue.
+
+```vue
+<script setup lang="ts">
+import type { Props } from './foo'
+
+const props = defineProps<Props>()
+</script>
+```
+
 #### Syntax Limitations {#syntax-limitations}
 
 সংস্করণ 3.2 এবং নীচে, `defineProps()`-এর জন্য জেনেরিক টাইপ প্যারামিটার একটি আক্ষরিক টাইপ বা স্থানীয় ইন্টারফেসের একটি রেফারেন্সের মধ্যে সীমাবদ্ধ ছিল।

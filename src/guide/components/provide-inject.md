@@ -315,10 +315,6 @@ export default {
 
 `computed()` ফাংশনটি সাধারণত কম্পোজিশন API কম্পোনেন্টগুলিতে ব্যবহৃত হয়, তবে বিকল্প API-এ নির্দিষ্ট ব্যবহারের ক্ষেত্রে পরিপূরক করতেও ব্যবহার করা যেতে পারে। আপনি কম্পোজিশন এপিআই-এ সেট করা API পছন্দের সাথে [Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals) এবং [Computed Properties](/guide/essentials/computed) পড়ে এর ব্যবহার সম্পর্কে আরও জানতে পারেন।
 
-:::warning অস্থায়ী কনফিগার প্রয়োজন
-উপরোক্ত ব্যবহারের জন্য `app.config.unwrapInjectedRef = true` সেট করা প্রয়োজন যাতে ইনজেকশনগুলি স্বয়ংক্রিয়ভাবে গণনা করা রেফগুলিকে আনর্যাপ করা যায়৷ এটি Vue 3.3-এ ডিফল্ট আচরণে পরিণত হবে এবং ভাঙা এড়াতে এই কনফিগারেশন সাময়িকভাবে চালু করা হয়েছে। এটি 3.3 এর পরে আর প্রয়োজন হবে না।
-:::
-
 </div>
 
 ## Working with Symbol Keys {#working-with-symbol-keys}
