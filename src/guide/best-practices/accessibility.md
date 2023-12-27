@@ -505,7 +505,7 @@ W3C-এর WAI-ARIA কীভাবে গতিশীল বিষয়অব�
 
 - Zooming Tools
   - [MAGic](https://www.freedomscientific.com/products/software/magic/)
-  - [ZoomText](https://www.zoomtext.com/)
+  - [ZoomText](https://www.freedomscientific.com/products/software/zoomtext/)
   - [Magnifier](https://support.microsoft.com/en-us/help/11542/windows-use-magnifier-to-make-things-easier-to-see)
 
 ### Testing {#testing}
