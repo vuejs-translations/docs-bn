@@ -48,7 +48,9 @@ Vue টাইপস্ক্রিপ্টে লেখা হয় এবং 
 
 - আপনি যদি আপনার বিল্ড টুলে সমাধানকারী উপনামগুলি কনফিগার করে থাকেন, উদাহরণস্বরূপ `@/*` উপনাম একটি `create-vue` প্রজেক্টে ডিফল্টরূপে কনফিগার করা থাকে, তাহলে আপনাকে [`compilerOptions.paths`](এর মাধ্যমে TypeScript-এর জন্যও কনফিগার করতে হবে https://www.typescriptlang.org/tsconfig#paths)।
 
-আরো দেখুন:
+- আপনি যদি Vue-এর সাথে TSX ব্যবহার করতে চান, তাহলে [`compilerOptions.jsx`](https://www.typescriptlang.org/tsconfig#jsx) সেট করুন `"সংরক্ষণ করুন"`, এবং সেট করুন [`compilerOptions.jsxImportSource`]( https://www.typescriptlang.org/tsconfig#jsxImportSource) থেকে `"vue"`।
+
+See also:
 
 - [অফিসিয়াল টাইপস্ক্রিপ্ট কম্পাইলার অপশন ডক্স](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
 - [এসবিল্ড টাইপস্ক্রিপ্ট সংকলন সতর্কতা](https://esbuild.github.io/content-types/#typescript-caveats)

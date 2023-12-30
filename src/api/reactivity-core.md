@@ -52,7 +52,7 @@
   ```ts
   // read-only
   function computed<T>(
-    getter: () => T,
+    getter: (oldValue: T | undefined) => T,
     // see "Computed Debugging" link below
     debuggerOptions?: DebuggerOptions
   ): Readonly<Ref<Readonly<T>>>
@@ -60,7 +60,7 @@
   // writable
   function computed<T>(
     options: {
-      get: () => T
+      get: (oldValue: T | undefined) => T
       set: (value: T) => void
     },
     debuggerOptions?: DebuggerOptions
@@ -112,6 +112,7 @@
   - [Guide - Computed Properties](/guide/essentials/computed)
   - [Guide - Computed Debugging](/guide/extras/reactivity-in-depth#computed-debugging)
   - [Guide - Typing `computed()`](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
+  - [Guide - Performance - Computed Stability](/guide/best-practices/performance#computed-stability) <sup class="vt-badge" data-text="3.4+" />
 
 ## reactive() {#reactive}
 
@@ -360,6 +361,7 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
     flush?: 'pre' | 'post' | 'sync' // default: 'pre'
     onTrack?: (event: DebuggerEvent) => void
     onTrigger?: (event: DebuggerEvent) => void
+    once?: boolean // default: false (3.4+)
   }
   ```
 
@@ -382,10 +384,11 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
 
   তৃতীয় অপশনাল আরগুমেন্ট হল একটি অপশন অবজেক্ট যা নিম্নলিখিত অপশনগুলোকে সমর্থন করে:
 
-  - **`immediate`**: ওয়াচার তৈরিতে অবিলম্বে কলব্যাক ট্রিগার করুন। প্রথম কলে পুরানো ভ্যালু 'undefined' হবে।
-  - **`deep`**: সোর্সের ডীপ ট্র্যাভার্সাল ফোর্স করে যদি এটি কোনো অবজেক্ট হয়, যাতে কলব্যাক ডীপ মিউটেশনের উপর  ফায়ারস করে। [Deep Watchers](/guide/essentials/watchers#deep-watchers) দেখুন।
-  - **`flush`**: কলব্যাকের ফ্লাশের সময় সামঞ্জস্য করুন। [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) এবং [`watchEffect()`](/api/reactivity-core#watcheffect) দেখুন।
-  - **`onTrack / onTrigger`**: ওয়াচার-এর ডিপেন্ডেন্সি ডিবাগ করুন। [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging) দেখুন।
+  - **`immediate`**: পর্যবেক্ষক তৈরিতে অবিলম্বে কলব্যাক ট্রিগার করুন। প্রথম কলে পুরানো মান 'অনির্ধারিত' হবে।
+  - **`deep`**: উৎসের গভীর ট্র্যাভার্সাল জোর করে যদি এটি একটি বস্তু হয়, যাতে কলব্যাক গভীর মিউটেশনে আগুন দেয়। [Deep Watchers](/guide/essentials/watchers#deep-watchers) দেখুন।
+  - **`flush`**: কলব্যাকের ফ্লাশ টাইমিং সামঞ্জস্য করুন। [কলব্যাক ফ্লাশ টাইমিং](/guide/essentials/watchers#callback-flush-timing) এবং [`watchEffect()`](/api/reactivity-core#watcheffect) দেখুন।
+  - **`onTrack / onTrigger`**: পর্যবেক্ষকের নির্ভরতা ডিবাগ করুন। [ওয়াচার ডিবাগিং](/guide/extras/reactivity-in-depth#watcher-debugging) দেখুন।
+  - **`once`**: শুধুমাত্র একবার কলব্যাক চালান। প্রথম কলব্যাক চালানোর পর পর্যবেক্ষক স্বয়ংক্রিয়ভাবে বন্ধ হয়ে যায়। <sup class="vt-badge" data-text="3.4+" />
 
   [`watchEffect()`](#watcheffect) এর তুলনায়, `watch()` আমাদের অ্যালাউ করে:
 

@@ -1,8 +1,94 @@
 # Component v-model {#component-v-model}
 
-টু-ওয়ে বাইন্ডিং বাস্তবায়ন করতে একটি কম্পোনেন্টে `v-মডেল` ব্যবহার করা যেতে পারে।
+## Basic Usage
 
-প্রথমে আসুন একটি নেটিভ এলিমেন্টে কীভাবে `v-মডেল` ব্যবহার করা হয় তা আবার দেখা যাক:
+টু-ওয়ে বাইন্ডিং বাস্তবায়ন করতে একটি উপাদানে `v-model` ব্যবহার করা যেতে পারে।
+
+<div class="composition-api">
+
+Vue ৩.৪ থেকে শুরু করে, এটি অর্জন করার জন্য প্রস্তাবিত পদ্ধতি হল [`defineModel()`](/api/sfc-script-setup#definemodel) ম্যাক্রো ব্যবহার করা:
+
+```vue
+<!-- Child.vue -->
+<script setup>
+const model = defineModel()
+
+function update() {
+  model.value++
+}
+</script>
+
+<template>
+  <div>parent bound v-model is: {{ model }}</div>
+</template>
+```
+
+প্যারেন্ট তারপর `v-মডেল` দিয়ে একটি মান আবদ্ধ করতে পারেন:
+
+```vue-html
+<!-- Parent.vue -->
+<Child v-model="count" />
+```
+
+`defineModel()` দ্বারা প্রত্যাবর্তিত মানটি একটি রেফ। এটি অন্য যেকোন রেফের মতো অ্যাক্সেস এবং পরিবর্তন করা যেতে পারে, এটি ব্যতীত এটি একটি অভিভাবক মান এবং স্থানীয় একটির মধ্যে দ্বি-মুখী বাঁধাই হিসাবে কাজ করে:
+
+- এর `.value` প্যারেন্ট `v-model` দ্বারা আবদ্ধ মানের সাথে সিঙ্ক করা হয়েছে;
+- যখন এটি সন্তানের দ্বারা পরিবর্তিত হয়, তখন এটি পিতামাতার আবদ্ধ মানটিকেও আপডেট করে।
+
+এর মানে হল আপনি এই রেফটিকে একটি নেটিভ ইনপুট উপাদানের সাথে `v-model` এর সাথে আবদ্ধ করতে পারেন, একই `v-model` ব্যবহার প্রদান করার সময় নেটিভ ইনপুট উপাদানগুলিকে মোড়ানো সহজ করে তোলে:
+
+```vue
+<script setup>
+const model = defineModel()
+</script>
+
+<template>
+  <input v-model="model" />
+</template>
+```
+
+[Playground Example](https://play.vuejs.org/#eNqFUtFKwzAU/ZWYl06YLbK30Q10DFSYigq+5KW0t11mmoQknZPSf/cm3eqEsT0l555zuefmpKV3WsfbBuiUpjY3XDtiwTV6ziSvtTKOLNZcFKQ0qiZRnATkG6JB0BIDJen2kp5iMlfSOlLbisw8P4oeQAhFPpURxVV0zWSa9PNwEgIHtRaZA0SEpOvbeduG5q5LE0Sh2jvZ3tSqADFjFHlGSYJkmhz10zF1FseXvIo3VklcrfX9jOaq1lyAedGOoz1GpyQwnsvQ3fdTqDnTwPhQz9eQf52ob+zO1xh9NWDBbIHRgXOZqcD19PL9GXZ4H0h03whUnyHfwCrReI+97L6RBdo+0gW3j+H9uaw+7HLnQNrDUt6oV3ZBzyhmsjiz+p/dSTwJfUx2+IpD1ic+xz5enwQGXEDJJaw8Gl2I1upMzlc/hEvdOBR6SNKAjqP1J6P/o6XdL11L5h4=)
+
+### Under the Hood
+
+`defineModel` একটি সুবিধাজনক ম্যাক্রো। কম্পাইলার এটিকে নিম্নলিখিতগুলিতে প্রসারিত করে:
+
+- `modelValue` নামের একটি প্রপ, যার সাথে স্থানীয় রেফের মান সিঙ্ক করা হয়;
+- `update:modelValue` নামের একটি ইভেন্ট, যা স্থানীয় রেফের মান পরিবর্তন করা হলে নির্গত হয়।
+
+এইভাবে আপনি ৩.৪ এর আগে উপরে দেখানো একই শিশু উপাদানটি বাস্তবায়ন করবেন:
+
+```vue
+<script setup>
+const props = defineProps(['modelValue'])
+const emit = defineEmits(['update:modelValue'])
+</script>
+
+<template>
+  <input
+    :value="props.modelValue"
+    @input="emit('update:modelValue', $event.target.value)"
+  />
+</template>
+```
+
+আপনি দেখতে পাচ্ছেন, এটি বেশ কিছুটা বেশি শব্দসমৃদ্ধ। যাইহোক, হুডের নীচে কী ঘটছে তা বোঝার জন্য এটি সহায়ক।
+
+যেহেতু `defineModel` একটি প্রপ ঘোষণা করে, তাই আপনি `defineModel`-এ পাস করে অন্তর্নিহিত প্রপের বিকল্পগুলি ঘোষণা করতে পারেন:
+
+```js
+// making the v-model required
+const model = defineModel({ required: true })
+
+// providing a default value
+const model = defineModel({ default: 0 })
+```
+
+</div>
+
+<div class="options-api">
+
+First let's revisit how `v-model` is used on a native element:
 
 ```vue-html
 <input v-model="searchText" />
@@ -33,8 +119,6 @@
 
 এখানে এটি কর্মে রয়েছে:
 
-<div class="options-api">
-
 ```vue
 <!-- CustomInput.vue -->
 <script>
@@ -52,46 +136,15 @@ export default {
 </template>
 ```
 
-</div>
-<div class="composition-api">
-
-```vue
-<!-- CustomInput.vue -->
-<script setup>
-defineProps(['modelValue'])
-defineEmits(['update:modelValue'])
-</script>
-
-<template>
-  <input
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
-  />
-</template>
-```
-
-</div>
-
-এখন `v-model` এই কম্পোনেন্টটির সাথে পুরোপুরি কাজ করা উচিত:
+এখন `v-model` এই উপাদানটির সাথে পুরোপুরি কাজ করা উচিত:
 
 ```vue-html
 <CustomInput v-model="searchText" />
 ```
 
-<div class="options-api">
-
 [চেষ্টা করুন](https://play.vuejs.org/#eNqFkctqwzAQRX9lEAEn4Np744aWrvoD3URdiHiSGvRCHpmC8b93JDfGKYGCkJjXvTrSJF69r8aIohHtcA69p6O0vfEuELzFgZx5tz4SXIIzUFT1JpfGCmmlxe/c3uFFRU0wSQtwdqxh0dLQwHSnNJep3ilS+8PSCxCQYrC3CMDgMKgrNlB8odaOXVJ2TgdvvNp6vSwHhMZrRcgRQLs1G5+M61A/S/ErKQXUR5immwXMWW1VEKX4g3j3Mo9QfXCeKU9FtvpQmp/lM0Oi6RP/qYieebHZNvyL0acLLODNmGYSxCogxVJ6yW1c2iWz/QOnEnY48kdUpMIVGSllD8t8zVZb+PkHqPG4iw==)
 
-</div>
-<div class="composition-api">
-
-[চেষ্টা করুন](https://play.vuejs.org/#eNp9j81qwzAQhF9lEQE7kNp344SW0kNvPfVS9WDidSrQH9LKF+N37yoOxoSQm7QzO9/sJN68r8aEohFtPAflCSJS8idplfEuEEwQcIAZhuAMFGwtVuk9RXLm0/pEN7mqN7Ocy2YAac/ORgKDMXYXhGOOLIs/1NoVe2nbekEzlD+ExuuOkH8A7ZYxvhjXoz5KcUuSAuoTTNOaPM85bU0QB3HX58GdPQ7K4ldwPpY/xZXw3Wmu/svVFvHDKMpi8j3HNneeZ/VVBucXQDPmjVx+XZdikV6vNpZ2yKTyAecAOxzRUkVduCCfkqf7Zb9m1Pbo+R9ZkqZn)
-
-</div>
-
-এই কম্পোনেন্টের মধ্যে `v-model` বাস্তবায়নের আরেকটি উপায় হল একটি লিখনযোগ্য `computed` বৈশিষ্ট্য একটি গেটার এবং একটি সেটারের সাথে ব্যবহার করা। `get` পদ্ধতিটি `modelValue` বৈশিষ্ট্য প্রদান করবে এবং `set` পদ্ধতিটি সংশ্লিষ্ট ইভেন্ট নির্গত করবে:
-
-<div class="options-api">
+এই উপাদানের মধ্যে `v-মডেল` বাস্তবায়নের আরেকটি উপায় হল একটি লিখনযোগ্য `computed` বৈশিষ্ট্য একটি গেটার এবং একটি সেটারের সাথে ব্যবহার করা। `get` পদ্ধতিটি `modelValue` বৈশিষ্ট্য প্রদান করবে এবং `set` পদ্ধতিটি সংশ্লিষ্ট ইভেন্ট নির্গত করবে:
 
 ```vue
 <!-- CustomInput.vue -->
@@ -118,44 +171,40 @@ export default {
 ```
 
 </div>
-<div class="composition-api">
-
-```vue
-<!-- CustomInput.vue -->
-<script setup>
-import { computed } from 'vue'
-
-const props = defineProps(['modelValue'])
-const emit = defineEmits(['update:modelValue'])
-
-const value = computed({
-  get() {
-    return props.modelValue
-  },
-  set(value) {
-    emit('update:modelValue', value)
-  }
-})
-</script>
-
-<template>
-  <input v-model="value" />
-</template>
-```
-
-</div>
 
 ## `v-model` arguments {#v-model-arguments}
 
-ডিফল্টরূপে, একটি কম্পোনেন্টে `v-model` প্রপ হিসেবে `modelValue` এবং `update:modelValue` ইভেন্ট হিসেবে ব্যবহার করে। আমরা এই নামগুলিকে 'v-মডেল'-এ একটি যুক্তি পাস করে সংশোধন করতে পারি:
+একটি উপাদানে `v-model` একটি যুক্তিও গ্রহণ করতে পারে:
 
 ```vue-html
 <MyComponent v-model:title="bookTitle" />
 ```
 
-এই ক্ষেত্রে, চাইল্ড কম্পোনেন্টের একটি `title` প্রপ আশা করা উচিত এবং প্যারেন্ট মান আপডেট করার জন্য একটি `update:title` ইভেন্ট নির্গত করা উচিত:
-
 <div class="composition-api">
+
+চাইল্ড কম্পোনেন্টে, আমরা এর প্রথম আর্গুমেন্ট হিসাবে `defineModel()`-এ একটি স্ট্রিং পাস করে সংশ্লিষ্ট আর্গুমেন্টকে সমর্থন করতে পারি:
+
+```vue
+<!-- MyComponent.vue -->
+<script setup>
+const title = defineModel('title')
+</script>
+
+<template>
+  <input type="text" v-model="title" />
+</template>
+```
+
+[চেষ্টা করুন](https://play.vuejs.org/#eNqFkl9PwjAUxb9K05dhglsMb2SQqOFBE9Soj31Zxh0Uu7bpHxxZ9t29LWOiQXzaes7p2a+9a+mt1unOA53S3JaGa0csOK/nTPJaK+NISwxUpCOVUTVJMJoM1nJ/r/BNgnS9nWYnWujFMCFMlkpaRxx3AsgsFI6S3XWtViBIYda+Dg3QFLUWkFwxmWcHFqTAhQPUCwe4IiTf3Mzbtq/qujzDddRPYfruaUzNGI1PRkmG0Twb+uiY/sI9cw0/0VdQcQnL0D5KovgfL5fa4/69jiDQOOTo+S6SOYtfrvg63VolkauNN0lLxOUCzLN2HMkYnZLoBK8QQn0+Rs0ZD+OjXm6g/Dijb20TNEZfDFgwOwQZPIdzAWQN9uLtKXIPJtL7gH3BfAWrhA+Mh9idlyvEPslF2of4J3G5freLxoG0x0MF0JDsYp5RHE6Y1F9H/8adpJO4j8mOdl/Hw/nf)
+
+যদি প্রপ বিকল্পগুলিরও প্রয়োজন হয়, সেগুলি মডেলের নামের পরে পাস করা উচিত:
+
+```js
+const title = defineModel('title', { required: true })
+```
+
+<details>
+<summary>৩.৪ এর পূর্বের ব্যবহার</summary>
 
 ```vue
 <!-- MyComponent.vue -->
@@ -175,8 +224,11 @@ defineEmits(['update:title'])
 
 [চেষ্টা করুন](https://play.vuejs.org/#eNp9kE1rwzAMhv+KMIW00DXsGtKyMXYc7D7vEBplM8QfOHJoCfnvk+1QsjJ2svVKevRKk3h27jAGFJWoh7NXjmBACu4kjdLOeoIJPHYwQ+ethoJLi1vq7fpi+WfQ0JI+lCstcrkYQJqzNQMBKeoRjhG4LcYHbVvsofFfQUcCXhrteix20tRl9sIuOCBkvSHkCKD+fjxN04Ka57rkOOlrMwu7SlVHKdIrBZRcWpc3ntiLO7t/nKHFThl899YN248ikYpP9pj1V60o6sG1TMwDU/q/FZRxgeIPgK4uGcQLSZGlamz6sHKd1afUxOoGeeT298A9bHCMKxBfE3mTSNjl1vud5x8qNa76)
 
+</details>
 </div>
 <div class="options-api">
+
+In this case, instead of the default `modelValue` prop and `update:modelValue` event, the child component should expect a `title` prop and emit an `update:title` event to update the parent value:
 
 ```vue
 <!-- MyComponent.vue -->
@@ -217,6 +269,23 @@ export default {
 
 ```vue
 <script setup>
+const firstName = defineModel('firstName')
+const lastName = defineModel('lastName')
+</script>
+
+<template>
+  <input type="text" v-model="firstName" />
+  <input type="text" v-model="lastName" />
+</template>
+```
+
+[চেষ্টা করুন](https://play.vuejs.org/#eNqFkstuwjAQRX/F8iZUAqKKHQpIfbAoUmnVx86bKEzANLEt26FUkf+9Y4MDSAg2UWbu9fjckVv6oNRw2wAd08wUmitLDNhGTZngtZLakpZoKIkjpZY1SdCadNK3Ab3IazhowzQ2/ES0MVFIYSwpucbvxA/qJXO5FsldlKr8qDxL8EKW7kEQAQsLtapyC1gRkq3vp217mOccwf8wwLksRSlYIoMvCNkOarmEahyODAT2J4yGgtFzhx8UDf5/r6c4NEs7CNqnpxkvbO0kcVjNhCyh5AJe/SW9pBPOV3DJGvu3dsKFaiyxf8qTW9gheQwVs4Z90BDm5oF47cF/Ht4aZC75argxUmD61g9ktJC14hXoN2U5ZmJ0TILitbyq5O889KxuoB/7xRqKnwv9jdn5HqPvGnDVWwTpNJvrFSCul2efi4DeiRigqdB9RfwAI6vGM+5tj41YIvaJL9C+hOfNxerLzHYWhImhPKh3uuBnFJ/A05XoR9zRcBTOMeGo+wcs+yse)
+
+<details>
+<summary>৩.৪ এর পূর্বের ব্যবহার</summary>
+
+```vue
+<script setup>
 defineProps({
   firstName: String,
   lastName: String
@@ -241,6 +310,7 @@ defineEmits(['update:firstName', 'update:lastName'])
 
 [চেষ্টা করুন](https://play.vuejs.org/#eNqNUc1qwzAMfhVjCk6hTdg1pGWD7bLDGIydlh1Cq7SGxDaOEjaC332yU6cdFNpLsPRJ348y8idj0qEHnvOi21lpkHWAvdmWSrZGW2Qjs1Azx2qrWyZoVMzQZwf2rWrhhKVZbHhGGivVTqsOWS0tfTeeKBGv+qjEMkJNdUaeNXigyCYjZIEKhNY0FQJVjBXHh+04nvicY/QOBM4VGUFhJHrwBWPDutV7aPKwslbU35Q8FCX/P+GJ4oB/T3hGpEU2m+ArfpnxytX2UEsF71abLhk9QxDzCzn7QCvVYeW7XuGyWSpH0eP6SyuxS75Eb/akOpn302LFYi8SiO8bJ5PK9DhFxV/j0yH8zOnzoWr6+SbhbifkMSwSsgByk1zzsoABFKZY2QNgGpiW57Pdrx2z3JCeI99Svvxh7g8muf2x)
 
+</details>
 </div>
 <div class="options-api">
 
@@ -284,66 +354,45 @@ export default {
 
 ```
 
-একটি কম্পোনেন্ট `v-model`-এ যোগ করা সংশোধকগুলিকে `modelModifiers` প্রপের মাধ্যমে কম্পোনেন্টকে প্রদান করা হবে। নিচের উদাহরণে, আমরা একটি কম্পোনেন্ট তৈরি করেছি যাতে একটি 'modelModifiers' প্রপ রয়েছে যা একটি খালি অবজেক্টতে ডিফল্ট হয়:
-
 <div class="composition-api">
 
-```vue{4,9}
+একটি উপাদান `v-model`-এ যোগ করা সংশোধকগুলিকে এইভাবে `defineModel()` রিটার্ন মানকে ধ্বংস করে চাইল্ড কম্পোনেন্টে অ্যাক্সেস করা যেতে পারে:
+
+```vue{4}
 <script setup>
-const props = defineProps({
-  modelValue: String,
-  modelModifiers: { default: () => ({}) }
-})
+const [model, modifiers] = defineModel()
 
-defineEmits(['update:modelValue'])
-
-console.log(props.modelModifiers) // { capitalize: true }
+console.log(modifiers) // { capitalize: true }
 </script>
 
 <template>
-  <input
-    type="text"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
-  />
+  <input type="text" v-model="model" />
 </template>
 ```
 
-</div>
-<div class="options-api">
+মডিফায়ারের উপর ভিত্তি করে মান কীভাবে পড়া/লিখতে হবে তা শর্তসাপেক্ষে সামঞ্জস্য করতে, আমরা `get` এবং `set` বিকল্পগুলিকে `defineModel()`-এ পাস করতে পারি। এই দুটি বিকল্প মডেল রেফের গেট/সেটের মান পায় এবং একটি রূপান্তরিত মান ফেরত দেয়। এইভাবে আমরা `capitalize` মডিফায়ার বাস্তবায়নের জন্য `set` বিকল্পটি ব্যবহার করতে পারি:
 
-```vue{11}
-<script>
-export default {
-  props: {
-    modelValue: String,
-    modelModifiers: {
-      default: () => ({})
+```vue{6-8}
+<script setup>
+const [model, modifiers] = defineModel({
+  set(value) {
+    if (modifiers.capitalize) {
+      return value.charAt(0).toUpperCase() + value.slice(1)
     }
-  },
-  emits: ['update:modelValue'],
-  created() {
-    console.log(this.modelModifiers) // { capitalize: true }
+    return value
   }
-}
+})
 </script>
 
 <template>
-  <input
-    type="text"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
-  />
+  <input type="text" v-model="model" />
 </template>
 ```
 
-</div>
+[চেষ্টা করুন](https://play.vuejs.org/#eNp9UsFu2zAM/RVClzhY5mzoLUgHdEUPG9Bt2LLTtIPh0Ik6WxIkyosb5N9LybFrFG1OkvgeyccnHsWNtXkbUKzE2pdOWQKPFOwnqVVjjSM4gsMKTlA508CMqbMRuu9uDd80ajrD+XISi3WZDCB1abQnaLoNHgiuY8VsNptLvV72TbkdPwgbWxeE/ALY7JUHpW0gKAurqKjVI3rAFl1He6V30JkA3AbdKvLXUzXt+8Zssc6fM6+l6NtLAUtusF6O3cRCvFB9yY2SiYFw+8KSYcY/qfEC+FCVQuf/8rxbrJTG+4hkxyiWq2ZtUQecQ3oDqAqyMWeieyQAu0bBaUh5ebkv3A1lH+Y5md/WorstPGZzeHfGfa1KzD6yxzH11B/TCjHC4dPlX1j3P0CdjQ5S79/Z3WhpPF91lDz7Uald/uCNZj/TFFJE91SN7rslxX5JsRrmk6Koa/P/a4qRC7gY4uUey3+vxB/8Icak+OHQo2tRihGjwu2QtUb47te3pHsEWXWomX0B/Ine1CFq7Gmfg96y7Akvqf2StoKXcePvDoTaD0NFocnhxJeClyRu2FujP8u9yq+GnxGnJxSEO+M=)
 
-লক্ষ্য করুন কম্পোনেন্টের `modelModifiers` প্রপে `capitalize` আছে এবং এর মান `true` - কারণ এটি `v-model` বাইন্ডিং `v-model.capitalize="myText"`-এ সেট করা হয়েছে।
-
-এখন যেহেতু আমরা আমাদের প্রপ সেট আপ করেছি, আমরা `modelModifiers` অবজেক্ট কীগুলি পরীক্ষা করতে পারি এবং নির্গত মান পরিবর্তন করতে একটি হ্যান্ডলার লিখতে পারি। নিচের কোডে আমরা যখনই `<input />` কম্পোনেন্টটি একটি `input` ইভেন্ট ফায়ার করে তখনই আমরা স্ট্রিংটিকে ক্যাপিটালাইজ করব।
-
-<div class="composition-api">
+<details>
+<summary>৩.৪ এর পূর্বের ব্যবহার</summary>
 
 ```vue{11-13}
 <script setup>
@@ -370,8 +419,41 @@ function emitValue(e) {
 
 [চেষ্টা করুন](https://play.vuejs.org/#eNp9Us1Og0AQfpUJF5ZYqV4JNTaNxyYmVi/igdCh3QR2N7tDIza8u7NLpdU0nmB+v5/ZY7Q0Jj10GGVR7iorDYFD6sxDoWRrtCU4gsUaBqitbiHm1ngqrfuV5j+Fik7ldH6R83u5GaBQlVaOoO03+Emw8BtFHCeFyucjKMNxQNiapiTkCGCzlw6kMh1BVRpJZSO/0AEe0Pa0l2oHve6AYdBmvj+/ZHO4bfUWm/Q8uSiiEb6IYM4A+XxCi2bRH9ZX3BgVGKuNYwFbrKXCZx+Jo0cPcG9l02EGL2SZ3mxKr/VW1hKty9hMniy7hjIQCSweQByHBIZCDWzGDwi20ps0Yjxx4MR73Jktc83OOPFHGKk7VZHUKkyFgsAEAqcG2Qif4WWYUml3yOp8wldlDSLISX+TvPDstAemLeGbVvvSLkncJSnpV2PQrkqHLOfmVHeNrFDcMz3w0iBQE1cUzMYBbuS2f55CPj4D6o0/I41HzMKsP+u0kLOPoZWzkx1X7j18A8s0DEY=)
 
+</details>
 </div>
+
 <div class="options-api">
+
+Los modificadores agregados a un componente `v-model` se proporcionarán al componente a través de la propiedad `modelModifiers`. En el siguiente ejemplo, hemos creado un componente que contiene un accesorio `modelModifiers` que por defecto es un objeto vacío:
+
+```vue{11}
+<script>
+export default {
+  props: {
+    modelValue: String,
+    modelModifiers: {
+      default: () => ({})
+    }
+  },
+  emits: ['update:modelValue'],
+  created() {
+    console.log(this.modelModifiers) // { capitalize: true }
+  }
+}
+</script>
+
+<template>
+  <input
+    type="text"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  />
+</template>
+```
+
+লক্ষ্য করুন কম্পোনেন্টের `modelModifiers` প্রপে `capitalize` আছে এবং এর মান `true` - কারণ এটি `v-model` বাইন্ডিং `v-model.capitalize="myText"`-এ সেট করা হয়েছে।
+
+এখন যেহেতু আমরা আমাদের প্রপ সেট আপ করেছি, আমরা `modelModifiers` অবজেক্ট কীগুলি পরীক্ষা করতে পারি এবং নির্গত মান পরিবর্তন করতে একটি হ্যান্ডলার লিখতে পারি। নিচের কোডে যখনই `<input />` উপাদানটি একটি `input` ইভেন্ট ফায়ার করে তখনই আমরা স্ট্রিংটিকে বড় আকারে ব্যবহার করব।
 
 ```vue{13-15}
 <script>
@@ -406,6 +488,8 @@ export default {
 
 ### Modifiers for `v-model` with arguments {#modifiers-for-v-model-with-arguments}
 
+<div class="options-api">
+
 আর্গুমেন্ট এবং মডিফায়ার উভয়ের সাথে `v-model` বাইন্ডিংয়ের জন্য, জেনারেট করা প্রপের নাম হবে `arg + "Modifiers"`। উদাহরণ স্বরূপ:
 
 ```vue-html
@@ -413,18 +497,6 @@ export default {
 ```
 
 সংশ্লিষ্ট ঘোষণাগুলি হওয়া উচিত:
-
-<div class="composition-api">
-
-```js
-const props = defineProps(['title', 'titleModifiers'])
-defineEmits(['update:title'])
-
-console.log(props.titleModifiers) // { capitalize: true }
-```
-
-</div>
-<div class="options-api">
 
 ```js
 export default {
@@ -438,7 +510,7 @@ export default {
 
 </div>
 
-Here's another example of using modifiers with multiple `v-model` with different arguments:
+এখানে বিভিন্ন আর্গুমেন্ট সহ একাধিক `v-model` সহ মডিফায়ার ব্যবহার করার আরেকটি উদাহরণ রয়েছে:
 
 ```vue-html
 <UserName
@@ -449,13 +521,26 @@ Here's another example of using modifiers with multiple `v-model` with different
 
 <div class="composition-api">
 
+```vue
+<script setup>
+const [firstName, firstNameModifiers] = defineModel('firstName')
+const [lastName, lastNameModifiers] = defineModel('lastName')
+
+console.log(firstNameModifiers) // { capitalize: true }
+console.log(lastNameModifiers) // { uppercase: true}
+</script>
+```
+
+<details>
+<summary>৩.৪ এর পূর্বের ব্যবহার</summary>
+
 ```vue{5,6,10,11}
 <script setup>
 const props = defineProps({
-  firstName: String,
-  lastName: String,
-  firstNameModifiers: { default: () => ({}) },
-  lastNameModifiers: { default: () => ({}) }
+firstName: String,
+lastName: String,
+firstNameModifiers: { default: () => ({}) },
+lastNameModifiers: { default: () => ({}) }
 })
 defineEmits(['update:firstName', 'update:lastName'])
 
@@ -464,6 +549,7 @@ console.log(props.lastNameModifiers) // { uppercase: true}
 </script>
 ```
 
+</details>
 </div>
 <div class="options-api">
 

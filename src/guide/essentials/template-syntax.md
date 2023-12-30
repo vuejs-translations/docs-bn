@@ -64,6 +64,20 @@ HTML বৈশিষ্ট্যের মধ্যে Mustaches ব্যবহ
 
 > গাইডের বাকি অংশের জন্য, আমরা কোড উদাহরণে শর্টহ্যান্ড সিনট্যাক্স ব্যবহার করব, কারণ এটি Vue বিকাশকারীদের জন্য সবচেয়ে সাধারণ ব্যবহার।
 
+### Same-name Shorthand <sup class="vt-badge" data-text="3.4+" /> {#same-name-shorthand}
+
+যদি অ্যাট্রিবিউটের একই নাম জাভাস্ক্রিপ্ট মানের সাথে আবদ্ধ থাকে, তাহলে অ্যাট্রিবিউটের মান বাদ দিতে সিনট্যাক্সকে আরও ছোট করা যেতে পারে:
+
+```vue-html
+<!-- same as :id="id" -->
+<div :id></div>
+
+<!-- this also works -->
+<div v-bind:id></div>
+```
+
+জাভাস্ক্রিপ্টে অবজেক্ট ঘোষণা করার সময় এটি প্রপার্টি শর্টহ্যান্ড সিনট্যাক্সের অনুরূপ। মনে রাখবেন এটি এমন একটি বৈশিষ্ট্য যা শুধুমাত্র Vue 3.4 এবং তার উপরে উপলব্ধ।
+
 ### Boolean Attributes {#boolean-attributes}
 
 [Boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes) এমন বৈশিষ্ট্য যা একটি কম্পোনেন্টে তাদের উপস্থিতি দ্বারা সত্য / মিথ্যা মান নির্দেশ করতে পারে। উদাহরণ স্বরূপ, [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled) সর্বাধিক ব্যবহৃত বুলিয়ান বৈশিষ্ট্যগুলির মধ্যে একটি।

@@ -126,7 +126,7 @@ h(Transition, {
   </Transition>
   ```
 
-- **আরো দেখুন** [`<Transition>` Guide](/guide/built-ins/transition)
+- **এছাড়াও দেখুন** [Guide - Transition](/guide/built-ins/transition)
 
 ## `<TransitionGroup>` {#transitiongroup}
 

@@ -257,7 +257,9 @@
 
 গতিশীলভাবে এক বা একাধিক বৈশিষ্ট্য বা একটি কম্পোনেন্ট প্রপ একটি এক্সপ্রেশনে আবদ্ধ করুন।
 
-- **Shorthand:** `:` or `.` (when using `.prop` modifier)
+- **Shorthand:**
+  - `:` or `.` (when using `.prop` modifier)
+  - মান বাদ দেওয়া (যখন বৈশিষ্ট্য এবং আবদ্ধ মান একই নাম থাকে) <sup class="vt-badge">3.4+</sup>
 
 - **Expects:** `any (with argument) | Object (without argument)`
 
@@ -290,6 +292,9 @@
 
   <!-- shorthand -->
   <img :src="imageSrc" />
+
+  <!-- same-name shorthand (3.4+), expands to :src="src" -->
+  <img :src />
 
   <!-- shorthand dynamic attribute name -->
   <button :[key]="value"></button>

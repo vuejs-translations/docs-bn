@@ -226,6 +226,77 @@ const props = withDefaults(defineProps<Props>(), {
 
 এটি সমতুল্য রানটাইম প্রপস `default` অপশনের কম্পাইল করা হবে। উপরন্তু, `withDefaults` হেল্পার ডিফল্ট ভ্যালুগুলির জন্য টাইপ চেক প্রদান করে এবং নিশ্চিত করে যে প্রত্যাবর্তিত `props` টাইপটিতে ডিফল্ট ভ্যালু ডিক্লারড বৈশিষ্ট্যগুলির জন্য অপশনাল ফ্ল্যাগগুলি রিমুভ করা হয়েছে।
 
+## defineModel() <sup class="vt-badge" data-text="3.4+" /> {#definemodel}
+
+This macro can be used to declare a two-way binding prop that can be consumed via `v-model` from the parent component. Example usage is also discussed in the [Component `v-model`](/guide/components/v-model) guide.
+
+Under the hood, this macro declares a model prop and a corresponding value update event. If the first argument is a literal string, it will be used as the prop name; Otherwise the prop name will default to `"modelValue"`. In both cases, you can also pass an additional object which can include the prop's options and the model ref's value transform options.
+
+```js
+// declares "modelValue" prop, consumed by parent via v-model
+const model = defineModel()
+// OR: declares "modelValue" prop with options
+const model = defineModel({ type: String })
+
+// emits "update:modelValue" when mutated
+model.value = 'hello'
+
+// declares "count" prop, consumed by parent via v-model:count
+const count = defineModel('count')
+// OR: declares "count" prop with options
+const count = defineModel('count', { type: Number, default: 0 })
+
+function inc() {
+  // emits "update:count" when mutated
+  count.value++
+}
+```
+
+### Modifiers and Transformers
+
+To access modifiers used with the `v-model` directive, we can destructure the return value of `defineModel()` like this:
+
+```js
+const [modelValue, modelModifiers] = defineModel()
+
+// corresponds to v-model.trim
+if (modelModifiers.trim) {
+  // ...
+}
+```
+
+When a modifier is present, we likely need to transform the value when reading or syncing it back to the parent. We can achieve this by using the `get` and `set` transformer options:
+
+```js
+const [modelValue, modelModifiers] = defineModel({
+  // get() omitted as it is not needed here
+  set(value) {
+    // if the .trim modifier is used, return trimmed value
+    if (modelModifiers.trim) {
+      return value.trim()
+    }
+    // otherwise, return the value as-is
+    return value
+  }
+})
+```
+
+### Usage with TypeScript <sup class="vt-badge ts" /> {#usage-with-typescript}
+
+Like `defineProps` and `defineEmits`, `defineModel` can also receive type arguments to specify the types of the model value and the modifiers:
+
+```ts
+const modelValue = defineModel<string>()
+//    ^? Ref<string | undefined>
+
+// default model with options, required removes possible undefined values
+const modelValue = defineModel<string>({ required: true })
+//    ^? Ref<string>
+
+const [modelValue, modifiers] = defineModel<string, 'trim' | 'uppercase'>()
+//                 ^? Record<'trim' | 'uppercase', true | undefined>
+```
+
 ## defineExpose() {#defineexpose}
 
 `<script setup>` ব্যবহার করা কম্পোনেন্টগুলি **ডিফল্টরূপে বন্ধ থাকে** - যেমন কম্পোনেন্টের সর্বজনীন উদাহরণ, যা টেমপ্লেট রেফ বা `$parent` চেইনের মাধ্যমে পুনরুদ্ধার করা হয়, ডিক্লারড কোনো বাইন্ডিং **কে প্রকাশ করবে না** `<script setup>` এর ভিতরে।
@@ -248,7 +319,7 @@ defineExpose({
 
 যখন একটি প্যারেন্ট টেমপ্লেট রেফের মাধ্যমে এই কম্পোনেন্টটির একটি ইন্সট্যান্স পান, তখন পুনরুদ্ধারকৃত ইন্সট্যান্স `{ a: number, b: number }` আকারের হবে (রেফগুলি স্বয়ংক্রিয়ভাবে স্বাভাবিক উদাহরণের মতোই unwrapped হয়)।
 
-## defineOptions() {#defineoptions}
+## defineOptions() <sup class="vt-badge" data-text="3.3+" /> {#defineoptions}
 
 এই ম্যাক্রোটি একটি পৃথক `<script>` ব্লক ব্যবহার না করে সরাসরি `<script setup>` এর ভিতরে কম্পোনেন্ট অপশন ডিক্লেয়ার করতে ব্যবহার করা যেতে পারে:
 
@@ -378,5 +449,5 @@ defineProps<{
 
 ## Restrictions {#restrictions}
 
-* মডিউল এক্সিকিউশন semantics পার্থক্যের কারণে, `<script setup>`-এর ভিতরের কোড একটি SFC-এর প্রসঙ্গে নির্ভর করে। বাহ্যিক `.js` বা `.ts` ফাইলে সরানো হলে, এটি ডেভেলপার এবং টুল উভয়ের জন্যই বিভ্রান্তির কারণ হতে পারে। অতএব, **`<script setup>`** `src` অ্যাট্রিবিউটের সাথে ব্যবহার করা যাবে না।
-* `<script setup>` ইন-ডোম রুট কম্পোনেন্ট টেমপ্লেট সমর্থন করে না।([সম্পর্কিত আলোচনা](https://github.com/vuejs/core/issues/8391))
+- মডিউল এক্সিকিউশন শব্দার্থবিদ্যার পার্থক্যের কারণে, `<script setup>` এর ভিতরের কোড একটি SFC-এর প্রসঙ্গে নির্ভর করে। বাহ্যিক `.js` বা `.ts` ফাইলে সরানো হলে, এটি ডেভেলপার এবং টুল উভয়ের জন্যই বিভ্রান্তির কারণ হতে পারে। অতএব, **`<script setup>`** `src` অ্যাট্রিবিউটের সাথে ব্যবহার করা যাবে না।
+- `<script setup>` ইন-ডোম রুট কম্পোনেন্ট টেমপ্লেট সমর্থন করে না।([সম্পর্কিত আলোচনা](https://github.com/vuejs/core/issues/8391))

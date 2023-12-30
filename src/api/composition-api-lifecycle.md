@@ -6,7 +6,7 @@
 
 ## onMounted() {#onmounted}
 
-Registers a callback to be called after the component has been mounted.
+কম্পোনেন্ট মাউন্ট করার পরে কল করার জন্য একটি কলব্যাক নিবন্ধন করে।
 
 - **Type**
 
@@ -91,7 +91,7 @@ Registers a callback to be called after the component has been mounted.
 
 ## onUnmounted() {#onunmounted}
 
-Registers a callback to be called after the component has been unmounted.
+কম্পোনেন্ট আনমাউন্ট করার পরে কল করার জন্য একটি কলব্যাক নিবন্ধন করে।
 
 - **Type**
 
@@ -130,7 +130,7 @@ Registers a callback to be called after the component has been unmounted.
 
 ## onBeforeMount() {#onbeforemount}
 
-Registers a hook to be called right before the component is to be mounted.
+কম্পোনেন্ট মাউন্ট করার ঠিক আগে কল করার জন্য একটি হুক নিবন্ধন করে।
 
 - **Type**
 
@@ -140,13 +140,13 @@ Registers a hook to be called right before the component is to be mounted.
 
 - **Details**
 
-  When this hook is called, the component has finished setting up its reactive state, but no DOM nodes have been created yet. It is about to execute its DOM render effect for the first time.
+  যখন এই হুকটি কল করা হয়, উপাদানটি তার প্রতিক্রিয়াশীল অবস্থা সেট আপ করা শেষ করেছে, কিন্তু এখনও কোন DOM নোড তৈরি করা হয়নি। এটি প্রথমবারের মতো এর DOM রেন্ডার প্রভাব কার্যকর করতে চলেছে৷
 
-  **This hook is not called during server-side rendering.**
+  **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি বলা হয় না।**
 
 ## onBeforeUpdate() {#onbeforeupdate}
 
-Registers a hook to be called right before the component is about to update its DOM tree due to a reactive state change.
+একটি প্রতিক্রিয়াশীল অবস্থা পরিবর্তনের কারণে উপাদানটি তার DOM ট্রি আপডেট করতে চলেছে তার ঠিক আগে কল করার জন্য একটি হুক নিবন্ধন করে৷
 
 - **Type**
 
@@ -156,13 +156,13 @@ Registers a hook to be called right before the component is about to update its 
 
 - **Details**
 
-  This hook can be used to access the DOM state before Vue updates the DOM. It is also safe to modify component state inside this hook.
+  Vue DOM আপডেট করার আগে এই হুকটি DOM অবস্থা অ্যাক্সেস করতে ব্যবহার করা যেতে পারে। এই হুকের ভিতরে কম্পোনেন্ট স্টেট পরিবর্তন করাও নিরাপদ।
 
-  **This hook is not called during server-side rendering.**
+   **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি বলা হয় না।**
 
 ## onBeforeUnmount() {#onbeforeunmount}
 
-Registers a hook to be called right before a component instance is to be unmounted.
+একটি কম্পোনেন্ট ইন্সট্যান্স আনমাউন্ট করার ঠিক আগে কল করার জন্য একটি হুক নিবন্ধন করে।
 
 - **Type**
 
@@ -172,13 +172,13 @@ Registers a hook to be called right before a component instance is to be unmount
 
 - **Details**
 
-  When this hook is called, the component instance is still fully functional.
+  যখন এই হুক বলা হয়, তখনও কম্পোনেন্ট ইনস্ট্যান্স সম্পূর্ণরূপে কার্যকরী থাকে।
 
-  **This hook is not called during server-side rendering.**
+   **সার্ভার-সাইড রেন্ডারিংয়ের সময় এই হুকটি বলা হয় না।**
 
 ## onErrorCaptured() {#onerrorcaptured}
 
-Registers a hook to be called when an error propagating from a descendant component has been captured.
+একটি বংশধর উপাদান থেকে প্রচারিত ত্রুটি ধরা পড়লে কল করার জন্য একটি হুক নিবন্ধন করে৷
 
 - **Type**
 
@@ -206,7 +206,11 @@ Registers a hook to be called when an error propagating from a descendant compon
 
   হুক তিনটি আর্গুমেন্ট পায়: ত্রুটি, কম্পোনেন্ট ইনস্ট্যান্স যা ত্রুটিটি ট্রিগার করে এবং একটি তথ্য স্ট্রিং যা ত্রুটির উৎসের ধরনটি নির্দিষ্ট করে।
 
-  ব্যবহারকারীর কাছে একটি ত্রুটির অবস্থা প্রদর্শন করতে আপনি `errorCaptured()` এ উপাদানের অবস্থা পরিবর্তন করতে পারেন। যাইহোক, এটি গুরুত্বপূর্ণ যে ত্রুটির অবস্থাটি মূল বিষয়অবজেক্টকে রেন্ডার করা উচিত নয় যা ত্রুটি সৃষ্টি করেছে; অন্যথায় উপাদানটি একটি অসীম রেন্ডার লুপে নিক্ষিপ্ত হবে।
+  :::tip
+  উৎপাদনে, 3য় আর্গুমেন্ট (`তথ্য`) সম্পূর্ণ তথ্যের স্ট্রিংয়ের পরিবর্তে একটি সংক্ষিপ্ত কোড হবে। আপনি স্ট্রিং ম্যাপিংয়ের কোডটি [উৎপাদন ত্রুটি কোড রেফারেন্স](/error-reference/#runtime-errors) এ খুঁজে পেতে পারেন।
+  :::
+
+  ব্যবহারকারীর কাছে একটি ত্রুটির অবস্থা প্রদর্শন করতে আপনি `errorCaptured()` এ উপাদানের অবস্থা পরিবর্তন করতে পারেন। যাইহোক, এটি গুরুত্বপূর্ণ যে ত্রুটির অবস্থাটি মূল বিষয়বস্তুকে রেন্ডার করা উচিত নয় যা ত্রুটি সৃষ্টি করেছে; অন্যথায় উপাদানটি একটি অসীম রেন্ডার লুপে নিক্ষিপ্ত হবে।
 
   ত্রুটিটিকে আরও প্রচার করা থেকে থামাতে হুকটি `false` ফেরত দিতে পারে। নীচে ত্রুটি বিস্তার বিবরণ দেখুন.
 
@@ -224,7 +228,7 @@ Registers a hook to be called when an error propagating from a descendant compon
 
  কম্পোনেন্টের রেন্ডার প্রভাব দ্বারা একটি প্রতিক্রিয়াশীল নির্ভরতা ট্র্যাক করা হলে কল করার জন্য একটি ডিবাগ হুক নিবন্ধন করে।
 
-**This hook is development-mode-only and not called during server-side rendering.**
+**এই হুকটি শুধুমাত্র বিকাশ-মোড এবং সার্ভার-সাইড রেন্ডারিংয়ের সময় বলা হয় না।**
 
 - **Type**
 

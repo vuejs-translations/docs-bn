@@ -99,27 +99,6 @@
   </template>
   ```
 
-  3.3 থেকে আপনি সরাসরি `<script setup>`-এ `defineOptions` ব্যবহার করতে পারেন:
-
-  ```vue
-  <script setup>
-  defineProps(['label', 'value'])
-  defineEmits(['input'])
-  defineOptions({ inheritAttrs: false })
-  </script>
-
-  <template>
-    <label>
-      {{ label }}
-      <input
-        v-bind="$attrs"
-        v-bind:value="value"
-        v-on:input="$emit('input', $event.target.value)"
-      />
-    </label>
-  </template>
-  ```
-
   </div>
 
 - **আরো দেখুন** [Fallthrough Attributes](/guide/components/attrs)
@@ -185,6 +164,4 @@
   <input v-focus>
   ```
 
-  ডিরেক্টিভগুলো একটি হ্যাশ কম্পোনেন্টের উদাহরণ অ্যাভইলএবল করা হবে.
-
-- **আরো দেখুন** [Custom Directives](/guide/reusability/custom-directives)
+- **See also** [Custom Directives](/guide/reusability/custom-directives)
