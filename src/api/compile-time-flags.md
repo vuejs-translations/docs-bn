@@ -14,27 +14,27 @@ outline: deep
 
 আপনার বিল্ড টুলের উপর নির্ভর করে কিভাবে কনফিগার করতে হয় সে সম্পর্কে [কনফিগারেশন গাইড](#configuration-guides) দেখুন।
 
-## `__VUE_OPTIONS_API__`
+## `__VUE_OPTIONS_API__` {#VUE_OPTIONS_API}
 
 - **Default:** `true`
 
   Options API সমর্থন সক্রিয়/নিষ্ক্রিয় করুন। এটি নিষ্ক্রিয় করার ফলে ছোট বান্ডিল তৈরি হবে, তবে 3য় পক্ষের লাইব্রেরিগুলির সাথে সামঞ্জস্যতা প্রভাবিত করতে পারে যদি তারা Options API এর উপর নির্ভর করে।
 
-## `__VUE_PROD_DEVTOOLS__`
+## `__VUE_PROD_DEVTOOLS__` {#VUE_PROD_DEVTOOLS}
 
 - **Default:** `false`
 
   প্রোডাকশন বিল্ডে devtools সমর্থন সক্রিয়/নিষ্ক্রিয় করুন। এর ফলে বান্ডেলে আরও কোড অন্তর্ভুক্ত হবে, তাই এটি শুধুমাত্র ডিবাগিংয়ের উদ্দেশ্যে এটি সক্রিয় করার পরামর্শ দেওয়া হচ্ছে।
 
-## `__VUE_PROD_HYDRATION_MISMATCH_DETAILS__` <sup class="vt-badge" data-text="3.4+" />
+## `__VUE_PROD_HYDRATION_MISMATCH_DETAILS__` <sup class="vt-badge" data-text="3.4+" /> {#VUE_PROD_HYDRATATION_MISMATCH_DETAILS}
 
 - **Default:** `false`
 
   প্রোডাকশন বিল্ডে হাইড্রেশনের অমিলের জন্য বিস্তারিত সতর্কতা সক্রিয়/নিষ্ক্রিয় করুন। এর ফলে বান্ডেলে আরও কোড অন্তর্ভুক্ত হবে, তাই এটি শুধুমাত্র ডিবাগিংয়ের উদ্দেশ্যে এটি সক্রিয় করার পরামর্শ দেওয়া হচ্ছে।
 
-## Configuration Guides
+## Configuration Guides {#configuration-guides}
 
-### Vite
+### Vite {#vite}
 
 `@vitejs/plugin-vue` স্বয়ংক্রিয়ভাবে এই ফ্ল্যাগগুলির জন্য ডিফল্ট মান প্রদান করে। ডিফল্ট মান পরিবর্তন করতে, Vite's ব্যবহার করুন[`define` config option](https://vitejs.dev/config/shared-options.html#define):
 
@@ -50,7 +50,7 @@ export default defineConfig({
 })
 ```
 
-### vue-cli
+### vue-cli {#vue-cli}
 
 `@vue/cli-service` স্বয়ংক্রিয়ভাবে এই ফ্ল্যাগর কিছুর জন্য ডিফল্ট মান প্রদান করে। মান কনফিগার/পরিবর্তন করতে:
 
@@ -70,7 +70,7 @@ module.exports = {
 }
 ```
 
-### webpack
+### webpack {#webpack}
 
 ফ্ল্যাগ ওয়েবপ্যাক ব্যবহার করে সংজ্ঞায়িত করা উচিত [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
@@ -88,7 +88,7 @@ module.exports = {
 }
 ```
 
-### Rollup
+### Rollup {#rollup}
 
 ফ্ল্যাগ ব্যবহার করে সংজ্ঞায়িত করা উচিত [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace):
 

@@ -6,9 +6,8 @@ footer: false
 
 :::info আপনি Vue 3 এর জন্য ডকুমেন্টেশন পড়ছেন!
 
-- Vue 2 এর সমর্থন ৩১ ডিসেম্বর, ২০২৩-এ শেষ হবে। এই সম্পর্কে আরও জানুন [Vue 2 Extended LTS](https://v2.vuejs.org/lts/).
-- Vue 2 ডকুমেন্টেশন সরানো হয়েছে [v2.vuejs.org](https://v2.vuejs.org/).
-- Vue 2 থেকে আপগ্রেড করছেন? চেক আউট [Migration Guide](https://v3-migration.vuejs.org/).
+- Vue 2 সমর্থন **৩১ ডিসেম্বর, ২০২৩**-এ শেষ হয়েছে। [Vue 2 EOL](https://v2.vuejs.org/eol/) সম্পর্কে আরও জানুন।
+- Vue 2 থেকে আপগ্রেড করছেন? [মাইগ্রেশন গাইড](https://v3-migration.vuejs.org/) দেখুন।
   :::
 
 <style src="@theme/styles/vue-mastery.css"></style>
@@ -281,4 +280,3 @@ Composition API মূলত একটি ফাংশন স্কোপে স
     <p class="next-steps-caption">মূল বৈশিষ্ট্য এবং সাধারণ UI কার্যগুলির উদাহরণগুলি অন্বেষণ করুন৷</p>
   </a>
 </div>
-

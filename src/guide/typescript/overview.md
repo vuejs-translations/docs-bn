@@ -210,7 +210,7 @@ let x: string | number = 1
 Vue CLI বা একটি ওয়েবপ্যাক-ভিত্তিক সেটআপ ব্যবহার করলে, টেমপ্লেট এক্সপ্রেশনে TypeScript-এর প্রয়োজন `vue-loader@^16.8.0`।
 :::
 
-### Usage with TSX
+### Usage with TSX {#usage-with-tsx}
 
 Vue also supports authoring components with JSX / TSX. Details are covered in the [Render Function & JSX](/guide/extras/render-function.html#jsx-tsx) guide.
 
