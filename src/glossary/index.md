@@ -1,37 +1,38 @@
-# Glossary {#glossary}
+# শব্দকোষ {#glossary}
 
-This glossary is intended to provide some guidance about the meanings of technical terms that are in common usage when talking about Vue. It is intended to be *descriptive* of how terms are commonly used, not a *prescriptive* specification of how they must be used. Some terms may have slightly different meanings or nuances depending on the surrounding context.
+এই শব্দকোষটি Vue সম্পর্কে কথা বলার সময় প্রযুক্তিগত শব্দগুলির অর্থ সম্পর্কে কিছু নির্দেশিকা প্রদান করার উদ্দেশ্যে তৈরি করা হয়েছে। এটির উদ্দেশ্য হল কিভাবে পরিভাষাগুলি সাধারণত ব্যবহার করা হয় তা *বর্ণনা* করা, সেগুলি কীভাবে ব্যবহার করা উচিত, তার *নির্দেশমূলক*&nbsp; আলোচনা করা নয়। আশেপাশের প্রেক্ষাপটের উপর নির্ভর করে কিছু শব্দের সামান্য ভিন্ন অর্থ বা তারতম্য থাকতে পারে।
 
 [[TOC]]
 
 ## async component {#async-component}
 
-An *async component* is a wrapper around another component that allows for the wrapped component to be lazy loaded. This is typically used as a way to reduce the size of the built `.js` files, allowing them to be split into smaller chunks that are loaded only when required.
+একটি *async component*  হল অন্য একটি কম্পোনেন্টের চারপাশে একটি মোড়ক যা মোড়ানো কম্পোনেন্টটিকে লেজি লোড করার অনুমতি দেয়। এটি সাধারণত নির্মিত `.js` ফাইলের আকার হ্রাস করার উপায় হিসাবে ব্যবহৃত হয়, তাদের ছোট ছোট খণ্ডে বিভক্ত করার অনুমতি দেয় যা শুধুমাত্র প্রয়োজন হলে লোড করা হয়।
 
-Vue Router has a similar feature for the [lazy loading of route components](https://router.vuejs.org/guide/advanced/lazy-loading.html), though this does not use Vue's async components feature.
+Vue রাউটারের [route components এর লেজি লোডিংয়ের](https://router.vuejs.org/guide/advanced/lazy-loading.html) জন্য একই বৈশিষ্ট্য রয়েছে, যদিও এটি Vue এর async components বৈশিষ্ট্য ব্যবহার করে না।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Async Components](/guide/components/async.html)
 
 ## compiler macro {#compiler-macro}
 
-A *compiler macro* is special code that is processed by a compiler and converted into something else. They are effectively a clever form of string replacement.
+একটি *compiler macro* একটি বিশেষ কোড যা একটি কম্পাইলার দ্বারা প্রক্রিয়া করা হয় এবং অন্য কিছুতে রূপান্তরিত হয়। এটি কার্যকরভাবে স্ট্রিং প্রতিস্থাপনের একটি বিশেষ কৌশল।
 
-Vue's [SFC](#single-file-component) compiler supports various macros, such as `defineProps()`, `defineEmits()` and `defineExpose()`. These macros are intentionally designed to look like normal JavaScript functions so that they can leverage the same parser and type inference tooling around JavaScript / TypeScript. However, they are not actual functions that are run in the browser. These are special strings that the compiler detects and replaces with the real JavaScript code that will actually be run.
+Vue এর [SFC](#single-file-component) কম্পাইলার বিভিন্ন ম্যাক্রো সমর্থন করে, যেমন `defineProps()`, `defineEmits()` এবং `defineExpose()`। এই ম্যাক্রোগুলি ইচ্ছাকৃতভাবে সাধারণ জাভাস্ক্রিপ্ট ফাংশনগুলির মতো দেখতে ডিজাইন করা হয়েছে যাতে তারা জাভাস্ক্রিপ্ট / টাইপস্ক্রিপ্টের চারপাশে একই পার্সার এবং টাইপ অনুমান টুলিংয়ের সুবিধা নিতে পারে। যাইহোক, এগুলি প্রকৃত ফাংশন নয় যা ব্রাউজারে চালানো হয়। এগুলি বিশেষ স্ট্রিং যা কম্পাইলার সনাক্ত করে এবং বাস্তব জাভাস্ক্রিপ্ট কোড দিয়ে প্রতিস্থাপন করে যা আসলে চালানো হবে।
 
-Macros have limitations on their use that don't apply to normal JavaScript code. For example, you might think that `const dp = defineProps` would allow you to create an alias for `defineProps`, but it'll actually result in an error. There are also limitations on what values can be passed to `defineProps()`, as the 'arguments' have to be processed by the compiler and not at runtime.
+ম্যাক্রোর ব্যবহারে সীমাবদ্ধতা রয়েছে যা সাধারণ জাভাস্ক্রিপ্ট কোডে প্রযোজ্য নয়। উদাহরণস্বরূপ, আপনি ভাবতে পারেন যে `const dp = defineProps` আপনাকে `defineProps` এর জন্য একটি উপনাম তৈরি করার অনুমতি দেবে, কিন্তু এটি আসলে একটি ত্রুটির কারণ হবে। `defineProps()` এ কোন মানগুলি পাস করা যেতে পারে তারও সীমাবদ্ধতা রয়েছে, কারণ 'আর্গুমেন্টগুলি' কম্পাইলার দ্বারা প্রক্রিয়া করা উচিত এবং রানটাইমে নয়।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
+
 - [`<script setup>` - `defineProps()` & `defineEmits()`](/api/sfc-script-setup.html#defineprops-defineemits)
 - [`<script setup>` - `defineExpose()`](/api/sfc-script-setup.html#defineexpose)
 
 ## component {#component}
 
-The term *component* is not unique to Vue. It is common to many UI frameworks. It describes a chunk of the UI, such as a button or checkbox. Components can also be combined to form larger components.
+*component* শব্দটি Vue এ নতুন কিছু নয়। এটি প্রায় সব UI ফ্রেমওয়ার্কের জন্য সাধারণ বিষয়। এটি UI এর একটি অংশ বর্ণনা করে, যেমন একটি বাটন বা চেকবক্স। কম্পোনেন্ট গুলোকে একত্রিত করে আরও বড় কম্পোনেন্ট তৈরি করা যেতে পারে।
 
-Components are the primary mechanism provided by Vue to split a UI into smaller pieces, both to improve maintainability and to allow for code reuse.
+Components হল একটি UI কে ছোট ছোট টুকরোতে বিভক্ত করার জন্য Vue দ্বারা প্রদত্ত প্রাথমিক প্রক্রিয়া। এটি রক্ষণাবেক্ষণযোগ্যতা উন্নত করতে এবং কোড পুনঃব্যবহার করতে সহায়তা করে।
 
-A Vue component is an object. All properties are optional, but either a template or render function is required for the component to render. For example, the following object would be a valid component:
+একটি Vue component হল একটি অবজেক্ট। প্রোপার্টিগুলো ঐচ্ছিক, কিন্তু কম্পোনেন্ট রেন্ডার করার জন্য একটি টেমপ্লেট বা রেন্ডার ফাংশন প্রয়োজন। উদাহরণস্বরূপ, নিম্নলিখিত অবজেক্টটি একটি  বৈধ কম্পোনেন্ট :
 
 ```js
 const HelloWorldComponent = {
@@ -41,18 +42,19 @@ const HelloWorldComponent = {
 }
 ```
 
-In practice, most Vue applications are written using [Single-File Components](#single-file-component) (`.vue` files). While these components may not appear to be objects at first glance, the SFC compiler will convert them into an object, which is used as the default export for the file. From an external perspective, a `.vue` file is just an ES module that exports a component object.
+বাস্তবে, বেশিরভাগ Vue অ্যাপ্লিকেশন [Single-File Components](#single-file-component) (`.vue` ফাইল) ব্যবহার করে লেখা হয়। যদিও এই কম্পোনেন্টগুলো প্রথম দেখায় অবজেক্ট বলে মনে হয় না, SFC কম্পাইলার সেগুলিকে একটি অবজেক্টে রূপান্তর করে, যা ফাইলের জন্য ডিফল্ট এক্সপোর্ট হিসাবে ব্যবহৃত হয়। বাহ্যিক দৃষ্টিকোণ থেকে, একটি `.vue` ফাইল হল একটি ES মডিউল যা একটি কম্পোনেন্ট অবজেক্ট এক্সপোর্ট করে।
 
-The properties of a component object are usually referred to as *options*. This is where the [Options API](#options-api) gets its name.
+কম্পোনেন্ট অবজেক্ট এর প্রোপার্টিগুলোকে সাধারণত *options* হিসেবে উল্লেখ করা হয়। এখান থেকেই [Options API](#options-api) এর উৎপত্তি।
 
-The options for a component define how instances of that component should be created. Components are conceptually similar to classes, though Vue doesn't use actual JavaScript classes to define them.
+একটি কম্পোনেন্টের অপশনগুলো নির্দিষ্ট করে যে, কীভাবে সেই কম্পোনেন্টের উদাহরণ তৈরি করা উচিত। কম্পোনেন্টগুলি ধারণাগতভাবে ক্লাসের অনুরূপ, যদিও Vue তাদের সংজ্ঞায়িত করার জন্য প্রকৃত জাভাস্ক্রিপ্ট ক্লাস ব্যবহার করে না।
 
-The term component can also be used more loosely to refer to component instances.
+কম্পোনেন্ট দৃষ্টান্তগুলি উল্লেখ করতে আরও হালকাভাবে কম্পোনেন্ট শব্দটি ব্যবহার করা যেতে পারে।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Component Basics](/guide/essentials/component-basics.html)
 
-The word 'component' also features in several other terms:
+'কম্পোনেন্ট' শব্দটির সাথে নিম্নোক্ত আরও কিছু বিষয় সম্পর্কযুক্তঃ
+
 - [async component](#async-component)
 - [dynamic component](#dynamic-component)
 - [functional component](#functional-component)
@@ -60,247 +62,250 @@ The word 'component' also features in several other terms:
 
 ## composable {#composable}
 
-The term *composable* describes a common usage pattern in Vue. It isn't a separate feature of Vue, it's just a way of using the framework's [Composition API](#composition-api).
+কম্পোজেবল শব্দটি Vue-তে একটি সাধারণ ব্যবহারের ধরণ বর্ণনা করে। এটি Vue এর একটি পৃথক বৈশিষ্ট্য নয়, এটি ফ্রেমওয়ার্কের [Composition API](#composition-api) ব্যবহার করার একটি উপায় মাত্র।
 
-* A composable is a function.
-* Composables are used to encapsulate and reuse stateful logic.
-* The function name usually begins with `use`, so that other developers know it's a composable.
-* The function is typically expected to be called during the synchronous execution of a component's `setup()` function (or, equivalently, during the execution of a `<script setup>` block). This ties the invocation of the composable to the current component context, e.g. via calls to `provide()`, `inject()` or `onMounted()`.
-* Composables typically return a plain object, not a reactive object. This object usually contains refs and functions and is expected to be destructured within the calling code.
+* কম্পোজেবল একটি ফাংশন।
+* কম্পোজেবলগুলি এনক্যাপসুলেট এবং দণ্ডায়মান যুক্তি পুনঃব্যবহার করতে ব্যবহৃত হয়।
+* ফাংশনের নামটি সাধারণত `use` দ্বারা শুরু হয়, যাতে অন্যান্য ডেভেলপাররা জানেন যে এটি একটি কম্পোজেবল।
+* ফাংশনটি সাধারণত একটি কম্পোনেন্টের `setup()` ফাংশনের সিঙ্ক্রোনাস এক্সিকিউশনের সময় (অথবা, সমতুল্যভাবে, একটি `<script setup>` ব্লক চালানোর সময়) কল করা হবে বলে আশা করা হয়। এটি কম্পোজেবলের আহ্বানকে উপস্থিত কম্পোনেন্ট বিষয়বস্তুর সাথে সংযুক্ত করে, যেমন `provide()`, `inject()` বা `onMounted()` কলের মাধ্যমে।
+* কম্পোজেবল সাধারণত একটি প্লেইন অবজেক্ট ফেরত দেয়, রিয়াক্টিভ অবজেক্ট নয়। এই অবজেক্টে সাধারণত refs এবং ফাংশন থাকে এবং কলিং কোডের মধ্য দিয়ে তা ধ্বংস হয়ে যায়।
 
-As with many patterns, there can be some disagreement about whether specific code qualifies for the label. Not all JavaScript utility functions are composables. If a function doesn't use the Composition API then it probably isn't a composable. If it doesn't expect to be called during the synchronous execution of `setup()` then it probably isn't a composable. Composables are specifically used to encapsulate stateful logic, they are not just a naming convention for functions.
+অনেক প্যাটার্নের মতো, নির্দিষ্ট কোনও কোড, লেবেলের জন্য যোগ্য কিনা তা নিয়ে কিছু মতবিরোধ থাকতে পারে। সমস্ত জাভাস্ক্রিপ্ট ইউটিলিটি ফাংশন কম্পোজেবল নয়। যদি একটি ফাংশন কম্পোজিশন API ব্যবহার না করে, তবে এটি সম্ভবত একটি কম্পোজেবল নয়। `setup()` এর সিঙ্ক্রোনাস এক্সিকিউশনের সময় যদি এটিকে কল করা না হয়, তাহলেও এটি একটি কম্পোজেবল নয়। কম্পোজেবলগুলি বিশেষভাবে দণ্ডায়মান লজিককে এনক্যাপসুলেট করতে ব্যবহৃত হয়, তারা ফাংশনের জন্য শুধুমাত্র একটি নামকরণের নিয়ম নয়।
 
-See [Guide - Composables](/guide/reusability/composables.html) for more details about writing composables.
+কম্পোজেবল লেখার বিষয়ে আরও বিস্তারিত জানার জন্য [Guide - Composables](/guide/reusability/composables.html) দেখুন।
 
 ## Composition API {#composition-api}
 
-The *Composition API* is a collection of functions used to write components and composables in Vue.
+কম্পোজিশন API হল Vue-তে কম্পোনেন্ট এবং কম্পোজেবল লেখার জন্য ব্যবহৃত ফাংশনের একটি সংগ্রহ।
 
-The term is also used to describe one of the two main styles used to write components, the other being the [Options API](#options-api). Components written using the Composition API use either `<script setup>` or an explicit `setup()` function.
+শব্দটি কম্পোজিশন লিখতে ব্যবহৃত দুটি প্রধান স্টাইলের একটি, অন্যটি হল অপশন API। কম্পোজিশন এপিআই ব্যবহার করে লেখা কম্পোনেন্টগুলি হয় `<script setup>` বা একটি স্পষ্ট `setup()` ফাংশন ব্যবহার করে।
 
-See the [Composition API FAQ](/guide/extras/composition-api-faq) for more details.
+আরও বিস্তারিত জানার জন্য দেখুনঃ
+
+[Composition API FAQ](/guide/extras/composition-api-faq)
 
 ## custom element {#custom-element}
 
-A *custom element* is a feature of the [Web Components](#web-component) standard, which is implemented in modern web browsers. It refers to the ability to use a custom HTML element in your HTML markup to include a Web Component at that point in the page.
+একটি কাস্টম কম্পোনেন্ট হল ওয়েব কম্পোনেন্ট স্ট্যান্ডার্ডের একটি বৈশিষ্ট্য, যা আধুনিক ওয়েব ব্রাউজারগুলিতে প্রয়োগ করা হয়। এটি আপনার এইচটিএমএল মার্কআপে একটি কাস্টম এইচটিএমএল কম্পোনেন্ট ব্যবহার করার ক্ষমতাকে বোঝায় যাতে পৃষ্ঠার সেই পয়েন্টে একটি ওয়েব কম্পোনেন্ট অন্তর্ভুক্ত করা যায়।
 
-Vue has built-in support for rendering custom elements and allows them to be used directly in Vue component templates.
+Vue-তে কাস্টম কম্পোনেন্টগুলি রেন্ডার করার জন্য বিল্ট-ইন সাপোর্ট রয়েছে এবং সেগুলিকে সরাসরি Vue কম্পোনেন্ট টেমপ্লেটগুলিতে ব্যবহার করার অনুমতি দেয়।
 
-Custom elements should not be confused with the ability to include Vue components as tags within another Vue component's template. Custom elements are used to create Web Components, not Vue components.
+অন্য Vue কম্পোনেন্ট টেমপ্লেটের মধ্যে ট্যাগ হিসাবে Vue কম্পোনেন্ট অন্তর্ভুক্ত করার ক্ষমতা নিয়ে কাস্টম কম্পোনেন্টগুলিকে বিভ্রান্ত করা উচিত নয়। কাস্টম কম্পোনেন্টগুলি ওয়েব কম্পোনেন্ট তৈরি করতে ব্যবহৃত হয়, Vue কম্পোনেন্ট  নয়।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Vue and Web Components](/guide/extras/web-components.html)
 
 ## directive {#directive}
 
-The term *directive* refers to template attributes beginning with the `v-` prefix, or their equivalent shorthands.
+*directive* শব্দটি v- উপসর্গ দিয়ে শুরু হওয়া টেমপ্লেট এট্রিবিউটস বা তাদের সমতুল্য শর্টহ্যান্ডসকে বোঝায়।
 
-Built-in directives include `v-if`, `v-for`, `v-bind`, `v-on` and `v-slot`.
+বিল্ট-ইন ডিরেক্টিভের মধ্যে রয়েছে `v-if`, `v-for`, `v-bind`, `v-on` এবং `v-slot`।
 
-Vue also supports creating custom directives, though they are typically only used as an 'escape hatch' for manipulating DOM nodes directly. Custom directives generally can't be used to recreate the functionality of the built-in directives.
+Vue কাস্টম ডিরেক্টিভ তৈরিতে সমর্থন করে, যদিও সেগুলি সাধারণত শুধুমাত্র DOM নোডগুলিকে সরাসরি ম্যানিপুলেট করার জন্য 'এস্কেপ হ্যাচ' হিসাবে ব্যবহৃত হয়। কাস্টম ডিরেক্টিভ সাধারণত বিল্ট-ইন ডিরেক্টিভের কার্যকারিতা পুনরায় তৈরি করতে ব্যবহার করা যাবে না।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Template Syntax - Directives](/guide/essentials/template-syntax.html#directives)
 - [Guide - Custom Directives](/guide/reusability/custom-directives.html)
 
 ## dynamic component {#dynamic-component}
 
-The term *dynamic component* is used to describe cases where the choice of which child component to render needs to be made dynamically. Typically, this is achieved using `<component :is="type">`.
+*dynamic component* শব্দটি এমন ক্ষেত্রে বর্ণনা করতে ব্যবহৃত হয় যেখানে কোন চাইল্ড কম্পোনেন্ট রেন্ডার করতে হবে এবং তা ডায়নামিকভাবে করতে হবে। সাধারণত, এটি `<component :is="type">` দিয়ে করা হয়।
 
-A dynamic component is not a special type of component. Any component can be used as a dynamic component. It is the choice of component that is dynamic, rather than the component itself.
+একটি ডায়নামিক কম্পোনেন্ট একটি বিশেষ ধরনের কম্পোনেন্ট নয়। যে কোন কম্পোনেন্ট একটি ডায়নামিক কম্পোনেন্ট হিসাবে ব্যবহার করা যেতে পারে। একটি কম্পোনেন্ট ডায়নামিক হবে কিনা তা পূর্বনির্ধারিত না হয়ে কম্পোনেন্ট এর উপর নির্ভর করে।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Components Basics - Dynamic Components](/guide/essentials/component-basics.html#dynamic-components)
 
 ## effect {#effect}
 
-See [reactive effect](#reactive-effect) and [side effect](#side-effect).
+দেখুন [reactive effect](#reactive-effect) এবং [side effect](#side-effect).
 
 ## event {#event}
 
-The use of events for communicating between different parts of a program is common to many different areas of programming. Within Vue, the term is commonly applied to both native HTML element events and Vue component events. The `v-on` directive is used in templates to listen for both types of event.
+একটি প্রোগ্রামের বিভিন্ন অংশের মধ্যে যোগাযোগের জন্য ইভেন্টের ব্যবহার প্রোগ্রামিংয়ের বিভিন্ন ক্ষেত্রে সাধারণ। Vue-এর মধ্যে, শব্দটি সাধারণত স্থানীয় HTML ইলিমেন্ট ইভেন্ট এবং Vue কম্পোনেন্ট ইভেন্ট উভয় ক্ষেত্রেই প্রয়োগ করা হয়। উভয় ধরনের ইভেন্ট শোনার জন্য টেমপ্লেটগুলিতে ভি-অন ডিরেক্টিভ ব্যবহার করা হয়।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Event Handling](/guide/essentials/event-handling.html)
 - [Guide - Component Events](/guide/components/events.html)
 
 ## fragment {#fragment}
 
-The term *fragment* refers to a special type of [VNode](#vnode) that is used as a parent for other VNodes, but which doesn't render any elements itself.
+ফ্র্যাগমেন্ট শব্দটি একটি বিশেষ ধরনের [VNode](#vnode) কে বোঝায় যা অন্যান্য VNodes-এর জন্য অভিভাবক হিসাবে ব্যবহৃত হয়, কিন্তু এটি কোনো কম্পোনেন্ট নিজে রেন্ডার করে না।
 
-The name comes from the similar concept of a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) in the native DOM API.
+নামটি নেটিভ DOM API-এ [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) এর অনুরূপ ধারণা থেকে এসেছে।
 
-Fragments are used to support components with multiple root nodes. While such components might appear to have multiple roots, behind the scenes they use a fragment node as a single root, as a parent of the 'root' nodes.
+একাধিক রুট নোড সহ কম্পোনেন্টকে সমর্থন করার জন্য ফ্রেগমেন্ট ব্যবহার করা হয়। যদিও এই জাতীয় কম্পোনেন্টের একাধিক মূল রয়েছে বলে মনে হতে পারে, পর্দার পিছনে তারা 'রুট' নোডের অভিভাবক এবং একক রুট হিসাবে একটি ফ্রেগমেন্ট নোড ব্যবহার করে।
 
-Fragments are also used by the template compiler as a way to wrap multiple dynamic nodes, e.g. those created via `v-for` or `v-if`. This allows for extra hints to be passed to the [VDOM](#virtual-dom) patching algorithm. Much of this is handled internally, but one place you may encounter this directly is using a `key` on a `<template>` tag with `v-for`. In that scenario, the `key` is added as a [prop](#prop) to the fragment VNode.
+একাধিক ডায়নামিক নোড আবদ্ধ করার উপায় হিসাবে টেমপ্লেট কম্পাইলার দ্বারা ফ্রেগমেন্ট ব্যবহার করা হয়, যেমন যারা `v-for` বা `v-if` এর মাধ্যমে তৈরি। এটি [VDOM](#virtual-dom)প্যাচিং অ্যালগরিদমে অতিরিক্ত ইঙ্গিত দেওয়ার অনুমতি দেয়। এর বেশিরভাগই অভ্যন্তরীণভাবে পরিচালনা করা হয়, তবে একটি জায়গায় আপনি সরাসরি এটির মুখোমুখি হতে পারেন। সেটি হল `v-for` সহ `<template>` ট্যাগে একটি `key`  ব্যবহার করা। সেই পরিস্থিতিতে, `key` টি VNode ফ্রেগমেন্টে একটি [prop](#prop) হিসাবে যোগ করা হয়।
 
-Fragment nodes are currently rendered to the DOM as empty text nodes, though that is an implementation detail. You may encounter those text nodes if you use `$el` or attempt to walk the DOM with built-in browser APIs.
-
+ফ্র্যাগমেন্ট নোডগুলি বর্তমানে DOM-এ খালি টেক্সট নোড হিসাবে রেন্ডার করা হয়েছে, যদিও এটি একটি বাস্তবায়নের বিশদরূপ। আপনি যদি `$el` ব্যবহার করেন বা বিল্ট-ইন ব্রাউজার API-এর সাথে DOM-এ চলার চেষ্টা করেন তাহলে আপনি সেই টেক্সট নোডগুলির সম্মুখীন হতে পারেন।
 ## functional component {#functional-component}
 
-A component definition is usually an object containing options. It may not appear that way if you're using `<script setup>`, but the component exported from the `.vue` file will still be an object.
+কম্পোনেন্ট বলতে বোঝায় অপশন ধারণকারী কোনও বস্তু। আপনি যদি `<script setup>` ব্যবহার করেন তবে এটি সেভাবে প্রদর্শিত নাও হতে পারে, তবে `.vue` ফাইল থেকে এক্সপোর্টেড করা কম্পোনেন্ট অবজেক্ট হিসেবে মনে হবে।
 
-A *functional component* is an alternative form of component that is declared using a function instead. That function acts as the [render function](#render-function) for the component.
+একটি *ফাংশনাল কম্পোনেন্ট* হচ্ছে কম্পোনেন্ট এর বিকল্প যা ফাংশন দ্বারা নির্ধারণ করা হয়।
+সেই ফাংশনটি কম্পোনেন্টটির জন্য [রেন্ডার ফাংশন](#render-function) হিসাবে কাজ করে।
 
-A functional component cannot have any state of its own. It also doesn't go through the usual component lifecycle, so lifecycle hooks can't be used. This makes them slightly lighter than normal, stateful components.
+একটি ফাংশনাল কম্পোনেন্টের নিজস্ব কোনো অবস্থা থাকতে পারে না। এদের জীবনচক্র স্বাভাবিক কম্পোনেন্টের মত না, তাই জীবনচক্র হুক ব্যবহার করা যায় না । এটি তাদের স্বাভাবিক, সংজ্ঞায়িত কম্পোনেন্টের চেয়ে সামান্য হালকা করে তোলে।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Render Functions & JSX - Functional Components](/guide/extras/render-function.html#functional-components)
 
 ## hoisting {#hoisting}
 
-The term *hoisting* is used to describe running a section of code before it is reached, ahead of other code. The execution is 'pulled up' to an earlier point.
+*hoisting* বলতে কোডের একটি অংশকে অন্য কোডের আগে চালানোর বিষয়টিকে বোঝায়।
+আগের কোনো বিন্দুতে জীবনপ্রবাহ শেষ হয়ে যায়।
 
-JavaScript uses hoisting for some constructs, such as `var`, `import` and function declarations.
+জাভাস্ক্রিপ্ট কিছু নির্মাণের জন্য hoisting ব্যবহার করে, যেমন `var`, `import` এবং ফাংশন ঘোষণা।
 
-In a Vue context, the template compiler applies *static hoisting* to improve performance. When converting a template to a render function, VNodes that correspond to static content can be created once and then reused. These static VNodes are described as hoisted because they are created outside the render function, before it runs. A similar form of hoisting is applied to static objects or arrays that are generated by the template compiler.
+একটি Vue কনটেক্সটে, টেমপ্লেট কম্পাইলার কর্মক্ষমতা উন্নত করতে *স্ট্যাটিক hoisting*  প্রয়োগ করে। একটি রেন্ডার ফাংশনে একটি টেমপ্লেট রূপান্তর করার সময়, স্ট্যাটিক বিষয়বস্তুর সাথে সামঞ্জস্যপূর্ণ VNodes একবার তৈরি করা যেতে পারে এবং তারপর পুনরায় ব্যবহার করা যেতে পারে। এই স্ট্যাটিক ভিনোডগুলিকে হোয়েস্টেড হিসাবে বর্ণনা করা হয়েছে কারণ এটি চালানোর আগে রেন্ডার ফাংশনের বাইরে তৈরি করা হয়। টেমপ্লেট কম্পাইলার দ্বারা উত্পন্ন স্ট্যাটিক অবজেক্ট বা অ্যারেগুলিতে হোয়েস্টিং অনুরূপ ফর্ম প্রয়োগ করা হয়।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Rendering Mechanism - Static Hoisting](/guide/extras/rendering-mechanism.html#static-hoisting)
 
 ## in-DOM template {#in-dom-template}
 
-There are various ways to specify a template for a component. In most cases the template is provided as a string.
+একটি কম্পোনেন্টের জন্য একটি টেমপ্লেট নির্দিষ্ট করার বিভিন্ন উপায় আছে। বেশিরভাগ ক্ষেত্রে টেমপ্লেটটি একটি স্ট্রিং হিসাবে প্রদান করা হয়।
 
-The term *in-DOM template* refers to the scenario where the template is provided in the form of DOM nodes, instead of a string. Vue then converts the DOM nodes into a template string using `innerHTML`.
+*ইন-ডোম টেমপ্লেট*&nbsp; শব্দটি সেই দৃশ্যকে বোঝায় যেখানে টেমপ্লেটটি একটি স্ট্রিংয়ের পরিবর্তে DOM নোডের আকারে প্রদান করা হয়। Vue তারপর `innerHTML` ব্যবহার করে DOM নোডকে একটি টেমপ্লেট স্ট্রিংয়ে রূপান্তর করে।
 
-Typically, an in-DOM template starts off as HTML markup written directly in the HTML of the page. The browser then parses this into DOM nodes, which Vue then uses to read off the `innerHTML`.
+সাধারণত, একটি ইন-ডোম টেমপ্লেট সরাসরি পৃষ্ঠার HTML-এ লেখা HTML মার্কআপ হিসাবে শুরু হয়। ব্রাউজার তারপর এটিকে DOM নোডগুলিতে পার্স করে, যা Vue `innerHTML` পড়ার জন্য ব্যবহার করে।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Creating an Application - In-DOM Root Component Template](/guide/essentials/application.html#in-dom-root-component-template)
 - [Guide - Component Basics - in-DOM Template Parsing Caveats](/guide/essentials/component-basics.html#in-dom-template-parsing-caveats)
 - [Options: Rendering - template](/api/options-rendering.html#template)
 
 ## inject {#inject}
 
-See [provide / inject](#provide-inject).
+দেখুন [provide / inject](#provide-inject).
 
 ## lifecycle hooks {#lifecycle-hooks}
 
-A Vue component instance goes through a lifecycle. For example, it is created, mounted, updated, and unmounted.
+একটি Vue কম্পোনেন্ট উদাহরণ একটি জীবনচক্রের মধ্য দিয়ে যায়। উদাহরণস্বরূপ, এটি তৈরি করা, মাউন্ট করা, আপডেট করা এবং আনমাউন্ট করা।
 
-The *lifecycle hooks* are a way to listen for these lifecycle events.
+*lifecycle hooks* এই জীবনচক্রের ঘটনাগুলি শোনার একটি উপায়।
 
-With the Options API, each hook is provided as a separate option, e.g. `mounted`. The Composition API uses functions instead, such as `onMounted()`.
+অপশন এপিআই এর সাথে, প্রতিটি হুক একটি পৃথক অপশন হিসাবে প্রদান করা হয়, যেমন `mounted`। কম্পোজিশন API, এর পরিবর্তে ফাংশন ব্যবহার করে, যেমন `onMounted()`।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Lifecycle Hooks](/guide/essentials/lifecycle.html)
 
 ## macro {#macro}
 
-See [compiler macro](#compiler-macro).
+দেখুন [compiler macro](#compiler-macro).
 
 ## named slot {#named-slot}
 
-A component can have multiple slots, differentiated by name. Slots other than the default slot are referred to as *named slots*.
+একটি কম্পোনেন্টের একাধিক স্লট থাকতে পারে, সেগুলো নাম দ্বারা আলাদা করা হয়। ডিফল্ট স্লট ব্যতীত অন্য স্লটগুলিকে *named slots* হিসাবে উল্লেখ করা হয়।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Slots - Named Slots](/guide/components/slots.html#named-slots)
 
 ## Options API {#options-api}
 
-Vue components are defined using objects. The properties of these component objects are known as *options*.
+Vue কম্পোনেন্টগুলো অবজেক্ট ব্যবহার করে সংজ্ঞায়িত করা হয়। কম্পোনেন্ট অবজেক্ট এর প্রোপার্টিগুলোকে অপশন হিসাবে উল্লেখ করা হয়।
 
-Components can be written in two styles. One style uses the [Composition API](#composition-api) in conjunction with `setup` (either via a `setup()` option or `<script setup>`). The other style makes very little direct use of the Composition API, instead using various component options to achieve a similar result. The component options that are used in this way are referred to as the *Options API*.
+কম্পোনেন্টগুলো দুটি স্টাইলে লেখা যেতে পারে। একটি স্টাইল `setup` এর সাথে একত্রে [Composition API](#composition-api) ব্যবহার করে (অন্যথায় `setup()`  বা `<script setup>` দ্বারা)। অন্য স্টাইলটি কম্পোজিশন API-এর থেকে একটু দুরে, অনুরূপ ফলাফল অর্জনের জন্য বিভিন্ন কম্পোনেন্ট অপশন ব্যবহার করে। এইভাবে ব্যবহৃত কম্পোনেন্ট অপশনগুলোকে *অপশন API* হিসাবে উল্লেখ করা হয়।
 
-The Options API includes options such as `data()`, `computed`, `methods` and `created()`.
+অপশন এপিআই-এর মধ্যে `data()`, `computed`, `methods` এবং `created()` অপশন আছে।
 
-Some options, such as `props`, `emits` and `inheritAttrs`, can be used when authoring components with either API. As they are component options, they could be considered part of the Options API. However, as these options are also used in conjunction with `setup()`, it is usually more useful to think of them as shared between the two component styles.
+কিছু অপশন, যেমন `props`, `emits` এবং `inheritAttrs`, উভয় API এর সাথে কম্পোনেন্ট লেখার সময় ব্যবহার করা যেতে পারে। যেহেতু সেগুলি কম্পোনেন্ট অপশন, সেগুলি অপশন API-এর অংশ হিসেবে বিবেচিত হতে পারে। যাইহোক, যেহেতু এই অপশনগুলি `setup()` এর সাথেও ব্যবহার করা হয়, এটি সাধারণত দুটি কম্পোনেন্ট স্টাইলের মধ্যে ভাগ করা বলে মনে করলে বুঝতে সুবিধা হয়।
 
-The `setup()` function itself is a component option, so it *could* be described as part of the Options API. However, this is not how the term 'Options API' is normally used. Instead, the `setup()` function is considered to be part of Composition API.
+`setup()` ফাংশন নিজেই একটি কম্পোনেন্ট অপশন, তাই এটিকে অপশন API এর অংশ হিসাবে বর্ণনা করা যেতে পারে। যাইহোক, 'অপশন API' সাধারণত এভাবে ব্যবহৃত হয় না। অন্যদিকে, `setup()` ফাংশনটিকে কম্পোজিশন API-এর অংশ হিসাবে বিবেচনা করা হয়।
 
 ## plugin {#plugin}
 
-While the term *plugin* can be used in a wide variety of contexts, Vue has a specific concept of a plugin as a way to add functionality to an application.
+যদিও *প্লাগইন* &nbsp;শব্দটি বিভিন্ন প্রেক্ষাপটে ব্যবহার করা যেতে পারে, Vue-এর একটি অ্যাপ্লিকেশনে কার্যকারিতা যোগ করার উপায় হিসাবে প্লাগইনের ধারণা বোঝানো হয়।
 
-Plugins are added to an application by calling `app.use(plugin)`. The plugin itself is either a function or an object with an `install` function. That function will be passed the application instance and can then do whatever it needs to do.
+`app.use(plugin)` কল করে একটি অ্যাপ্লিকেশনে প্লাগইন যোগ করা হয়। প্লাগইন নিজেই হয় একটি ফাংশন বা একটি `install` ফাংশন সহ কোনো অবজেক্ট। সেই ফাংশনটি অ্যাপ্লিকেশনের উদাহরণে পাস করা হবে এবং তারপরে যা করতে হবে এটি তা করবে।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Plugins](/guide/reusability/plugins.html)
 
 ## prop {#prop}
 
-There are three common uses of the term *prop* in Vue:
+Vue তে *prop* শব্দটির তিনটি সাধারণ ব্যবহার রয়েছে:
 
-* Component props
-* VNode props
-* Slot props
+* কম্পোনেন্ট প্রপস
+* VNode প্রপস
+* স্লট প্রপস
 
-*Component props* are what most people think of as props. These are explicitly defined by a component using either `defineProps()` or the `props` option.
+*কম্পোনেন্ট প্রপস* হল যা বেশিরভাগ মানুষ প্রপস হিসাবে ভাবে। এগুলি স্পষ্টভাবে `defineProps()` বা `props` অপশন ব্যবহার করে একটি কম্পোনেন্ট দ্বারা সংজ্ঞায়িত করা হয়।
 
-The term *VNode props* refers to the properties of the object passed as the second argument to `h()`. These can include component props, but they can also include component events, DOM events, DOM attributes and DOM properties. You'd usually only encounter VNode props if you're working with render functions to manipulate VNodes directly.
+*VNode props* শব্দটি `h()`-এ দ্বিতীয় আর্গুমেন্ট হিসেবে পাস করা অবজেক্টের  প্রোপার্টিকে বোঝায়। এর মধ্যে কম্পোনেন্ট প্রপস অন্তর্ভুক্ত থাকতে পারে, তবে তারা কম্পোনেন্ট ইভেন্ট, DOM ইভেন্ট, DOM অ্যাট্রিবিউট এবং DOM প্রোপার্টিজ অন্তর্ভুক্ত করতে পারে। আপনি সাধারণত VNode প্রপসের সম্মুখীন হবেন যদি আপনি সরাসরি VNodes ম্যানিপুলেট করার জন্য রেন্ডার ফাংশনগুলির সাথে কাজ করেন।
 
-*Slot props* are the properties passed to a scoped slot.
+*স্লট প্রপস* হল একটি স্কোপড স্লটে পাস করা প্রোপার্টিজ।
 
-In all cases, props are properties that are passed in from elsewhere.
+সব ক্ষেত্রে, প্রপস এমন প্রোপার্টিজ যা অন্য কোথাও থেকে পাস করা হয়।
 
-While the word props is derived from the word *properties*, the term props has a much more specific meaning in the context of Vue. You should avoid using it as an abbreviation of properties.
+যদিও প্রপস শব্দটি *প্রোপার্টিজ* শব্দ থেকে উদ্ভূত হয়েছে, তবে প্রপস শব্দটি Vue-এর ক্ষেত্রে অনেক বেশি নির্দিষ্ট অর্থ বহন করে। প্রোপার্টির সংক্ষিপ্ত হিসাবে এটির ব্যবহার থেকে বিরত থাকতে হবে।
 
-For more details see:
+বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Props](/guide/components/props.html)
 - [Guide - Render Functions & JSX](/guide/extras/render-function.html)
 - [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
 
 ## provide / inject {#provide-inject}
 
-`provide` and `inject` are a form of inter-component communication.
+`provide` এবং `inject` হল আন্তঃ-কম্পোনেন্ট যোগাযোগের একটি রূপ।
 
-When a component *provides* a value, all descendants of that component can then choose to grab that value, using `inject`. Unlike with props, the providing component doesn't know precisely which component is receiving the value.
+যখন একটি কম্পোনেন্ট একটি মান *প্রদান* করে, তখন সেই কম্পোনেন্টের সমস্ত বংশধররা `ইনজেক্ট` ব্যবহার করে সেই মানটি দখল করতে পারে। ঠিক প্রপসের উল্টো, সরবরাহকারী কম্পোনেন্টটি সঠিকভাবে জানে না যে, কোন কম্পোনেন্টটি মান গ্রহণ করছে।
 
-`provide` and `inject` are sometimes used to avoid *prop drilling*. They can also be used as an implicit way for a component to communicate with its slot contents.
+কখনও কখনও *প্রপ ড্রিলিং* এড়াতে `প্রোভাইড` এবং `ইনজেক্ট` ব্যবহার করা হয়। এগুলি একটি কম্পোনেন্টের স্লট বিষয়বস্তুর সাথে যোগাযোগ করার জন্য একটি অন্তর্নিহিত উপায় হিসাবেও ব্যবহার করা যেতে পারে।
 
-`provide` can also be used at the application level, making a value available to all components within that application.
+`প্রোভাইড` অ্যাপ্লিকেশন স্তরেও ব্যবহার করা যেতে পারে, যা সেই অ্যাপ্লিকেশনের সমস্ত কম্পোনেন্টগুলির জন্য একটি মান তৈরি করে৷
 
-For more details see:
+বিস্তারিত জানার জন্য দেখুন:
 - [Guide - provide / inject](/guide/components/provide-inject.html)
 
 ## reactive effect {#reactive-effect}
 
-A *reactive effect* is part of Vue's reactivity system. It refers to the process of tracking the dependencies of a function and re-running that function when the values of those dependencies change.
+একটি *রিয়্যাক্টিভ ইভেন্ট* &nbsp;Vue এর রিয়্যাক্টিভিটি সিস্টেমের অংশ। এটি ফাংশনের নির্ভরতাগুলিকে ট্র্যাক করার এবং সেই ফাংশনগুলিকে পুনরায় চালানোর প্রক্রিয়াকে বোঝায় যখন সেই নির্ভরতার মানগুলি পরিবর্তিত হয়।
 
-`watchEffect()` is the most direct way to create an effect. Various other parts of Vue use effects internally. e.g. component rendering updates, `computed()` and `watch()`.
+`watchEffect()` একটি ইফেক্ট তৈরি করার সর্বোত্তম উপায়। Vue এর বিভিন্ন অংশ অভ্যন্তরীণভাবে ইফেক্ট ব্যবহার করে। যেমন- কম্পোনেন্ট রেন্ডারিং আপডেট, `computed()` এবং `watch()`।
 
-Vue can only track reactive dependencies within a reactive effect. If a property's value is read outside a reactive effect it'll 'lose' reactivity, in the sense that Vue won't know what to do if that property subsequently changes.
+Vue শুধুমাত্র রিয়্যাক্টিভ ইভেন্টের মধ্যে রিয়্যাক্টিভ নির্ভরতা ট্র্যাক করতে পারে। যদি একটি প্রপার্টির মান রিয়্যাক্টিভ ইফেক্টের বাইরে থেকে নেয়া হয় তবে এটি রিয়্যাক্টিভিটি হারাবে, এই অর্থে যে Vue জানবে না পরবর্তীতে প্রপার্টিটি পরিবর্তিত হলে কী করতে হবে।
 
-The term is derived from 'side effect'. Calling the effect function is a side effect of the property value being changed.
+শব্দটি 'সাইড ইফেক্ট' থেকে উদ্ভূত। ইফেক্ট ফাংশন কল করা প্রোপার্টির মান পরিবর্তন করা হচ্ছে একটি সাইড ইফেক্ট।
 
-For more details see:
+আরও বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## reactivity {#reactivity}
 
-In general, *reactivity* refers to the ability to automatically perform actions in response to data changes. For example, updating the DOM or making a network request when a data value changes.
+সাধারণভাবে, *রিয়্যাক্টিভিটি*&nbsp; বলতে ডেটা পরিবর্তনের প্রতিক্রিয়ায় স্বয়ংক্রিয়ভাবে ক্রিয়া সম্পাদন করার ক্ষমতা বোঝায়। উদাহরণস্বরূপ, DOM আপডেট করা বা ডেটার মান পরিবর্তন হলে নেটওয়ার্কে অনুরোধ করা।
 
-In a Vue context, reactivity is used to describe a collection of features. Those features combine to form a *reactivity system*, which is exposed via the [Reactivity API](#reactivity-api).
+Vue এর ক্ষেত্রে, রিয়্যাক্টিভিটি বলতে বোঝায়&nbsp; বৈশিষ্ট্যের একটি সংগ্রহকে। এই&nbsp; বৈশিষ্ট্যগুলি একত্রিত হয়ে একটি *রিঅ্যাক্টিভিটি সিস্টেম* &nbsp;গঠন করে, যা [রিঅ্যাক্টিভিটি API](#reactivity-api) এর মাধ্যমে প্রকাশ করা হয়।
 
-There are various different ways that a reactivity system could be implemented. For example, it could be done by static analysis of code to determine its dependencies. However, Vue doesn't employ that form of reactivity system.
+বিভিন্ন উপায়ে একটি রিয়্যাক্টিভিটি সিস্টেম বাস্তবায়ন করা যেতে পারে। উদাহরণস্বরূপ, এটি নির্ভরতা নির্ধারণের জন্য কোডের স্ট্যাটিক বিশ্লেষণের মাধ্যমে করা যেতে পারে। যাইহোক, Vue সেই ধরনের রিয়্যাক্টিভিটি সিস্টেম সমর্থন করে না।
 
-Instead, Vue's reactivity system tracks property access at runtime. It does this using both Proxy wrappers and getter/setter functions for properties.
+অন্যদিকে, Vue এর রিয়্যাক্টিভিটি সিস্টেম রানটাইমে প্রপার্টি অ্যাক্সেস ট্র্যাক করে। এটি প্রোপার্টিগুলির জন্য প্রক্সি র‍্যাপার এবং গেটার/সেটার ফাংশন উভয় ব্যবহার করে।
 
-For more details see:
+আরও বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
 - [Guide - Reactivity in Depth](/guide/extras/reactivity-in-depth.html)
 
 ## Reactivity API {#reactivity-api}
 
-The *Reactivity API* is a collection of core Vue functions related to [reactivity](#reactivity). These can be used independently of components. It includes functions such as `ref()`, `reactive()`, `computed()`, `watch()` and `watchEffect()`.
+*রিঅ্যাকটিভিটি এপিআই* &nbsp;হল [রিঅ্যাকটিভিটি](#reactivity) সম্পর্কিত মূল Vue ফাংশনের একটি সংগ্রহ। এই কম্পোনেন্ট স্বাধীনভাবে ব্যবহার করা যেতে পারে. এতে `ref()`, `reactive()`, `computed()`, `watch()` এবং `watchEffect()` এর মতো ফাংশন অন্তর্ভুক্ত রয়েছে।
 
-The Reactivity API is a subset of the Composition API.
+রিঅ্যাকটিভিটি এপিআই হল কম্পোজিশন এপিআই এর একটি উপসেট।
 
-For more details see:
+আরও বিস্তারিত জানার জন্য দেখুন:
 - [Reactivity API: Core](/api/reactivity-core.html)
 - [Reactivity API: Utilities](/api/reactivity-utilities.html)
 - [Reactivity API: Advanced](/api/reactivity-advanced.html)
 
 ## ref {#ref}
 
-> This entry is about the use of `ref` for reactivity. For the `ref` attribute used in templates, see [template ref](#template-ref) instead.
+>এই এন্ট্রিটি রিয়্যাক্টিভিটির `ref` ব্যবহার সম্পর্কে। টেমপ্লেটগুলিতে ব্যবহৃত `ref` অ্যাট্রিবিউটের জন্য, এটা [টেমপ্লেট রেফ](#template-ref) দেখুন।
 
-A `ref` is part of Vue's reactivity system. It is an object with a single reactive property, called `value`.
+`ref` হল Vue এর রিয়্যাক্টিভিটি সিস্টেমের অংশ। এটি একক রিয়্যাক্টিভ বৈশিষ্ট্য সহ একটি অবজেক্ট, যাকে বলা হয় `ভ্যালু`।
 
-There are various different types of ref. For example, refs can be created using `ref()`, `shallowRef()`, `computed()`, and `customRef()`. The function `isRef()` can be used to check whether an object is a ref, and `isReadonly()` can be used to check whether the ref allows the direct reassignment of its value.
+রেফ বিভিন্ন ধরনের আছে। উদাহরণস্বরূপ, `ref()`, `shallowRef()`, `computed()`, এবং `customRef()` ব্যবহার করে রেফ তৈরি করা যেতে পারে। একটি অবজেক্ট একটি রেফ কিনা তা পরীক্ষা করতে `isRef()` ফাংশনটি ব্যবহার করা যেতে পারে এবং রেফটি সরাসরি তার মানের পুনরায় নিয়োগের অনুমতি দেয় কিনা তা পরীক্ষা করতে `isReadonly()` ব্যবহার করা যেতে পারে।
 
-For more details see:
+আরও বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Reactivity Fundamentals](/guide/essentials/reactivity-fundamentals.html)
 - [Reactivity API: Core](/api/reactivity-core.html)
 - [Reactivity API: Utilities](/api/reactivity-utilities.html)
@@ -308,109 +313,108 @@ For more details see:
 
 ## render function {#render-function}
 
-A *render function* is the part of a component that generates the VNodes used during rendering. Templates are compiled down into render functions.
+একটি *রেন্ডার ফাংশন*&nbsp; হল একটি কম্পোনেন্টের অংশ যা রেন্ডারিংয়ের সময় ব্যবহৃত VNodes তৈরি করে। টেমপ্লেটগুলি রেন্ডার ফাংশনে কম্পাইল করা হয়।
 
-For more details see:
+আরও বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Render Functions & JSX](/guide/extras/render-function.html)
 
 ## scheduler {#scheduler}
 
-The *scheduler* is the part of Vue's internals that controls the timing of when [reactive effects](#reactive-effect) are run.
+*scheduler*&nbsp; হল Vue-এর অভ্যন্তরীণ অংশ যা কখন [রিয়্যাক্টিভ ইফেক্ট](#reactive-effect) চালানো হবে তা নিয়ন্ত্রণ করে।
 
-When reactive state changes, Vue doesn't immediately trigger rendering updates. Instead, it batches them together using a queue. This ensures that a component only re-renders once, even if multiple changes are made to the underlying data.
+রিয়্যাক্টিভ অবস্থা পরিবর্তিত হলে, Vue অবিলম্বে রেন্ডারিং আপডেটগুলি ট্রিগার করে না। অন্যদিকে, এটি একটি সারি ব্যবহার করে তাদের একসাথে ব্যাচ করে। এটি নিশ্চিত করে যে একটি কম্পোনেন্ট শুধুমাত্র একবার পুনরায় রেন্ডার করে, এমনকি যদি অন্তর্নিহিত ডেটাতে একাধিক পরিবর্তন করা হয়।
 
-[Watchers](/guide/essentials/watchers.html) are also batched using the scheduler queue. Watchers with `flush: 'pre'` (the default) will run before component rendering, whereas those with `flush: 'post'` will run after component rendering.
+[Watchers](/guide/essentials/watchers.html) গুলোকে শিডিউলার সারি ব্যবহার করে ব্যাচ করা হয়। `flush: 'pre'` (ডিফল্ট) সহ ওয়াচারস কম্পোনেন্ট রেন্ডারিংয়ের আগে চলবে, যেখানে `flush: 'post'` সহ তারা কম্পোনেন্ট রেন্ডারিংয়ের পরে চলবে।
 
-Jobs in the scheduler are also used to perform various other internal tasks, such as triggering some [lifecycle hooks](#lifecycle-hooks) and updating [template refs](#template-ref).
+শিডিউলারের কাজগুলি অন্যান্য বিভিন্ন অভ্যন্তরীণ কাজ সম্পাদন করতেও ব্যবহৃত হয়, যেমন কিছু [লাইফসাইকেল হুক](#lifecycle-hooks) এবং আপডেট করা [টেমপ্লেট রেফ](#template-ref)।
 
 ## scoped slot {#scoped-slot}
 
-The term *scoped slot* is used to refer to a [slot](#slot) that receives [props](#prop).
+*স্কোপড স্লট*&nbsp;শব্দটি একটি [স্লট](#slot) বোঝাতে ব্যবহৃত হয় যা [প্রপস](#prop) গ্রহণ করে।
 
-Historically, Vue made a much greater distinction between scoped and non-scoped slots. To some extent they could be regarded as two separate features, unified behind a common template syntax.
+ঐতিহাসিকভাবে, Vue স্কোপড এবং নন-স্কোপড স্লটের মধ্যে অনেক বেশি পার্থক্য তৈরি করেছে। কিছু ক্ষেত্রে তাদের দুটি পৃথক বৈশিষ্ট্য হিসাবে গণ্য করা যেতে পারে, একটি সাধারণ টেমপ্লেট সিনট্যাক্সে তারা একই রকম।
 
-In Vue 3, the slot APIs were simplified to make all slots behave like scoped slots. However, the use cases for scoped and non-scoped slots often differ, so the term still proves useful as a way to refer to slots with props.
+Vue 3-এ, সমস্ত স্লটগুলিকে স্কোপড স্লটের মতো আচরণ করার জন্য স্লট API গুলিকে সরলীকৃত করা হয়েছিল। যাইহোক, স্কোপড এবং নন-স্কোপড স্লটগুলির ব্যবহারের ক্ষেত্রে প্রায়শই পার্থক্য থাকে, তাই শব্দটি প্রপস সহ স্লটগুলিকে উল্লেখ করার উপায় হিসাবে এখনও কার্যকর প্রমাণিত হয়।
 
-The props passed to a slot can only be used within a specific region of the parent template, responsible for defining the slot's contents. This region of the template behaves as a variable scope for the props, hence the name 'scoped slot'.
+একটি স্লটে পাস করা প্রপগুলি শুধুমাত্র মূল টেমপ্লেটের একটি নির্দিষ্ট অঞ্চলের মধ্যে ব্যবহার করা যেতে পারে, এটাই স্লটের বিষয়বস্তু নির্ধারণের জন্য দায়ী৷ টেমপ্লেটের এই অঞ্চলটি প্রপসের জন্য একটি পরিবর্তনশীল সুযোগ হিসাবে আচরণ করে, তাই এর নাম 'স্কোপড স্লট'।
 
-For more details see:
+আরও বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Slots - Scoped Slots](/guide/components/slots.html#scoped-slots)
 
 ## SFC {#sfc}
 
-See [Single-File Component](#single-file-component).
+দেখুন [Single-File Component](#single-file-component).
 
 ## side effect {#side-effect}
 
-The term *side effect* is not specific to Vue. It is used to describe operations or functions that do something beyond their local scope.
+*সাইড ইফেক্ট* &nbsp;শব্দটি Vue-এর জন্য নির্দিষ্ট নয়। এটি অপারেশন বা ফাংশন বর্ণনা করতে ব্যবহৃত হয় যা তাদের স্থানীয় সুযোগের বাইরে কিছু করে।
 
-For example, in the context of setting a property like `user.name = null`, it is expected that this will change the value of `user.name`. If it also does something else, like triggering Vue's reactivity system, then this would be described as a side effect. This is the origin of the term [reactive effect](#reactive-effect) within Vue.
+উদাহরণস্বরূপ, `user.name = null` এর মতো একটি প্রপার্টি সেট করার প্রেক্ষাপটে, এটা আশা করা যায় যে এটি `user.name`-এর মান পরিবর্তন করবে। যদি এটি অন্য কিছু করে, যেমন Vue এর রিয়্যাক্টিভিটি সিস্টেমকে ট্রিগার করে, তাহলে এটি একটি সাইড ইফেক্ট হিসাবে বর্ণনা করা হবে। Vue-এর মধ্যে, এই শব্দ থেকে [রিয়্যাক্টিভ ইফেক্ট](#reactive-effect) শব্দটির উৎপত্তি।
 
-When a function is described as having side effects, it means that the function performs some sort of action that is observable outside the function, aside from just returning a value. This might mean that it updates a value in state, or triggers a network request.
+যখন একটি ফাংশনকে সাইড ইফেক্ট হিসাবে বর্ণনা করা হয়, তখন এর মানে হল যে ফাংশনটি এমন কিছূ কাজ সম্পাদন করে যা ফাংশনের বাইরে পর্যবেক্ষণযোগ্য, শুধুমাত্র একটি মান ফেরত দেওয়া ছাড়া। এর অর্থ হতে পারে যে এটি কোনও পর্যায়ের একটি মান আপডেট করে বা একটি নেটওয়ার্ক অনুরোধ ট্রিগার করে।
 
-The term is often used when describing rendering or computed properties. It is considered best practice for rendering to have no side effects. Likewise, the getter function for a computed property should have no side effects.
+রেন্ডারিং বা গণনা করা প্রোপার্টি বর্ণনা করার সময় শব্দটি প্রায়শই ব্যবহৃত হয়। কোন সাইড ইফেক্ট নেই এমন কিছু রেন্ডারিংয়ের জন্য এটি সর্বোত্তম অনুশীলন হিসাবে বিবেচিত হয়। একইভাবে, একটি গণনাকৃত প্রোপার্টির জন্য গেটার ফাংশনের কোন সাইড ইফেক্ট থাকা উচিত নয়।
 
 ## Single-File Component {#single-file-component}
 
-The term *Single-File Component*, or SFC, refers to the `.vue` file format that is commonly used for Vue components.
+*একক-ফাইল কম্পোনেন্ট*, বা SFC শব্দটি `.vue` ফাইল বিন্যাসকে বোঝায় যা সাধারণত Vue কম্পোনেন্টগুলির জন্য ব্যবহৃত হয়।
 
-See also:
+আরও দেখুন:
 - [Guide - Single-File Components](/guide/scaling-up/sfc.html)
 - [SFC Syntax Specification](/api/sfc-spec.html)
 
 ## slot {#slot}
 
-Slots are used to pass content to child components. Whereas props are used to pass data values, slots are used to pass richer content consisting of HTML elements and other Vue components.
+স্লটগুলি চাইল্ড কম্পোনেন্টগুলিতে সামগ্রী প্রেরণ করতে ব্যবহৃত হয়। যেখানে প্রপগুলি ডেটা মানগুলি পাস করতে ব্যবহৃত হয়, স্লটগুলি HTML কম্পোনেন্ট এবং অন্যান্য Vue কম্পোনেন্টগুলির সমন্বয়ে সমৃদ্ধ সামগ্রী পাস করতে ব্যবহৃত হয়।
 
-For more details see:
+বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Slots](/guide/components/slots.html)
 
 ## template ref {#template-ref}
 
-The term *template ref* refers to using a `ref` attribute on a tag within a template. After the component renders, this attribute is used to populate a corresponding property with either the HTML element or the component instance that corresponds to the tag in the template.
+*টেমপ্লেট রেফ* &nbsp;শব্দটি একটি টেমপ্লেটের মধ্যে একটি ট্যাগে একটি `ref` বৈশিষ্ট্য ব্যবহার করাকে বোঝায়। কম্পোনেন্ট রেন্ডার হওয়ার পরে, এই অ্যাট্রিবিউটটি এইচটিএমএল কম্পোনেন্ট বা টেমপ্লেটের ট্যাগের সাথে সম্পর্কিত কম্পোনেন্ট ইন্সট্যান্সের সাথে একটি সংশ্লিষ্ট প্রোপার্টি তৈরি করতে ব্যবহৃত হয়।
 
-If you are using the Options API then the refs are exposed via properties of the `$refs` object.
+আপনি যদি Options API ব্যবহার করেন তাহলে রেফগুলি `$refs` অবজেক্টের প্রোপার্টির মাধ্যমে প্রকাশ করা হয়।
 
-With the Composition API, template refs populate a reactive [ref](#ref) with the same name.
+Composition API-এর সাথে, টেমপ্লেট refs একই নামের একটি রিয়্যাক্টিভ [ref](#ref) &nbsp;তৈরি করে।
 
-Template refs should not be confused with the reactive refs found in Vue's reactivity system.
+টেমপ্লেট রেফগুলিকে Vue এর রিয়্যাক্টিভ সিস্টেমে পাওয়া রিয়্যাক্টিভ রেফের সাথে বিভ্রান্ত করা উচিত নয়।
 
-For more details see:
+আরো বিস্তারিত জানার জন্য দেখুন:
 - [Guide - Template Refs](/guide/essentials/template-refs.html)
 
 ## VDOM {#vdom}
 
-See [virtual DOM](#virtual-dom).
+দেখুন [virtual DOM](#virtual-dom).
 
 ## virtual DOM {#virtual-dom}
 
-The term *virtual DOM* (VDOM) is not unique to Vue. It is a common approach used by several web frameworks for managing updates to the UI.
+*ভার্চুয়াল DOM* (VDOM) শব্দটি Vue-এর জন্য নতুন কিছু নয়। এটি UI-তে আপডেটগুলি পরিচালনা করার জন্য বেশ কয়েকটি ওয়েব ফ্রেমওয়ার্ক দ্বারা ব্যবহৃত একটি সাধারণ পদ্ধতি।
 
-Browsers use a tree of nodes to represent the current state of the page. That tree, and the JavaScript APIs used to interact with it, are referred to as the *document object model*, or *DOM*.
+ওয়েবপেজের বর্তমান অবস্থা উপস্থাপন করতে ব্রাউজার নোডের একটি ট্রি ব্যবহার করে। সেই ট্রি, এবং জাভাস্ক্রিপ্ট API গুলি এর সাথে ইন্টারঅ্যাক্ট করতে ব্যবহৃত হয়, এটাকেই *ডকুমেন্ট অবজেক্ট মডেল*, বা *DOM* হিসাবে উল্লেখ করা হয়।
 
-Manipulating the DOM is a major performance bottleneck. The virtual DOM provides one strategy for managing that.
+DOM ম্যানিপুলেট করা কর্মক্ষমতা হ্রাসের কারণ। ভার্চুয়াল DOM এটি পরিচালনা করার জন্য একটি কৌশল প্রদান করে।
 
-Rather than creating DOM nodes directly, Vue components generate a description of what DOM nodes they would like. These descriptors are plain JavaScript objects, known as VNodes (virtual DOM nodes). Creating VNodes is relatively cheap.
+সরাসরি DOM নোড তৈরি করার পরিবর্তে, Vue কম্পোনেন্টগুলি তারা কী DOM নোড চায় তার একটি বিবরণ তৈরি করে। এই বর্ণনাকারীগুলি হল প্লেইন জাভাস্ক্রিপ্ট অবজেক্ট, যা VNodes (ভার্চুয়াল DOM নোড) নামে পরিচিত। VNodes তৈরি করা তুলনামূলকভাবে সহজ।
 
-Every time a component re-renders, the new tree of VNodes is compared to the previous tree of VNodes and any differences are then applied to the real DOM. If nothing has changed then the DOM doesn't need to be touched.
+প্রতিবার কোনো কম্পোনেন্ট রি-রেন্ডার করার সময়, VNodes-এর নতুন ট্রি VNodes-এর আগের ট্রির সাথে তুলনা করা হয় এবং তারপরে কোনো পার্থক্য বাস্তব DOM-এ প্রয়োগ করা হয়। যদি কিছুই পরিবর্তিত না হয় তবে DOM স্পর্শ করার প্রয়োজন নেই।
 
-Vue uses a hybrid approach that we call [Compiler-Informed Virtual DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom). Vue's template compiler is able to apply performance optimizations based on static analysis of the template. Rather than performing a full comparison of a component's old and new VNode trees at runtime, Vue can use information extracted by the compiler to reduce the comparison to just the parts of the tree that can actually change.
+Vue একটি হাইব্রিড পদ্ধতি ব্যবহার করে যাকে আমরা [কম্পাইলার-ইনফর্মড ভার্চুয়াল DOM](/guide/extras/rendering-mechanism.html#compiler-informed-virtual-dom) বলি। Vue এর টেমপ্লেট কম্পাইলার টেমপ্লেটের স্ট্যাটিক বিশ্লেষণের উপর ভিত্তি করে কর্মক্ষমতা অপ্টিমাইজেশন প্রয়োগ করতে সক্ষম। রানটাইমে একটি কম্পোনেন্টের পুরানো এবং নতুন VNode ট্রির সম্পূর্ণ তুলনা করার পরিবর্তে, Vue কম্পাইলার দ্বারা নিষ্কাশিত তথ্য ব্যবহার করতে পারে ট্রির যে অংশগুলি আসলে পরিবর্তন হতে পারে তার তুলনা কমাতে।
 
-For more details see:
+আরও জানার জন্য দেখুন:
 - [Guide - Rendering Mechanism](/guide/extras/rendering-mechanism.html)
 - [Guide - Render Functions & JSX](/guide/extras/render-function.html)
 
 ## VNode {#vnode}
 
-A *VNode* is a *virtual DOM node*. They can be created using the [`h()`](/api/render-function.html#h) function.
-
-See [virtual DOM](#virtual-dom) for more information.
+একটি *VNode* হল একটি *ভার্চুয়াল DOM নোড*। এগুলি [`h()`](/api/render-function.html#h) ফাংশন ব্যবহার করে তৈরি করা যেতে পারে।
+দেখুন [virtual DOM](#virtual-dom) আরও জানতে।
 
 ## Web Component {#web-component}
 
-The *Web Components* standard is a collection of features implemented in modern web browsers.
+*ওয়েব কম্পোনেন্টস* &nbsp;আদর্শ &nbsp;হল আধুনিক ওয়েব ব্রাউজারে বাস্তবায়িত বৈশিষ্ট্যের একটি সংগ্রহ।
 
-Vue components are not Web Components, but `defineCustomElement()` can be used to create a [custom element](#custom-element) from a Vue component. Vue also supports the use of custom elements inside Vue components.
+Vue কম্পোনেন্ট ওয়েব কম্পোনেন্ট নয়, তবে `defineCustomElement()` ব্যবহার করা যেতে পারে একটি Vue কম্পোনেন্ট থেকে একটি [কাস্টম কম্পোনেন্ট](#custom-element) তৈরি করতে। Vue তার কম্পোনেন্টগুলির মধ্যে কাস্টম কম্পোনেন্টগুলির ব্যবহারকে সমর্থন করে।
 
-For more details see:
+বিস্তারিত জানার জন্য দেখুনঃ
 - [Guide - Vue and Web Components](/guide/extras/web-components.html)
