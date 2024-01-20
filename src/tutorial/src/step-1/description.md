@@ -21,6 +21,33 @@ Vue টিউটোরিয়ালে স্বাগতম!
 
 - আপনি SFC-মোড বা HTML-মোডের মধ্যেও স্যুইচ করতে পারেন। আগেরটি <a target="_blank" href="/guide/introduction.html#single-file-components">সিঙ্গল-ফাইল কম্পোনেন্ট</a> (SFC) ফর্ম্যাটে কোডের উদাহরণ দেখাবে, যা বেশিরভাগ বিকাশকারীরা ব্যবহার করে যখন তারা একটি বিল্ড স্টেপ সহ Vue ব্যবহার করে। HTML-মোড বিল্ড স্টেপ ছাড়াই ব্যবহার দেখায়।
 
+<div class="html">
+
+:::tip
+আপনি যদি নিজের অ্যাপ্লিকেশানগুলিতে বিল্ড স্টেপ ছাড়াই HTML-মোড ব্যবহার করতে চলেছেন, নিশ্চিত করুন যে আপনি হয় ইম্পোর্টগুলো এতে পরিবর্তন করেছেন:
+
+```js
+import { ... } from 'vue/dist/vue.esm-bundler.js'
+```
+
+আপনার স্ক্রিপ্টের ভিতরে বা সেই অনুযায়ী `vue` সমাধান করতে আপনার বিল্ড টুল কনফিগার করুন। [Vite](https://vitejs.dev/) এর জন্য নমুনা কনফিগারেশন:
+
+```js
+// vite.config.js
+export default {
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler.js'
+    }
+  }
+}
+```
+
+আরও তথ্যের জন্য সংশ্লিষ্ট [টুলিং গাইডের বিভাগ](/guide/scaling-up/tooling.html#note-on-in-browser-template-compilation) দেখুন।
+:::
+
+</div>
+
 </details>
 
 প্রস্তুত? শুরু করতে "পরবর্তী" এ ক্লিক করুন৷

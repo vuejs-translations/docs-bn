@@ -577,6 +577,41 @@ JSX equivalent:
 
 ফাংশন হিসাবে স্লট পাস করা তাদের  চাইল্ড কম্পোনেন্ট দ্বারা অলসভাবে আমন্ত্রণ জানানোর অনুমতি দেয়। এটি পিতামাতার পরিবর্তে সন্তানের দ্বারা স্লটের নির্ভরতা ট্র্যাক করার দিকে পরিচালিত করে, যার ফলে আরও সঠিক এবং দক্ষ আপডেট হয়।
 
+### Scoped Slots
+
+প্যারেন্ট কম্পোনেন্টে একটি স্কোপড স্লট রেন্ডার করতে, একটি স্লট চাইল্ডকে দেওয়া হয়। লক্ষ্য করুন কিভাবে স্লটে এখন একটি প্যারামিটার `text` আছে। স্লটটি চাইল্ড কম্পোনেন্টে কল করা হবে এবং চাইল্ড কম্পোনেন্ট থেকে ডেটা প্যারেন্ট কম্পোনেন্টে পাঠানো হবে।
+
+```js
+// parent component
+export default {
+  setup() {
+    return () => h(MyComp, null, {
+      default: ({ text }) => h('p', text)
+    })
+  }
+}
+```
+
+`null` পাস করতে মনে রাখবেন যাতে স্লটগুলিকে প্রপস হিসাবে গণ্য করা হবে না।
+
+```js
+// child component
+export default {
+  setup(props, { slots }) {
+    const text = ref('hi')
+    return () => h('div', null, slots.default({ text: text.value }))
+  }
+}
+```
+
+JSX সমতুল্য:
+
+```jsx
+<MyComponent>{{
+  default: ({ text }) => <p>{ text }</p>  
+}}</MyComponent>
+```
+
 ### Built-in Components {#built-in-components}
 
 [বিল্ট-ইন কম্পোনেন্ট](/api/built-in-components) যেমন `<KeepAlive>`, `<Transition>`, `<TransitionGroup>`, `<Teleport>` এবং `<Suspense>` অবশ্যই আমদানি করতে হবে রেন্ডার ফাংশনে ব্যবহারের জন্য:

@@ -239,7 +239,7 @@ as explained in the "Dynamic Argument Value Constraints" and "Dynamic Argument S
 <a v-on:[eventName]="doSomething"> ... </a>
 
 <!-- shorthand -->
-<a @[eventName]="doSomething">
+<a @[eventName]="doSomething"> ... </a>
 ```
 
 এই উদাহরণে, যখন `eventName` এর মান `"focus"` হয়, `v-on:[eventName]` হবে `v-on:focus` এর সমতুল্য।
