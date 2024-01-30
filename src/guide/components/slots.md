@@ -313,7 +313,7 @@ function BaseLayout(slots) {
 </base-layout>
 ```
 
-মনে রাখবেন অভিব্যক্তি সাপেক্ষে [syntax constraints](/guide/essentials/template-syntax#directives) গতিশীল নির্দেশিক আর্গুমেন্ট.
+মনে রাখবেন এক্সপ্রেশনটি ডায়নামিক নির্দেশিক আর্গুমেন্টের [সিনট্যাক্স সীমাবদ্ধতা](/guide/essentials/template-syntax.md#dynamic-argument-syntax-constraints) এর অধীন।
 
 ## Scoped Slots {#scoped-slots}
 

@@ -257,8 +257,9 @@ methods: {
 `.capture`, `.once` এবং `.passive` মডিফায়ারগুলি [নেটিভ `addEventListener` পদ্ধতির বিকল্পগুলি](https://developer.mozilla.org/en-US/docs/Web/API/) মিরর করে EventTarget/addEventListener#options):
 
 ```vue-html
-<!-- use capture mode when adding the event listener -->
-<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
+<!-- use capture mode when adding the event listener     -->
+<!-- i.e. an event targeting an inner element is handled -->
+<!-- here before being handled by that element           -->
 <div @click.capture="doThis">...</div>
 
 <!-- the click event will be triggered at most once -->
