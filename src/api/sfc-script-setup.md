@@ -228,9 +228,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 ## defineModel() <sup class="vt-badge" data-text="3.4+" /> {#definemodel}
 
-This macro can be used to declare a two-way binding prop that can be consumed via `v-model` from the parent component. Example usage is also discussed in the [Component `v-model`](/guide/components/v-model) guide.
+এই ম্যাক্রোটি একটি দ্বি-মুখী বাইন্ডিং প্রপ ঘোষণা করতে ব্যবহার করা যেতে পারে যা মূল উপাদান থেকে `v-model` এর মাধ্যমে ব্যবহার করা যেতে পারে। উদাহরণ ব্যবহার [কম্পোনেন্ট `v-model`](/guide/components/v-model) গাইডেও আলোচনা করা হয়েছে।
 
-Under the hood, this macro declares a model prop and a corresponding value update event. If the first argument is a literal string, it will be used as the prop name; Otherwise the prop name will default to `"modelValue"`. In both cases, you can also pass an additional object which can include the prop's options and the model ref's value transform options.
+হুডের নিচে, এই ম্যাক্রো একটি মডেল প্রপ এবং একটি সংশ্লিষ্ট মান আপডেট ইভেন্ট ঘোষণা করে। যদি প্রথম আর্গুমেন্টটি একটি আক্ষরিক স্ট্রিং হয় তবে এটি প্রপ নাম হিসাবে ব্যবহার করা হবে; অন্যথায় প্রপ নামটি ডিফল্ট হবে `"modelValue"`। উভয় ক্ষেত্রেই, আপনি একটি অতিরিক্ত অবজেক্টও পাস করতে পারেন যা প্রপের বিকল্পগুলি এবং মডেল রেফের মান রূপান্তর বিকল্পগুলি অন্তর্ভুক্ত করতে পারে।
 
 ```js
 // declares "modelValue" prop, consumed by parent via v-model
@@ -253,7 +253,7 @@ function inc() {
 ```
 
 :::warning
-If you have a `default` value for `defineModel` prop and you don't provide any value for this prop from the parent component, it can cause a de-synchronization between parent and child components. In the example below, the parent's `myRef` is undefined, but the child's `model` is 1:
+যদি আপনার কাছে `defineModel` প্রপের জন্য একটি `default` মান থাকে এবং আপনি এই প্রপের জন্য অভিভাবক উপাদান থেকে কোনো মান প্রদান না করেন, তাহলে এটি পিতামাতা এবং শিশু উপাদানগুলির মধ্যে একটি ডি-সিঙ্ক্রোনাইজেশন সৃষ্টি করতে পারে। নীচের উদাহরণে, পিতামাতার `myRef` অসংজ্ঞায়িত, কিন্তু সন্তানের `model` হল 1:
 
 ```js
 // child component:
@@ -271,7 +271,7 @@ const myRef = ref()
 
 ### Modifiers and Transformers {#modifiers-and-transformers}
 
-To access modifiers used with the `v-model` directive, we can destructure the return value of `defineModel()` like this:
+`v-model` নির্দেশের সাথে ব্যবহৃত মডিফায়ার অ্যাক্সেস করতে, আমরা `defineModel()` এর রিটার্ন মানকে এভাবে ধ্বংস করতে পারি:
 
 ```js
 const [modelValue, modelModifiers] = defineModel()
@@ -282,7 +282,7 @@ if (modelModifiers.trim) {
 }
 ```
 
-When a modifier is present, we likely need to transform the value when reading or syncing it back to the parent. We can achieve this by using the `get` and `set` transformer options:
+যখন একটি সংশোধক উপস্থিত থাকে, তখন আমাদের সম্ভবত মানটি প্যারেন্টের সাথে পড়ার বা সিঙ্ক করার সময় রূপান্তর করতে হবে। আমরা `get` এবং `set` ট্রান্সফরমার বিকল্পগুলি ব্যবহার করে এটি অর্জন করতে পারি:
 
 ```js
 const [modelValue, modelModifiers] = defineModel({
@@ -300,7 +300,7 @@ const [modelValue, modelModifiers] = defineModel({
 
 ### Usage with TypeScript <sup class="vt-badge ts" /> {#usage-with-typescript}
 
-Like `defineProps` and `defineEmits`, `defineModel` can also receive type arguments to specify the types of the model value and the modifiers:
+`defineProps` এবং `defineEmits` এর মতো, `defineModel` মডেলের মান এবং মডিফায়ারের ধরন নির্দিষ্ট করতে টাইপ আর্গুমেন্টও পেতে পারে:
 
 ```ts
 const modelValue = defineModel<string>()

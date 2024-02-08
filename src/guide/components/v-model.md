@@ -47,7 +47,7 @@ const model = defineModel()
 </template>
 ```
 
-[Playground Example](https://play.vuejs.org/#eNqFUtFKwzAU/ZWYl06YLbK30Q10DFSYigq+5KW0t11mmoQknZPSf/cm3eqEsT0l555zuefmpKV3WsfbBuiUpjY3XDtiwTV6ziSvtTKOLNZcFKQ0qiZRnATkG6JB0BIDJen2kp5iMlfSOlLbisw8P4oeQAhFPpURxVV0zWSa9PNwEgIHtRaZA0SEpOvbeduG5q5LE0Sh2jvZ3tSqADFjFHlGSYJkmhz10zF1FseXvIo3VklcrfX9jOaq1lyAedGOoz1GpyQwnsvQ3fdTqDnTwPhQz9eQf52ob+zO1xh9NWDBbIHRgXOZqcD19PL9GXZ4H0h03whUnyHfwCrReI+97L6RBdo+0gW3j+H9uaw+7HLnQNrDUt6oV3ZBzyhmsjiz+p/dSTwJfUx2+IpD1ic+xz5enwQGXEDJJaw8Gl2I1upMzlc/hEvdOBR6SNKAjqP1J6P/o6XdL11L5h4=)
+[চেষ্টা করুন](https://play.vuejs.org/#eNqFUtFKwzAU/ZWYl06YLbK30Q10DFSYigq+5KW0t11mmoQknZPSf/cm3eqEsT0l555zuefmpKV3WsfbBuiUpjY3XDtiwTV6ziSvtTKOLNZcFKQ0qiZRnATkG6JB0BIDJen2kp5iMlfSOlLbisw8P4oeQAhFPpURxVV0zWSa9PNwEgIHtRaZA0SEpOvbeduG5q5LE0Sh2jvZ3tSqADFjFHlGSYJkmhz10zF1FseXvIo3VklcrfX9jOaq1lyAedGOoz1GpyQwnsvQ3fdTqDnTwPhQz9eQf52ob+zO1xh9NWDBbIHRgXOZqcD19PL9GXZ4H0h03whUnyHfwCrReI+97L6RBdo+0gW3j+H9uaw+7HLnQNrDUt6oV3ZBzyhmsjiz+p/dSTwJfUx2+IpD1ic+xz5enwQGXEDJJaw8Gl2I1upMzlc/hEvdOBR6SNKAjqP1J6P/o6XdL11L5h4=)
 
 ### Under the Hood {#under-the-hood}
 
@@ -85,7 +85,7 @@ const model = defineModel({ default: 0 })
 ```
 
 :::warning
-If you have a `default` value for `defineModel` prop and you don't provide any value for this prop from the parent component, it can cause a de-synchronization between parent and child components. In the example below, the parent's `myRef` is undefined, but the child's `model` is 1:
+যদি আপনার কাছে `defineModel` প্রপের জন্য একটি `default` মান থাকে এবং আপনি এই প্রপের জন্য অভিভাবক উপাদান থেকে কোনো মান প্রদান না করেন, তাহলে এটি পিতামাতা এবং শিশু উপাদানগুলির মধ্যে একটি ডি-সিঙ্ক্রোনাইজেশন সৃষ্টি করতে পারে। নীচের উদাহরণে, পিতামাতার `myRef` অসংজ্ঞায়িত, কিন্তু সন্তানের `model` হল 1:
 
 ```js
 // child component:
@@ -105,7 +105,7 @@ const myRef = ref()
 
 <div class="options-api">
 
-First let's revisit how `v-model` is used on a native element:
+প্রথমে আসুন একটি নেটিভ এলিমেন্টে কীভাবে `v-model` ব্যবহার করা হয় তা আবার দেখা যাক:
 
 ```vue-html
 <input v-model="searchText" />
@@ -249,7 +249,7 @@ defineEmits(['update:title'])
 </div>
 <div class="options-api">
 
-In this case, instead of the default `modelValue` prop and `update:modelValue` event, the child component should expect a `title` prop and emit an `update:title` event to update the parent value:
+এই ক্ষেত্রে, ডিফল্ট `modelValue` প্রপ এবং `update:modelValue` ইভেন্টের পরিবর্তে, চাইল্ড কম্পোনেন্টের একটি `title` প্রপ আশা করা উচিত এবং প্যারেন্ট মান আপডেট করার জন্য একটি `update:title` ইভেন্ট নির্গত করা উচিত:
 
 ```vue
 <!-- MyComponent.vue -->
@@ -445,7 +445,7 @@ function emitValue(e) {
 
 <div class="options-api">
 
-Los modificadores agregados a un componente `v-model` se proporcionarán al componente a través de la propiedad `modelModifiers`. En el siguiente ejemplo, hemos creado un componente que contiene un accesorio `modelModifiers` que por defecto es un objeto vacío:
+একটি `v-model` উপাদানে যোগ করা সংশোধকগুলিকে `modelModifiers` বৈশিষ্ট্যের মাধ্যমে উপাদানটিতে সরবরাহ করা হবে। নিম্নলিখিত উদাহরণে, আমরা একটি উপাদান তৈরি করেছি যাতে একটি `modelModifiers` প্রপ রয়েছে যা ডিফল্টরূপে একটি খালি বস্তু:
 
 ```vue{11}
 <script>
