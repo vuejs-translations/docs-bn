@@ -272,6 +272,42 @@ watch(
 
 </div>
 
+
+## Once Watchers <sup class="vt-badge" data-text="3.4+" /> {#once-watchers}
+
+যখনই ওয়াচার সোর্স পরিবর্তন হবে তখনই ওয়াচার কলব্যাক কার্যকর হবে৷ আপনি যদি সোর্স পরিবর্তনের সময় কলব্যাক শুধুমাত্র একবার ট্রিগার করতে চান, তাহলে `once: true` বিকল্পটি ব্যবহার করুন।
+
+<div class="options-api">
+  
+```js
+export default {
+  watch: {
+    source: {
+      handler(newValue, oldValue) {
+        // when `source` changes, triggers only once
+      },
+      once: true
+    }
+  }
+}
+```
+
+</div>
+
+<div class="composition-api">
+
+```js
+watch(
+  source,
+  (newValue, oldValue) => {
+    // when `source` changes, triggers only once
+  },
+  { once: true }
+)
+```
+
+</div>
+
 <div class="composition-api">
 
 ## `watchEffect()` \*\* {#watcheffect}
