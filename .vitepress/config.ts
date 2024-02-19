@@ -718,7 +718,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     ],
 
     editLink: {
-      repo: 'mahmudunnabikajal/docs-bn',
+      repo: 'vuejs-translations/docs-bn',
       text: 'GitHub-এ এই পৃষ্ঠাটি সম্পাদনা করুন'
     },
 
