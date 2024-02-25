@@ -363,8 +363,10 @@ import { createApp } from 'vue'
 ইম্পোর্ট ম্যাপস একটি অপেক্ষাকৃত নতুন ব্রাউজার বৈশিষ্ট্য। একটি ব্রাউজার এর [সমর্থন পরিসর](https://caniuse.com/import-maps) এর মধ্যে ব্যবহারযোগ্য কিনা নিশ্চিত করুন। বিশেষ করে, এটি শুধুমাত্র Safari 16.4+ এ সমর্থিত।
 :::
 
-:::warning Production ব্যবহারের উপর নোট
-এখন পর্যন্ত উদাহরণগুলি হল Vue-এর ডেভেলপমেন্ট বিল্ড ব্যবহার করে তৈরি করা - আপনি যদি প্রোডাকশনে CDN থেকে Vue ব্যবহার করতে চান, তবে [প্রোডাকশন ডেপ্লয়মেন্ট নির্দেশিকা](/guide/best-practices/production-deployment#without-build) চেক করে দেখুন।
+:::warning প্রোডাকশন এ ব্যবহার এর নোট
+এখন পর্যন্ত উদাহরণগুলি হল Vue-এর ডেভেলপমেন্ট বিল্ড ব্যবহার করা - আপনি যদি প্রোডাকশনে CDN থেকে Vue ব্যবহার করতে চান, তবে [Production Deployment Guide](/guide/best-practices/production-deployment#without-build-tools) দেখে নিন।
+
+যদিও বিল্ড সিস্টেম ছাড়াই Vue ব্যবহার করা সম্ভব, বিবেচনা করার জন্য একটি বিকল্প পদ্ধতি হল [`vuejs/petite-vue`](https://github.com/vuejs/petite-vue) ব্যবহার করা যা প্রেক্ষাপটের সাথে আরও ভালভাবে মানানসই হতে পারে [`jquery/jquery`](https://github.com/jquery/jquery) (অতীতে) বা [`alpinejs/alpine`](https://github.com/alpinejs/alpine) (বর্তমানে ) পরিবর্তে ব্যবহার করা যেতে পারে।
 :::
 
 ### মডিউলগুলি বিভক্ত করা {#splitting-up-the-modules}
