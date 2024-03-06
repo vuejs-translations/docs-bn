@@ -224,7 +224,7 @@ export function register() {
 
 আপনার যদি অনেকগুলি কম্পোনেন্ট থাকে তবে আপনি Vite's [glob import](https://vitejs.dev/guide/features.html#glob-import) বা ওয়েবপ্যাকের [`require.context`](https://vitejs.dev/guide/features.html#glob-import) এর মতো বিল্ড টুল বৈশিষ্ট্যগুলিও ব্যবহার করতে পারেন ://webpack.js.org/guides/dependency-management/#requirecontext) একটি ডিরেক্টরি থেকে সমস্ত কম্পোনেন্ট লোড করতে।
 
-### Web Components and Typescript {#web-components-and-typescript}
+### Web Components and TypeScript {#web-components-and-typescript}
 
 আপনি যদি একটি অ্যাপ্লিকেশন বা একটি লাইব্রেরি তৈরি করেন, তাহলে আপনি আপনার Vue কম্পোনেন্টগুলিকে [টাইপ চেক](/guide/scaling-up/tooling.html#typescript) করতে চাইতে পারেন, যেগুলি কাস্টম কম্পোনেন্ট হিসাবে সংজ্ঞায়িত করা হয়েছে।
 

@@ -787,7 +787,7 @@ MyComponent.inheritAttrs = false
 
 ### Typing Functional Components<sup class="vt-badge ts" /> {#typing-functional-components}
 
-কার্যকরী কম্পোনেন্টগুলি নাম বা বেনামী কিনা তার উপর ভিত্তি করে টাইপ করা যেতে পারে। ভোলার এসএফসি টেমপ্লেটে ব্যবহার করার সময় সঠিকভাবে টাইপ করা কার্যকরী কম্পোনেন্টগুলিকে টাইপ চেক করা সমর্থন করে।
+কার্যকরী উপাদানগুলি নাম বা বেনামী কিনা তার উপর ভিত্তি করে টাইপ করা যেতে পারে। [Vue - অফিসিয়াল এক্সটেনশন](https://github.com/vuejs/language-tools) SFC টেমপ্লেটে ব্যবহার করার সময় সঠিকভাবে টাইপ করা কার্যকরী উপাদান টাইপ চেক করা সমর্থন করে।
 
 **Named Functional Component**
 

@@ -26,15 +26,13 @@ Vue টাইপস্ক্রিপ্টে লেখা হয় এবং 
 
 - [ভিজ্যুয়াল স্টুডিও কোড](https://code.visualstudio.com/) (VSCode) এর TypeScript-এর জন্য দুর্দান্ত আউট-অফ-দ্য-বক্স সমর্থনের জন্য দৃঢ়ভাবে সুপারিশ করা হয়।
 
-  - [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) হল অফিসিয়াল VSCode এক্সটেনশন যা Vue SFC-এর মধ্যে TypeScript সমর্থন প্রদান করে, সাথে আরও অনেক দুর্দান্ত বৈশিষ্ট্য রয়েছে।
+- [Vue - অফিসিয়াল](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (আগে Volar) হল অফিসিয়াল VSCode এক্সটেনশন যা Vue SFC-এর মধ্যে TypeScript সমর্থন প্রদান করে, সাথে আরও অনেক দুর্দান্ত বৈশিষ্ট্য রয়েছে।
 
-    :::tip
-    Volar প্রতিস্থাপন করে [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur), Vue 2-এর জন্য আমাদের পূর্ববর্তী অফিসিয়াল VSCode এক্সটেনশন। আপনার যদি বর্তমানে Vetur ইনস্টল করা থাকে, তাহলে Vue 3 প্রকল্পে এটি নিষ্ক্রিয় করার বিষয়টি নিশ্চিত করুন .
-    :::
+     :::tip
+     Vue - অফিসিয়াল এক্সটেনশন [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) প্রতিস্থাপন করে, Vue 2-এর জন্য আমাদের পূর্ববর্তী অফিসিয়াল VSCode এক্সটেনশন। আপনার যদি বর্তমানে Vetur ইনস্টল করা থাকে, তাহলে এটিকে অক্ষম করতে ভুলবেন না। Vue 3 প্রকল্প।
+     :::
 
-  - [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) টিএস ফাইলগুলিতে `*.vue` আমদানির জন্য টাইপ সমর্থন পেতেও প্রয়োজন।
-
-- [WebStorm](https://www.jetbrains.com/webstorm/) এছাড়াও TypeScript এবং Vue উভয়ের জন্য আউট-অফ-দ্য-বক্স সমর্থন প্রদান করে। অন্যান্য JetBrains IDE গুলিও তাদের সমর্থন করে, বাক্সের বাইরে বা [a free plugin](https://plugins.jetbrains.com/plugin/9442-vue-js) এর মাধ্যমে। 2023.2 সংস্করণ অনুসারে, WebStorm এবং Vue প্লাগইন Vue ভাষা সার্ভারের জন্য অন্তর্নির্মিত সমর্থন সহ আসে। আপনি সেটিংস > ভাষা এবং ফ্রেমওয়ার্ক > টাইপস্ক্রিপ্ট > Vue-এর অধীনে সমস্ত TypeScript সংস্করণে Volar ইন্টিগ্রেশন ব্যবহার করার জন্য Vue পরিষেবা সেট করতে পারেন। ডিফল্টরূপে, Volar টাইপস্ক্রিপ্ট সংস্করণ 5.0 এবং উচ্চতর জন্য ব্যবহার করা হবে।
+- [ওয়েবস্টর্ম](https://www.jetbrains.com/webstorm/) এছাড়াও TypeScript এবং Vue উভয়ের জন্য আউট-অফ-দ্য-বক্স সমর্থন প্রদান করে। অন্যান্য JetBrains IDE গুলিও তাদের সমর্থন করে, হয় বাক্সের বাইরে বা [একটি বিনামূল্যের প্লাগইন](https://plugins.jetbrains.com/plugin/9442-vue-js) এর মাধ্যমে। 2023.2 সংস্করণ অনুসারে, WebStorm এবং Vue প্লাগইন Vue ভাষা সার্ভারের জন্য অন্তর্নির্মিত সমর্থন সহ আসে। আপনি সেটিংস > ভাষা এবং ফ্রেমওয়ার্ক > টাইপস্ক্রিপ্ট > Vue-এর অধীনে সমস্ত TypeScript সংস্করণে Volar ইন্টিগ্রেশন ব্যবহার করার জন্য Vue পরিষেবা সেট করতে পারেন। ডিফল্টরূপে, Volar টাইপস্ক্রিপ্ট সংস্করণ 5.0 এবং উচ্চতর জন্য ব্যবহার করা হবে।
 
 ### Configuring `tsconfig.json` {#configuring-tsconfig-json}
 
@@ -54,24 +52,6 @@ See also:
 
 - [অফিসিয়াল টাইপস্ক্রিপ্ট কম্পাইলার অপশন ডক্স](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
 - [এসবিল্ড টাইপস্ক্রিপ্ট সংকলন সতর্কতা](https://esbuild.github.io/content-types/#typescript-caveats)
-
-### Volar Takeover Mode {#volar-takeover-mode}
-
-> এই বিভাগটি শুধুমাত্র VSCode + Volar এর জন্য প্রযোজ্য।
-
-Vue SFC এবং TypeScript একসাথে কাজ করার জন্য, Volar Vue-নির্দিষ্ট সমর্থনের সাথে প্যাচ করা একটি পৃথক TS ভাষা পরিষেবা দৃষ্টান্ত তৈরি করে এবং এটি Vue SFC-তে ব্যবহার করে। একই সময়ে, প্লেইন টিএস ফাইলগুলি এখনও VSCode-এর অন্তর্নির্মিত TS ভাষা পরিষেবা দ্বারা পরিচালিত হয়, যে কারণে আমাদের [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) প্রয়োজন -vue-প্লাগইন) টিএস ফাইলগুলিতে Vue SFC আমদানি সমর্থন করতে। এই ডিফল্ট সেটআপ কাজ করে, কিন্তু প্রতিটি প্রকল্পের জন্য আমরা দুটি টিএস ভাষা পরিষেবা দৃষ্টান্ত চালাচ্ছি: একটি Volar থেকে, একটি VSCode-এর অন্তর্নির্মিত পরিষেবা থেকে৷ এটি কিছুটা অদক্ষ এবং বড় প্রকল্পে কর্মক্ষমতা সমস্যা হতে পারে।
-
-ভোলার কর্মক্ষমতা উন্নত করতে "টেকওভার মোড" নামে একটি বৈশিষ্ট্য সরবরাহ করে। টেকওভার মোডে, Volar একটি একক TS ভাষা পরিষেবার উদাহরণ ব্যবহার করে Vue এবং TS ফাইল উভয়ের জন্য সমর্থন প্রদান করে।
-
-টেকওভার মোড সক্ষম করতে, আপনাকে এই পদক্ষেপগুলি অনুসরণ করে **আপনার প্রকল্পের কর্মক্ষেত্রে** ভিএসসিডের অন্তর্নির্মিত টিএস ভাষা পরিষেবা নিষ্ক্রিয় করতে হবে:
-
-1. আপনার প্রজেক্ট ওয়ার্কস্পেসে, 'Ctrl + Shift + P' (macOS: `Cmd + Shift + P`) সহ কমান্ড প্যালেট আনুন।
-2. `বিল্ট` টাইপ করুন এবং "এক্সটেনশন: বিল্ট-ইন এক্সটেনশন দেখান" নির্বাচন করুন।
-3. এক্সটেনশন সার্চ বক্সে `টাইপস্ক্রিপ্ট` টাইপ করুন (`@builtin` উপসর্গ মুছে ফেলবেন না)।
-4. "TypeScript এবং JavaScript Language Features"-এর সামান্য গিয়ার আইকনে ক্লিক করুন এবং "অক্ষম (ওয়ার্কস্পেস)" নির্বাচন করুন।
-5. কর্মক্ষেত্র পুনরায় লোড করুন। আপনি যখন একটি Vue বা TS ফাইল খুলবেন তখন টেকওভার মোড সক্ষম হবে৷
-
-<img src="./images/takeover-mode.png" width="590" height="426" style="margin:0px auto;border-radius:8px">
 
 ### Note on Vue CLI and `ts-loader` {#note-on-vue-cli-and-ts-loader}
 

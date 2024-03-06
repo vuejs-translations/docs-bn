@@ -26,7 +26,7 @@ outline: deep
 
   প্রোডাকশন বিল্ডে devtools সমর্থন সক্রিয়/নিষ্ক্রিয় করুন। এর ফলে বান্ডেলে আরও কোড অন্তর্ভুক্ত হবে, তাই এটি শুধুমাত্র ডিবাগিংয়ের উদ্দেশ্যে এটি সক্রিয় করার পরামর্শ দেওয়া হচ্ছে।
 
-## `__VUE_PROD_HYDRATION_MISMATCH_DETAILS__` <sup class="vt-badge" data-text="3.4+" /> {#VUE_PROD_HYDRATATION_MISMATCH_DETAILS}
+## `__VUE_PROD_HYDRATION_MISMATCH_DETAILS__` <sup class="vt-badge" data-text="3.4+" /> {#VUE_PROD_HYDRATION_MISMATCH_DETAILS}
 
 - **Default:** `false`
 

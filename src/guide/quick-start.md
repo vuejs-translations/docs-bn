@@ -117,9 +117,9 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 আপনার প্রথম Vue প্রকল্পটি এখন চালু হয়ে যাওয়া উচিত! মনে রাখবেন যে উৎপন্ন প্রকল্পের উদাহরণ হিসেবে তৈরি হওয়া কম্পোনেন্টগুলি [Options API](/guide/introduction#options)-এর পরিবর্তে [Composition API](/guide/introduction#composition-api) এবং `<script setup>` ব্যবহার করে লেখা হয়েছে। এখানে কিছু অতিরিক্ত টিপস আছে:
 
-- প্রস্তাবিত IDE সেটআপ হল [ভিজ্যুয়াল স্টুডিও কোড](https://code.visualstudio.com/) + [ভোলার এক্সটেনশন](https://marketplace.visualstudio.com/items?itemName=Vue.volar)। আপনি যদি অন্য এডিটর ব্যবহার করেন তবে [IDE সমর্থন বিভাগ](/guide/scaling-up/tooling#ide-support) দেখুন।
-- ব্যাকএন্ড ফ্রেমওয়ার্কের সাথে ইন্টিগ্রেশন সহ আরও টুলিং বিশদে [টুলিং গাইড](/guide/scaling-up/tooling) আলোচনা করা হয়েছে।
-- অন্তর্নিহিত বিল্ড টুল Vite সম্পর্কে আরও জানতে [ভাইট ডকস](https://vitejs.dev) দেখুন।
+- প্রস্তাবিত IDE সেটআপ হল [ভিজ্যুয়াল স্টুডিও কোড](https://code.visualstudio.com/) + [Vue - অফিসিয়াল এক্সটেনশন](https://marketplace.visualstudio.com/items?itemName=Vue.volar)। আপনি যদি অন্য এডিটর ব্যবহার করেন তবে [IDE সমর্থন বিভাগ](/guide/scaling-up/tooling#ide-support) দেখুন।
+- ব্যাকএন্ড ফ্রেমওয়ার্কের সাথে ইন্টিগ্রেশন সহ আরও টুলিং বিশদ [টুলিং গাইড](/guide/scaling-up/tooling) এ আলোচনা করা হয়েছে।
+- অন্তর্নিহিত বিল্ড টুল Vite সম্পর্কে আরও জানতে, [Vite docs](https://vitejs.dev) দেখুন।
 - আপনি যদি টাইপস্ক্রিপ্ট ব্যবহার করতে চান তবে [টাইপস্ক্রিপ্ট ব্যবহার নির্দেশিকা](typescript/overview) দেখুন।
 
 আপনি যখন আপনার অ্যাপটিকে প্রোডাকশনে পাঠানোর জন্য প্রস্তুত হন, তখন নিম্নলিখিতটি চালান:
