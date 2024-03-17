@@ -131,4 +131,10 @@ Async কম্পোনেন্টগুলি ডিফল্টরূপে 
 </RouterView>
 ```
 
-ভিউ রাউটারে গতিশীল আমদানি ব্যবহার করে [lazily loading components](https://router.vuejs.org/guide/advanced/lazy-loading.html) জন্য অন্তর্নির্মিত সমর্থন রয়েছে। এগুলি async কম্পোনেন্টগুলির থেকে আলাদা এবং বর্তমানে তারা ট্রিগার করবে না `<Suspense>`। যাইহোক, তাদের এখনও বংশধর হিসাবে অ্যাসিঙ্ক কম্পোনেন্ট থাকতে পারে এবং সেগুলি স্বাভাবিক উপায়ে `<Suspense>` ট্রিগার করতে পারে।
+ভিউ রাউটারে ডাইনামিক ইম্পোর্ট ব্যবহার করে [lazily loading components](https://router.vuejs.org/guide/advanced/lazy-loading.html) জন্য বিল্ড-ইন সমর্থন রয়েছে। এগুলি অ্যাসিঙ্ক উপাদানগুলির থেকে আলাদা এবং বর্তমানে তারা `<Suspense>` ট্রিগার করবে না। যাইহোক, তাদের এখনও ডিসেন্ডেন্টস হিসাবে অ্যাসিঙ্ক উপাদান থাকতে পারে এবং সেগুলি স্বাভাবিক উপায়ে `<Suspense>` ট্রিগার করতে পারে।
+
+---
+
+**Related**
+
+- [`<Suspense>` API reference](/api/built-in-components#suspense)

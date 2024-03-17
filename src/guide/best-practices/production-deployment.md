@@ -26,9 +26,9 @@ During development, Vue উন্নয়ন অভিজ্ঞতা উন্
 
 একটি কাস্টম সেটআপ ব্যবহার করলে, নিশ্চিত করুন যে:
 
-1. `vue` `vue.runtime.esm-bundler.js`-এ সমাধান করে।
-2. [কম্পাইল টাইম ফিচার ফ্ল্যাগ](https://github.com/vuejs/core/tree/main/packages/vue#bundler-build-feature-flags) সঠিকভাবে কনফিগার করা হয়েছে।
-3. <code>process.env<wbr>.NODE_ENV</code> বিল্ড করার সময় `"production"` দিয়ে প্রতিস্থাপিত হয়।
+1. `vue` -এ সমাধান করে `vue.runtime.esm-bundler.js`।
+2. [কম্পাইল টাইম ফিচার ফ্ল্যাগ](/api/compile-time-flags) সঠিকভাবে কনফিগার করা হয়েছে।
+3. <code>process.env<wbr>.NODE_ENV</code> বিল্ড করার সময় `"প্রোডাকশন"` দিয়ে রিপ্লেসড হয়।
 
 অতিরিক্ত তথ্যসূত্র:
 
