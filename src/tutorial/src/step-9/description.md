@@ -67,7 +67,7 @@ createApp({
 
 <div class="options-api">
 
-উপাদানটি `this.$refs`-এ `this.$refs.pElementRef` হিসেবে প্রকাশ করা হবে। যাইহোক, কম্পোনেন্ট **mounted** হওয়ার পরেই আপনি এটি অ্যাক্সেস করতে পারবেন।
+কম্পোনেন্টটি `this.$refs`-এ `this.$refs.pElementRef` হিসেবে প্রকাশ করা হবে। যাইহোক, কম্পোনেন্ট **mounted** হওয়ার পরেই আপনি এটি অ্যাক্সেস করতে পারবেন।
 
 mount পরে কোড চালানোর জন্য, আমরা 'mounted' option ব্যবহার করতে পারি:
 

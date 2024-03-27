@@ -2,7 +2,7 @@
 
 ## provide() {#provide}
 
-একটি মান প্রদান করে যা বংশধর উপাদান দ্বারা ইনজেকশন করা যেতে পারে।
+একটি মান প্রদান করে যা বংশধর কম্পোনেন্ট দ্বারা ইনজেকশন করা যেতে পারে।
 
 - **Type**
 
@@ -16,7 +16,7 @@
 
   TypeScript ব্যবহার করার সময়, কীটি `InjectionKey` হিসেবে কাস্ট করা একটি প্রতীক হতে পারে - একটি Vue প্রদত্ত ইউটিলিটি টাইপ যা `Symbol` প্রসারিত করে, যা `provide()` এবং `inject()` এর মধ্যে মান প্রকার সিঙ্ক করতে ব্যবহার করা যেতে পারে।
 
-  লাইফসাইকেল হুক রেজিস্ট্রেশন এপিআই-এর মতো, একটি উপাদানের `setup()` পর্বের সময় অবশ্যই `provide()` সিঙ্ক্রোনাসভাবে কল করতে হবে।
+  লাইফসাইকেল হুক রেজিস্ট্রেশন এপিআই-এর মতো, একটি কম্পোনেন্টস `setup()` পর্বের সময় অবশ্যই `provide()` সিঙ্ক্রোনাসভাবে কল করতে হবে।
 
 - **Example**
 
@@ -43,7 +43,7 @@
 
 ## inject() {#inject}
 
-একটি ancestor উপাদান বা অ্যাপ্লিকেশন (`app.provide()` এর মাধ্যমে) দ্বারা প্রদত্ত একটি মান ইনজেক্ট করে।
+একটি ancestor কম্পোনেন্ট বা অ্যাপ্লিকেশন (`app.provide()` এর মাধ্যমে) দ্বারা প্রদত্ত একটি মান ইনজেক্ট করে।
 
 - **Type**
 
@@ -76,7 +76,7 @@
 
 - **Example**
 
-  পূর্ববর্তী `provide()` উদাহরণে দেখানো হিসাবে একটি অভিভাবক উপাদান মান প্রদান করেছে:
+  পূর্ববর্তী `provide()` উদাহরণে দেখানো হিসাবে একটি অভিভাবক কম্পোনেন্ট মান প্রদান করেছে:
 
   ```vue
   <script setup>
@@ -102,17 +102,17 @@
   const baz = inject('factory', () => new ExpensiveObject(), true)
   </script>
   ```
+  
+- **See also**
+  - [Guide - Provide / Inject](/guide/components/provide-inject)
+  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
 ## hasInjectionContext() <sup class="vt-badge" data-text="3.3+" /> {#has-injection-context}
 
-Returns true if [inject()](#inject) can be used without warning about being called in the wrong place (e.g. outside of `setup()`). This method is designed to be used by libraries that want to use `inject()` internally without triggering a warning to the end user.
+ভুল জায়গায় (যেমন `setup()` এর বাইরে) কোনো সতর্কতা ছাড়াই যদি [inject()](#inject) ব্যবহার করা যায় তাহলে সত্য দেখায়। এই পদ্ধতিটি এমন লাইব্রেরিদের দ্বারা ব্যবহার করার জন্য ডিজাইন করা হয়েছে যেগুলি শেষ ব্যবহারকারীকে সতর্ক না করেই অভ্যন্তরীণভাবে `ইনজেক্ট()` ব্যবহার করতে চায়।
 
 - **Type**
 
   ```ts
   function hasInjectionContext(): boolean
   ```
-
-* **See also**
-  - [Guide - Provide / Inject](/guide/components/provide-inject)
-  - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />

@@ -768,7 +768,7 @@ function MyComponent(props, context) {
 
 </div>
 
-উপাদানগুলির জন্য সাধারণ কনফিগারেশন বিকল্পগুলির বেশিরভাগ কার্যকরী কম্পোনেন্টগুলির জন্য উপলব্ধ নয়। যাইহোক, বৈশিষ্ট্য হিসাবে যোগ করে [`props`](/api/options-state#props) এবং [`emits`](/api/options-state#emits) সংজ্ঞায়িত করা সম্ভব:
+কম্পোনেন্টগুলির জন্য সাধারণ কনফিগারেশন বিকল্পগুলির বেশিরভাগ কার্যকরী কম্পোনেন্টগুলির জন্য উপলব্ধ নয়। যাইহোক, বৈশিষ্ট্য হিসাবে যোগ করে [`props`](/api/options-state#props) এবং [`emits`](/api/options-state#emits) সংজ্ঞায়িত করা সম্ভব:
 
 ```js
 MyComponent.props = ['value']
@@ -787,7 +787,7 @@ MyComponent.inheritAttrs = false
 
 ### Typing Functional Components<sup class="vt-badge ts" /> {#typing-functional-components}
 
-কার্যকরী উপাদানগুলি নাম বা বেনামী কিনা তার উপর ভিত্তি করে টাইপ করা যেতে পারে। [Vue - অফিসিয়াল এক্সটেনশন](https://github.com/vuejs/language-tools) SFC টেমপ্লেটে ব্যবহার করার সময় সঠিকভাবে টাইপ করা কার্যকরী উপাদান টাইপ চেক করা সমর্থন করে।
+কার্যকরী কম্পোনেন্টগুলি নাম বা বেনামী কিনা তার উপর ভিত্তি করে টাইপ করা যেতে পারে। [Vue - অফিসিয়াল এক্সটেনশন](https://github.com/vuejs/language-tools) SFC টেমপ্লেটে ব্যবহার করার সময় সঠিকভাবে টাইপ করা কার্যকরী কম্পোনেন্ট টাইপ চেক করা সমর্থন করে।
 
 **Named Functional Component**
 

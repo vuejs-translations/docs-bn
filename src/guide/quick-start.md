@@ -18,10 +18,9 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 ## Creating a Vue Application {#creating-a-vue-application}
 
-:::tip পূর্বশর্ত
-
-- কমান্ড লাইনের সাথে পরিচিতি
-- [Node.js](https://nodejs.org/) 18.0 বা উচ্চতর সংস্করণ ইনস্টল করুন
+  ::: tip পূর্বশর্ত
+  - কমান্ড লাইনের সাথে পরিচিতি
+  - [Node.js](https://nodejs.org/) 18.3 বা উচ্চতর সংস্করণ ইনস্টল করুন
   :::
 
 এই বিভাগে আমরা আপনার local মেশিনে কীভাবে একটি Vue [একক পৃষ্ঠা অ্যাপ্লিকেশন](/guide/extras/ways-of-using-vue#single-page-application-spa) স্ক্যাফল্ড করবেন তার সাথে পরিচয় করিয়ে দিব। তৈরি করা প্রোজেক্টটি [Vite](https://vitejs.dev) এর উপর ভিত্তি করে একটি বিল্ড সেটআপ ব্যবহার করবে এবং আমাদেরকে Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs) ব্যবহার করার অনুমতি দিবে।
@@ -37,21 +36,21 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="pnpm">
-  
+
   ```sh
   $ pnpm create vue@latest
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="yarn">
-  
+
   ```sh
   $ yarn create vue@latest
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="bun">
-  
+
   ```sh
   $ bun create vue@latest
   ```
@@ -79,35 +78,35 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 <VTCodeGroup>
   <VTCodeGroupTab label="npm">
 
-  ```sh
-  $ cd <your-project-name>
+  ```sh-vue
+  $ cd {{'<your-project-name>'}}
   $ npm install
   $ npm run dev
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="pnpm">
-  
-  ```sh
-  $ cd <your-project-name>
+
+  ```sh-vue
+  $ cd {{'<your-project-name>'}}
   $ pnpm install
   $ pnpm run dev
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="yarn">
-  
-  ```sh
-  $ cd <your-project-name>
+
+  ```sh-vue
+  $ cd {{'<your-project-name>'}}
   $ yarn
   $ yarn dev
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="bun">
-  
-  ```sh
-  $ cd <your-project-name>
+
+  ```sh-vue
+  $ cd {{'<your-project-name>'}}
   $ bun install
   $ bun run dev
   ```
@@ -133,21 +132,21 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="pnpm">
-  
+
   ```sh
   $ pnpm run build
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="yarn">
-  
+
   ```sh
   $ yarn build
   ```
 
   </VTCodeGroupTab>
   <VTCodeGroupTab label="bun">
-  
+
   ```sh
   $ bun run build
   ```
@@ -420,7 +419,7 @@ export default {
 
 একটি local HTTP সার্ভার শুরু করতে, প্রথমে নিশ্চিত করুন যে আপনি [Node.js](https://nodejs.org/en/) ইনস্টল করেছেন, তারপরে আপনার HTML ফাইলটি যেখানে একই ডিরেক্টরিতে কমান্ড লাইন থেকে `npx serve` চালান। আপনি অন্য কোনো HTTP সার্ভারও ব্যবহার করতে পারেন যা সঠিক MIME প্রকারের সাথে স্ট্যাটিক ফাইল পরিবেশন করতে পারে।
 
-আপনি হয়তো লক্ষ্য করেছেন যে import করা কম্পোনেন্টের টেমপ্লেটটি জাভাস্ক্রিপ্ট স্ট্রিং হিসাবে ইনলাইন করা হয়েছে। আপনি যদি VSCode ব্যবহার করেন তবে আপনি [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) এক্সটেনশন ইনস্টল করতে পারেন এবং একটি `/*html*/` সহ স্ট্রিংগুলি comment করতে পারেন তাদের জন্য সিনট্যাক্স হাইলাইটিং পেতে মন্তব্য করুন।
+আপনি হয়তো লক্ষ্য করেছেন যে আমদানি করা কম্পোনেন্টস টেমপ্লেটটি জাভাস্ক্রিপ্ট স্ট্রিং হিসাবে ইনলাইন করা হয়েছে। আপনি যদি VS কোড ব্যবহার করেন, তাহলে আপনি [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) এক্সটেনশনটি ইনস্টল করতে পারেন এবং একটি মন্তব্য সহ `/*html*/` স্ট্রিংগুলি প্রিফিক্স করতে পারেন তাদের জন্য সিনট্যাক্স হাইলাইটিং পান।
 
 ## Next Steps {#next-steps}
 
