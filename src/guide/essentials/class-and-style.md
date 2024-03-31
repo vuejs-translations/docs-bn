@@ -189,7 +189,7 @@ data() {
 যাইহোক, যদি আপনার একাধিক শর্তসাপেক্ষ ক্লাস থাকে তবে এটি কিছুটা ভার্বোস হতে পারে। এই কারণেই অ্যারে সিনট্যাক্সের ভিতরে অবজেক্ট সিনট্যাক্স ব্যবহার করাও সম্ভব:
 
 ```vue-html
-<div :class="[{ active: isActive }, errorClass]"></div>
+<div :class="[{ activeClass: isActive }, errorClass]"></div>
 ```
 
 ### With Components {#with-components}
