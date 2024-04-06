@@ -14,7 +14,7 @@ onMounted(async () => {
 <template>
   <section id="hero">
     <h1 class="tagline">
-      একটি 
+      একটি
       <span class="accent">প্রগতিশীল</span>
       <br />জাভাস্ক্রিপ্ট ফ্রেমওয়ার্ক
     </h1>
@@ -25,16 +25,8 @@ onMounted(async () => {
       <VueMasteryModal />
       <a class="get-started" href="/guide/introduction.html">
         শুরু করুন
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="10"
-          height="10"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-          />
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24">
+          <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
         </svg>
       </a>
       <a class="setup" href="/guide/quick-start.html">ইনস্টল</a>
@@ -46,19 +38,10 @@ onMounted(async () => {
     <template v-for="{ url, img, name, description } of data.special">
       <a :href="url" target="_blank" rel="sponsored noopener">
         <picture v-if="img.endsWith('png')">
-          <source
-            type="image/avif"
-            :srcset="`${base}/images/${img.replace(/\.png$/, '.avif')}`"
-          />
+          <source type="image/avif" :srcset="`${base}/images/${img.replace(/\.png$/, '.avif')}`" />
           <img :src="`${base}/images/${img}`" :alt="name" />
         </picture>
-        <img
-          width="168"
-          height="42"
-          v-else
-          :src="`${base}/images/${img}`"
-          :alt="name"
-        />
+        <img width="168" height="42" v-else :src="`${base}/images/${img}`" :alt="name" />
       </a>
       <span>{{ description }}</span>
     </template>
@@ -68,13 +51,13 @@ onMounted(async () => {
     <div class="vt-box">
       <h2>সাদৃশ্যপূর্ণ</h2>
       <p>
-        বিশ্ব-মানের ডকুমেন্টেশন সহ স্ট্যান্ডার্ড HTML, CSS এবং JavaScript with intuitive API এর উপরে তৈরি।
+        স্ট্যান্ডার্ড HTML, CSS এবং জাভাস্ক্রিপ্টের উপর নির্মিত, সহজবোধ্য API এবং বিশ্বমানের ডকুমেন্টেশন সহ।
       </p>
     </div>
     <div class="vt-box">
       <h2>পারফরম্যান্স</h2>
       <p>
-        প্রতিক্রিয়াশীল, কম্পাইলার-অপ্টিমাইজড রেন্ডারিং সিস্টেম যার জন্য খুব কমই ম্যানুয়াল অপ্টিমাইজেশানের প্রয়োজন হয়৷
+        সত্যিকারের প্রতিক্রিয়াশীল, কম্পাইলার-অপ্টিমাইজড রেন্ডারিং সিস্টেম যা খুব কমই ম্যানুয়াল অপ্টিমাইজেশনের প্রয়োজন হয়।
       </p>
     </div>
     <div class="vt-box">
