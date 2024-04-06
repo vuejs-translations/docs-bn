@@ -120,7 +120,7 @@
 
 সংঘর্ষ এড়াতে ফলস্বরূপ ক্লাসগুলি হ্যাশ করা হয়, শুধুমাত্র বর্তমান কম্পোনেন্টে CSS স্কোপ করার একই ইফেক্ট অর্জন করে।
 
-আরও বিস্তারিত জানার জন্য [CSS Module spec](https://github.com/css-modules/css-modules) দেখুন যেমন [global exceptions](https://github.com/css-modules/css-modules#exceptions) এবং [composition](https://github.com/css-modules/css-modules#composition)।
+আরও বিস্তারিত জানার জন্য [CSS মডিউল স্পেক](https://github.com/css-modules/css-modules) দেখুন যেমন [বিশ্বব্যাপী ব্যতিক্রম](https://github.com/css-modules/css-modules/blob/master/docs/composition.md#exceptions) এবং [composition](https://github.com/css-modules/css-modules/blob/master/docs/composition.md#composition)।
 
 ### Custom Inject Name {#custom-inject-name}
 

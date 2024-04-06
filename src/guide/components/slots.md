@@ -296,6 +296,35 @@ function BaseLayout(slots) {
 }
 ```
 
+## Conditional Slots {#conditional-slots}
+
+কখনও কখনও আপনি একটি স্লট উপস্থিত আছে কিনা তার উপর ভিত্তি করে কিছু রেন্ডার করতে চান। 
+
+আপনি এটি অর্জন করতে [v-if](/guide/essentials/conditional.html#v-if) এর সাথে একত্রে [$slots](/api/component-instance.html#slots) বৈশিষ্ট্য ব্যবহার করতে পারেন।
+
+নীচের উদাহরণে আমরা দুটি শর্তসাপেক্ষ স্লট সহ একটি কার্ড উপাদান সংজ্ঞায়িত করি: `header` এবং `footer`।
+যখন শিরোনাম/পাদলেখটি উপস্থিত থাকে তখন আমরা অতিরিক্ত স্টাইলিং প্রদানের জন্য সেগুলিকে মোড়ানো চাই:
+
+```vue-html
+<template>
+  <div class="card">
+    <div v-if="$slots.header" class="card-header">
+      <slot name="header" />
+    </div>
+    
+    <div class="card-content">
+      <slot />
+    </div>
+    
+    <div v-if="$slots.footer" class="card-footer">
+      <slot name="footer" />
+    </div>
+  </div>
+</template>
+```
+
+[চেষ্টা করুন](https://play.vuejs.org/#eNqFVD1v2zAQ/SsEWyBLIjVoJlcN0AYZ2qEt2oxaaOkkMaZIgqRcGYH/e4+kqFi26wAejvfevfu0XugXrbPtAHRFC1sZrh2x4AZ9X0rea2UceWCmJo1RPbnKcv/w9KtSFnnkIxMfDnotmAN8EVJ4WrDQTgh51wGrwUx+RLrb+6eOW4I/1wGJcJGjewrND1RP1Gpo2CB8+klOL9QqJR1IV+S+lbfVGqXcYW3QL9QiXOToPqPmn1PLCz+9ps5iIQ1vs2erJA75xbNLWqlecwHmp3ZcSVvSFQmIx5gQ6u/34HNmgOvkrzqoNmf8z3b0vpL+MmDBbKGkM+aYacFF+PHPDxjRnsFe1YNA9gXwN1glBl9jpH0dZI1lH/BCtd/CqXDZPtnHEcduU1O+UM/cB35J8XQeLrT+Wu7H7C7ElXKPU0xn5690Ofeab0klmLWfcUDIKmlakEe2N7xB4L0VytksHlhJFwE3yfu6e88mkvWAlDkmnxePwpN9kGkhOd3eieYbGstq48kdV5u856udY04zJevob1BYtxNxlplPkHaxVgb7XpFbPRI8AV6TtWDV5lNENatr3PaKfAgO3NIsMM1z1sGg1ig8G5yKUKhoN7u1GOBY6U6Pp1rTIJPYZXJs/v+JBW871xq2u5g6fNjCTOj+H/sTpqs=)
+
 ## Dynamic Slot Names {#dynamic-slot-names}
 
 [Dynamic directive arguments](/guide/essentials/template-syntax.md#dynamic-arguments) এছাড়াও `v-slot`-এ কাজ করে, যা গতিশীল স্লট নামের সংজ্ঞাকে অনুমতি দেয়:
@@ -338,7 +367,7 @@ function BaseLayout(slots) {
 </MyComponent>
 ```
 
-![scoped slots diagram](./images/scoped-slots.svg)
+![স্কোপড স্লট ডায়াগ্রাম](./images/scoped-slots.svg)
 
 <!-- https://www.figma.com/file/QRneoj8eIdL1kw3WQaaEyc/scoped-slot -->
 
