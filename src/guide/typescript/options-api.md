@@ -1,6 +1,6 @@
 # TypeScript with Options API {#typescript-with-options-api}
 
-> এই পৃষ্ঠাটি ধরে নেওয়া হয়েছে আপনি ইতিমধ্যেই [TypeScript এর সাথে Vue ব্যবহার করে](./overview) এর ওভারভিউ পড়েছেন।
+> এই পৃষ্ঠাটি ধরে নেওয়া হয়েছে আপনি ইতিমধ্যেই [TypeScript এর সাথে Vue ব্যবহার করে](./overview) এর ওভারVue পড়েছেন।
 
 :::tip
 যদিও Vue Options API এর সাথে TypeScript ব্যবহার সমর্থন করে, এটি Composition API এর মাধ্যমে TypeScript-এর সাথে Vue ব্যবহার করার পরামর্শ দেওয়া হয় কারণ এটি সহজ, আরও দক্ষ এবং আরও শক্তিশালী টাইপ ইনফারেন্স প্রদান করে।

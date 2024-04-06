@@ -17,7 +17,7 @@
   </VueSchoolLink>
 </div>
 
-Vue SPA নির্মাণের জন্য উপযুক্ত। বেশিরভাগ SPA-এর জন্য, আনুষ্ঠানিকভাবে-সমর্থিত [Vue Router লাইব্রেরি](https://github.com/vuejs/router) ব্যবহার করার পরামর্শ দেওয়া হয়। আরও বিস্তারিত জানার জন্য, ভিউ রাউটারের [ডকুমেন্টেশন](https://router.vuejs.org/) দেখুন।
+Vue SPA নির্মাণের জন্য উপযুক্ত। বেশিরভাগ SPA-এর জন্য, আনুষ্ঠানিকভাবে-সমর্থিত [Vue Router লাইব্রেরি](https://github.com/vuejs/router) ব্যবহার করার পরামর্শ দেওয়া হয়। আরও বিস্তারিত জানার জন্য, Vue রাউটারের [ডকুমেন্টেশন](https://router.vuejs.org/) দেখুন।
 
 ## Simple Routing from Scratch {#simple-routing-from-scratch}
 

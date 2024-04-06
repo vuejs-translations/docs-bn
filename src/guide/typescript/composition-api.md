@@ -1,6 +1,6 @@
 # TypeScript with Composition API {#typescript-with-composition-api}
 
-> এই পৃষ্ঠাটি ধরে নেওয়া হয়েছে আপনি ইতিমধ্যেই [TypeScript এর সাথে Vue ব্যবহার করে](./overview) এর ওভারভিউ পড়েছেন।
+> এই পৃষ্ঠাটি ধরে নেওয়া হয়েছে আপনি ইতিমধ্যেই [TypeScript এর সাথে Vue ব্যবহার করে](./overview) এর ওভারVue পড়েছেন।
 
 ## Typing Component Props {#typing-component-props}
 
