@@ -318,6 +318,7 @@ h(Transition, {
   ```ts
   interface SuspenseProps {
     timeout?: string | number
+    suspensible?: boolean
   }
   ```
 
@@ -333,4 +334,7 @@ h(Transition, {
 
   ডিফল্ট স্লট রেন্ডার করার সময় যদি এটি async নির্ভরতা ([Async Components](/guide/components/async) এবং [`async setup()`](/guide/built-ins/suspense#async-setup)) সহ কম্পোনেন্টগুলির সম্মুখীন হয়, ডিফল্ট slot প্রদর্শন করার আগে তাদের সব সমাধান না হওয়া পর্যন্ত এটি অপেক্ষা করবে।
 
-- **আরো দেখুন** [Guide - Suspense](/guide/built-ins/suspense)
+  সাসপেন্সটিকে `suspensible` হিসাবে সেট করে, সমস্ত অ্যাসিঙ্ক নির্ভরতা পরিচালনা
+  প্যারেন্ট সাসপেন্স দ্বারা পরিচালিত হবে. দেখুন [বাস্তবায়নের বিবরণ](https://github.com/vuejs/core/pull/6736)
+
+- **এছাড়াও দেখুন** [গাইড - সাসপেন্স](/guide/built-ins/suspense)
