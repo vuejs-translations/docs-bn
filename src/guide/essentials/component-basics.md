@@ -469,6 +469,7 @@ export default {
 এটি Vue এর কাস্টম `<slot>` কম্পোনেন্ট ব্যবহার করে অর্জন করা যেতে পারে:
 
 ```vue{4}
+<!-- AlertBox.vue -->
 <template>
   <div class="alert-box">
     <strong>This is an Error for Demo Purposes</strong>
