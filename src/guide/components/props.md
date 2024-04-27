@@ -389,13 +389,18 @@ defineProps({
     type: String,
     required: true
   },
-  // Number with a default value
+  // Required but nullable string
   propD: {
+    type: [String, null],
+    required: true
+  },
+  // Number with a default value
+  propE: {
     type: Number,
     default: 100
   },
   // Object with a default value
-  propE: {
+  propF: {
     type: Object,
     // Object or array defaults must be returned from
     // a factory function. The function receives the raw
@@ -406,16 +411,16 @@ defineProps({
   },
   // Custom validator function
   // full props passed as 2nd argument in 3.4+
-  propF: {
+  propG: {
     validator(value, props) {
       // The value must match one of these strings
       return ['success', 'warning', 'danger'].includes(value)
     }
   },
   // Function with a default value
-  propG: {
+  propH: {
     type: Function,
-    // Unlike object or array default, this is not a factory 
+    // Unlike object or array default, this is not a factory
     // function - this is a function to serve as a default value
     default() {
       return 'Default function'
@@ -444,13 +449,18 @@ export default {
       type: String,
       required: true
     },
-    // Number with a default value
+    // Required but nullable string
     propD: {
+      type: [String, null],
+      required: true
+    },
+    // Number with a default value
+    propE: {
       type: Number,
       default: 100
     },
     // Object with a default value
-    propE: {
+    propF: {
       type: Object,
       // Object or array defaults must be returned from
       // a factory function. The function receives the raw
@@ -461,16 +471,16 @@ export default {
     },
     // Custom validator function
     // full props passed as 2nd argument in 3.4+
-    propF: {
+    propG: {
       validator(value, props) {
         // The value must match one of these strings
         return ['success', 'warning', 'danger'].includes(value)
       }
     },
     // Function with a default value
-    propG: {
+    propH: {
       type: Function,
-      // Unlike object or array default, this is not a factory 
+      // Unlike object or array default, this is not a factory
       // function - this is a function to serve as a default value
       default() {
         return 'Default function'
@@ -557,6 +567,39 @@ export default {
 
 `author` প্রপের মান প্রকৃতপক্ষে `Person` শ্রেণীর একটি উদাহরণ কিনা তা যাচাই করতে Vue `instanceof Person` ব্যবহার করবে।
 
+### Nullable Type
+
+যদি টাইপটি প্রয়োজন হয় তবে বাতিলযোগ্য, আপনি অ্যারে সিনট্যাক্স ব্যবহার করতে পারেন যাতে `null` অন্তর্ভুক্ত থাকে:
+
+<div class="composition-api">
+
+```js
+defineProps({
+  id: {
+    type: [String, null],
+    required: true
+  }
+})
+```
+
+</div>
+<div class="options-api">
+
+```js
+export default {
+  props: {
+    id: {
+      type: [String, null],
+      required: true
+    }
+  }
+}
+```
+
+</div>
+
+মনে রাখবেন যে যদি অ্যারে সিনট্যাক্স ব্যবহার না করে `type` শুধুমাত্র `null` হয়, তাহলে এটি যেকোনো প্রকারের অনুমতি দেবে।
+
 ## Boolean Casting {#boolean-casting}
 
 `Boolean` টাইপের প্রপগুলিতে নেটিভ বুলিয়ান অ্যাট্রিবিউটের আচরণ অনুকরণ করার জন্য বিশেষ কাস্টিং নিয়ম রয়েছে৷ নিম্নলিখিত ঘোষণার সাথে একটি `<MyComponent>` দেওয়া হয়েছে:
@@ -601,17 +644,17 @@ component এই মত ব্যবহার করা যেতে পার�
 defineProps({
   disabled: [Boolean, Number]
 })
-  
+
 // disabled will be casted to true
 defineProps({
   disabled: [Boolean, String]
 })
-  
+
 // disabled will be casted to true
 defineProps({
   disabled: [Number, Boolean]
 })
-  
+
 // disabled will be parsed as an empty string (disabled="")
 defineProps({
   disabled: [String, Boolean]
@@ -628,21 +671,21 @@ export default {
     disabled: [Boolean, Number]
   }
 }
-  
+
 // disabled will be casted to true
 export default {
   props: {
     disabled: [Boolean, String]
   }
 }
-  
+
 // disabled will be casted to true
 export default {
   props: {
     disabled: [Number, Boolean]
   }
 }
-  
+
 // disabled will be parsed as an empty string (disabled="")
 export default {
   props: {

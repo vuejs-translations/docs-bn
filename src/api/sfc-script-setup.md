@@ -432,7 +432,7 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 উপরন্তু, প্রতীক্ষিত এক্সপ্রেশনটি স্বয়ংক্রিয়ভাবে একটি ফরম্যাটে সংকলিত হবে যা `await` এর পরে কারেন্ট কম্পোনেন্ট উদাহরণের কনটেক্স সংরক্ষণ করে।
 
 :::warning নোট
-`async setup()` অবশ্যই `Suspense` এর সাথে ব্যবহার করতে হবে, যা বর্তমানে একটি পরীক্ষামূলক ফিচার। আমরা ভবিষ্যতের রিলিজে এটি চূড়ান্ত এবং নথিভুক্ত করার পরিকল্পনা করছি - তবে আপনি যদি এখনই আগ্রহী হন তবে আপনি এটির [টেস্টস](https://github.com/vuejs/core/blob/main/packages/runtime-core/__tests__/components/Suspense.spec.ts) দেখুন কিভাবে এটি কাজ করে।
+`async setup()` এর সাথে `Suspense` ব্যবহার করতে হবে, যা এখনও পরীক্ষামূলক বৈশিষ্ট্য। আমরা পরবর্তী রিলিজে এটি চূড়ান্ত করার এবং ডকুমেন্ট করার পরিকল্পনা করছি। তবে, আপনি যদি এখনই জানতে আগ্রহী হন, তাহলে আপনি এর [পরীক্ষা](https://github.com/vuejs/core/blob/main/packages/runtime-core/__tests__/components/Suspense.spec.ts) দেখতে পারেন। 
 :::
 
 ## Generics <sup class="vt-badge ts" /> {#generics}
