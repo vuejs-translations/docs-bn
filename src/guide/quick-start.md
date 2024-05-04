@@ -393,7 +393,7 @@ export default {
   data() {
     return { count: 0 }
   },
-  template: `<div>count is {{ count }}</div>`
+  template: `<div>Count is: {{ count }}</div>`
 }
 ```
 
@@ -408,7 +408,7 @@ export default {
     const count = ref(0)
     return { count }
   },
-  template: `<div>count is {{ count }}</div>`
+  template: `<div>Count is: {{ count }}</div>`
 }
 ```
 

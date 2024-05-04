@@ -14,7 +14,7 @@ outline: deep
 
 ```vue-html
 <!-- template of <MyButton> -->
-<button>click me</button>
+<button>Click Me</button>
 ```
 
 এবং একজন অভিভাবক এই কম্পোনেন্টটির সাথে ব্যবহার করছেন:
@@ -26,7 +26,7 @@ outline: deep
 চূড়ান্ত রেন্ডার করা DOM হবে:
 
 ```html
-<button class="large">click me</button>
+<button class="large">Click Me</button>
 ```
 
 এখানে, `<MyButton>` একটি গৃহীত প্রপ হিসাবে `class` ঘোষণা করেনি। তাই, `class` কে একটি ফলথ্রু অ্যাট্রিবিউট হিসেবে বিবেচনা করা হয় এবং স্বয়ংক্রিয়ভাবে `<MyButton>` এর মূল কম্পোনেন্টে যোগ করা হয়।
@@ -37,13 +37,13 @@ outline: deep
 
 ```vue-html
 <!-- template of <MyButton> -->
-<button class="btn">click me</button>
+<button class="btn">Click Me</button>
 ```
 
 তারপর চূড়ান্ত রেন্ডার করা DOM এখন হয়ে যাবে:
 
 ```html
-<button class="btn large">click me</button>
+<button class="btn large">Click Me</button>
 ```
 
 ### `v-on` Listener Inheritance {#v-on-listener-inheritance}
@@ -112,7 +112,7 @@ defineOptions({
 
 ```vue-html
 <div class="btn-wrapper">
-  <button class="btn">click me</button>
+  <button class="btn">Click Me</button>
 </div>
 ```
 
@@ -120,7 +120,7 @@ defineOptions({
 
 ```vue-html{2}
 <div class="btn-wrapper">
-  <button class="btn" v-bind="$attrs">click me</button>
+  <button class="btn" v-bind="$attrs">Click Me</button>
 </div>
 ```
 

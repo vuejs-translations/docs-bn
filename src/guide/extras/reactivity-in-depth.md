@@ -67,7 +67,7 @@ whenDepsChange(update)
 
 আমরা সত্যিই উদাহরণের মত স্থানীয় ভেরিয়েবলের পড়া এবং লেখার ট্র্যাক করতে পারি না। ভ্যানিলা জাভাস্ক্রিপ্টে এটি করার জন্য কোন ব্যবস্থা নেই। যদিও আমরা **কি করতে পারি** তা হল **অবজেক্ট বৈশিষ্ট্য** এর পড়া এবং লেখাকে আটকানো।
 
-জাভাস্ক্রিপ্টে কম্পিউটেড প্রপার্টি অ্যাক্সেসকে আটকানোর দুটি উপায় রয়েছে: [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) / [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) এবং [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)। Vue 2 ব্রাউজার সমর্থন সীমাবদ্ধতার কারণে একচেটিয়াভাবে গেটার/সেটার ব্যবহার করেছে। Vue 3 তে, প্রতিক্রিয়াশীল অবজেক্টর জন্য প্রক্সি ব্যবহার করা হয় এবং রেফের জন্য গেটার/সেটার ব্যবহার করা হয়। এখানে কিছু ছদ্ম-কোড রয়েছে যা তারা কীভাবে কাজ করে তা ব্যাখ্যা করে:
+জাভাস্ক্রিপ্টে সম্পত্তি অ্যাক্সেস আটকানোর দুটি উপায় রয়েছে: [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description) / [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set#description) এবং [Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy). Vue 2 ব্রাউজার সমর্থন সীমাবদ্ধতার কারণে একচেটিয়াভাবে গেটার/সেটার ব্যবহার করেছে। Vue 3 তে, প্রতিক্রিয়াশীল বস্তুর জন্য প্রক্সি ব্যবহার করা হয় এবং রেফের জন্য গেটার/সেটার ব্যবহার করা হয়। এখানে কিছু ছদ্ম-কোড রয়েছে যা তারা কীভাবে কাজ করে তা ব্যাখ্যা করে:
 
 ```js{4,9,17,22}
 function reactive(obj) {
@@ -191,7 +191,7 @@ import { ref, watchEffect } from 'vue'
 const count = ref(0)
 
 watchEffect(() => {
-  document.body.innerHTML = `count is: ${count.value}`
+  document.body.innerHTML = `Count is: ${count.value}`
 })
 
 // updates the DOM
@@ -409,7 +409,7 @@ export function useMachine(options) {
 
 মৌলিকভাবে, সংকেত Vue refs হিসাবে একই ধরনের প্রতিক্রিয়াশীল আদিম। এটি একটি মান ধারক যা অ্যাক্সেসের উপর নির্ভরতা ট্র্যাকিং প্রদান করে এবং মিউটেশনে পার্শ্ব-প্রতিক্রিয়া ট্রিগার করে। এই প্রতিক্রিয়াশীলতা-আদি-ভিত্তিক দৃষ্টান্তটি ফ্রন্টএন্ড বিশ্বে একটি বিশেষ নতুন ধারণা নয়: এর মতো বাস্তবায়নের সময়কার [নকআউট অবজারভেবলস](https://knockoutjs.com/documentation/observables.html) এবং [মেটিওর ট্র্যাকার](https://docs.meteor.com/api/tracker.html) এক দশকেরও বেশি আগে থেকে। Vue Options API এবং React স্টেট ম্যানেজমেন্ট লাইব্রেরি [MobX](https://mobx.js.org/) একই নীতির উপর ভিত্তি করে, কিন্তু অবজেক্টের বৈশিষ্ট্যগুলির পিছনে আদিম বিষয়গুলি লুকিয়ে রাখে।
 
-যদিও সিগন্যাল হিসেবে যোগ্যতা অর্জনের জন্য কোনো কিছুর জন্য প্রয়োজনীয় বৈশিষ্ট্য নয়, আজ ধারণাটি প্রায়ই রেন্ডারিং মডেলের পাশাপাশি আলোচনা করা হয় যেখানে সূক্ষ্ম-দানাদার সদস্যতার মাধ্যমে আপডেট করা হয়। ভার্চুয়াল DOM ব্যবহারের কারণে, Vue বর্তমানে [অনুরূপ অপটিমাইজেশন অর্জনের জন্য কম্পাইলারদের উপর নির্ভর করে](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom)। যাইহোক, আমরা একটি নতুন সলিড-অনুপ্রাণিত সংকলন কৌশল (বাষ্প মোড) অন্বেষণ করছি যা ভার্চুয়াল DOM-এর উপর নির্ভর করে না এবং Vue-এর অন্তর্নির্মিত প্রতিক্রিয়া সিস্টেমের আরও সুবিধা নেয়।
+যদিও সিগন্যাল হিসেবে যোগ্যতা অর্জনের জন্য কোনো কিছুর জন্য প্রয়োজনীয় বৈশিষ্ট্য নয়, আজ ধারণাটি প্রায়ই রেন্ডারিং মডেলের পাশাপাশি আলোচনা করা হয় যেখানে সূক্ষ্ম-দানাদার সদস্যতার মাধ্যমে আপডেট করা হয়। ভার্চুয়াল DOM ব্যবহারের কারণে, Vue বর্তমানে [অনুরূপ অপটিমাইজেশন অর্জনের জন্য কম্পাইলারদের উপর নির্ভর করে](/guide/extras/rendering-mechanism#compiler-informed-virtual-dom)। যাইহোক, আমরা [Vapor Mode](https://github.com/vuejs/core-vapor) নামে একটি নতুন সলিড-অনুপ্রাণিত সংকলন কৌশলও অন্বেষণ করছি, যা ভার্চুয়াল DOM-এর উপর নির্ভর করে না এবং Vue-এর বিল্ট-এর আরও সুবিধা নেয়। প্রতিক্রিয়া সিস্টেমে।
 
 ### API Design Trade-Offs {#api-design-trade-offs}
 

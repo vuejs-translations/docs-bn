@@ -135,8 +135,7 @@ Note that:
 
 - <span class="composition-api">`onActivated`</span><span class="options-api">`activated`</span> is also called on mount, and <span class="composition-api">`onDeactivated`</span><span class="options-api">`deactivated`</span> on unmount.
 
-- উভয় হুক শুধুমাত্র `<KeepAlive>` দ্বারা ক্যাশে করা রুট কম্পোনেন্টের জন্যই কাজ করে না, কিন্তু ক্যাশে করা ট্রিতে ডিসেন্ডেন্ট কম্পোনেন্টের জন্যও কাজ করে।
-
+- উভয় হুক শুধুমাত্র `<KeepAlive>` দ্বারা ক্যাশে করা রুট কম্পোনেন্টের জন্যই কাজ করে না, তবে ক্যাশে করা গাছের ডিসেন্ডেন্ট কম্পোনেন্টের জন্যও কাজ করে।
 ---
 
 **Related**

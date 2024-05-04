@@ -567,7 +567,7 @@ export default {
 
 `author` প্রপের মান প্রকৃতপক্ষে `Person` শ্রেণীর একটি উদাহরণ কিনা তা যাচাই করতে Vue `instanceof Person` ব্যবহার করবে।
 
-### Nullable Type
+### Nullable Type {#nullable-type}
 
 যদি টাইপটি প্রয়োজন হয় তবে বাতিলযোগ্য, আপনি অ্যারে সিনট্যাক্স ব্যবহার করতে পারেন যাতে `null` অন্তর্ভুক্ত থাকে:
 

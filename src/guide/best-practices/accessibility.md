@@ -154,10 +154,7 @@ watch(
 </form>
 ```
 
-<!-- <common-codepen-snippet title="Simple Form" slug="dyNzzWZ" :height="368" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
-লক্ষ্য করুন কিভাবে আপনি ফর্ম কম্পোনেন্টটিতে `autocomplete='on'` অন্তর্ভুক্ত করতে পারেন এবং এটি আপনার ফর্মের সমস্ত ইনপুটগুলিতে প্রযোজ্য হবে৷ এছাড়াও আপনি প্রতিটি ইনপুটের জন্য বিভিন্ন [স্বয়ংসম্পূর্ণ বৈশিষ্ট্যের জন্য মান](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) সেট করতে পারেন।
-
+লক্ষ্য করুন কিভাবে আপনি ফর্ম উপাদানটিতে `স্বয়ংক্রিয়ভাবে='অন'` অন্তর্ভুক্ত করতে পারেন এবং এটি আপনার ফর্মের সমস্ত ইনপুটগুলিতে প্রযোজ্য হবে৷ এছাড়াও আপনি প্রতিটি ইনপুটের জন্য বিভিন্ন [স্বয়ংসম্পূর্ণ বৈশিষ্ট্যের জন্য মান](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) সেট করতে পারেন।
 ### Labels {#labels}
 
 সমস্ত ফর্ম নিয়ন্ত্রণের উদ্দেশ্য বর্ণনা করার জন্য লেবেল প্রদান করুন; `for`' এবং `id` লিঙ্ক করা:
@@ -167,9 +164,7 @@ watch(
 <input type="text" name="name" id="name" v-model="name" />
 ```
 
-<!-- <common-codepen-snippet title="Form Label" slug="XWpaaaj" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
-আপনি যদি আপনার ক্রোম ডেভটুলসে এই উপাদানটি পরিদর্শন করেন এবং এলিমেন্টস ট্যাবের ভিতরে অ্যাক্সেসিবিলিটি ট্যাবটি খুলেন, তাহলে আপনি দেখতে পাবেন যে ইনপুটটি লেবেল থেকে তার নামটি কীভাবে পায়:
+আপনি যদি আপনার Chrome DevTools-এ এই উপাদানটি পরিদর্শন করেন এবং Elements ট্যাবের ভিতরে অ্যাক্সেসিবিলিটি ট্যাবটি খোলেন, তাহলে আপনি দেখতে পাবেন কিভাবে লেবেল থেকে ইনপুটটির নাম আসে:
 
 ![Chrome ডেভেলপমেন্টকারী সরঞ্জামগুলি লেবেল থেকে ইনপুট অ্যাক্সেসযোগ্য নাম দেখাচ্ছে৷](./images/AccessibleLabelChromeDevTools.png)
 
@@ -201,9 +196,7 @@ watch(
 />
 ```
 
-<!-- <common-codepen-snippet title="Form ARIA label" slug="NWdvvYQ" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
-অ্যাক্সেসযোগ্য নামটি কীভাবে পরিবর্তিত হয়েছে তা দেখতে Chrome DevTools-এ এই কম্পোনেন্টটি নির্দ্বিধায় পরিদর্শন করুন:
+অ্যাক্সেসযোগ্য নামটি কীভাবে পরিবর্তিত হয়েছে তা দেখতে Chrome DevTools-এ এই উপাদানটি নির্দ্বিধায় পরিদর্শন করুন:
 
 ![Chrome ডেভেলপার টুলস অ্যারিয়া-লেবেল থেকে ইনপুট অ্যাক্সেসযোগ্য নাম দেখাচ্ছে](./images/AccessibleARIAlabelDevTools.png)
 
@@ -233,9 +226,7 @@ watch(
 </form>
 ```
 
-<!-- <common-codepen-snippet title="Form ARIA labelledby" slug="MWJvvBe" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
-![Chrome ডেভেলপার টুলস aria-লেবেল দ্বারা ইনপুট অ্যাক্সেসযোগ্য নাম দেখাচ্ছে৷](./images/AccessibleARIAlabelledbyDevTools.png)
+![Chrome ডেভেলপার টুলস aria-labelledby থেকে ইনপুট অ্যাক্সেসযোগ্য নাম দেখাচ্ছে](./images/AccessibleARIAlabelledbyDevTools.png)
 
 #### `aria-describedby` {#aria-describedby}
 
@@ -264,8 +255,6 @@ watch(
   <button type="submit">Submit</button>
 </form>
 ```
-
-<!-- <common-codepen-snippet title="Form ARIA describedby" slug="gOgxxQE" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
 আপনি Chrome DevTools পরিদর্শন করে বিবরণ দেখতে পারেন:
 
@@ -352,8 +341,6 @@ watch(
 </fieldset>
 ```
 
-<!-- <common-codepen-snippet title="Form Instructions" slug="WNREEqv" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
 ### Hiding Content {#hiding-content}
 
 সাধারণত লেবেলগুলিকে দৃশ্যত লুকানোর পরামর্শ দেওয়া হয় না, এমনকি যদি ইনপুটে একটি অ্যাক্সেসযোগ্য নাম থাকে। যাইহোক, যদি ইনপুটের কার্যকারিতা আশেপাশের বিষয়অবজেক্টর সাথে বোঝা যায়, তাহলে আমরা ভিজ্যুয়াল লেবেলটি লুকিয়ে রাখতে পারি।
@@ -386,8 +373,6 @@ watch(
 }
 ```
 
-<!-- <common-codepen-snippet title="Form Search" slug="QWdMqWy" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
-
 #### `aria-hidden="true"` {#aria-hidden-true}
 
 `aria-hidden="true"` যোগ করলে সহায়ক প্রযুক্তি থেকে কম্পোনেন্টটি আড়াল হবে কিন্তু অন্যান্য ব্যবহারকারীদের জন্য এটি দৃশ্যত উপলব্ধ থাকবে। এটিকে ফোকাসযোগ্য কম্পোনেন্টগুলিতে ব্যবহার করবেন না, সম্পূর্ণরূপে আলংকারিক, সদৃশ বা অফস্ক্রিন সামগ্রীতে।
@@ -413,8 +398,6 @@ watch(
   <input type="submit" value="Submit" />
 </form>
 ```
-
-<!-- <common-codepen-snippet title="Form Buttons" slug="JjEyrYZ" :height="467" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
 ### Functional Images {#functional-images}
 
@@ -449,8 +432,6 @@ watch(
   </button>
 </form>
 ```
-
-<!-- <common-codepen-snippet title="Functional Images" slug="jOyLGqM" :height="265" tab="js,result" theme="light" :preview="false" :editable="false" /> -->
 
 ## Standards {#standards}
 

@@ -130,7 +130,7 @@ const publishedBooksMessage = computed(() => {
 
 [চেষ্টা করুন](https://play.vuejs.org/#eNp1kE9Lw0AQxb/KI5dtoTainkoaaREUoZ5EEONhm0ybYLO77J9CCfnuzta0vdjbzr6Zeb95XbIwZroPlMySzJW2MR6OfDB5oZrWaOvRwZIsfbOnCUrdmuCpQo+N1S0ET4pCFarUynnI4GttMT9PjLpCAUq2NIN41bXCkyYxiZ9rrX/cDF/xDYiPQLjDDRbVXqqSHZ5DUw2tg3zP8lK6pvxHe2DtvSasDs6TPTAT8F2ofhzh0hTygm5pc+I1Yb1rXE3VMsKsyDm5JcY/9Y5GY8xzHI+wnIpVw4nTI/10R2rra+S4xSPEJzkBvvNNs310ztK/RDlLLjy1Zic9cQVkJn+R7gIwxJGlMXiWnZEq77orhH3Pq2NH9DjvTfpfSBSbmA==)
 
-এখানে আমরা একটি গণনাকৃত কম্পিউটেড প্রপার্টি `publishedBooksMessage` ঘোষণা করেছি। `computed()` ফাংশনটি একটি গেটার ফাংশন পাস করার আশা করে এবং প্রত্যাবর্তিত মানটি একটি **গণিত রেফ**। সাধারণ রেফের মতো, আপনি গণনা করা ফলাফলটি `publishedBooksMessage.value` হিসাবে অ্যাক্সেস করতে পারেন। কম্পিউটেড রেফগুলিও টেমপ্লেটগুলিতে স্বয়ংক্রিয়ভাবে আনর্যাপ করা হয় যাতে আপনি টেমপ্লেট এক্সপ্রেশনে `.value` ছাড়াই তাদের উল্লেখ করতে পারেন।
+এখানে আমরা একটি গণনাকৃত সম্পত্তি `publishedBooksMessage` ঘোষণা করেছি। `computed()` ফাংশনটি একটি [গেটার ফাংশন](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description) পাস হওয়ার আশা করে এবং প্রত্যাবর্তিত মান একটি **computed ref**। সাধারণ রেফের মতো, আপনি গণনা করা ফলাফলটি `publishedBooksMessage.value` হিসাবে অ্যাক্সেস করতে পারেন। কম্পিউটেড রেফগুলিও টেমপ্লেটগুলিতে স্বয়ংক্রিয়ভাবে আনর্যাপ করা হয় যাতে আপনি টেমপ্লেট এক্সপ্রেশনে `.value` ছাড়াই তাদের উল্লেখ করতে পারেন।
 
 একটি গণনাকৃত কম্পিউটেড প্রপার্টি স্বয়ংক্রিয়ভাবে তার প্রতিক্রিয়াশীল নির্ভরতা ট্র্যাক করে। Vue সচেতন যে `publishedBooksMessage`-এর গণনা `author.books`-এর উপর নির্ভর করে, তাই যখন `author.books` পরিবর্তিত হয় তখন `publishedBooksMessage`-এর উপর নির্ভর করে এমন কোনো বাঁধাই আপডেট করবে।
 

@@ -109,7 +109,7 @@ watch(question, async (newQuestion, oldQuestion) => {
 
 ### Watch Source Types {#watch-source-types}
 
-`watch` এর প্রথম যুক্তি হতে পারে বিভিন্ন ধরনের প্রতিক্রিয়াশীল "উৎস": এটি একটি ref (including computed refs), একটি প্রতিক্রিয়াশীল অবজেক্ট, একটি getter ফাংশন, বা একাধিক sources একটি array হতে পারে:
+`ওয়াচ`-এর প্রথম যুক্তি বিভিন্ন ধরনের প্রতিক্রিয়াশীল "উৎস" হতে পারে: এটি একটি রেফ (গণনা করা রেফ সহ), একটি প্রতিক্রিয়াশীল বস্তু, একটি [গেটার ফাংশন](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description), অথবা একাধিক উৎসের একটি অ্যারে:
 
 ```js
 const x = ref(0)
@@ -141,7 +141,7 @@ const obj = reactive({ count: 0 })
 
 // this won't work because we are passing a number to watch()
 watch(obj.count, (count) => {
-  console.log(`count is: ${count}`)
+  console.log(`Count is: ${count}`)
 })
 ```
 
@@ -152,7 +152,7 @@ watch(obj.count, (count) => {
 watch(
   () => obj.count,
   (count) => {
-    console.log(`count is: ${count}`)
+    console.log(`Count is: ${count}`)
   }
 )
 ```
@@ -272,13 +272,12 @@ watch(
 
 </div>
 
-
 ## Once Watchers <sup class="vt-badge" data-text="3.4+" /> {#once-watchers}
 
 যখনই ওয়াচার সোর্স পরিবর্তন হবে তখনই ওয়াচার কলব্যাক কার্যকর হবে৷ আপনি যদি সোর্স পরিবর্তনের সময় কলব্যাক শুধুমাত্র একবার ট্রিগার করতে চান, তাহলে `once: true` বিকল্পটি ব্যবহার করুন।
 
 <div class="options-api">
-  
+
 ```js
 export default {
   watch: {
