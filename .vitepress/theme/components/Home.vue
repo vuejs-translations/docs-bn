@@ -20,7 +20,6 @@ onMounted(load)
     <p class="description">
       ওয়েব ইউজার ইন্টারফেস তৈরির জন্য একটি সাদৃশ্যপূর্ণ, সক্রিয় এবং স্কেলে‌বল ফ্রেমওয়ার্ক।
     </p>
-    <div>অনুবাদ চলমান</div>
     <p class="actions">
       <VueMasteryModal />
       <a class="get-started" href="/guide/introduction.html">
