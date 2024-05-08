@@ -195,7 +195,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 </script>
 ```
 
-[Codepen demo](https://codepen.io/vuejs-examples/pen/QWJwJLp)
+[CodePen Demo >](https://codepen.io/vuejs-examples/pen/QWJwJLp)
 
 </div>
 
@@ -220,7 +220,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 </script>
 ```
 
-[Codepen demo](https://codepen.io/vuejs-examples/pen/eYQpQEG)
+[CodePen Demo >](https://codepen.io/vuejs-examples/pen/eYQpQEG)
 
 :::tip
 গাইডের সাথে সংযোজিত বেশিরভাগ উদাহরণগুলো `<script setup>` সিনট্যাক্স সম্বলিত, যার জন্য বিল্ড টুলস অবশ্যই প্রয়োজনীয়। আপনি যদি বিল্ডের ধাপ ছাড়াই Composition API ব্যবহার করতে চান তাহলে [`setup()` option](/api/composition-api-setup)-এর ব্যবহার দেখুন।
@@ -277,12 +277,12 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 <div class="options-api">
 
-[Codepen demo](https://codepen.io/vuejs-examples/pen/VwVYVZO)
+[CodePen Demo >](https://codepen.io/vuejs-examples/pen/VwVYVZO)
 
 </div>
 <div class="composition-api">
 
-[Codepen demo](https://codepen.io/vuejs-examples/pen/MWzazEv)
+[CodePen Demo >](https://codepen.io/vuejs-examples/pen/MWzazEv)
 
 </div>
 
@@ -322,7 +322,7 @@ import { createApp } from 'vue'
 </script>
 ```
 
-[Codepen demo](https://codepen.io/vuejs-examples/pen/wvQKQyM)
+[CodePen Demo >](https://codepen.io/vuejs-examples/pen/wvQKQyM)
 
 </div>
 
@@ -353,7 +353,7 @@ import { createApp } from 'vue'
 </script>
 ```
 
-[Codepen demo](https://codepen.io/vuejs-examples/pen/YzRyRYM)
+[CodePen Demo >](https://codepen.io/vuejs-examples/pen/YzRyRYM)
 
 </div>
 
