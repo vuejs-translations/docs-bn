@@ -444,33 +444,37 @@ function MyComponent(slots) {
 আপনি যদি ডিফল্ট স্কোপড স্লটের সাথে নামযুক্ত স্লটগুলি মিশ্রিত করেন তবে আপনাকে ডিফল্ট স্লটের জন্য একটি স্পষ্ট `<template>` ট্যাগ ব্যবহার করতে হবে। কম্পোনেন্টে সরাসরি `v-slot` নির্দেশনা রাখার চেষ্টা করলে একটি সংকলন ত্রুটি দেখা দিবে। এটি ডিফল্ট স্লটের প্রপসের সুযোগ সম্পর্কে কোনও অস্পষ্টতা এড়াতে। উদাহরণ স্বরূপ:
 
 ```vue-html
+<!-- <MyComponent> template -->
+<div>
+  <slot :message="hello"></slot>
+  <slot name="footer" />
+</div>
+```
+
+```vue-html
 <!-- This template won't compile -->
-<template>
-  <MyComponent v-slot="{ message }">
+<MyComponent v-slot="{ message }">
+  <p>{{ message }}</p>
+  <template #footer>
+    <!-- message belongs to the default slot, and is not available here -->
     <p>{{ message }}</p>
-    <template #footer>
-      <!-- message belongs to the default slot, and is not available here -->
-      <p>{{ message }}</p>
-    </template>
-  </MyComponent>
-</template>
+  </template>
+</MyComponent>
 ```
 
 ডিফল্ট স্লটের জন্য একটি স্পষ্ট `<template>` ট্যাগ ব্যবহার করা এটি স্পষ্ট করতে সাহায্য করে যে অন্য স্লটের ভিতরে `message` প্রপ উপলব্ধ নেই:
 
 ```vue-html
-<template>
-  <MyComponent>
-    <!-- Use explicit default slot -->
-    <template #default="{ message }">
-      <p>{{ message }}</p>
-    </template>
+<MyComponent>
+  <!-- Use explicit default slot -->
+  <template #default="{ message }">
+    <p>{{ message }}</p>
+  </template>
 
-    <template #footer>
-      <p>Here's some contact info</p>
-    </template>
-  </MyComponent>
-</template>
+  <template #footer>
+    <p>Here's some contact info</p>
+  </template>
+</MyComponent>
 ```
 
 ### Fancy List Example {#fancy-list-example}

@@ -99,7 +99,8 @@ HTML বৈশিষ্ট্যের মধ্যে Mustaches ব্যবহ
 ```js
 const objectOfAttrs = {
   id: 'container',
-  class: 'wrapper'
+  class: 'wrapper',
+  style: 'background-color:green'
 }
 ```
 
