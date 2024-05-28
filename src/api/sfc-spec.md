@@ -66,7 +66,7 @@ export default {
 
 - [Gridsome: `<page-query>`](https://gridsome.org/docs/querying-data/)
 - [vite-plugin-vue-gql: `<gql>`](https://github.com/wheatjs/vite-plugin-vue-gql)
-- [vue-i18n: `<i18n>`](https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n#i18n-custom-block)
+- [vue-i18n: `<i18n>`](https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n#i18n-custom-block)
 
 কাস্টম ব্লকগুলি পরিচালনা করা টুলিংয়ের উপর নির্ভর করবে - আপনি যদি নিজের কাস্টম ব্লক ইন্টিগ্রেশন তৈরি করতে চান তবে আরও জানতে [SFC কাস্টম ব্লক ইন্টিগ্রেশন টুলিং বিভাগ](/guide/scaling-up/tooling#sfc-custom-block-integrations) দেখুন বিস্তারিত
 

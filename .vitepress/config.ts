@@ -726,6 +726,11 @@ export default defineConfigWithTheme<ThemeConfig>({
         repo: 'https://github.com/vuejs-translations/docs-cs'
       },
       {
+        link: 'https://zh-hk.vuejs.org',
+        text: '繁體中文',
+        repo: 'https://github.com/vuejs-translations/docs-zh-hk'
+      },
+      {
         link: '/translations/',
         text: 'অনুবাদ করতে সাহায্য করুন!',
         isTranslationsDesc: true
@@ -769,6 +774,7 @@ export default defineConfigWithTheme<ThemeConfig>({
   markdown: {
     theme: 'github-dark',
     config(md) {
+      // @ts-expect-error - broken type output in vitepress
       md.use(headerPlugin)
       // .use(textAdPlugin)
     }

@@ -13,9 +13,11 @@ pnpm i
 pnpm run dev
 ```
 
-এই প্রোজেক্টের জন্য Node.js `v14.0.0` বা `v14.0.0+` প্রয়োজন, কারণ আমরা আমাদের কোডে মডার্ন জাভাস্ক্রিপ্ট ব্যবহার করছি।
+এই প্রজেক্টের জন্য Node.js `v18` অথবা `v18+` প্রয়োজন এবং  `corepack` এনাবল করার রেকমেন্ড করা হয়।
 
-## বিষয় অবজেক্ট নিয়ে কাজ করুন
+```bash
+corepack enable
+```
 
 - VitePress ডকুমেন্টেশনে সমর্থিত বা supported [Markdown এক্সটেনশনগুলি](https://vitepress.vuejs.org/guide/markdown.html) এবং [Markdown এর ভিতরে Vue সিনট্যাক্স](https://vitepress.vuejs.org/guide/using-vue.html) কিভাবে ব্যবহার করা যায় দেখুন।
 
