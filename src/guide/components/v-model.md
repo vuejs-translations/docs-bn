@@ -20,6 +20,7 @@ function update() {
 
 <template>
   <div>Parent bound v-model is: {{ model }}</div>
+  <button @click="update">Increment</button>
 </template>
 ```
 
@@ -73,7 +74,7 @@ const emit = defineEmits(['update:modelValue'])
 </template>
 ```
 
-তারপর, মূল উপাদানে `v-model="modelValue"` এতে কম্পাইল করা হবে:
+তারপর, প্যারেন্ট কম্পোনেন্টে `v-model="foo"` এতে কম্পাইল করা হবে:
 
 ```vue-html
 <!-- Parent.vue -->
