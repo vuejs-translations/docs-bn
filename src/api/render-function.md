@@ -305,7 +305,7 @@ vnodes-এ কাস্টম ডিরেক্টিভ অ্যাড কর
 - **প্রকার**
 
   ```ts
-  function withModifiers(fn: Function, modifiers: string[]): Function
+  function withModifiers(fn: Function, modifiers: ModifierGuardsKeys[]): Function
   ```
 
 - **উদাহরন**
