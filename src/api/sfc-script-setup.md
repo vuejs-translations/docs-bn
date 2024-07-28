@@ -468,6 +468,25 @@ defineProps<{
 </script>
 ```
 
+একটি `রেফ`-এ জেনেরিক কম্পোনেন্টের রেফারেন্স ব্যবহার করার জন্য আপনাকে [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) লাইব্রেরি `InstanceType` হিসাবে কাজ করবে না।
+
+```vue
+<script
+  setup
+  lang="ts"
+>
+import componentWithoutGenerics from '../component-without-generics.vue';
+import genericComponent from '../generic-component.vue';
+
+import type { ComponentExposed } from 'vue-component-type-helpers';
+
+// Works for a component without generics
+ref<InstanceType<typeof componentWithoutGenerics>>();
+
+ref<ComponentExposed<typeof genericComponent>>();
+```
+
+
 ## Restrictions {#restrictions}
 
 - মডিউল এক্সিকিউশন শব্দার্থবিদ্যার পার্থক্যের কারণে, `<script setup>` এর ভিতরের কোড একটি SFC-এর প্রসঙ্গে নির্ভর করে। বাহ্যিক `.js` বা `.ts` ফাইলে সরানো হলে, এটি ডেভেলপার এবং টুল উভয়ের জন্যই বিভ্রান্তির কারণ হতে পারে। অতএব, **`<script setup>`** `src` অ্যাট্রিবিউটের সাথে ব্যবহার করা যাবে না।
