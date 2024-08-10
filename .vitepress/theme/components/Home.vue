@@ -131,18 +131,18 @@ html:not(.dark) .accent,
 }
 
 .actions .security {
-  background: linear-gradient(var(--vt-c-bg-mute), var(--vt-c-bg-mute)) padding-box, 
+  background: linear-gradient(var(--vt-c-bg-mute), var(--vt-c-bg-mute)) padding-box,
     linear-gradient(45deg, #42d392, #647eff) border-box;
   border: 2px solid transparent;
 }
 
 .actions .security:hover {
-  background: linear-gradient(var(--vt-c-gray-light-4), var(--vt-c-gray-light-4)) padding-box, 
+  background: linear-gradient(var(--vt-c-gray-light-4), var(--vt-c-gray-light-4)) padding-box,
     linear-gradient(45deg, #42d392, #647eff) border-box;
 }
 
 .dark .actions .security:hover {
-  background: linear-gradient(var(--vt-c-gray-dark-3), var(--vt-c-gray-dark-3)) padding-box, 
+  background: linear-gradient(var(--vt-c-gray-dark-3), var(--vt-c-gray-dark-3)) padding-box,
     linear-gradient(45deg, #42d392, #647eff) border-box;
 }
 
