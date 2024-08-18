@@ -50,7 +50,7 @@ const props = defineProps<Props>()
 </script>
 ```
 
-This also works if `Props` is imported from an external source. This feature requires TypeScript to be a peer dependency of Vue.
+এটিও কাজ করে যদি `Props` কোনো বাহ্যিক উৎস থেকে ইম্পোর্ট করা হয়। এই বৈশিষ্ট্যটির জন্য Vue-এর peer নির্ভরতা হতে TypeScript প্রয়োজন।
 
 ```vue
 <script setup lang="ts">
@@ -423,3 +423,38 @@ import type { ComponentPublicInstance } from 'vue'
 
 const child = ref<ComponentPublicInstance | null>(null)
 ```
+
+উল্লেখ করা উপাদানটি একটি [জেনেরিক কম্পোনেন্ট](/guide/typescript/overview.html#generic-components), উদাহরণস্বরূপ `MyGenericModal`:
+
+```vue
+<!-- MyGenericModal.vue -->
+<script setup lang="ts" generic="ContentType extends string | number">
+import { ref } from 'vue'
+
+const content = ref<ContentType | null>(null)
+
+const open = (newContent: ContentType) => (content.value = newContent)
+
+defineExpose({
+  open
+})
+</script>
+```
+
+এটিকে [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) লাইব্রেরি থেকে `ComponentExposed` ব্যবহার করে উল্লেখ করা দরকার কারণ `InstanceType` কাজ করবে না।
+
+```vue
+<!-- App.vue -->
+<script setup lang="ts">
+import MyGenericModal from './MyGenericModal.vue'
+
+import type { ComponentExposed } from 'vue-component-type-helpers';
+
+const modal = ref<ComponentExposed<typeof MyModal> | null>(null)
+
+const openModal = () => {
+  modal.value?.open('newValue')
+}
+</script>
+```
+

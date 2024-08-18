@@ -807,7 +807,6 @@ export default defineConfigWithTheme<ThemeConfig>({
       }
     },
     build: {
-      minify: 'terser',
       chunkSizeWarningLimit: Infinity
     },
     json: {
