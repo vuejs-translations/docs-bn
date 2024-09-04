@@ -47,15 +47,15 @@ export default {
 ```js
 // vue.config.js
 module.exports = {
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.module
       .rule('vue')
       .use('vue-loader')
-      .tap(options => ({
+      .tap((options) => ({
         ...options,
         compilerOptions: {
           // treat any tag that starts with ion- as custom elements
-          isCustomElement: tag => tag.startsWith('ion-')
+          isCustomElement: (tag) => tag.startsWith('ion-')
         }
       }))
   }
@@ -81,7 +81,7 @@ module.exports = {
 
 ### defineCustomElement {#definecustomelement}
 
-Vue [`defineCustomElement`](/api/general#definecustomelement) পদ্ধতির মাধ্যমে ঠিক একই Vue কম্পোনেন্ট API ব্যবহার করে কাস্টম কম্পোনেন্ট তৈরি করতে সমর্থন করে। পদ্ধতিটি [`defineComponent`](/api/general#definecomponent) হিসাবে একই যুক্তি গ্রহণ করে, কিন্তু পরিবর্তে একটি কাস্টম কম্পোনেন্ট কন্সট্রাকটর প্রদান করে যা `HTMLElement` প্রসারিত করে:
+Vue [`defineCustomElement`](/api/custom-elements#definecustomelement) পদ্ধতির মাধ্যমে ঠিক একই Vue কম্পোনেন্ট API ব্যবহার করে কাস্টম উপাদান তৈরি করতে সমর্থন করে। পদ্ধতিটি [`defineComponent`](/api/general#definecomponent) হিসাবে একই যুক্তি গ্রহণ করে, কিন্তু পরিবর্তে একটি কাস্টম উপাদান কন্সট্রাকটর প্রদান করে যা `HTMLElement` প্রসারিত করে:
 
 ```vue-html
 <my-vue-element></my-vue-element>
@@ -171,6 +171,20 @@ document.body.appendChild(
 
 [প্রোভাইড/ইনজেক্ট API](/guide/components/provide-inject#provide-inject) এবং এর [কম্পোজিশন API সমতুল্য](/api/composition-api-dependency-injection#provide) Vue-সংজ্ঞায়িত কাস্টম কম্পোনেন্টগুলির মধ্যেও কাজ করে . যাইহোক, মনে রাখবেন এটি **শুধুমাত্র কাস্টম কম্পোনেন্টগুলির মধ্যে** কাজ করে। যেমন একটি Vue-সংজ্ঞায়িত কাস্টম কম্পোনেন্ট একটি নন-কাস্টম-কম্পোনেন্ট Vue কম্পোনেন্ট দ্বারা প্রদত্ত বৈশিষ্ট্যগুলি ইনজেক্ট করতে সক্ষম হবে না।
 
+#### App Level Config <sup class="vt-badge" data-text="3.5+" /> {#app-level-config}
+
+You can configure the app instance of a Vue custom element using the `configureApp` option:
+
+```js
+defineCustomElement(MyComponent, {
+  configureApp(app) {
+    app.config.errorHandler = (err) => {
+      /* ... */
+    }
+  }
+})
+```
+
 ### SFC as Custom Element {#sfc-as-custom-element}
 
 `defineCustomElement` এছাড়াও Vue একক-ফাইল কম্পোনেন্ট (SFCs) এর সাথে কাজ করে। যাইহোক, ডিফল্ট টুলিং সেটআপের সাথে, SFC-এর ভিতরে `<style>` এখনও নিষ্কাশন করা হবে এবং প্রোডাকশন বিল্ডের সময় একক CSS ফাইলে মার্জ করা হবে। একটি কাস্টম কম্পোনেন্ট হিসাবে একটি SFC ব্যবহার করার সময়, এর পরিবর্তে কাস্টম কম্পোনেন্টের ছায়া রুটে `<style>` ট্যাগগুলি ইনজেকশন করা বাঞ্ছনীয়।
@@ -242,7 +256,7 @@ export const Counter = defineCustomElement(CounterSFC)
 // register global typings
 declare module 'vue' {
   export interface GlobalComponents {
-    'Counter': typeof Counter,
+    Counter: typeof Counter
   }
 }
 ```

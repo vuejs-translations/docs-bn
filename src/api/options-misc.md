@@ -101,7 +101,13 @@
 
   </div>
 
-- **আরো দেখুন** [Fallthrough Attributes](/guide/components/attrs)
+- **See also**
+
+  - [Fallthrough Attributes](/guide/components/attrs)
+  <div class="composition-api">
+
+  - [Using `inheritAttrs` in normal `<script>`](/api/sfc-script-setup.html#usage-alongside-normal-script)
+  </div>
 
 ## components {#components}
 

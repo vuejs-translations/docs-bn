@@ -129,7 +129,9 @@ Vue এর বর্তমান সংস্করন দেখার জন্
   type FooInstance = InstanceType<typeof Foo>
   ```
 
-  ### Function Signature <sup class="vt-badge" data-text="3.3+" /> {#function-signature}
+  ### Function Signature {#function-signature}
+
+  - Only supported in 3.3+
 
   `defineComponent()` এর সাথে একটি বিকল্প সিগনেচার রয়েছে যা Composition API এর সাথে ব্যবহার করা হয় এবং [render functions or JSX](/guide/extras/render-function.html).
 
@@ -222,46 +224,4 @@ Vue এর বর্তমান সংস্করন দেখার জন্
   }
   ```
 
-- **আরও দেখুন** [Guide - Async Components](/guide/components/async)
-
-## defineCustomElement() {#definecustomelement}
-
-এই মেথডটি [`defineComponent`](#definecomponent) এর মত একই আরগুমেন্ট গ্রহণ করে, কিন্তু রিটার্নে একটি নেটিভ [Custom Element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) ক্লাস কন্সট্রাক্টর প্রদান করে। 
-- **ধরন**
-
-  ```ts
-  function defineCustomElement(
-    component:
-      | (ComponentOptions & { styles?: string[] })
-      | ComponentOptions['setup']
-  ): {
-    new (props?: object): HTMLElement
-  }
-  ```
-
-  > সহজে পাঠ করার জন্য টাইপ সিম্পলীফাইড
-
-- **বিস্তারিত**
-
-  সাধারণ কম্পোনেন্ট অপশনগুলি ছাড়াও, `defineCustomElement()` একটি বিশেষ অপশন `styles` সমর্থন করে, যা কম্পোনেন্টের শ্যাডো রুটে ইনজেক্ট করা উচিত এমন CSS প্রদানের জন্য ইনলাইনযুক্ত CSS স্ট্রিংগুলির একটি অ্যারে হওয়া উচিত।
-
-  রিটার্ন ভ্যালু হল একটি কাস্টম এলিমেন্ট কনস্ট্রাক্টর যা [`customElements.define()`](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define) ব্যবহার করে রেজিস্ট্রাড হতে পারে।
-
-- **উদাহরন**
-
-  ```js
-  import { defineCustomElement } from 'vue'
-
-  const MyVueElement = defineCustomElement({
-    /* component options */
-  })
-
-  // Register the custom element.
-  customElements.define('my-vue-element', MyVueElement)
-  ```
-
-- **আরও দেখুন**
-
-  - [Guide - Building Custom Elements with Vue](/guide/extras/web-components#building-custom-elements-with-vue)
-
-  - এছাড়াও লক্ষ্য রাখবেন যে একক-ফাইল কম্পোনেন্টগুলির সাথে ব্যবহার করার সময় `defineCustomElement()` এর জন্য [special config](/guide/extras/web-components#sfc-as-custom-element) প্রয়োজন।
+- **See also** [Guide - Async Components](/guide/components/async)

@@ -286,6 +286,12 @@ h(Transition, {
      * Can be changed dynamically.
      */
     disabled?: boolean
+    /**
+     * When `true`, the Teleport will defer until other
+     * parts of the application have been mounted before
+     * resolving its target. (3.5+)
+     */
+    defer?: boolean
   }
   ```
 
@@ -307,7 +313,16 @@ h(Transition, {
   </Teleport>
   ```
 
-- **আরো দেখুন** [Guide - Teleport](/guide/built-ins/teleport)
+  Defer target resolution <sup class="vt-badge" data-text="3.5+" />:
+
+  ```vue-html
+  <Teleport defer to="#late-div">...</Teleport>
+
+  <!-- somewhere later in the template -->
+  <div id="late-div"></div>
+  ```
+
+- **See also** [Guide - Teleport](/guide/built-ins/teleport)
 
 ## `<Suspense>` <sup class="vt-badge experimental" /> {#suspense}
 

@@ -109,6 +109,105 @@ const AsyncComp = defineAsyncComponent({
 
 যদি একটি ত্রুটি কম্পোনেন্ট প্রদান করা হয়, এটি প্রদর্শিত হবে যখন লোডার ফাংশন দ্বারা প্রত্যাবর্তিত প্রতিশ্রুতি প্রত্যাখ্যান করা হয়। রিকোয়েস্ট টি খুব বেশি সময় নিলে আপনি ত্রুটি কম্পোনেন্টটি দেখানোর জন্য একটি সময়সীমা নির্দিষ্ট করতে পারেন।
 
+## Lazy Hydration <sup class="vt-badge" data-text="3.5+" /> {#lazy-hydration}
+
+> এই বিভাগটি শুধুমাত্র তখনই প্রযোজ্য যখন আপনি [সার্ভার-সাইড রেন্ডারিং](/guide/scaling-up/ssr) ব্যবহার করছেন।
+
+Vue 3.5+ এ, অ্যাসিঙ্ক উপাদানগুলি হাইড্রেশন কৌশল প্রদান করে হাইড্রেটেড হলে নিয়ন্ত্রণ করতে পারে।
+
+- Vue বিল্ট-ইন হাইড্রেশন কৌশলগুলির একটি সংখ্যা প্রদান করে। এই অন্তর্নির্মিত কৌশলগুলি পৃথকভাবে আমদানি করা প্রয়োজন যাতে ব্যবহার না করা হলে সেগুলি গাছ-কাঁপানো যেতে পারে।
+
+- নকশাটি ইচ্ছাকৃতভাবে নমনীয়তার জন্য নিম্ন-স্তরের। কম্পাইলার সিনট্যাক্স সুগার সম্ভাব্যভাবে এটির উপরে ভবিষ্যতে মূল বা উচ্চ স্তরের সমাধানগুলিতে তৈরি করা যেতে পারে (যেমন Nuxt)।
+
+### Hydrate on Idle
+
+Hydrates via `requestIdleCallback`:
+
+```js
+import { defineAsyncComponent, hydrateOnIdle } from 'vue'
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: hydrateOnIdle(/* optionally pass a max timeout */)
+})
+```
+
+### Hydrate on Visible
+
+যখন উপাদান(গুলি) `IntersectionObserver` এর মাধ্যমে দৃশ্যমান হয় তখন হাইড্রেট করুন৷
+
+```js
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: hydrateOnVisible()
+})
+```
+
+পর্যবেক্ষকের জন্য ঐচ্ছিকভাবে একটি বিকল্প অবজেক্ট মান পাস করতে পারে:
+
+```js
+hydrateOnVisible({ rootMargin: '100px' })
+```
+
+### Hydrate on Media Query
+
+নির্দিষ্ট মিডিয়া ক্যোয়ারী মিলে গেলে হাইড্রেট করে।
+
+```js
+import { defineAsyncComponent, hydrateOnMediaQuery } from 'vue'
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: hydrateOnMediaQuery('(max-width:500px)')
+})
+```
+
+### Hydrate on Interaction
+
+কম্পোনেন্ট এলিমেন্টে নির্দিষ্ট ঘটনা(গুলি) ট্রিগার হলে হাইড্রেট হয়। যে ইভেন্টটি হাইড্রেশনকে ট্রিগার করেছে তা হাইড্রেশন সম্পূর্ণ হলে পুনরায় প্লে করা হবে।
+
+```js
+import { defineAsyncComponent, hydrateOnInteraction } from 'vue'
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: hydrateOnInteraction('click')
+})
+```
+
+একাধিক ইভেন্ট প্রকারের একটি তালিকাও হতে পারে:
+
+```js
+hydrateOnInteraction(['wheel', 'mouseover'])
+```
+
+### Custom Strategy
+
+```ts
+import { defineAsyncComponent, type HydrationStrategy } from 'vue'
+
+const myStrategy: HydrationStrategy = (hydrate, forEachElement) => {
+  // forEachElement is a helper to iterate through all the root elememts
+  // in the component's non-hydrated DOM, since the root can be a fragment
+  // instead of a single element
+  forEachElement(el => {
+    // ...
+  })
+  // call `hydrate` when ready
+  hydrate()
+  return () => {
+    // return a teardown function if needed
+  }
+}
+
+const AsyncComp = defineAsyncComponent({
+  loader: () => import('./Comp.vue'),
+  hydrate: myStrategy
+})
+```
+
 ## Using with Suspense {#using-with-suspense}
 
 Async কম্পোনেন্টগুলি `<Suspense>` বিল্ট-ইন কম্পোনেন্টের সাথে ব্যবহার করা যেতে পারে। `<Suspense>` এবং অ্যাসিঙ্ক কম্পোনেন্টগুলির মধ্যে মিথস্ক্রিয়া নথিভুক্ত করা হয়েছে [`<Suspense>`](/guide/built-ins/suspense)-এর জন্য নিবেদিত অধ্যায়ে।

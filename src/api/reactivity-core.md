@@ -112,7 +112,7 @@
   - [Guide - Computed Properties](/guide/essentials/computed)
   - [Guide - Computed Debugging](/guide/extras/reactivity-in-depth#computed-debugging)
   - [Guide - Typing `computed()`](/guide/typescript/composition-api#typing-computed) <sup class="vt-badge ts" />
-  - [Guide - Performance - Computed Stability](/guide/best-practices/performance#computed-stability) <sup class="vt-badge" data-text="3.4+" />
+  - [Guide - Performance - Computed Stability](/guide/best-practices/performance#computed-stability)
 
 ## reactive() {#reactive}
 
@@ -238,7 +238,7 @@
   function watchEffect(
     effect: (onCleanup: OnCleanup) => void,
     options?: WatchEffectOptions
-  ): StopHandle
+  ): WatchHandle
 
   type OnCleanup = (cleanupFn: () => void) => void
 
@@ -248,7 +248,12 @@
     onTrigger?: (event: DebuggerEvent) => void
   }
 
-  type StopHandle = () => void
+  interface WatchHandle {
+    (): void // callable, same as `stop`
+    pause: () => void
+    resume: () => void
+    stop: () => void
+  }
   ```
 
 - **বিস্তারিত**
@@ -295,7 +300,48 @@
   stop()
   ```
 
-  অপশন:
+  Pausing / resuming the watcher: <sup class="vt-badge" data-text="3.5+" />
+
+  ```js
+  const { stop, pause, resume } = watchEffect(() => {})
+
+  // temporarily pause the watcher
+  pause()
+
+  // resume later
+  resume()
+
+  // stop
+  stop()
+  ```
+
+  Side effect cleanup:
+
+  ```js
+  watchEffect(async (onCleanup) => {
+    const { response, cancel } = doAsyncWork(newId)
+    // `cancel` will be called if `id` changes, cancelling
+    // the previous request if it hasn't completed yet
+    onCleanup(cancel)
+    data.value = await response
+  })
+  ```
+
+  Side effect cleanup in 3.5+:
+
+  ```js
+  import { onWatcherCleanup } from 'vue'
+
+  watchEffect(async () => {
+    const { response, cancel } = doAsyncWork(newId)
+    // `cancel` will be called if `id` changes, cancelling
+    // the previous request if it hasn't completed yet
+    onWatcherCleanup(cancel)
+    data.value = await response
+  })
+  ```
+
+  Options:
 
   ```js
   watchEffect(() => {}, {
@@ -333,14 +379,14 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
     source: WatchSource<T>,
     callback: WatchCallback<T>,
     options?: WatchOptions
-  ): StopHandle
+  ): WatchHandle
 
   // watching multiple sources
   function watch<T>(
     sources: WatchSource<T>[],
     callback: WatchCallback<T[]>,
     options?: WatchOptions
-  ): StopHandle
+  ): WatchHandle
 
   type WatchCallback<T> = (
     value: T,
@@ -357,11 +403,18 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
 
   interface WatchOptions extends WatchEffectOptions {
     immediate?: boolean // default: false
-    deep?: boolean // default: false
+    deep?: boolean | number // default: false
     flush?: 'pre' | 'post' | 'sync' // default: 'pre'
     onTrack?: (event: DebuggerEvent) => void
     onTrigger?: (event: DebuggerEvent) => void
     once?: boolean // default: false (3.4+)
+  }
+
+  interface WatchHandle {
+    (): void // callable, same as `stop`
+    pause: () => void
+    resume: () => void
+    stop: () => void
   }
   ```
 
@@ -384,11 +437,11 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
 
   তৃতীয় অপশনাল আরগুমেন্ট হল একটি অপশন অবজেক্ট যা নিম্নলিখিত অপশনগুলোকে সমর্থন করে:
 
-  - **`immediate`**: পর্যবেক্ষক তৈরিতে অবিলম্বে কলব্যাক ট্রিগার করুন। প্রথম কলে পুরানো মান 'অনির্ধারিত' হবে।
-  - **`deep`**: উৎসের গভীর ট্র্যাভার্সাল জোর করে যদি এটি একটি বস্তু হয়, যাতে কলব্যাক গভীর মিউটেশনে আগুন দেয়। [Deep Watchers](/guide/essentials/watchers#deep-watchers) দেখুন।
-  - **`flush`**: কলব্যাকের ফ্লাশ টাইমিং সামঞ্জস্য করুন। [কলব্যাক ফ্লাশ টাইমিং](/guide/essentials/watchers#callback-flush-timing) এবং [`watchEffect()`](/api/reactivity-core#watcheffect) দেখুন।
-  - **`onTrack / onTrigger`**: পর্যবেক্ষকের নির্ভরতা ডিবাগ করুন। [ওয়াচার ডিবাগিং](/guide/extras/reactivity-in-depth#watcher-debugging) দেখুন।
-  - **`once`**: শুধুমাত্র একবার কলব্যাক চালান। প্রথম কলব্যাক চালানোর পর পর্যবেক্ষক স্বয়ংক্রিয়ভাবে বন্ধ হয়ে যায়। <sup class="vt-badge" data-text="3.4+" />
+  - **`immediate`**: trigger the callback immediately on watcher creation. Old value will be `undefined` on the first call.
+  - **`deep`**: force deep traversal of the source if it is an object, so that the callback fires on deep mutations. In 3.5+, this can also be a number indicating the max traversal depth. See [Deep Watchers](/guide/essentials/watchers#deep-watchers).
+  - **`flush`**: adjust the callback's flush timing. See [Callback Flush Timing](/guide/essentials/watchers#callback-flush-timing) and [`watchEffect()`](/api/reactivity-core#watcheffect).
+  - **`onTrack / onTrigger`**: debug the watcher's dependencies. See [Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging).
+  - **`once`**: (3.4+) run the callback only once. The watcher is automatically stopped after the first callback run.
 
   [`watchEffect()`](#watcheffect) এর তুলনায়, `watch()` আমাদের অ্যালাউ করে:
 
@@ -472,7 +525,22 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
   stop()
   ```
 
-  সাইড ইফেক্ট ক্লিনআপ:
+  Pausing / resuming the watcher: <sup class="vt-badge" data-text="3.5+" />
+
+  ```js
+  const { stop, pause, resume } = watchEffect(() => {})
+
+  // temporarily pause the watcher
+  pause()
+
+  // resume later
+  resume()
+
+  // stop
+  stop()
+  ```
+
+  Side effect cleanup:
 
   ```js
   watch(id, async (newId, oldId, onCleanup) => {
@@ -484,7 +552,45 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
   })
   ```
 
-- **আরোও দেখুন**
+  Side effect cleanup in 3.5+:
+
+  ```js
+  import { onWatcherCleanup } from 'vue'
+
+  watch(id, async (newId) => {
+    const { response, cancel } = doAsyncWork(newId)
+    onWatcherCleanup(cancel)
+    data.value = await response
+  })
+  ```
+
+- **See also**
 
   - [Guide - Watchers](/guide/essentials/watchers)
   - [Guide - Watcher Debugging](/guide/extras/reactivity-in-depth#watcher-debugging)
+
+## onWatcherCleanup() <sup class="vt-badge" data-text="3.5+" /> {#onwatchercleanup}
+
+Register a cleanup function to be executed when the current watcher is about to re-run. Can only be called during the synchronous execution of a `watchEffect` effect function or `watch` callback function (i.e. it cannot be called after an `await` statement in an async function.)
+
+- **Type**
+
+  ```ts
+  function onWatcherCleanup(
+    cleanupFn: () => void,
+    failSilently?: boolean
+  ): void
+  ```
+
+- **Example**
+
+  ```ts
+  import { watch, onWatcherCleanup } from 'vue'
+
+  watch(id, (newId) => {
+    const { response, cancel } = doAsyncWork(newId)
+    // `cancel` will be called if `id` changes, cancelling
+    // the previous request if it hasn't completed yet
+    onWatcherCleanup(cancel)
+  })
+  ```

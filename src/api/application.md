@@ -90,6 +90,18 @@
   }
   ```
 
+## app.onUnmount() <sup class="vt-badge" data-text="3.5+" /> {#app-onunmount}
+
+Registers a callback to be called when the app is unmounted.
+
+- **Type**
+
+  ```ts
+  interface App {
+    onUnmount(callback: () => any): void
+  }
+  ```
+
 ## app.component() {#app-component}
 
 একটি নাম স্ট্রিং এবং একটি কম্পোনেন্ট সংজ্ঞা উভয় পাস করলে একটি বিশ্বব্যাপী কম্পোনেন্ট নিবন্ধন করে, অথবা শুধুমাত্র নাম পাস হলে ইতিমধ্যে নিবন্ধিত একটি পুনরুদ্ধার করে।
@@ -271,7 +283,9 @@ Installs a [plugin](/guide/reusability/plugins).
   - [App-level Provide](/guide/components/provide-inject#app-level-provide)
   - [app.runWithContext()](#app-runwithcontext)
 
-## app.runWithContext()<sup class="vt-badge" data-text="3.3+" /> {#app-runwithcontext}
+## app.runWithContext() {#app-runwithcontext}
+
+- Only supported in 3.3+
 
 ইনজেকশন প্রসঙ্গ হিসাবে বর্তমান অ্যাপের সাথে একটি কলব্যাক চালান।
 
@@ -609,4 +623,42 @@ Vue থেকে রানটাইম সতর্কতার জন্য এ
   // logs 'Hello Vue'
   ```
 
-- **আরো দেখুন** [Component Instance - `$options`](/api/component-instance#options)
+- **See also** [Component Instance - `$options`](/api/component-instance#options)
+
+## app.config.idPrefix <sup class="vt-badge" data-text="3.5+" /> {#app-config-idprefix}
+
+Configure a prefix for all IDs generated via [useId()](/api/general#useid) inside this application.
+
+- **Type:** `string`
+
+- **Default:** `undefined`
+
+- **Example**
+
+  ```js
+  app.config.idPrefix = 'my-app'
+  ```
+
+  ```js
+  // in a component:
+  const id1 = useId() // 'my-app:0'
+  const id2 = useId() // 'my-app:1'
+  ```
+
+## app.config.throwUnhandledErrorInProduction <sup class="vt-badge" data-text="3.5+" /> {#app-config-throwunhandlederrorinproduction}
+
+Force unhandled errors to be thrown in production mode.
+
+- **Type:** `boolean`
+
+- **Default:** `false`
+
+- **Details**
+
+  By default, errors thrown inside a Vue application but not explicitly handled have different behavior between development and production modes:
+
+  - In development, the error is thrown and can possibly crash the application. This is to make the error more prominent so that it can be noticed and fixed during development.
+
+  - In production, the error will only be logged to the console to minimize the impact to end users. However, this may prevent errors that only happen in production from being caught by error monitoring services.
+
+  By setting `app.config.throwUnhandledErrorInProduction` to `true`, unhandled errors will be thrown even in production mode.

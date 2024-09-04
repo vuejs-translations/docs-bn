@@ -91,7 +91,9 @@ Used for binding [dynamic components](/guide/essentials/component-basics#dynamic
 
 - **Expects:** `string | Component`
 
-- **Usage on native elements** <sup class="vt-badge">3.1+</sup>
+- **Usage on native elements**
+ 
+  - Only supported in 3.1+
 
   যখন একটি নেটিভ HTML এলিমেন্টে `is` অ্যাট্রিবিউট ব্যবহার করা হয়, তখন এটিকে [কাস্টমাইজ করা বিল্ট-ইন এলিমেন্ট](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-customized-builtin-example) হিসেবে ব্যাখ্যা করা হবে, যা একটি নেটিভ ওয়েব প্ল্যাটফর্ম বৈশিষ্ট্য।
 

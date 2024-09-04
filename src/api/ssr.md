@@ -220,3 +220,23 @@
   }
   </script>
   ```
+
+## data-allow-mismatch <sup class="vt-badge" data-text="3.5+" /> {#data-allow-mismatch}
+
+একটি বিশেষ বৈশিষ্ট্য যা [হাইড্রেশন অমিল](/guide/scaling-up/ssr#hydration-mismatch) সতর্কতা দমন করতে ব্যবহার করা যেতে পারে।
+
+- **Example**
+
+  ```html
+  <div data-allow-mismatch="text">{{ data.toLocaleString() }}</div>
+  ```
+
+  The value can limit the allowed mismatch to a specific type. Allowed values are:
+
+  - `text`
+  - `children` (only allows mismatch for direct children)
+  - `class`
+  - `style`
+  - `attribute`
+
+  If no value is provided, all types of mismatches will be allowed.

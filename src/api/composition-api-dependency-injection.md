@@ -107,7 +107,9 @@
   - [Guide - Provide / Inject](/guide/components/provide-inject)
   - [Guide - Typing Provide / Inject](/guide/typescript/composition-api#typing-provide-inject) <sup class="vt-badge ts" />
 
-## hasInjectionContext() <sup class="vt-badge" data-text="3.3+" /> {#has-injection-context}
+## hasInjectionContext() {#has-injection-context}
+
+- Only supported in 3.3+
 
 ভুল জায়গায় (যেমন `setup()` এর বাইরে) কোনো সতর্কতা ছাড়াই যদি [inject()](#inject) ব্যবহার করা যায় তাহলে সত্য দেখায়। এই পদ্ধতিটি এমন লাইব্রেরিদের দ্বারা ব্যবহার করার জন্য ডিজাইন করা হয়েছে যেগুলি শেষ ব্যবহারকারীকে সতর্ক না করেই অভ্যন্তরীণভাবে `ইনজেক্ট()` ব্যবহার করতে চায়।
 

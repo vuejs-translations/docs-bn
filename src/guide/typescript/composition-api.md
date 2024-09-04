@@ -68,10 +68,21 @@ const props = defineProps<Props>()
 
 ### Props Default Values {#props-default-values}
 
-type-based declaration ব্যবহার করার সময়, আমরা প্রপসের জন্য ডিফল্ট মান ঘোষণা করার ক্ষমতা হারিয়ে ফেলি। এটি `withDefaults` কম্পাইলার ম্যাক্রো দ্বারা সমাধান করা যেতে পারে:
+টাইপ-ভিত্তিক ঘোষণা ব্যবহার করার সময়, আমরা প্রপসের জন্য ডিফল্ট মান ঘোষণা করার ক্ষমতা হারিয়ে ফেলি। [Reactive Props Destructure](/guide/components/props#reactive-props-destructure) <sup class="vt-badge" data-text="3.5+" /> ব্যবহার করে এটি সমাধান করা যেতে পারে:
 
 ```ts
-export interface Props {
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const { msg = 'hello', labels = ['one', 'two'] } = defineProps<Props>()
+```
+
+In 3.4 and below, Reactive Props Destructure is not enabled by default. An alternative is to use the `withDefaults` compiler macro:
+
+```ts
+interface Props {
   msg?: string
   labels?: string[]
 }
@@ -85,7 +96,7 @@ const props = withDefaults(defineProps<Props>(), {
 এটি সমতুল্য রানটাইম প্রপস `default` বিকল্পে কম্পাইল করা হবে। উপরন্তু, `withDefaults` হেল্পার ডিফল্ট মানগুলির জন্য টাইপ চেক প্রদান করে এবং নিশ্চিত করে যে প্রত্যাবর্তিত `props` টাইপটিতে ডিফল্ট মান ঘোষিত বৈশিষ্ট্যগুলির জন্য ঐচ্ছিক ফ্ল্যাগগুলি সরানো হয়েছে।
 
 :::info
-মনে রাখবেন যে পরিবর্তনযোগ্য রেফারেন্স প্রকারের (যেমন অ্যারে বা অবজেক্ট) ডিফল্ট মানগুলি একসিডেন্টাল পরিবর্তন এবং বাহ্যিক পার্শ্ব প্রতিক্রিয়া এড়াতে ফাংশনে আবৃত করা উচিত। এটি নিশ্চিত করে যে প্রতিটি উপাদান দৃষ্টান্ত ডিফল্ট মানের নিজস্ব অনুলিপি পায়।
+মনে রাখবেন যে পরিবর্তনযোগ্য রেফারেন্স প্রকারের (যেমন অ্যারে বা অবজেক্ট) ডিফল্ট মানগুলি দুর্ঘটনাজনিত পরিবর্তন এবং বাহ্যিক পার্শ্ব প্রতিক্রিয়া এড়াতে `withDefaults` ব্যবহার করার সময় ফাংশনে মোড়ানো উচিত। এটি নিশ্চিত করে যে প্রতিটি উপাদান দৃষ্টান্ত ডিফল্ট মানের নিজস্ব অনুলিপি পায়। ধ্বংসের সাথে ডিফল্ট মান ব্যবহার করার সময় এটি **প্রয়োজনীয় নয়**।
 :::
 
 ### Without `<script setup>` {#without-script-setup}
@@ -360,7 +371,18 @@ const foo = inject('foo') as string
 
 ## Typing Template Refs {#typing-template-refs}
 
-টেমপ্লেট রেফ একটি স্পষ্ট জেনেরিক টাইপ আর্গুমেন্ট এবং `null` এর একটি প্রাথমিক মান দিয়ে তৈরি করা উচিত:
+Vue 3.5 এবং `@vue/language-tools` 2.1 (IDE ভাষা পরিষেবা এবং `vue-tsc` উভয়কেই শক্তি দেয়), SFC-তে `useTemplateRef()` দ্বারা তৈরি রেফের ধরন **স্বয়ংক্রিয়ভাবে অনুমান করা যেতে পারে** স্ট্যাটিক refs কোন উপাদানে মিলিত `রেফ` অ্যাট্রিবিউট ব্যবহার করা হয়েছে তার উপর ভিত্তি করে।
+
+যে ক্ষেত্রে স্বয়ং-অনুমান করা সম্ভব নয়, আপনি এখনও জেনেরিক আর্গুমেন্টের মাধ্যমে টেমপ্লেট রেফটিকে একটি সুস্পষ্ট প্রকারে কাস্ট করতে পারেন:
+
+```ts
+const el = useTemplateRef<HTMLInputElement>(null)
+```
+
+<details>
+<summary>Usage before 3.5</summary>
+
+টেমপ্লেট রেফ একটি স্পষ্ট জেনেরিক টাইপ আর্গুমেন্ট এবং 'নাল' এর একটি প্রাথমিক মান দিয়ে তৈরি করা উচিত:
 
 ```vue
 <script setup lang="ts">
@@ -378,50 +400,45 @@ onMounted(() => {
 </template>
 ```
 
+</details>
+
 সঠিক DOM ইন্টারফেস পেতে আপনি [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#technical_summary) এর মতো পৃষ্ঠাগুলি পরীক্ষা করতে পারেন।
 
 মনে রাখবেন যে কঠোর ধরনের নিরাপত্তার জন্য, `el.value` অ্যাক্সেস করার সময় ঐচ্ছিক চেইনিং বা টাইপ গার্ড ব্যবহার করা প্রয়োজন। কারণ কম্পোনেন্ট মাউন্ট না হওয়া পর্যন্ত রেফ এর মান `null` থাকে এবং যদি রেফারেন্সকৃত কম্পোনেন্ট `v-if` দ্বারা আনমাউন্ট করা হয় তাহলে এটি `null` সেট করা যেতে পারে।
 
 ## Typing Component Template Refs {#typing-component-template-refs}
 
-কখনও কখনও আপনাকে একটি  চাইল্ড কম্পোনেন্টের জন্য একটি টেমপ্লেট রেফ টীকা করতে হতে পারে যাতে এটির সর্বজনীন পদ্ধতি কল করা যায়। উদাহরণ স্বরূপ, আমাদের কাছে একটি `MyModal` চাইল্ড কম্পোনেন্ট আছে একটি পদ্ধতি সহ যেটি মোডাল খোলে:
+Vue 3.5 এবং `@vue/language-tools` 2.1 (IDE ভাষা পরিষেবা এবং `vue-tsc` উভয়কেই শক্তি দেয়), SFC-তে `useTemplateRef()` দ্বারা তৈরি রেফের ধরন **স্বয়ংক্রিয়ভাবে অনুমান করা যেতে পারে** স্ট্যাটিক রেফের উপর ভিত্তি করে কোন উপাদান বা উপাদানের সাথে মিলে যাওয়া `রেফ` অ্যাট্রিবিউট ব্যবহার করা হয়েছে।
 
-```vue
-<!-- MyModal.vue -->
-<script setup lang="ts">
-import { ref } from 'vue'
+যেসব ক্ষেত্রে স্বয়ং-অনুমান করা সম্ভব নয় (যেমন নন-এসএফসি ব্যবহার বা গতিশীল উপাদান), আপনি এখনও জেনেরিক আর্গুমেন্টের মাধ্যমে টেমপ্লেট রেফকে একটি সুস্পষ্ট প্রকারে কাস্ট করতে পারেন।
 
-const isContentShown = ref(false)
-const open = () => (isContentShown.value = true)
-
-defineExpose({
-  open
-})
-</script>
-```
-
-`MyModal`-এর ইন্সট্যান্স টাইপ পেতে, আমাদের প্রথমে `typeof` এর মাধ্যমে এর টাইপ পেতে হবে, তারপর TypeScript এর অন্তর্নির্মিত `InstanceType` ইউটিলিটি ব্যবহার করে এর ইনস্ট্যান্স টাইপ বের করতে হবে:
+একটি ইম্পোর্ট করা কম্পোনেন্টের ইনস্ট্যান্স টাইপ পেতে, আমাদের প্রথমে `typeof` এর মাধ্যমে এর টাইপ পেতে হবে, তারপর TypeScript এর অন্তর্নির্মিত `InstanceType` ইউটিলিটি ব্যবহার করে এর ইনস্ট্যান্স টাইপ বের করতে হবে:
 
 ```vue{5}
 <!-- App.vue -->
 <script setup lang="ts">
-import MyModal from './MyModal.vue'
+import { useTemplateRef } from 'vue'
+import Foo from './Foo.vue'
+import Bar from './Bar.vue'
 
-const modal = ref<InstanceType<typeof MyModal> | null>(null)
+type FooType = InstanceType<typeof Foo>
+type BarType = InstanceType<typeof Bar>
 
-const openModal = () => {
-  modal.value?.open()
-}
+const compRef = useTemplateRef<FooType | BarType>('comp')
 </script>
+
+<template>
+  <component :is="Math.random() > 0.5 ? Foo : Bar" ref="comp" />
+</template>
 ```
 
 যে ক্ষেত্রে কম্পোনেন্টের সঠিক ধরন পাওয়া যায় না বা গুরুত্বপূর্ণ নয়, তার পরিবর্তে `ComponentPublicInstance` ব্যবহার করা যেতে পারে। এটি কেবলমাত্র সেই বৈশিষ্ট্যগুলি অন্তর্ভুক্ত করবে যা সমস্ত কম্পোনেন্ট দ্বারা ভাগ করা হয়, যেমন `$el`:
 
 ```ts
-import { ref } from 'vue'
+import { useTemplateRef } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 
-const child = ref<ComponentPublicInstance | null>(null)
+const child = useTemplateRef<ComponentPublicInstance | null>(null)
 ```
 
 উল্লেখ করা উপাদানটি একটি [জেনেরিক কম্পোনেন্ট](/guide/typescript/overview.html#generic-components), উদাহরণস্বরূপ `MyGenericModal`:
@@ -446,11 +463,11 @@ defineExpose({
 ```vue
 <!-- App.vue -->
 <script setup lang="ts">
+import { useTemplateRef } from 'vue'
 import MyGenericModal from './MyGenericModal.vue'
+import type { ComponentExposed } from 'vue-component-type-helpers'
 
-import type { ComponentExposed } from 'vue-component-type-helpers';
-
-const modal = ref<ComponentExposed<typeof MyModal> | null>(null)
+const modal = useTemplateRef<ComponentExposed<typeof MyModal>>(null)
 
 const openModal = () => {
   modal.value?.open('newValue')
@@ -458,3 +475,4 @@ const openModal = () => {
 </script>
 ```
 
+Note that with `@vue/language-tools` 2.1+, static template refs' types can be automatically inferred and the above is only needed in edge cases.

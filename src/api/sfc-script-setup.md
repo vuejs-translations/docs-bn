@@ -208,12 +208,48 @@ const emit = defineEmits<{
 
   এই সীমাবদ্ধতা 3.3 এ সমাধান করা হয়েছে। Vue-এর সর্বশেষ সংস্করণটি টাইপ প্যারামিটার পজিশনে ইম্পোর্ট করা রেফারেন্সিং এবং জটিল টাইপের একটি সীমিত সেট সমর্থন করে। যাইহোক, যেহেতু রানটাইম কনভারশেন ধরনটি এখনও AST-ভিত্তিক, কিছু কমপ্লেক্স টাইপের প্রকৃত টাইপ অ্যানালাইসিস প্রয়োজন, যেমন কন্ডিশনাল টাইপ, সমর্থিত নয়। আপনি একটি সিঙ্গেল প্রপের ধরণের জন্য শর্তসাপেক্ষ টাইপগুলি ব্যবহার করতে পারেন, তবে সম্পূর্ণ প্রপস অবজেক্ট নয়।
 
-### Default props values when using type declaration {#default-props-values-when-using-type-declaration}
+### Reactive Props Destructure <sup class="vt-badge" data-text="3.5+" /> {#reactive-props-destructure}
 
-টাইপ-অনলি `defineProps` ডিক্লারেশন একটি এরর হল যে এটিতে প্রপসের জন্য ডিফল্ট ভ্যালু প্রদান করার কোনো উপায় নেই। এই সমস্যাটি সমাধান করার জন্য, একটি 'withDefaults' কম্পাইলার ম্যাক্রোও প্রদান করা হয়েছে:
+In Vue 3.5 and above, variables destructured from the return value of `defineProps` are reactive. Vue's compiler automatically prepends `props.` when code in the same `<script setup>` block accesses variables destructured from `defineProps`:
 
 ```ts
-export interface Props {
+const { foo } = defineProps(['foo'])
+
+watchEffect(() => {
+  // runs only once before 3.5
+  // re-runs when the "foo" prop changes in 3.5+
+  console.log(foo)
+})
+```
+
+The above is compiled to the following equivalent:
+
+```js {5}
+const props = defineProps(['foo'])
+
+watchEffect(() => {
+  // `foo` transformed to `props.foo` by the compiler
+  console.log(props.foo)
+})
+```
+
+In addition, you can use JavaScript's native default value syntax to declare default values for the props. This is particularly useful when using the type-based props declaration:
+
+```ts
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const { msg = 'hello', labels = ['one', 'two'] } = defineProps<Props>()
+```
+
+### Default props values when using type declaration <sup class="vt-badge ts" /> {#default-props-values-when-using-type-declaration}
+
+In 3.5 and above, default values can be naturally declared when using Reactive Props Destructure. But in 3.4 and below, Reactive Props Destructure is not enabled by default. In order to declare props default values with type-based declaration, the `withDefaults` compiler macro is needed:
+
+```ts
+interface Props {
   msg?: string
   labels?: string[]
 }
@@ -227,10 +263,12 @@ const props = withDefaults(defineProps<Props>(), {
 এটি সমতুল্য রানটাইম প্রপস `default` অপশনের কম্পাইল করা হবে। উপরন্তু, `withDefaults` হেল্পার ডিফল্ট ভ্যালুগুলির জন্য টাইপ চেক প্রদান করে এবং নিশ্চিত করে যে প্রত্যাবর্তিত `props` টাইপটিতে ডিফল্ট ভ্যালু ডিক্লারড বৈশিষ্ট্যগুলির জন্য অপশনাল ফ্ল্যাগগুলি রিমুভ করা হয়েছে।
 
 :::info
-মনে রাখবেন যে পরিবর্তনযোগ্য রেফারেন্স প্রকারের (যেমন অ্যারে বা অবজেক্ট) ডিফল্ট মানগুলি একসিডেন্টাল পরিবর্তন এবং বাহ্যিক পার্শ্ব প্রতিক্রিয়া এড়াতে ফাংশনে আবৃত করা উচিত। এটি নিশ্চিত করে যে প্রতিটি উপাদান দৃষ্টান্ত ডিফল্ট মানের নিজস্ব অনুলিপি পায়।
+Note that default values for mutable reference types (like arrays or objects) should be wrapped in functions when using `withDefaults` to avoid accidental modification and external side effects. This ensures each component instance gets its own copy of the default value. This is **not** necessary when using default values with destructure.
 :::
 
-## defineModel() <sup class="vt-badge" data-text="3.4+" /> {#definemodel}
+## defineModel() {#definemodel}
+
+- Only available in 3.4+
 
 এই ম্যাক্রোটি একটি দ্বি-মুখী বাইন্ডিং প্রপ ঘোষণা করতে ব্যবহার করা যেতে পারে যা মূল কম্পোনেন্ট থেকে `v-model` এর মাধ্যমে ব্যবহার করা যেতে পারে। উদাহরণ ব্যবহার [কম্পোনেন্ট `v-model`](/guide/components/v-model) গাইডেও আলোচনা করা হয়েছে।
 
@@ -340,7 +378,9 @@ defineExpose({
 
 যখন একটি প্যারেন্ট টেমপ্লেট রেফের মাধ্যমে এই কম্পোনেন্টটির একটি ইন্সট্যান্স পান, তখন পুনরুদ্ধারকৃত ইন্সট্যান্স `{ a: number, b: number }` আকারের হবে (রেফগুলি স্বয়ংক্রিয়ভাবে স্বাভাবিক উদাহরণের মতোই unwrapped হয়)।
 
-## defineOptions() <sup class="vt-badge" data-text="3.3+" /> {#defineoptions}
+## defineOptions() {#defineoptions}
+
+- Only supported in 3.3+
 
 এই ম্যাক্রোটি একটি পৃথক `<script>` ব্লক ব্যবহার না করে সরাসরি `<script setup>` এর ভিতরে কম্পোনেন্ট অপশন ডিক্লেয়ার করতে ব্যবহার করা যেতে পারে:
 
@@ -355,12 +395,13 @@ defineOptions({
 </script>
 ```
 
-- শুধুমাত্র 3.3+ এ সমর্থিত।
-- এটি একটি ম্যাক্রো. অপশনগুলি মডিউল স্কোপে হোইস্টেড করা হবে এবং `<script setup>`-এ লোকাল ভেরিয়েবল অ্যাক্সেস করতে পারবে না যা লিটারাল কনসট্যান্ট নয়।
+- This is a macro. The options will be hoisted to module scope and cannot access local variables in `<script setup>` that are not literal constants.
 
 ## defineSlots()<sup class="vt-badge ts"/> {#defineslots}
 
-স্লট নেইম এবং প্রপস টাইপ চেকিংয়ের জন্য IDE-কে টাইপ হিন্টিং দিতে এই ম্যাক্রো ব্যবহার করা যেতে পারে।
+- Only supported in 3.3+
+
+This macro can be used to provide type hints to IDEs for slot name and props type checking.
 
 `defineSlots()` শুধুমাত্র একটি টাইপ প্যারামিটার রিসিভ করে এবং কোনো রানটাইম আর্গুমেন্ট নেই। টাইপ প্যারামিটার একটি টাইপ লিটারাল হওয়া উচিত যেখানে প্রোপার্টি কী-টি স্লটের নাম এবং ভ্যালুর টাইপটি স্লট ফাংশন। ফাংশনের প্রথম আর্গুমেন্ট হল প্রপস যা স্লট পাওয়ার আশা করে এবং এর টাইপটি টেমপ্লেটের স্লট প্রপসের জন্য ব্যবহার করা হবে। রিটার্নের টাইপটি বর্তমানে উপেক্ষা করা হয়েছে এবং এটি `any` হতে পারে, তবে আমরা ভবিষ্যতে স্লট সামগ্রী চেক করার জন্য এটির সুবিধা নিতে পারি।
 
@@ -373,8 +414,6 @@ const slots = defineSlots<{
 }>()
 </script>
 ```
-
-- শুধুমাত্র 3.3+ এ সমর্থিত।
 
 ## `useSlots()` & `useAttrs()` {#useslots-useattrs}
 
@@ -485,7 +524,6 @@ ref<InstanceType<typeof componentWithoutGenerics>>();
 
 ref<ComponentExposed<typeof genericComponent>>();
 ```
-
 
 ## Restrictions {#restrictions}
 

@@ -333,7 +333,7 @@ const activeUsers = computed(() => {
 
 অ্যাপ্লিকেশানগুলির জন্য, একটি শীর্ষ-স্তরের `App`' কম্পোনেন্ট এবং লেআউট কম্পোনেন্টগুলির ধরনগুলি বিশ্বব্যাপী হতে পারে, তবে অন্যান্য সমস্ত কম্পোনেন্ট সর্বদা ব্যাপ্ত হওয়া উচিত৷
 
-এই জন্য শুধুমাত্র প্রাসঙ্গিক [Single-File Components](/guide/scaling-up/sfc). এটার প্রয়োজন _নেই_ যে [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) ব্যবহার করা. স্কোপিং মাধ্যমে হতে পারে [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules), একটি ক্লাস-ভিত্তিক কৌশল যেমন [BEM](http://getbem.com/), অথবা অন্য লাইব্রেরি/সম্মেলন।
+এটি শুধুমাত্র [একক-ফাইল উপাদান](/guide/scaling-up/sfc) এর জন্য প্রাসঙ্গিক। এটির জন্য [`scoped` অ্যাট্রিবিউট](https://vue-loader.vuejs.org/guide/scoped-css.html) ব্যবহার করার প্রয়োজন নেই। স্কোপিং হতে পারে [CSS মডিউল](https://vue-loader.vuejs.org/guide/css-modules.html), একটি ক্লাস-ভিত্তিক কৌশল যেমন [BEM](http://getbem.com/) , অথবা অন্য লাইব্রেরি/সম্মেলন।
 
 ** কম্পোনেন্ট লাইব্রেরি, তবে, `scoped` অ্যাট্রিবিউট ব্যবহার করার পরিবর্তে একটি ক্লাস-ভিত্তিক কৌশল পছন্দ করা উচিত।**
 

@@ -86,7 +86,9 @@
 
 ## slots<sup class="vt-badge ts"/> {#slots}
 
-রেন্ডার ফাংশনে প্রোগ্রাম্যাটিকভাবে স্লট ব্যবহার করার সময় টাইপ ইনফারেন্সে সহায়তা করার একটি অপশন। শুধুমাত্র 3.3+ এ সমর্থিত।
+- Only supported in 3.3+
+
+An option to assist with type inference when using slots programmatically in render functions.
 
 - **বিস্তারিত**
 
