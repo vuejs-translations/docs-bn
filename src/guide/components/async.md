@@ -119,7 +119,7 @@ Vue 3.5+ এ, অ্যাসিঙ্ক উপাদানগুলি হা�
 
 - নকশাটি ইচ্ছাকৃতভাবে নমনীয়তার জন্য নিম্ন-স্তরের। কম্পাইলার সিনট্যাক্স সুগার সম্ভাব্যভাবে এটির উপরে ভবিষ্যতে মূল বা উচ্চ স্তরের সমাধানগুলিতে তৈরি করা যেতে পারে (যেমন Nuxt)।
 
-### Hydrate on Idle
+### Hydrate on Idle {#hydrate-on-idle}
 
 Hydrates via `requestIdleCallback`:
 
@@ -132,7 +132,7 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-### Hydrate on Visible
+### Hydrate on Visible {#hydrate-on-visible}
 
 যখন উপাদান(গুলি) `IntersectionObserver` এর মাধ্যমে দৃশ্যমান হয় তখন হাইড্রেট করুন৷
 
@@ -151,7 +151,7 @@ const AsyncComp = defineAsyncComponent({
 hydrateOnVisible({ rootMargin: '100px' })
 ```
 
-### Hydrate on Media Query
+### Hydrate on Media Query {#hydrate-on-media-query}
 
 নির্দিষ্ট মিডিয়া ক্যোয়ারী মিলে গেলে হাইড্রেট করে।
 
@@ -164,7 +164,7 @@ const AsyncComp = defineAsyncComponent({
 })
 ```
 
-### Hydrate on Interaction
+### Hydrate on Interaction {#hydrate-on-interaction}
 
 কম্পোনেন্ট এলিমেন্টে নির্দিষ্ট ঘটনা(গুলি) ট্রিগার হলে হাইড্রেট হয়। যে ইভেন্টটি হাইড্রেশনকে ট্রিগার করেছে তা হাইড্রেশন সম্পূর্ণ হলে পুনরায় প্লে করা হবে।
 
@@ -183,13 +183,13 @@ const AsyncComp = defineAsyncComponent({
 hydrateOnInteraction(['wheel', 'mouseover'])
 ```
 
-### Custom Strategy
+### Custom Strategy {#custom-strategy}
 
 ```ts
 import { defineAsyncComponent, type HydrationStrategy } from 'vue'
 
 const myStrategy: HydrationStrategy = (hydrate, forEachElement) => {
-  // forEachElement is a helper to iterate through all the root elememts
+  // forEachElement is a helper to iterate through all the root elements
   // in the component's non-hydrated DOM, since the root can be a fragment
   // instead of a single element
   forEachElement(el => {

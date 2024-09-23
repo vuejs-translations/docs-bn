@@ -278,19 +278,6 @@
   // -> logs 1
   ```
 
-  Side effect cleanup:
-
-  ```js
-  watchEffect(async (onCleanup) => {
-    const { response, cancel } = doAsyncWork(id.value)
-    // `cancel` will be called if `id` changes
-    // so that previous pending request will be cancelled
-    // if not yet completed
-    onCleanup(cancel)
-    data.value = await response
-  })
-  ```
-
   Stopping the watcher:
 
   ```js
@@ -528,7 +515,7 @@ Alias of [`watchEffect()`](#watcheffect) with `flush: 'sync'` option.
   Pausing / resuming the watcher: <sup class="vt-badge" data-text="3.5+" />
 
   ```js
-  const { stop, pause, resume } = watchEffect(() => {})
+  const { stop, pause, resume } = watch(() => {})
 
   // temporarily pause the watcher
   pause()

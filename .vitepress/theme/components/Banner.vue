@@ -21,32 +21,31 @@ function dismiss() {
 </script>
 
 <template>
-  <div class="banner" v-if="open">
-    <p class="vt-banner-text">
-      <span class="vt-text-primary">VueConf Toronto</span>
-      <span class="vt-tagline"> - Join the premier Vue.js conference</span>
-      | 18-20 Nov 2024 <span class="vt-place"> - Toronto, Canada</span>
-      <a
-        target="_blank"
-        class="vt-primary-action"
-        href="https://vuetoronto.com/?utm_source=vuejs&utm_content=top_banner"
-      >
-        Register
-      </a>
-    </p>
-    <button @click="dismiss">
+  <div class="banner banner-vuejsconf" v-if="open">
+    <a href="https://conf.vuejs.de/tickets/?voucher=VUEJS_SPECIAL_OFFER&utm_source=vuejs&utm_medium=referral&utm_campaign=banner-placement&utm_content=banner"
+      target="_blank">
+      <picture>
+        <source media="(min-width:1260px)"
+          srcset="/vuejsde-conf/vuejsdeconf_banner_large.png, /vuejsde-conf/vuejsdeconf_banner_large_2x.png 2x" />
+        <source media="(min-width:970px)"
+          srcset="/vuejsde-conf/vuejsdeconf_banner_medium.png, /vuejsde-conf/vuejsdeconf_banner_medium_2x.png 2x" />
+        <source media="(min-width:576px)"
+          srcset="/vuejsde-conf/vuejsdeconf_banner_small.png, /vuejsde-conf/vuejsdeconf_banner_small_2x.png 2x" />
+        <source media="(min-width:320px)"
+          srcset="/vuejsde-conf/vuejsdeconf_banner_smallest.png, /vuejsde-conf/vuejsdeconf_banner_smallest_2x.png 2x"
+          alt="" />
+        <img src="/vuejsde-conf/vuejsdeconf_banner_smallest_2x.png" alt="" />
+      </picture>
+    </a>
+    <div class="close-btn" @click.stop.prevent="dismiss">
       <VTIconPlus class="close" />
-    </button>
-    <p class="vt-banner-text vt-coupon">
-      <span class="vt-text-primary">Use code</span> VUEJS
-      <span class="vt-text-primary">to get 15% off</span>
-    </p>
+    </div>
   </div>
 </template>
 
 <style>
 html:not(.banner-dismissed) {
-  --vt-banner-height: 60px;
+  --vt-banner-height: 72px;
 }
 </style>
 
@@ -65,10 +64,10 @@ html:not(.banner-dismissed) {
   font-weight: 600;
   color: #fff;
   background-color: var(--vt-c-green);
-  background: #11252b;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(90deg,
+      rgba(66, 184, 131, 1) 0%,
+      rgba(39, 179, 137, 1) 19%,
+      rgba(100, 126, 255, 1) 100%);
 }
 
 .banner-dismissed .banner {
@@ -83,68 +82,38 @@ button {
   position: absolute;
   right: 0;
   top: 0;
-  padding: 20px 10px;
+  padding: 5px;
 }
 
 .close {
   width: 20px;
   height: 20px;
-  fill: #fff;
+  fill: #000;
   transform: rotate(45deg);
 }
 
-.vt-banner-text {
-  color: #fff;
-  font-size: 16px;
+.banner-vuejsconf {
+  background: linear-gradient(90deg, #fff 50%, #6f97c4 50%);
 }
 
-.vt-text-primary {
-  color: #75c05e;
+.banner-vuejsconf a {
+  display: inline-block;
+  margin: 0 auto;
 }
 
-.vt-primary-action {
-  background: #75c05e;
-  color: #121c1a;
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-size: 14px;
-  text-decoration: none;
-  margin: 0 20px;
-  font-weight: bold;
-}
-.vt-primary-action:hover {
-  text-decoration: none;
-  background: #5a9f45;
+.banner-vuejsconf .close-btn {
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-@media (max-width: 1280px) {
-  .banner .vt-banner-text {
-    font-size: 14px;
-  }
-  .vt-tagline {
+/*
+@media (max-width: 720px) {
+  a > span {
     display: none;
   }
-}
-
-@media (max-width: 780px) {
-  .vt-tagline {
-    display: none;
-  }
-  .vt-coupon {
-    display: none;
-  }
-  .vt-primary-action {
-    margin: 0 10px;
-    padding: 7px 10px;
-  }
-  .vt-time-now {
-    display: none;
-  }
-}
-
-@media (max-width: 560px) {
-  .vt-place {
-    display: none;
-  }
-}
+} */
 </style>

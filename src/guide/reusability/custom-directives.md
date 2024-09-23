@@ -1,12 +1,23 @@
 # Custom Directives {#custom-directives}
 
 <script setup>
-const vFocus = {
+const vHighlight = {
   mounted: el => {
-    el.focus()
+    el.classList.add('is-highlight')
   }
 }
 </script>
+
+<style>
+.vt-doc p.is-highlight {
+  margin-bottom: 0;
+}
+
+.is-highlight {
+  background-color: yellow;
+  color: black;
+}
+</style>
 
 ## Introduction {#introduction}
 
@@ -15,6 +26,95 @@ const vFocus = {
 আমরা Vue-তে কোড পুনঃব্যবহারের দুটি ফর্ম চালু করেছি: [components](/guide/essentials/component-basics) এবং [composables](./composables)। কম্পোনেন্টগুলি হল প্রধান বিল্ডিং ব্লক, যখন কম্পোজেবলগুলি রাষ্ট্রীয় যুক্তি পুনঃব্যবহারের উপর দৃষ্টি নিবদ্ধ করে। অন্যদিকে, কাস্টম নির্দেশাবলী প্রধানত যুক্তি পুনঃব্যবহারের উদ্দেশ্যে তৈরি করা হয় যা প্লেইন কম্পোনেন্টগুলিতে নিম্ন-স্তরের DOM অ্যাক্সেস জড়িত।
 
 একটি কাস্টম নির্দেশিকাকে একটি অবজেক্ট হিসাবে সংজ্ঞায়িত করা হয় যাতে একটি কম্পোনেন্টের অনুরূপ লাইফসাইকেল হুক থাকে। হুকগুলি সেই কম্পোনেন্টটি গ্রহণ করে যা নির্দেশে আবদ্ধ। এখানে একটি নির্দেশের একটি উদাহরণ যা একটি ইনপুট ফোকাস করে যখন কম্পোনেন্টটি Vue দ্বারা DOM-এ ঢোকানো হয়:
+
+<div class="composition-api">
+
+```vue
+<script setup>
+// enables v-highlight in templates
+const vHighlight = {
+  mounted: (el) => {
+    el.classList.add('is-highlight')
+  }
+}
+</script>
+
+<template>
+  <p v-highlight>This sentence is important!</p>
+</template>
+```
+
+</div>
+
+<div class="options-api">
+
+```js
+const highlight = {
+  mounted: (el) => el.classList.add('is-highlight')
+}
+
+export default {
+  directives: {
+    // enables v-highlight in template
+    highlight
+  }
+}
+```
+
+```vue-html
+<p v-highlight>This sentence is important!</p>
+```
+
+</div>
+
+<div class="demo">
+  <p v-highlight>This sentence is important!</p>
+</div>
+
+<div class="composition-api">
+
+In `<script setup>`, any camelCase variable that starts with the `v` prefix can be used as a custom directive. In the example above, `vHighlight` can be used in the template as `v-highlight`.
+
+If you are not using `<script setup>`, custom directives can be registered using the `directives` option:
+
+```js
+export default {
+  setup() {
+    /*...*/
+  },
+  directives: {
+    // enables v-highlight in template
+    highlight: {
+      /* ... */
+    }
+  }
+}
+```
+
+</div>
+
+<div class="options-api">
+
+Similar to components, custom directives must be registered so that they can be used in templates. In the example above, we are using local registration via the `directives` option.
+
+</div>
+
+It is also common to globally register custom directives at the app level:
+
+```js
+const app = createApp({})
+
+// make v-focus usable in all components
+app.directive('highlight', {
+  /* ... */
+})
+```
+
+## When to use custom directives {#when-to-use}
+
+Custom directives should only be used when the desired functionality can only be achieved via direct DOM manipulation.
+
+A common example of this is a `v-focus` custom directive that brings an element into focus.
 
 <div class="composition-api">
 
@@ -54,54 +154,9 @@ export default {
 
 </div>
 
-<div class="demo">
-  <input v-focus placeholder="This should be focused" />
-</div>
+এই নির্দেশিকাটি `autofocus` অ্যাট্রিবিউটের চেয়ে বেশি কার্যকর কারণ এটি শুধু পৃষ্ঠা লোডের ক্ষেত্রেই কাজ করে না - এটিও কাজ করে যখন উপাদানটি গতিশীলভাবে Vue দ্বারা সন্নিবেশ করা হয়!
 
-ধরে নিচ্ছি আপনি পৃষ্ঠার অন্য কোথাও ক্লিক করেননি, উপরের ইনপুটটি স্বয়ংক্রিয়ভাবে ফোকাস করা উচিত। এই নির্দেশিকাটি `autofocus` অ্যাট্রিবিউটের চেয়ে বেশি কার্যকর কারণ এটি শুধুমাত্র পৃষ্ঠা লোডের ক্ষেত্রে কাজ করে না - এটি Vue দ্বারা কম্পোনেন্টটিকে গতিশীলভাবে সন্নিবেশ করা হলে এটিও কাজ করে।
-
-<div class="composition-api">
-
-`<script setup>`-এ, `v` prefix দিয়ে শুরু হওয়া যে কোনো camelCase variable একটি কাস্টম নির্দেশিকা হিসেবে ব্যবহার করা যেতে পারে। উপরের উদাহরণে, `vFocus` টেমপ্লেটে `v-focus` হিসেবে ব্যবহার করা যেতে পারে।
-
-`<script setup>` ব্যবহার না করলে, কাস্টম নির্দেশাবলী `directives` বিকল্প ব্যবহার করে নিবন্ধিত করা যেতে পারে:
-
-```js
-export default {
-  setup() {
-    /*...*/
-  },
-  directives: {
-    // enables v-focus in template
-    focus: {
-      /* ... */
-    }
-  }
-}
-```
-
-</div>
-
-<div class="options-api">
-
-কম্পোনেন্টগুলির অনুরূপ, কাস্টম নির্দেশাবলী অবশ্যই নিবন্ধিত হতে হবে যাতে সেগুলি টেমপ্লেটে ব্যবহার করা যায়। উপরের উদাহরণে, আমরা `directives` বিকল্পের মাধ্যমে স্থানীয় নিবন্ধন ব্যবহার করছি।
-
-</div>
-
-অ্যাপ স্তরে বিশ্বব্যাপী কাস্টম নির্দেশাবলী নিবন্ধন করাও সাধারণ:
-
-```js
-const app = createApp({})
-
-// make v-focus usable in all components
-app.directive('focus', {
-  /* ... */
-})
-```
-
-:::tip
-কাস্টম নির্দেশাবলী শুধুমাত্র তখনই ব্যবহার করা উচিত যখন কাঙ্ক্ষিত কার্যকারিতা শুধুমাত্র সরাসরি DOM ম্যানিপুলেশনের মাধ্যমে অর্জন করা যায়। বিল্ট-ইন নির্দেশাবলী ব্যবহার করে ডিক্লেয়ার টেমপ্লেটিং পছন্দ করুন যেমন সম্ভব হলে `v-bind` কারণ সেগুলি আরও দক্ষ এবং সার্ভার-রেন্ডারিং বন্ধুত্বপূর্ণ।
-:::
+বিল্ট-ইন নির্দেশাবলী যেমন `v-bind` এর সাথে ঘোষণামূলক টেমপ্লেটিং সুপারিশ করা হয় যখন সম্ভব হয় কারণ সেগুলি আরও দক্ষ এবং সার্ভার-রেন্ডারিং বন্ধুত্বপূর্ণ।
 
 ## Directive Hooks {#directive-hooks}
 
@@ -214,8 +269,7 @@ app.directive('demo', (el, binding) => {
 উপাদানগুলিতে কাস্টম নির্দেশাবলী ব্যবহার করার পরামর্শ দেওয়া হয় না। একটি উপাদানের একাধিক রুট নোড থাকলে অপ্রত্যাশিত আচরণ ঘটতে পারে।
 :::
 
-
-উপাদানগুলিতে ব্যবহৃত হলে, কাস্টম নির্দেশাবলী সর্বদা একটি উপাদানের রুট নোডে প্রযোজ্য হবে, অনুরূপ[Fallthrough Attributes](/guide/components/attrs).
+উপাদানগুলিতে ব্যবহার করা হলে, কাস্টম নির্দেশাবলী সর্বদা একটি উপাদানের রুট নোডে প্রযোজ্য হবে, [Fallthrough Attributes](/guide/components/attrs) এর মতো।
 
 ```vue-html
 <MyComponent v-demo="test" />

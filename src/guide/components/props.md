@@ -154,7 +154,7 @@ const { foo = 'hello' } = defineProps<{ foo?: string }>()
 
 আপনি যদি আপনার IDE-তে বিধ্বংসী প্রপস এবং স্বাভাবিক ভেরিয়েবলের মধ্যে আরও ভিজ্যুয়াল পার্থক্য রাখতে পছন্দ করেন, Vue-এর VSCode এক্সটেনশনটি ধ্বংসপ্রাপ্ত প্রপসের জন্য ইনলে-ইঙ্গিত সক্ষম করার জন্য একটি সেটিং প্রদান করে।
 
-### Passing Destructured Props into Functions
+### Passing Destructured Props into Functions {#passing-destructured-props-into-functions}
 
 যখন আমরা একটি ফাংশনে একটি ধ্বংসপ্রাপ্ত প্রপ পাস করি, যেমন:
 
