@@ -81,7 +81,7 @@ module.exports = {
 
 ### defineCustomElement {#definecustomelement}
 
-Vue [`defineCustomElement`](/api/custom-elements#definecustomelement) পদ্ধতির মাধ্যমে ঠিক একই Vue কম্পোনেন্ট API ব্যবহার করে কাস্টম উপাদান তৈরি করতে সমর্থন করে। পদ্ধতিটি [`defineComponent`](/api/general#definecomponent) হিসাবে একই যুক্তি গ্রহণ করে, কিন্তু পরিবর্তে একটি কাস্টম উপাদান কন্সট্রাকটর প্রদান করে যা `HTMLElement` প্রসারিত করে:
+Vue [`defineCustomElement`](/api/custom-elements#definecustomelement) পদ্ধতির মাধ্যমে ঠিক একই Vue কম্পোনেন্ট API ব্যবহার করে কাস্টম কম্পোনেন্ট তৈরি করতে সমর্থন করে। পদ্ধতিটি [`defineComponent`](/api/general#definecomponent) হিসাবে একই যুক্তি গ্রহণ করে, কিন্তু পরিবর্তে একটি কাস্টম কম্পোনেন্ট কন্সট্রাকটর প্রদান করে যা `HTMLElement` প্রসারিত করে:
 
 ```vue-html
 <my-vue-element></my-vue-element>
