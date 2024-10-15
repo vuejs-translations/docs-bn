@@ -86,7 +86,7 @@
 
 ## slots<sup class="vt-badge ts"/> {#slots}
 
-- Only supported in 3.3+
+- শুধুমাত্র ৩.৩+ এ সমর্থিত
 
 An option to assist with type inference when using slots programmatically in render functions.
 

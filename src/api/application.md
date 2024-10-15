@@ -285,7 +285,7 @@ Installs a [plugin](/guide/reusability/plugins).
 
 ## app.runWithContext() {#app-runwithcontext}
 
-- Only supported in 3.3+
+- শুধুমাত্র ৩.৩+ এ সমর্থিত
 
 ইনজেকশন প্রসঙ্গ হিসাবে বর্তমান অ্যাপের সাথে একটি কলব্যাক চালান।
 

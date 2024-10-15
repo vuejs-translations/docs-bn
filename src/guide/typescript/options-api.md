@@ -230,7 +230,7 @@ declare module 'vue' {
 
 আরো দেখুন:
 
-- [ কম্পোনেন্ট টাইপ এক্সটেনশনের জন্য TypeScript ইউনিট পরীক্ষা করে](https://github.com/vuejs/core/blob/main/packages/dts-test/componentTypeExtensions.test-d.tsx)
+- [কম্পোনেন্ট টাইপ এক্সটেনশনের জন্য টাইপস্ক্রিপ্ট ইউনিট পরীক্ষা](https://github.com/vuejs/core/blob/main/packages-private/dts-test/componentTypeExtensions.test-d.tsx)
 
 ### Type Augmentation Placement {#type-augmentation-placement}
 
@@ -290,4 +290,4 @@ declare module 'vue' {
 
 আরো দেখুন:
 
-- [ কম্পোনেন্ট টাইপ এক্সটেনশনের জন্য TypeScript ইউনিট পরীক্ষা করে](https://github.com/vuejs/core/blob/main/packages/dts-test/componentTypeExtensions.test-d.tsx)
+- [কম্পোনেন্ট টাইপ এক্সটেনশনের জন্য টাইপস্ক্রিপ্ট ইউনিট পরীক্ষা](https://github.com/vuejs/core/blob/main/packages-private/dts-test/componentTypeExtensions.test-d.tsx)

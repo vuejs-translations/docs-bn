@@ -34,13 +34,13 @@
 
 ## MaybeRef\<T> {#mayberef}
 
-- Only supported in 3.3+
+- শুধুমাত্র ৩.৩+ এ সমর্থিত
 
 Alias for `T | Ref<T>`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
 
 ## MaybeRefOrGetter\<T> {#maybereforgetter}
 
-- Only supported in 3.3+
+- শুধুমাত্র ৩.৩+ এ সমর্থিত
 
 Alias for `T | Ref<T> | (() => T)`. Useful for annotating arguments of [Composables](/guide/reusability/composables.html).
 
@@ -77,7 +77,7 @@ Alias for `T | Ref<T> | (() => T)`. Useful for annotating arguments of [Composab
 
 ## ExtractPublicPropTypes\<T> {#extractpublicproptypes}
 
-- Only supported in 3.3+
+- শুধুমাত্র ৩.৩+ এ সমর্থিত
 
 Extract prop types from a runtime props options object. The extracted types are public facing - i.e. the props that the parent is allowed to pass.
 

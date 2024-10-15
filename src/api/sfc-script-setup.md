@@ -380,7 +380,7 @@ defineExpose({
 
 ## defineOptions() {#defineoptions}
 
-- Only supported in 3.3+
+- শুধুমাত্র ৩.৩+ এ সমর্থিত
 
 এই ম্যাক্রোটি একটি পৃথক `<script>` ব্লক ব্যবহার না করে সরাসরি `<script setup>` এর ভিতরে কম্পোনেন্ট অপশন ডিক্লেয়ার করতে ব্যবহার করা যেতে পারে:
 
@@ -399,7 +399,7 @@ defineOptions({
 
 ## defineSlots()<sup class="vt-badge ts"/> {#defineslots}
 
-- Only supported in 3.3+
+- শুধুমাত্র ৩.৩+ এ সমর্থিত
 
 This macro can be used to provide type hints to IDEs for slot name and props type checking.
 

@@ -12,8 +12,7 @@
 
 <div class="composition-api">
 
-Composition API-এর সাথে রেফারেন্স পেতে, আমরা [`useTemplateRef()`](/api/composition-api-helpers#usetemplateref) <sup class="vt-badge" data-text= ব্যবহার করতে পারি
-"3.5+" /> সাহায্যকারী:
+Composition API এর সাথে রেফারেন্স পেতে, আমরা [`useTemplateRef()`](/api/composition-api-helpers#usetemplateref) <sup class="vt-badge" data-text="3.5+" /> ব্যবহার করতে পারি সাহায্যকারী:
 
 ```vue
 <script setup>
@@ -32,10 +31,10 @@ onMounted(() => {
 </template>
 ```
 
-TypeScript ব্যবহার করার সময়, Vue-এর IDE সমর্থন এবং `vue-tsc` স্বয়ংক্রিয়ভাবে `inputRef.value`-এর ধরন অনুমান করবে কোন উপাদান বা উপাদানে মিলিত `ref` অ্যাট্রিবিউট ব্যবহার করা হয়েছে তার উপর ভিত্তি করে।
+TypeScript ব্যবহার করার সময়, Vue-এর IDE সমর্থন এবং `vue-tsc` স্বয়ংক্রিয়ভাবে `input.value`-এর ধরন অনুমান করবে কোন উপাদান বা উপাদানে মিলিত `ref` অ্যাট্রিবিউট ব্যবহার করা হয়েছে তার উপর ভিত্তি করে।
 
 <details>
-<summary>Usage before 3.5</summary>
+<summary>৩.৫ এর আগে ব্যবহার</summary>
 
 3.5 এর আগের সংস্করণগুলিতে যেখানে `useTemplateRef()` চালু করা হয়নি, আমাদের একটি নাম দিয়ে একটি রেফ ঘোষণা করতে হবে যা টেমপ্লেট রেফ অ্যাট্রিবিউটের মানের সাথে মেলে:
 
@@ -116,7 +115,7 @@ watchEffect(() => {
 
 ## Refs inside `v-for` {#refs-inside-v-for}
 
-> Requires v3.2.25 or above
+> Requires v3.5 or above
 
 <div class="composition-api">
 
@@ -147,7 +146,9 @@ onMounted(() => console.log(itemRefs.value))
 [Try it in the Playground](https://play.vuejs.org/#eNp9UsluwjAQ/ZWRLwQpDepyQoDUIg6t1EWUW91DFAZq6tiWF4oU5d87dtgqVRyyzLw3b+aN3bB7Y4ptQDZkI1dZYTw49MFMuBK10dZDAxZXOQSHC6yNLD3OY6zVsw7K4xJaWFldQ49UelxxVWnlPEhBr3GszT6uc7jJ4fazf4KFx5p0HFH+Kme9CLle4h6bZFkfxhNouAIoJVqfHQSKbSkDFnVpMhEpovC481NNVcr3SaWlZzTovJErCqgydaMIYBRk+tKfFLC9Wmk75iyqg1DJBWfRxT7pONvTAZom2YC23QsMpOg0B0l0NDh2YjnzjpyvxLrYOK1o3ckLZ5WujSBHr8YL2gxnw85lxEop9c9TynkbMD/kqy+svv/Jb9wu5jh7s+jQbpGzI+ZLu0byEuHZ+wvt6Ays9TJIYl8A5+i0DHHGjvYQ1JLGPuOlaR/TpRFqvXCzHR2BO5iKg0Zmm/ic0W2ZXrB+Gve2uEt1dJKs/QXbwePE)
 
 <details>
-<summary>Usage before 3.5</summary>
+<summary>৩.৫ এর আগে ব্যবহার</summary>
+
+In versions before 3.5 where `useTemplateRef()` was not introduced, we need to declare a ref with a name that matches the template ref attribute's value. The ref should also contain an array value:
 
 ```vue
 <script setup>
@@ -245,7 +246,7 @@ onMounted(() => {
 ```
 
 <details>
-<summary>Usage before 3.5</summary>
+<summary>৩.৫ এর আগে ব্যবহার</summary>
 
 ```vue
 <script setup>

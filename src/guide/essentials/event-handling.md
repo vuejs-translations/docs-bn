@@ -286,7 +286,7 @@ methods: {
 <input @keyup.enter="submit" />
 ```
 
-আপনি সরাসরি [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) এর মাধ্যমে উন্মোচিত যেকোন বৈধ কী নামগুলিকে পরিবর্তন করে পরিবর্তনকারী হিসাবে ব্যবহার করতে পারেন কাবাব-কেস।
+আপনি সরাসরি [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) এর মাধ্যমে প্রকাশ করা যেকোন বৈধ কী নামগুলিকে কাবাবে রূপান্তর করে পরিবর্তনকারী হিসাবে ব্যবহার করতে পারেন- মামলা
 
 ```vue-html
 <input @keyup.page-down="onPageDown" />

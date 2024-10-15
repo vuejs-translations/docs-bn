@@ -112,7 +112,7 @@ export default defineComponent({
 আরো দেখুন:
 
 - [ওয়েবপ্যাক ট্রিশেকিং-এ নোট](/api/general#note-on-webpack-treeshaking)
-- [`defineComponent` এর জন্য টাইপ টেস্ট](https://github.com/vuejs/core/blob/main/packages/dts-test/defineComponent.test-d.tsx)
+- [`defineComponent` এর জন্য টাইপ টেস্ট](https://github.com/vuejs/core/blob/main/packages-private/dts-test/defineComponent.test-d.tsx)
 
 :::tip
 `defineComponent()` প্লেইন জাভাস্ক্রিপ্টে সংজ্ঞায়িত কম্পোনেন্টগুলির জন্য টাইপ ইনফারেন্স সক্ষম করে।

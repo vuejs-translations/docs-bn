@@ -380,7 +380,7 @@ const el = useTemplateRef<HTMLInputElement>(null)
 ```
 
 <details>
-<summary>Usage before 3.5</summary>
+<summary>৩.৫ এর আগে ব্যবহার</summary>
 
 টেমপ্লেট রেফ একটি স্পষ্ট জেনেরিক টাইপ আর্গুমেন্ট এবং 'নাল' এর একটি প্রাথমিক মান দিয়ে তৈরি করা উচিত:
 

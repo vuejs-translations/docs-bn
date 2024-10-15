@@ -259,6 +259,115 @@ const fullName = computed({
 
 </div>
 
+## Getting the previous value {#previous}
+
+- Only supported in 3.4+
+
+যদি আপনার এটির প্রয়োজন হয়, আপনি গণনাকৃত সম্পত্তি অ্যাক্সেস করে আগের মানটি ফেরত পেতে পারেন
+প্রাপ্তির প্রথম যুক্তি:
+
+<div class="options-api">
+
+```js
+export default {
+  data() {
+    return {
+      count: 2
+    }
+  },
+  computed: {
+    // This computed will return the value of count when it's less or equal to 3.
+    // When count is >=4, the last value that fulfilled our condition will be returned
+    // instead until count is less or equal to 3
+    alwaysSmall(previous) {
+      if (this.count <= 3) {
+        return this.count;
+      }
+
+      return previous;
+    }
+  }
+}
+```
+</div>
+
+<div class="composition-api">
+
+```vue
+<script setup>
+import { ref, computed } from 'vue'
+
+const count = ref(2)
+
+// This computed will return the value of count when it's less or equal to 3.
+// When count is >=4, the last value that fulfilled our condition will be returned
+// instead until count is less or equal to 3
+const alwaysSmall = computed((previous) => {
+  if (count.value <= 3) {
+    return count.value;
+  }
+
+  return previous;
+})
+</script>
+```
+</div>
+
+যদি আপনি একটি লিখনযোগ্য গণনা ব্যবহার করছেন:
+
+<div class="options-api">
+
+```js
+export default {
+  data() {
+    return {
+      count: 2
+    }
+  },
+  computed: {
+    alwaysSmall: {
+      get(previous) {
+        if (this.count <= 3) {
+          return this.count;
+        }
+
+        return previous;
+      },
+      set(newValue) {
+        this.count = newValue * 2;
+      }
+    }
+  }
+}
+```
+
+</div>
+<div class="composition-api">
+
+```vue
+<script setup>
+import { ref, computed } from 'vue'
+
+const count = ref(2)
+
+const alwaysSmall = computed({
+  get(previous) {
+    if (count.value <= 3) {
+      return count.value;
+    }
+
+    return previous;
+  },
+  set(newValue) {
+    count.value = newValue * 2;
+  }
+})
+</script>
+```
+
+</div>
+
+
 ## Best Practices {#best-practices}
 
 ### Getters should be side-effect free {#getters-should-be-side-effect-free}
