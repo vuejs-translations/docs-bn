@@ -80,6 +80,10 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 [Full Example](/examples/#list-transition)
 
+### Custom TransitionGroup classes
+
+এছাড়াও আপনি মুভিং এলিমেন্টের জন্য কাস্টম ট্রানজিশন ক্লাস নির্দিষ্ট করতে পারেন `moveClass` প্রপকে `<TransitionGroup>`-এ পাস করে, ঠিক যেমন [`<Transition>` এ কাস্টম ট্রানজিশন ক্লাস](https://vuejs.org/guide/built-ins/transition.html#custom-transition-classes)।
+
 ## Staggering List Transitions {#staggering-list-transitions}
 
 ডাটা অ্যাট্রিবিউটের মাধ্যমে জাভাস্ক্রিপ্ট ট্রানজিশনের সাথে যোগাযোগ করার মাধ্যমে, একটি তালিকায় ট্রানজিশন স্তব্ধ করাও সম্ভব। প্রথমত, আমরা DOM এলিমেন্টের ডেটা অ্যাট্রিবিউট হিসেবে একটি আইটেমের সূচী রেন্ডার করি:

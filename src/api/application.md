@@ -627,7 +627,7 @@ Vue থেকে রানটাইম সতর্কতার জন্য এ
 
 ## app.config.idPrefix <sup class="vt-badge" data-text="3.5+" /> {#app-config-idprefix}
 
-Configure a prefix for all IDs generated via [useId()](/api/general#useid) inside this application.
+Configure a prefix for all IDs generated via [useId()](/api/composition-api-helpers.html#useid) inside this application.
 
 - **Type:** `string`
 

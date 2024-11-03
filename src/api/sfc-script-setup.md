@@ -478,6 +478,20 @@ const post = await fetch(`/api/post/1`).then((r) => r.json())
 `async setup()` এর সাথে `Suspense` ব্যবহার করতে হবে, যা এখনও পরীক্ষামূলক বৈশিষ্ট্য। আমরা পরবর্তী রিলিজে এটি চূড়ান্ত করার এবং ডকুমেন্ট করার পরিকল্পনা করছি। তবে, আপনি যদি এখনই জানতে আগ্রহী হন, তাহলে আপনি এর [পরীক্ষা](https://github.com/vuejs/core/blob/main/packages/runtime-core/__tests__/components/Suspense.spec.ts) দেখতে পারেন। 
 :::
 
+## Import Statements {#imports-statements}
+
+ভিউতে বিবৃতি ইম্পোর্ট করুন [ECMAScript মডিউল স্পেসিফিকেশন](https://nodejs.org/api/esm.html)।
+উপরন্তু, আপনি আপনার বিল্ড টুল কনফিগারেশনে সংজ্ঞায়িত উপনাম ব্যবহার করতে পারেন:
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import { componentA } from './Components'
+import { componentB } from '@/Components'
+import { componentC } from '~/Components'
+</script>
+```
+
 ## Generics <sup class="vt-badge ts" /> {#generics}
 
 জেনেরিক টাইপ প্যারামিটারগুলি `<script>` ট্যাগে `generic` অ্যাট্রিবিউট ব্যবহার করে ডিক্লেয়ার করা যেতে পারে:
