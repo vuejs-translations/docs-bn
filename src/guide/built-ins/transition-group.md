@@ -80,9 +80,9 @@ import ListStagger from './transition-demos/ListStagger.vue'
 
 [Full Example](/examples/#list-transition)
 
-### Custom TransitionGroup classes
+### Custom TransitionGroup classes {#custom-transitiongroup-classes}
 
-এছাড়াও আপনি মুভিং এলিমেন্টের জন্য কাস্টম ট্রানজিশন ক্লাস নির্দিষ্ট করতে পারেন `moveClass` প্রপকে `<TransitionGroup>`-এ পাস করে, ঠিক যেমন [`<Transition>` এ কাস্টম ট্রানজিশন ক্লাস](https://vuejs.org/guide/built-ins/transition.html#custom-transition-classes)।
+এছাড়াও আপনি চলমান উপাদানের জন্য কাস্টম ট্রানজিশন ক্লাস নির্দিষ্ট করতে পারেন `moveClass` প্রপকে `<TransitionGroup>`-এ পাস করে, ঠিক যেমন [`<Transition>`](/guide/built-ins/transition.html#custom-transition-classes)-এ কাস্টম ট্রানজিশন ক্লাস।
 
 ## Staggering List Transitions {#staggering-list-transitions}
 

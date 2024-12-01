@@ -403,7 +403,7 @@ export function useMachine(options) {
 বেশ কিছু অন্যান্য ফ্রেমওয়ার্ক "সিগন্যাল" শব্দের অধীনে Vue এর কম্পোজিশন এপিআই থেকে রেফের অনুরূপ প্রতিক্রিয়াশীল আদিম প্রবর্তন করেছে:
 
 - [Solid Signals](https://www.solidjs.com/docs/latest/api#createsignal)
-- [Angular Signals](https://angular.io/guide/signals)
+- [Angular Signals](https://angular.dev/guide/signals)
 - [Preact Signals](https://preactjs.com/guide/v10/signals/)
 - [Qwik Signals](https://qwik.builder.io/docs/components/state/#usesignal)
 

@@ -376,7 +376,7 @@ Vue 3.5 এবং `@vue/language-tools` 2.1 (IDE ভাষা পরিষেব
 যে ক্ষেত্রে স্বয়ং-অনুমান করা সম্ভব নয়, আপনি এখনও জেনেরিক আর্গুমেন্টের মাধ্যমে টেমপ্লেট রেফটিকে একটি সুস্পষ্ট প্রকারে কাস্ট করতে পারেন:
 
 ```ts
-const el = useTemplateRef<HTMLInputElement>(null)
+const el = useTemplateRef<HTMLInputElement>('el')
 ```
 
 <details>
@@ -438,7 +438,7 @@ const compRef = useTemplateRef<FooType | BarType>('comp')
 import { useTemplateRef } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 
-const child = useTemplateRef<ComponentPublicInstance | null>(null)
+const child = useTemplateRef<ComponentPublicInstance>('child')
 ```
 
 উল্লেখ করা কম্পোনেন্টটি একটি [জেনেরিক কম্পোনেন্ট](/guide/typescript/overview.html#generic-components), উদাহরণস্বরূপ `MyGenericModal`:
@@ -467,7 +467,7 @@ import { useTemplateRef } from 'vue'
 import MyGenericModal from './MyGenericModal.vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
 
-const modal = useTemplateRef<ComponentExposed<typeof MyGenericModal>>(null)
+const modal = useTemplateRef<ComponentExposed<typeof MyGenericModal>>('modal')
 
 const openModal = () => {
   modal.value?.open('newValue')
