@@ -314,7 +314,9 @@ defineExpose({
 
 যখন একজন অভিভাবক টেমপ্লেট রেফের মাধ্যমে এই কম্পোনেন্টটির একটি দৃষ্টান্ত পান, তখন পুনরুদ্ধারকৃত দৃষ্টান্তটি `{ a: number , b: number  }` আকারের হবে (রেফগুলি স্বয়ংক্রিয়ভাবে স্বাভাবিক উদাহরণের মতোই খুলে ফেলা হয়)।
 
-আরো দেখুন: [Typing Component Template Refs](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
+মনে রাখবেন যে কোনো অপেক্ষমাণ অপারেশনের আগে defineExpose কল করতে হবে। অন্যথায়, অপেক্ষমান অপারেশনের পরে উন্মুক্ত বৈশিষ্ট্য এবং পদ্ধতিগুলি অ্যাক্সেসযোগ্য হবে না।
+
+আরও দেখুন: [টাইপিং কম্পোনেন্ট টেমপ্লেট রেফস](/guide/typescript/composition-api#typing-component-template-refs) <sup class="vt-badge ts" />
 
 </div>
 <div class="options-api">

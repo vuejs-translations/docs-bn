@@ -133,7 +133,7 @@ Vue এর বর্তমান সংস্করন দেখার জন্
 
   - শুধুমাত্র ৩.৩+ এ সমর্থিত
 
-  `defineComponent()` এর সাথে একটি বিকল্প সিগনেচার রয়েছে যা Composition API এর সাথে ব্যবহার করা হয় এবং [render functions or JSX](/guide/extras/render-function.html).
+  `defineComponent()` এছাড়াও একটি বিকল্প স্বাক্ষর রয়েছে যা Composition API এবং [রেন্ডার ফাংশন বা JSX](/guide/extras/render-function.html) এর সাথে ব্যবহার করার জন্য।
 
   একটি অপশন অবজেক্টে পাস করার পরিবর্তে একটি ফাংশন এক্সপেক্টেড। এই ফাংশনটি Composition API [`setup()`](/api/composition-api-setup.html#composition-api-setup) ফাংশনের মতোই কাজ করে: এটি প্রপস এবং সেটআপ কন্টেক্সট গ্রহণ করে। রিটার্ন ভ্যালু একটি রেন্ডার ফাংশন হওয়া উচিত - উভয় `h()` এবং JSX সমর্থিত:
 
