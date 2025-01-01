@@ -28,6 +28,6 @@ aside: false
 
 ## Starting a new Translation {#starting-a-new-translation}
 
-Vue ডকুমেন্টেশন সম্প্রতি একটি বড় সংশোধনের মধ্য দিয়ে গেছে, তাই অন্যান্য ভাষায় অনুবাদগুলি এখনও অনুপস্থিত বা কাজ চলছে।
+Vue ডকুমেন্টেশন সম্প্রতি একটি বড় সংশোধনের মধ্য দিয়ে যাচ্ছে, তাই অন্যান্য ভাষার অনুবাদগুলি এখনও অনুপস্থিত এবং ভাষা অনুবাদের কাজ চলমান।
 
-আমরা আরও অনুবাদ প্রদানের জন্য সম্প্রদায়ের প্রচেষ্টাকে স্বাগত জানাই। অনুবাদের প্রচেষ্টাগুলি [vuejs-translations](https://github.com/vuejs-translations/) GitHub সংস্থায় পরিচালিত হয়। আপনি যদি অবদান রাখতে আগ্রহী হন তবে শুরু করতে অনুগ্রহ করে [অনুবাদ নির্দেশিকা](https://github.com/vuejs-translations/guidelines/blob/main/README.md) দেখুন।
+অনুবাদ প্রদানের জন্য আমরা কমিউনিটির সকলের প্রচেষ্টাকে স্বাগত জানাই। অনুবাদের প্রচেষ্টাগুলি [vuejs-translations](https://github.com/vuejs-translations/) GitHub এর মাধ্যমে পরিচালিত হয়। আপনি যদি অনুবাদ প্রচেষ্টায় অবদান রাখতে আগ্রহী হন তাহলে অনুগ্রহ করে [অনুবাদ নির্দেশিকা](https://github.com/vuejs-translations/guidelines/blob/main/README.md) দেখুন।
