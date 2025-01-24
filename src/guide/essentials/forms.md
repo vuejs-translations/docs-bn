@@ -78,7 +78,7 @@ const multiSelected = ref([])
 যে ভাষাগুলির জন্য [IME](https://en.wikipedia.org/wiki/Input_method) (চীনা, জাপানি, কোরিয়ান ইত্যাদি) প্রয়োজন, আপনি লক্ষ্য করবেন যে IME চলাকালীন `v-model` আপডেট হয় না গঠন. আপনি যদি এই আপডেটগুলিতেও সাড়া দিতে চান, তাহলে `v-মডেল` ব্যবহার না করে আপনার নিজের `ইনপুট` ইভেন্ট লিসেনার এবং `মান` বাইন্ডিং ব্যবহার করুন।
 :::
 
-### Multiline text {#multiline-text}
+### Multiline Text {#multiline-text}
 
 ```vue-html
 <span>Multiline message is:</span>
