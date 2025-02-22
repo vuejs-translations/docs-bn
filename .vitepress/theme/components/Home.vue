@@ -36,7 +36,7 @@ onMounted(load)
           />
         </svg>
       </a>
-      <a class="setup" href="/guide/quick-start.html"></a>
+      <a class="setup" href="/guide/quick-start.html">ইনস্টল করুন</a>
       <a class="security" href="https://v2.vuejs.org/eol/" target="_blank">
         Vue 2 এর জন্য নিরাপত্তা আপডেট পান
         <svg
@@ -103,7 +103,7 @@ onMounted(load)
     </div>
   </section>
 
-  <section id="sponsors">
+  <section id="spsrs">
     <h2>প্লাটিনাম স্পনসর</h2>
     <SponsorsGroup tier="platinum" placement="landing" />
     <h2>গোল্ড স্পনসর</h2>
