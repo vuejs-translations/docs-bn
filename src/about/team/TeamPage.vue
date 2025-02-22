@@ -11,10 +11,10 @@ const shuffleMembers = (
   let i = members.length - offset
   while (i > 0) {
     const j = Math.floor(Math.random() * i)
-      ;[members[offset + i - 1], members[offset + j]] = [
-        members[offset + j],
-        members[offset + i - 1]
-      ]
+    ;[members[offset + i - 1], members[offset + j]] = [
+      members[offset + j],
+      members[offset + i - 1]
+    ]
     i--
   }
 }

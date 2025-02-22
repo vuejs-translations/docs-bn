@@ -24,37 +24,60 @@ onMounted(load)
       <VueMasteryModal />
       <a class="get-started" href="/guide/introduction.html">
         শুরু করুন
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24">
-          <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="10"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+          />
         </svg>
       </a>
-      <a class="setup" href="/guide/quick-start.html">ইনস্টল করুন</a>
+      <a class="setup" href="/guide/quick-start.html"></a>
       <a class="security" href="https://v2.vuejs.org/eol/" target="_blank">
-        Vue 2 এর জন্য সিকিউরিটি আপডেট পান
-        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
+        Vue 2 এর জন্য নিরাপত্তা আপডেট পান
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
+          />
         </svg>
       </a>
     </p>
   </section>
 
-  <section v-if="data && data.special" id="special-sponsor">
+  <section v-if="data && data.special" id="special-spsr">
     <span class="lead">বিশেষ স্পন্সর</span>
     <template v-for="{ url, img, name, description } of data.special">
       <a :href="url" target="_blank" rel="sponsored noopener">
         <picture v-if="img.endsWith('png')">
-          <source type="image/avif" :srcset="`${base}/images/${img.replace(/\.png$/, '.avif')}`" />
+          <source
+            type="image/avif"
+            :srcset="`${base}/images/${img.replace(/\.png$/, '.avif')}`"
+          />
           <img :src="`${base}/images/${img}`" :alt="name" />
         </picture>
-        <img width="168" height="42" v-else :src="`${base}/images/${img}`" :alt="name" />
+        <img
+          width="168"
+          height="42"
+          v-else
+          :src="`${base}/images/${img}`"
+          :alt="name"
+        />
       </a>
       <span>{{ description }}</span>
     </template>
   </section>
-  <section v-else id="special-sponsor">
+  <section v-else id="special-spsr">
     <span>
       <a href="/sponsor/#tier-benefits">
-        Special Sponsor slot is now vacant - Inquire now
+        স্পেশাল স্পন্সর স্লট এখন খালি - এখনই জিজ্ঞাসা করুন।
       </a>
     </span>
   </section>
@@ -200,7 +223,7 @@ html:not(.dark) .accent,
   background-color: var(--vt-c-gray-dark-3);
 }
 
-#special-sponsor {
+#special-spsr {
   border-top: 1px solid var(--vt-c-divider-light);
   border-bottom: 1px solid var(--vt-c-divider-light);
   padding: 12px 24px;
@@ -208,7 +231,7 @@ html:not(.dark) .accent,
   align-items: center;
 }
 
-#special-sponsor span {
+#special-spsr span {
   color: var(--vt-c-text-2);
   font-weight: 500;
   font-size: 13px;
@@ -216,22 +239,22 @@ html:not(.dark) .accent,
   flex: 1;
 }
 
-#special-sponsor span:first-child {
+#special-spsr span:first-child {
   text-align: right;
 }
 
-#special-sponsor a {
+#special-spsr a {
   display: flex;
   justify-content: center;
   padding: 0 24px;
 }
 
-#special-sponsor img {
+#special-spsr img {
   height: 42px;
   margin: -6px 0;
 }
 
-.dark #special-sponsor img {
+.dark #special-spsr img {
   filter: grayscale(1) invert(1);
 }
 
@@ -259,18 +282,18 @@ html:not(.dark) .accent,
   background-color: transparent;
 }
 
-#sponsors {
+#spsrs {
   max-width: 900px;
   margin: 0px auto;
 }
 
-#sponsors h2 {
+#spsrs h2 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 1em;
 }
 
-#sponsors .sponsor-container {
+#spsrs .spsr-container {
   margin-bottom: 3em;
 }
 
@@ -303,14 +326,14 @@ html:not(.dark) .accent,
     font-size: 16px;
     margin: 18px 0 30px;
   }
-  #special-sponsor {
+  #special-spsr {
     flex-direction: column;
   }
-  #special-sponsor img {
+  #special-spsr img {
     height: 36px;
     margin: 8px 0;
   }
-  #special-sponsor span {
+  #special-spsr span {
     text-align: center !important;
   }
   #highlights h3 {
