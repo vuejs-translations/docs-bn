@@ -11,20 +11,20 @@ onMounted(() => {
 
 # Production Error Code Reference {#error-reference}
 
-## Runtime Errors {#runtime-errors}
+## রানটাইম এরর {#runtime-errors}  
 
-প্রোডাকশন বিল্ডে, নিম্নলিখিত ত্রুটি হ্যান্ডলার API-এ পাস করা 3য় আর্গুমেন্ট সম্পূর্ণ তথ্যের স্ট্রিংয়ের পরিবর্তে একটি ছোট কোড হবে:
+প্রোডাকশন বিল্ডে, নিম্নলিখিত এরর হ্যান্ডলার API-তে পাস করা হয়, আর্গুমেন্টটি সম্পূর্ণ তথ্যের স্ট্রিংয়ের পরিবর্তে একটি সংক্ষিপ্ত কোড হিসেবে প্রদর্শিত হবে:  
 
-- [`app.config.errorHandler`](/api/application#app-config-errorhandler)
-- [`onErrorCaptured`](/api/composition-api-lifecycle#onerrorcaptured) (Composition API)
-- [`errorCaptured`](/api/options-lifecycle#errorcaptured) (Options API)
+- [`app.config.errorHandler`](/api/application#app-config-errorhandler)  
+- [`onErrorCaptured`](/api/composition-api-lifecycle#onerrorcaptured) (Composition API)  
+- [`errorCaptured`](/api/options-lifecycle#errorcaptured) (Options API)  
 
-নিম্নলিখিত সারণীটি কোডগুলিকে তাদের মূল সম্পূর্ণ তথ্যের স্ট্রিংগুলিতে ম্যাপ করে৷
+নিম্নের সারণীতে প্রতিটি কোড তাদের সংশ্লিষ্ট সম্পূর্ণ তথ্যের স্ট্রিংয়ের সাথে ম্যাপ করা হয়েছে।  
 
-<ErrorsTable kind="runtime" :errors="data.runtime" :highlight="highlight" />
+<ErrorsTable kind="runtime" :errors="data.runtime" :highlight="highlight" />  
 
-## Compiler Errors {#compiler-errors}
+## কম্পাইলার এরর {#compiler-errors}  
 
-নিম্নলিখিত টেবিলটি তাদের মূল বার্তাগুলিতে উত্পাদন কম্পাইলার ত্রুটি কোডগুলির একটি ম্যাপিং প্রদান করে।
+নিচের সারণীতে উৎপন্ন কম্পাইলার এরর কোড এবং তাদের মূল বার্তার মধ্যে ম্যাপিং প্রদান করা হয়েছে।  
 
 <ErrorsTable kind="compiler" :errors="data.compiler" :highlight="highlight" />

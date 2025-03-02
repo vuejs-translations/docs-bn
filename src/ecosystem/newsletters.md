@@ -1,11 +1,11 @@
-# কমিউনিটি নিউজলেটার {#community-newsletters}
+# কমিউনিটি নিউজলেটার {#community-newsletters}  
 
-সম্প্রদায় থেকে অনেকগুলি দুর্দান্ত নিউজলেটার / Vue-ডেডিকেটেড ব্লগ রয়েছে যা আপনাকে Vue ইকোসিস্টেমের সর্বশেষ খবর এবং ঘটনাগুলি নিয়ে আসে৷ এখানে সক্রিয়দের একটি অ-সম্পূর্ণ তালিকা রয়েছে যা আমরা জুড়ে এসেছি:
+Vue.js কমিউনিটিতে বেশ কিছু চমৎকার ও তথ্যবহুল নিউজলেটার ও ব্লগ রয়েছে, যা আমাদের Vue.js ইকোসিস্টেমের সর্বশেষ আপডেট ও উন্নয়ন সম্পর্কে জানতে সহায়তা করে। নিচে কিছু সক্রিয় ও গুরুত্বপূর্ণ নিউজলেটার এবং ব্লগের তালিকা দেওয়া হলো:  
 
-- [Vue.js Feed](https://vuejsfeed.com/)
-- [Michael Thiessen](https://michaelnthiessen.com/newsletter)
-- [Jakub Andrzejewski](https://dev.to/jacobandrewsky)
-- [Weekly Vue News](https://weekly-vue.news/)
-- [Vue.js Developers Newsletter](https://vuejsdevelopers.com/newsletter/)
+- [Vue.js Feed](https://vuejsfeed.com/)  
+- [Michael Thiessen](https://michaelnthiessen.com/newsletter)  
+- [Jakub Andrzejewski](https://dev.to/jacobandrewsky)  
+- [Weekly Vue News](https://weekly-vue.news/)  
+- [Vue.js Developers Newsletter](https://vuejsdevelopers.com/newsletter/)  
 
-আপনি যদি এমন একটি দুর্দান্ত জানেন যা ইতিমধ্যে অন্তর্ভুক্ত করা হয়নি, তাহলে নীচের লিঙ্কটি ব্যবহার করে একটি পুল রিকোয়েস্ট জমা দিন!
+আপনি যদি কোনো মূল্যবান নিউজলেটার বা ব্লগ সম্পর্কে জানেন যা এখানে অন্তর্ভুক্ত করা হয়নি, তাহলে নিচের লিঙ্ক ব্যবহার করে একটি পুল রিকোয়েস্ট জমা দিন!
