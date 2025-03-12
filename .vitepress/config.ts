@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { defineConfigWithTheme } from 'vitepress'
+import { defineConfigWithTheme, type HeadConfig } from 'vitepress'
 import type { Config as ThemeConfig } from '@vue/theme'
 import baseConfig from '@vue/theme/config'
 import { headerPlugin } from './headerMdPlugin'
@@ -591,6 +591,17 @@ const i18n: ThemeConfig['i18n'] = {
   }
 }
 
+function inlineScript(file: string): HeadConfig {
+  return [
+    'script',
+    {},
+    fs.readFileSync(
+      path.resolve(__dirname, `./inlined-scripts/${file}`),
+      'utf-8'
+    )
+  ]
+}
+
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
 
@@ -632,22 +643,8 @@ export default defineConfigWithTheme<ThemeConfig>({
         href: 'https://automation.vuejs.org'
       }
     ],
-    [
-      'script',
-      {},
-      fs.readFileSync(
-        path.resolve(__dirname, './inlined-scripts/restorePreference.js'),
-        'utf-8'
-      )
-    ],
-    [
-      'script',
-      {},
-      fs.readFileSync(
-        path.resolve(__dirname, './inlined-scripts/uwu.js'),
-        'utf-8'
-      )
-    ],
+    inlineScript('restorePreference.js'),
+    inlineScript('uwu.js'),
     [
       'script',
       {
@@ -678,7 +675,8 @@ export default defineConfigWithTheme<ThemeConfig>({
         src: 'https://www.googletagmanager.com/gtag/js?id=G-45DMD2J2W8',
         async: 'true'
       },
-    ]
+    ],
+    inlineScript('perfops.js')
   ],
 
   themeConfig: {
