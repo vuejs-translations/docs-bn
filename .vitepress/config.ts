@@ -602,17 +602,6 @@ function inlineScript(file: string): HeadConfig {
   ]
 }
 
-function inlineScript(file: string): HeadConfig {
-  return [
-    'script',
-    {},
-    fs.readFileSync(
-      path.resolve(__dirname, `./inlined-scripts/${file}`),
-      'utf-8'
-    )
-  ]
-}
-
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
 
@@ -674,19 +663,12 @@ export default defineConfigWithTheme<ThemeConfig>({
     ],
     [
       'script',
-      {},
-      fs.readFileSync(
-        path.resolve(__dirname, './inlined-scripts/gtag.js'),
-        'utf-8'
-      )
-    ],
-    [
-      'script',
       {
         src: 'https://www.googletagmanager.com/gtag/js?id=G-45DMD2J2W8',
         async: 'true'
       },
     ],
+    inlineScript('gtag.js'),
     inlineScript('perfops.js')
   ],
 
