@@ -521,7 +521,19 @@ defineProps<{
 </script>
 ```
 
-একটি `রেফ`-এ জেনেরিক কম্পোনেন্টের রেফারেন্স ব্যবহার করার জন্য আপনাকে [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) লাইব্রেরি `InstanceType` হিসাবে কাজ করবে না।
+যখন টাইপটি অনুমান করা যায় না, তখন স্পষ্ট প্রকারে পাস করার জন্য আপনি `@vue-generic` নির্দেশিকাটি ব্যবহার করতে পারেন:
+
+```vue
+<template>
+  <!-- @vue-generic {import('@/api').Actor} -->
+  <ApiSelect v-model="peopleIds" endpoint="/api/actors" id-prop="actorId" />
+
+  <!-- @vue-generic {import('@/api').Genre} -->
+  <ApiSelect v-model="genreIds" endpoint="/api/genres" id-prop="genreId" />
+</template>
+```
+
+`ref`-এ একটি জেনেরিক কম্পোনেন্টের রেফারেন্স ব্যবহার করার জন্য আপনাকে [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) লাইব্রেরি ব্যবহার করতে হবে কারণ `InstanceType` কাজ করবে না।
 
 ```vue
 <script

@@ -123,7 +123,9 @@ const message = inject('message')
 </script>
 ```
 
-যদি প্রদত্ত মানটি একটি রেফ হয়, তাহলে এটি যেমন আছে-সেভাবেই ইনজেকশন করা হবে এবং **না** স্বয়ংক্রিয়ভাবে খুলে যাবে। এটি ইনজেক্টর কম্পোনেন্টটিকে প্রদানকারী কম্পোনেন্টের সাথে প্রতিক্রিয়াশীলতা সংযোগ বজায় রাখতে দেয়।
+যদি একাধিক প্যারেন্ট একই কী দিয়ে ডেটা সরবরাহ করে, তাহলে ইনজেক্ট কম্পোনেন্টের প্যারেন্ট চেইনের নিকটতম প্যারেন্ট থেকে প্রাপ্ত মানের সাথে মিলিত হবে।
+
+যদি প্রদত্ত মানটি একটি রেফ হয়, তাহলে এটি যেমন আছে তেমনই ইনজেক্ট করা হবে এবং স্বয়ংক্রিয়ভাবে **নয়** খোলা হবে। এটি ইনজেক্টর কম্পোনেন্টকে প্রোভাইডার কম্পোনেন্টের সাথে প্রতিক্রিয়াশীলতা সংযোগ ধরে রাখতে দেয়।
 
 [Full provide + inject Example with Reactivity](https://play.vuejs.org/#eNqFUUFugzAQ/MrKF1IpxfeIVKp66Kk/8MWFDXYFtmUbpArx967BhURRU9/WOzO7MzuxV+fKcUB2YlWovXYRAsbBvQije2d9hAk8Xo7gvB11gzDDxdseCuIUG+ZN6a7JjZIvVRIlgDCcw+d3pmvTglz1okJ499I0C3qB1dJQT9YRooVaSdNiACWdQ5OICj2WwtTWhAg9hiBbhHNSOxQKu84WT8LkNQ9FBhTHXyg1K75aJHNUROxdJyNSBVBp44YI43NvG+zOgmWWYGt7dcipqPhGZEe2ef07wN3lltD+lWN6tNkV/37+rdKjK2rzhRTt7f3u41xhe37/xJZGAL2PLECXa9NKdD/a6QTTtGnP88LgiXJtYv4BaLHhvg==)
 
@@ -168,6 +170,8 @@ export default {
   }
 }
 ```
+
+যদি একাধিক অভিভাবক একই কী দিয়ে ডেটা সরবরাহ করে, তাহলে ইনজেক্ট কম্পোনেন্টের প্যারেন্ট চেইনের নিকটতম প্যারেন্ট থেকে প্রাপ্ত মানের সাথে সমাধান করবে।
 
 [Full provide + inject example](https://play.vuejs.org/#eNqNkcFqwzAQRH9l0EUthOhuRKH00FO/oO7B2JtERZaEvA4F43+vZCdOTAIJCImRdpi32kG8h7A99iQKobs6msBvpTNt8JHxcTC2wS76FnKrJpVLZelKR39TSUO7qreMoXRA7ZPPkeOuwHByj5v8EqI/moZeXudCIBL30Z0V0FLXVXsqIA9krU8R+XbMR9rS0mqhS4KpDbZiSgrQc5JKQqvlRWzEQnyvuc9YuWbd4eXq+TZn0IvzOeKr8FvsNcaK/R6Ocb9Uc4FvefpE+fMwP0wH8DU7wB77nIo6x6a2hvNEME5D0CpbrjnHf+8excI=)
 

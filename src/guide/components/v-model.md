@@ -205,7 +205,7 @@ export default {
 
 </div>
 
-## `v-model` arguments {#v-model-arguments}
+## `v-model` Arguments {#v-model-arguments}
 
 একটি কম্পোনেন্টে `v-model` একটি যুক্তিও গ্রহণ করতে পারে:
 
@@ -289,7 +289,7 @@ export default {
 
 </div>
 
-## Multiple `v-model` bindings {#multiple-v-model-bindings}
+## Multiple `v-model` Bindings {#multiple-v-model-bindings}
 
 [`v-model` arguments](#v-model-arguments) দিয়ে আমরা আগে যেমন শিখেছি তেমন কোনো নির্দিষ্ট প্রপ এবং ইভেন্টকে টার্গেট করার ক্ষমতাকে কাজে লাগিয়ে, আমরা এখন একটি একক কম্পোনেন্ট ইনস্ট্যান্সে একাধিক `v-model` বাইন্ডিং তৈরি করতে পারি।
 
@@ -380,7 +380,7 @@ export default {
 
 </div>
 
-## Handling `v-model` modifiers {#handling-v-model-modifiers}
+## Handling `v-model` Modifiers {#handling-v-model-modifiers}
 
 আমরা যখন ফর্ম ইনপুট বাইন্ডিং সম্পর্কে শিখছিলাম, তখন আমরা দেখেছিলাম যে `v-model`-এ রয়েছে [বিল্ট-ইন মডিফায়ার](/guide/essentials/forms#modifiers) - `.trim`, `.number` এবং `.lazy`। কিছু ক্ষেত্রে, আপনি কাস্টম সংশোধককে সমর্থন করার জন্য আপনার কাস্টম ইনপুট কম্পোনেন্টটিতে `v-model`ও চাইতে পারেন।
 
@@ -523,7 +523,7 @@ export default {
 
 </div>
 
-### Modifiers for `v-model` with arguments {#modifiers-for-v-model-with-arguments}
+### Modifiers for `v-model` with Arguments {#modifiers-for-v-model-with-arguments}
 
 <div class="options-api">
 
