@@ -1,6 +1,10 @@
 # TypeScript with Composition API {#typescript-with-composition-api}
 
-> এই পৃষ্ঠাটি ধরে নেওয়া হয়েছে আপনি ইতিমধ্যেই [TypeScript এর সাথে Vue ব্যবহার করে](./overview) এর ওভারVue পড়েছেন।
+<ScrimbaLink href="https://scrimba.com/links/vue-ts-composition-api" title="Free Vue.js TypeScript with Composition API Lesson" type="scrimba">
+ Scrimba-এ একটি ইন্টারেক্টিভ ভিডিও দেখুন
+</ScrimbaLink>
+
+> এই পৃষ্ঠাটি ধরে নিচ্ছে যে আপনি ইতিমধ্যেই [Using Vue with TypeScript](./overview) এর ওভারভিউটি পড়েছেন।
 
 ## Typing Component Props {#typing-component-props}
 

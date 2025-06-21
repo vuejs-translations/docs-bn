@@ -1,5 +1,9 @@
 # Component v-model {#component-v-model}
 
+<ScrimbaLink href="https://scrimba.com/links/vue-component-v-model" title="Free Vue.js Component v-model Lesson" type="scrimba">
+  স্ক্রিম্বার উপর একটি ইন্টারেক্টিভ ভিডিও পাঠ দেখুন
+</ScrimbaLink>
+
 ## Basic Usage {#basic-usage}
 
 টু-ওয়ে বাইন্ডিং বাস্তবায়ন করতে একটি কম্পোনেন্টে `v-model` ব্যবহার করা যেতে পারে।

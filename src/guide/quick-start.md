@@ -16,7 +16,9 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 - আপনি যদি ইতিমধ্যেই Node.js এবং বিল্ড টুলের ধারণার সাথে পরিচিত হন, তাহলে আপনি [স্ট্যাকব্লিটজ](https://vite.new/vue) এর মাধ্যমে আপনার ব্রাউজারের মধ্যেই একটি সম্পূর্ণ বিল্ড সেটআপ করার চেষ্টা করতে পারেন।
 
-## Creating a Vue Application {#creating-a-vue-application}
+- প্রস্তাবিত সেটআপের একটি ওয়াকথ্রু পেতে, এই ইন্টারেক্টিভ [Scrimba](http://scrimba.com/links/vue-quickstart) টিউটোরিয়ালটি দেখুন যা আপনাকে দেখায় যে কীভাবে আপনার প্রথম Vue অ্যাপটি চালাবেন, সম্পাদনা করবেন এবং স্থাপন করবেন।
+
+## একটি Vue অ্যাপটি তৈরি করুন {#creating-a-vue-application}
 
   ::: tip পূর্বশর্ত
   - কমান্ড লাইনের সাথে পরিচিতি
