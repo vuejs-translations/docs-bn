@@ -297,16 +297,20 @@ function inc() {
 :::warning
 যদি আপনার কাছে `defineModel` প্রপের জন্য একটি `default` মান থাকে এবং আপনি এই প্রপের জন্য অভিভাবক কম্পোনেন্ট থেকে কোনো মান প্রদান না করেন, তাহলে এটি পিতামাতা এবং শিশু কম্পোনেন্টগুলির মধ্যে একটি ডি-সিঙ্ক্রোনাইজেশন সৃষ্টি করতে পারে। নীচের উদাহরণে, পিতামাতার `myRef` অসংজ্ঞায়িত, কিন্তু সন্তানের `model` হল 1:
 
-```js
-// child component:
+```vue [Child.vue]
+<script setup>
 const model = defineModel({ default: 1 })
-
-// parent component:
-const myRef = ref()
+</script>
 ```
 
-```html
-<Child v-model="myRef"></Child>
+```vue [Parent.vue]
+<script setup>
+const myRef = ref()
+</script>
+
+<template>
+  <Child v-model="myRef"></Child>
+</template>
 ```
 
 :::

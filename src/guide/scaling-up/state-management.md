@@ -83,8 +83,7 @@ export default {
 
 আপনার যদি state একটি অংশ থাকে যা একাধিক দৃষ্টান্ত দ্বারা ভাগ করা উচিত, আপনি একটি প্রতিক্রিয়াশীল অবজেক্ট তৈরি করতে [`reactive()`](/api/reactivity-core#reactive) ব্যবহার করতে পারেন, এবং তারপর এটিকে একাধিক কম্পোনেন্টে আমদানি করতে পারেন:
 
-```js
-// store.js
+```js [store.js]
 import { reactive } from 'vue'
 
 export const store = reactive({
@@ -94,8 +93,7 @@ export const store = reactive({
 
 <div class="composition-api">
 
-```vue
-<!-- ComponentA.vue -->
+```vue [ComponentA.vue]
 <script setup>
 import { store } from './store.js'
 </script>
@@ -103,8 +101,7 @@ import { store } from './store.js'
 <template>From A: {{ store.count }}</template>
 ```
 
-```vue
-<!-- ComponentB.vue -->
+```vue [ComponentB.vue]
 <script setup>
 import { store } from './store.js'
 </script>
@@ -115,8 +112,7 @@ import { store } from './store.js'
 </div>
 <div class="options-api">
 
-```vue
-<!-- ComponentA.vue -->
+```vue [ComponentA.vue]
 <script>
 import { store } from './store.js'
 
@@ -132,8 +128,7 @@ export default {
 <template>From A: {{ store.count }}</template>
 ```
 
-```vue
-<!-- ComponentB.vue -->
+```vue [ComponentB.vue]
 <script>
 import { store } from './store.js'
 
@@ -165,8 +160,7 @@ export default {
 
 যদিও এটি সাধারণ ক্ষেত্রে কাজ করে, বৈশ্বিক রাষ্ট্র যা কোনো কম্পোনেন্ট দ্বারা নির্বিচারে পরিবর্তিত হতে পারে তা দীর্ঘমেয়াদে খুব রক্ষণাবেক্ষণযোগ্য হবে না। স্টেট-মিউটেটিং লজিক রাজ্যের মতোই কেন্দ্রীভূত হয় তা নিশ্চিত করার জন্য, দোকানে এমন নামগুলির সাথে পদ্ধতিগুলি সংজ্ঞায়িত করার সুপারিশ করা হয় যা ক্রিয়াগুলির অভিপ্রায় প্রকাশ করে:
 
-```js{6-8}
-// store.js
+```js{5-7} [store.js]
 import { reactive } from 'vue'
 
 export const store = reactive({

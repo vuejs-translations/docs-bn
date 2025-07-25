@@ -156,8 +156,8 @@ app.mount('#app')
 
 এখানে আমরা সবচেয়ে বেয়ার-বোন সেটআপ প্রদর্শন করব। প্রথমে, অ্যাপ তৈরির যুক্তিটিকে একটি ডেডিকেটেড ফাইল, `app.js`-এ ভাগ করা যাক:
 
-```js
-// app.js (shared between server and client)
+```js [app.js]
+// (shared between server and client)
 import { createSSRApp } from 'vue'
 
 export function createApp() {
@@ -172,8 +172,7 @@ export function createApp() {
 
 আমাদের ক্লায়েন্ট এন্ট্রি সার্বজনীন কোড আমদানি করে, অ্যাপ তৈরি করে এবং মাউন্টটি সম্পাদন করে:
 
-```js
-// client.js
+```js [client.js]
 import { createApp } from './app.js'
 
 createApp().mount('#app')
@@ -181,8 +180,8 @@ createApp().mount('#app')
 
 এবং সার্ভার রিকোয়েস্ট হ্যান্ডলারে একই অ্যাপ তৈরির যুক্তি ব্যবহার করে:
 
-```js{2,5}
-// server.js (irrelevant code omitted)
+```js{2,5} [server.js]
+// (irrelevant code omitted)
 import { createApp } from './app.js'
 
 server.get('/', (req, res) => {
@@ -267,8 +266,8 @@ Vite বিল্ট-ইন [Vue সার্ভার-সাইড রেন্
 
 প্রস্তাবিত সমাধান হল প্রতিটি রিকোয়েস্ট ে - রাউটার এবং গ্লোবাল স্টোর সহ - সম্পূর্ণ অ্যাপ্লিকেশনটির একটি নতুন উদাহরণ তৈরি করা৷ তারপরে, আমাদের কম্পোনেন্টগুলিতে এটি সরাসরি আমদানি করার পরিবর্তে, আমরা [app-level provide](/guide/components/provide-inject#app-level-provide) ব্যবহার করে শেয়ার্ড স্টেট প্রদান করি এবং এটি প্রয়োজনীয় কম্পোনেন্টগুলিতে ইনজেক্ট করি:
 
-```js
-// app.js (shared between server and client)
+```js [app.js]
+// (shared between server and client)
 import { createSSRApp } from 'vue'
 import { createStore } from './store.js'
 

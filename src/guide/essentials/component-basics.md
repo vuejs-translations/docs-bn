@@ -188,8 +188,7 @@ SFC-তে, নেটিভ HTML কম্পোনেন্ট থেকে আ
 
 <div class="options-api">
 
-```vue
-<!-- BlogPost.vue -->
+```vue [BlogPost.vue]
 <script>
 export default {
   props: ['title']
@@ -206,8 +205,7 @@ export default {
 </div>
 <div class="composition-api">
 
-```vue
-<!-- BlogPost.vue -->
+```vue [BlogPost.vue]
 <script setup>
 defineProps(['title'])
 </script>
@@ -352,8 +350,8 @@ const postFontSize = ref(1)
 
 এখন আসুন `<BlogPost>` কম্পোনেন্টের টেমপ্লেটে একটি বোতাম যোগ করি:
 
-```vue{5}
-<!-- BlogPost.vue, omitting <script> -->
+```vue{5} [BlogPost.vue]
+<!-- omitting <script> -->
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
@@ -373,8 +371,8 @@ const postFontSize = ref(1)
 
 তারপর চাইল্ড কম্পোনেন্ট বিল্ট-ইন [**`$emit`** পদ্ধতি](/api/component-instance#emit) কল করে ইভেন্টের নাম পাস করে নিজেই একটি ইভেন্ট নির্গত করতে পারে:
 
-```vue{5}
-<!-- BlogPost.vue, omitting <script> -->
+```vue{5} [BlogPost.vue]
+<!-- omitting <script> -->
 <template>
   <div class="blog-post">
     <h4>{{ title }}</h4>
@@ -400,8 +398,7 @@ const postFontSize = ref(1)
 
 <div class="options-api">
 
-```vue{5}
-<!-- BlogPost.vue -->
+```vue{4} [BlogPost.vue]
 <script>
 export default {
   props: ['title'],
@@ -413,8 +410,7 @@ export default {
 </div>
 <div class="composition-api">
 
-```vue{4}
-<!-- BlogPost.vue -->
+```vue{3} [BlogPost.vue]
 <script setup>
 defineProps(['title'])
 defineEmits(['enlarge-text'])
@@ -472,8 +468,7 @@ export default {
 
 এটি Vue এর কাস্টম `<slot>` কম্পোনেন্ট ব্যবহার করে অর্জন করা যেতে পারে:
 
-```vue{5}
-<!-- AlertBox.vue -->
+```vue{4} [AlertBox.vue]
 <template>
   <div class="alert-box">
     <strong>This is an Error for Demo Purposes</strong>

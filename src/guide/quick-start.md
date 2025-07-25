@@ -29,43 +29,31 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 নিশ্চিত করুন যে আপনার কাছে [Node.js](https://nodejs.org/) এর একটি আপ-টু-ডেট সংস্করণ ইনস্টল করা আছে এবং আপনার বর্তমান কার্যকারী ডিরেক্টরিটি যেখানে আপনি একটি প্রকল্প তৈরি করতে চান। আপনার কমান্ড লাইনে নিম্নলিখিত কমান্ডটি চালান (`$` চিহ্ন ছাড়া):
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="npm">
+::: code-group
 
-  ```sh
-  $ npm create vue@latest
-  ```
+```sh [npm]
+$ npm create vue@latest
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="pnpm">
+```sh [pnpm]
+$ pnpm create vue@latest
+```
 
-  ```sh
-  $ pnpm create vue@latest
-  ```
+```sh [yarn]
+# For Yarn (v1+)
+$ yarn create vue
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="yarn">
-
-  ```sh
-  # For Yarn (v1+)
-  $ yarn create vue
-
-  # For Yarn Modern (v2+)
-  $ yarn create vue@latest
+# For Yarn Modern (v2+)
+$ yarn create vue@latest
   
-  # For Yarn ^v4.11
-  $ yarn dlx create-vue@latest
-  ```
+# For Yarn ^v4.11
+$ yarn dlx create-vue@latest
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="bun">
-
-  ```sh
-  $ bun create vue@latest
-  ```
-
-  </VTCodeGroupTab>
-</VTCodeGroup>
+```sh [bun]
+$ bun create vue@latest
+```
+:::
 
 এই কমান্ডটি [create-vue](https://github.com/vuejs/create-vue), অফিসিয়াল Vue প্রজেক্ট স্ক্যাফোল্ডিং টুল ইনস্টল এবং কার্যকর করবে। টাইপস্ক্রিপ্ট এবং টেস্টিং সাপোর্টের মতো কয়েকটি ঐচ্ছিক বৈশিষ্ট্যের জন্য আপনাকে প্রম্পট দেওয়া হবে:
 
@@ -85,44 +73,34 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 আপনি যদি একটি বিকল্প সম্পর্কে অনিশ্চিত হন, তাহলে এখনকার জন্য এন্টার বাটন টিপে শুধু `No` নির্বাচন করুন। প্রকল্পটি তৈরি হয়ে গেলে, আরও ডিপেন্ডেন্সি ইনস্টল করতে এবং ডেভ সার্ভার শুরু করতে নির্দেশাবলী অনুসরণ করুন:
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="npm">
+::: code-group
 
-  ```sh-vue
-  $ cd {{'<your-project-name>'}}
-  $ npm install
-  $ npm run dev
-  ```
+```sh-vue [npm]
+$ cd {{'<your-project-name>'}}
+$ npm install
+$ npm run dev
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="pnpm">
+```sh-vue [pnpm]
+$ cd {{'<your-project-name>'}}
+$ pnpm install
+$ pnpm run dev
+```
 
-  ```sh-vue
-  $ cd {{'<your-project-name>'}}
-  $ pnpm install
-  $ pnpm run dev
-  ```
+```sh-vue [yarn]
+$ cd {{'<your-project-name>'}}
+$ yarn
+$ yarn dev
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="yarn">
+```sh-vue [bun]
+$ cd {{'<your-project-name>'}}
+$ bun install
+$ bun run dev
+```
 
-  ```sh-vue
-  $ cd {{'<your-project-name>'}}
-  $ yarn
-  $ yarn dev
-  ```
+:::
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="bun">
-
-  ```sh-vue
-  $ cd {{'<your-project-name>'}}
-  $ bun install
-  $ bun run dev
-  ```
-
-  </VTCodeGroupTab>
-</VTCodeGroup>
 
 আপনার প্রথম Vue প্রকল্পটি এখন চালু হয়ে যাওয়া উচিত! মনে রাখবেন যে উৎপন্ন প্রকল্পের উদাহরণ হিসেবে তৈরি হওয়া কম্পোনেন্টগুলি [Options API](/guide/introduction#options)-এর পরিবর্তে [Composition API](/guide/introduction#composition-api) এবং `<script setup>` ব্যবহার করে লেখা হয়েছে। এখানে কিছু অতিরিক্ত টিপস আছে:
 
@@ -133,36 +111,26 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 আপনি যখন আপনার অ্যাপটিকে প্রোডাকশনে পাঠানোর জন্য প্রস্তুত হন, তখন নিম্নলিখিতটি চালান:
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="npm">
+::: code-group
 
-  ```sh
-  $ npm run build
-  ```
+```sh [npm]
+$ npm run build
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="pnpm">
+```sh [pnpm]
+$ pnpm run build
+```
 
-  ```sh
-  $ pnpm run build
-  ```
+```sh [yarn]
+$ yarn build
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="yarn">
+```sh [bun]
+$ bun run build
+```
 
-  ```sh
-  $ yarn build
-  ```
+:::
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="bun">
-
-  ```sh
-  $ bun run build
-  ```
-
-  </VTCodeGroupTab>
-</VTCodeGroup>
 
 এটি প্রোজেক্টের `./dist` ডিরেক্টরিতে আপনার অ্যাপের একটি প্রোডাকশন-রেডি বিল্ড তৈরি করবে। আপনার অ্যাপকে প্রোডাকশনে পাঠানোর বিষয়ে আরও জানতে [প্রোডাকশন ডিপ্লয়মেন্ট গাইড](/guide/best-practices/production-deployment) দেখুন।
 
@@ -382,8 +350,7 @@ import { createApp } from 'vue'
 
 আমরা গাইডের আরও গভীরে ডুব দেওয়ার সাথে সাথে আমাদের কোড আলাদা জাভাস্ক্রিপ্ট ফাইলগুলিতে বিভক্ত করতে হতে পারে যাতে সেগুলি পরিচালনা করা সহজ হয়। উদাহরণ স্বরূপ:
 
-```html
-<!-- index.html -->
+```html [index.html]
 <div id="app"></div>
 
 <script type="module">
@@ -396,8 +363,7 @@ import { createApp } from 'vue'
 
 <div class="options-api">
 
-```js
-// my-component.js
+```js [my-component.js]
 export default {
   data() {
     return { count: 0 }
@@ -409,8 +375,7 @@ export default {
 </div>
 <div class="composition-api">
 
-```js
-// my-component.js
+```js [my-component.js]
 import { ref } from 'vue'
 export default {
   setup() {

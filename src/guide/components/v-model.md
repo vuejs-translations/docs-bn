@@ -12,8 +12,7 @@
 
 Vue ৩.৪ থেকে শুরু করে, এটি অর্জন করার জন্য প্রস্তাবিত পদ্ধতি হল [`defineModel()`](/api/sfc-script-setup#definemodel) ম্যাক্রো ব্যবহার করা:
 
-```vue
-<!-- Child.vue -->
+```vue [Child.vue]
 <script setup>
 const model = defineModel()
 
@@ -30,8 +29,7 @@ function update() {
 
 প্যারেন্ট তারপর `v-মডেল` দিয়ে একটি মান আবদ্ধ করতে পারেন:
 
-```vue-html
-<!-- Parent.vue -->
+```vue-html [Parent.vue]
 <Child v-model="countModel" />
 ```
 
@@ -63,8 +61,7 @@ const model = defineModel()
 
 এইভাবে আপনি ৩.৪ এর আগে উপরে দেখানো একই শিশু কম্পোনেন্টটি বাস্তবায়ন করবেন:
 
-```vue
-<!-- Child.vue -->
+```vue [Child.vue]
 <script setup>
 const props = defineProps(['modelValue'])
 const emit = defineEmits(['update:modelValue'])
@@ -80,8 +77,7 @@ const emit = defineEmits(['update:modelValue'])
 
 তারপর, প্যারেন্ট কম্পোনেন্টে `v-model="foo"` এতে কম্পাইল করা হবে:
 
-```vue-html
-<!-- Parent.vue -->
+```vue-html [Parent.vue]
 <Child
   :modelValue="foo"
   @update:modelValue="$event => (foo = $event)"
@@ -103,20 +99,20 @@ const model = defineModel({ default: 0 })
 :::warning
 যদি আপনার কাছে `defineModel` প্রপের জন্য একটি `default` মান থাকে এবং আপনি এই প্রপের জন্য অভিভাবক কম্পোনেন্ট থেকে কোনো মান প্রদান না করেন, তাহলে এটি পিতামাতা এবং শিশু কম্পোনেন্টগুলির মধ্যে একটি ডি-সিঙ্ক্রোনাইজেশন সৃষ্টি করতে পারে। নীচের উদাহরণে, পিতামাতার `myRef` অসংজ্ঞায়িত, কিন্তু সন্তানের `model` হল 1:
 
-**Child component:**
-
-```js
+```vue [Child.vue]
+<script setup>
 const model = defineModel({ default: 1 })
+</script>
 ```
 
-**Parent component:**
-
-```js
+```vue [Parent.vue]
+<script setup>
 const myRef = ref()
-```
+</script>
 
-```html
-<Child v-model="myRef"></Child>
+<template>
+  <Child v-model="myRef"></Child>
+</template>
 ```
 
 :::
@@ -156,8 +152,7 @@ const myRef = ref()
 
 এখানে এটি কর্মে রয়েছে:
 
-```vue
-<!-- CustomInput.vue -->
+```vue [CustomInput.vue]
 <script>
 export default {
   props: ['modelValue'],
@@ -183,8 +178,7 @@ export default {
 
 এই কম্পোনেন্টস মধ্যে `v-মডেল` বাস্তবায়নের আরেকটি উপায় হল একটি লিখনযোগ্য `computed` বৈশিষ্ট্য একটি গেটার এবং একটি সেটারের সাথে ব্যবহার করা। `get` পদ্ধতিটি `modelValue` বৈশিষ্ট্য প্রদান করবে এবং `set` পদ্ধতিটি সংশ্লিষ্ট ইভেন্ট নির্গত করবে:
 
-```vue
-<!-- CustomInput.vue -->
+```vue [CustomInput.vue]
 <script>
 export default {
   props: ['modelValue'],
@@ -221,8 +215,7 @@ export default {
 
 চাইল্ড কম্পোনেন্টে, আমরা এর প্রথম আর্গুমেন্ট হিসাবে `defineModel()`-এ একটি স্ট্রিং পাস করে সংশ্লিষ্ট আর্গুমেন্টকে সমর্থন করতে পারি:
 
-```vue
-<!-- MyComponent.vue -->
+```vue [MyComponent.vue]
 <script setup>
 const title = defineModel('title')
 </script>
@@ -243,8 +236,7 @@ const title = defineModel('title', { required: true })
 <details>
 <summary>৩.৪ এর পূর্বের ব্যবহার</summary>
 
-```vue
-<!-- MyComponent.vue -->
+```vue [MyComponent.vue]
 <script setup>
 defineProps({
   title: {
@@ -271,8 +263,7 @@ defineEmits(['update:title'])
 
 এই ক্ষেত্রে, ডিফল্ট `modelValue` প্রপ এবং `update:modelValue` ইভেন্টের পরিবর্তে, চাইল্ড কম্পোনেন্টের একটি `title` প্রপ আশা করা উচিত এবং প্যারেন্ট মান আপডেট করার জন্য একটি `update:title` ইভেন্ট নির্গত করা উচিত:
 
-```vue
-<!-- MyComponent.vue -->
+```vue [MyComponent.vue]
 <script>
 export default {
   props: ['title'],
@@ -413,7 +404,7 @@ console.log(modifiers) // { capitalize: true }
 
 মডিফায়ারের উপর ভিত্তি করে মান কীভাবে পড়া/লিখতে হবে তা শর্তসাপেক্ষে সামঞ্জস্য করতে, আমরা `get` এবং `set` বিকল্পগুলিকে `defineModel()`-এ পাস করতে পারি। এই দুটি বিকল্প মডেল রেফের গেট/সেটের মান পায় এবং একটি রূপান্তরিত মান ফেরত দেয়। এইভাবে আমরা `capitalize` মডিফায়ার বাস্তবায়নের জন্য `set` বিকল্পটি ব্যবহার করতে পারি:
 
-```vue{6-8}
+```vue{4-6}
 <script setup>
 const [model, modifiers] = defineModel({
   set(value) {
@@ -578,10 +569,10 @@ console.log(lastNameModifiers) // { uppercase: true }
 ```vue{5,6,10,11}
 <script setup>
 const props = defineProps({
-firstName: String,
-lastName: String,
-firstNameModifiers: { default: () => ({}) },
-lastNameModifiers: { default: () => ({}) }
+  firstName: String,
+  lastName: String,
+  firstNameModifiers: { default: () => ({}) },
+  lastNameModifiers: { default: () => ({}) }
 })
 defineEmits(['update:firstName', 'update:lastName'])
 

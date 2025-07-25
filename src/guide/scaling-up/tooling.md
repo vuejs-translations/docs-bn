@@ -25,40 +25,29 @@ Vue SFC ব্যবহার করে দেখতে আপনার মে�
 
 Vite + Vue এর সাথে শুরু করতে, সহজভাবে চালান:
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="npm">
+::: code-group
 
-  ```sh
-  $ npm create vue@latest
-  ```
+```sh [npm]
+$ npm create vue@latest
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="pnpm">
+```sh [pnpm]
+$ pnpm create vue@latest
+```
   
-  ```sh
-  $ pnpm create vue@latest
-  ```
-
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="yarn">
+```sh [yarn]
+# For Yarn Modern (v2+)
+$ yarn create vue@latest
   
-  ```sh
-  # For Yarn Modern (v2+)
-  $ yarn create vue@latest
+# For Yarn ^v4.11
+$ yarn dlx create-vue@latest
+```
   
-  # For Yarn ^v4.11
-  $ yarn dlx create-vue@latest
-  ```
+```sh [bun]
+$ bun create vue@latest
+```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="bun">
-  
-  ```sh
-  $ bun create vue@latest
-  ```
-
-  </VTCodeGroupTab>
-</VTCodeGroup>
+:::
 
 এই কমান্ডটি [create-vue](https://github.com/vuejs/create-vue), অফিসিয়াল Vue প্রোজেক্ট স্ক্যাফোল্ডিং টুল ইনস্টল এবং কার্যকর করবে।
 

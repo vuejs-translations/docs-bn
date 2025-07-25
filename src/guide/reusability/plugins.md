@@ -40,8 +40,7 @@ const myPlugin = {
 
 প্লাগইন অবজেক্ট সেট আপ করে শুরু করা যাক। এটিকে একটি পৃথক ফাইলে তৈরি করার এবং এটিকে export করার পরামর্শ দেওয়া হচ্ছে, যেমনটি যুক্তি ধারণ করে এবং আলাদা রাখতে নীচে দেখানো হয়েছে৷
 
-```js
-// plugins/i18n.js
+```js [plugins/i18n.js]
 export default {
   install: (app, options) => {
     // Plugin code goes here
@@ -57,8 +56,7 @@ export default {
 
 যেহেতু এই ফাংশনটি সমস্ত টেমপ্লেটে বিশ্বব্যাপী উপলব্ধ হওয়া উচিত, তাই আমরা এটিকে আমাদের প্লাগইনে `app.config.globalProperties`-এর সাথে সংযুক্ত করে তৈরি করব:
 
-```js{4-11}
-// plugins/i18n.js
+```js{3-10} [plugins/i18n.js]
 export default {
   install: (app, options) => {
     // inject a globally available $translate() method
@@ -99,8 +97,7 @@ app.use(i18nPlugin, {
 
 প্লাগইন ব্যবহারকারীদের একটি ফাংশন বা অ্যাট্রিবিউটে অ্যাক্সেস দেওয়ার জন্য প্লাগইনগুলি আমাদের `provide` ব্যবহার করার অনুমতি দেয়। উদাহরণস্বরূপ, আমরা অ্যাপ্লিকেশনটিকে `options` প্যারামিটারে অ্যাক্সেস দেওয়ার অনুমতি দিতে পারি যাতে তারা অনুবাদ বস্তু ব্যবহার করতে পারে।
 
-```js{10}
-// plugins/i18n.js
+```js{3} [plugins/i18n.js]
 export default {
   install: (app, options) => {
     app.provide('i18n', options)
@@ -112,7 +109,7 @@ export default {
 
 <div class="composition-api">
 
-```vue
+```vue{4}
 <script setup>
 import { inject } from 'vue'
 
@@ -125,7 +122,7 @@ console.log(i18n.greetings.hello)
 </div>
 <div class="options-api">
 
-```js
+```js{2}
 export default {
   inject: ['i18n'],
   created() {

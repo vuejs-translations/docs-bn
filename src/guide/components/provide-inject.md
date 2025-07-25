@@ -297,7 +297,7 @@ provide('read-only-count', readonly(count))
 
 ইনজেকশনগুলিকে সরবরাহকারীর সাথে প্রতিক্রিয়াশীলভাবে সংযুক্ত করার জন্য, আমাদের [computed()](/api/reactivity-core#computed) ফাংশন ব্যবহার করে একটি গণনা করা কম্পিউটেড প্রপার্টি প্রদান করতে হবে:
 
-```js{10}
+```js{12}
 import { computed } from 'vue'
 
 export default {
@@ -327,8 +327,7 @@ export default {
 
 একটি ডেডিকেটেড ফাইলে প্রতীকগুলি রপ্তানি করার পরামর্শ দেওয়া হচ্ছে:
 
-```js
-// keys.js
+```js [keys.js]
 export const myInjectionKey = Symbol()
 ```
 

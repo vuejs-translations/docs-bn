@@ -32,8 +32,7 @@ import { ... } from 'vue/dist/vue.esm-bundler.js'
 
 আপনার স্ক্রিপ্টের ভিতরে বা সেই অনুযায়ী `vue` সমাধান করতে আপনার বিল্ড টুল কনফিগার করুন। [Vite](https://vitejs.dev/) এর জন্য নমুনা কনফিগারেশন:
 
-```js
-// vite.config.js
+```js [vite.config.js]
 export default {
   resolve: {
     alias: {

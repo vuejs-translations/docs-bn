@@ -61,8 +61,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 উদাহরণস্বরূপ এই `increment` ফাংশন নিন:
 
-```js
-// helpers.js
+```js [helpers.js]
 export function increment(current, max = 10) {
   if (current < max) {
     return current + 1
@@ -75,8 +74,7 @@ export function increment(current, max = 10) {
 
 যদি এই দাবিগুলির মধ্যে কোনোটি ব্যর্থ হয়, তাহলে এটা পরিষ্কার যে সমস্যাটি `increment` ফাংশনের মধ্যে রয়েছে।
 
-```js{4-16}
-// helpers.spec.js
+```js{3-15} [helpers.spec.js]
 import { increment } from './helpers'
 
 describe('increment', () => {
@@ -149,10 +147,9 @@ Vue অ্যাপ্লিকেশনগুলিতে, কম্পোন�
 
   আমরা Stepper বাস্তবায়ন সম্পর্কে কিছুই জানি না, শুধুমাত্র "ইনপুট" হল `max` প্রপ এবং "আউটপুট" হল DOM-এর অবস্থা যেভাবে ব্যবহারকারী এটি দেখতে পাবে।
 
-<VTCodeGroup>
-  <VTCodeGroupTab label="Vue Test Utils">
+::: code-group
 
-```js
+```js [Vue Test Utils]
 const valueSelector = '[data-testid=stepper-value]'
 const buttonSelector = '[data-testid=increment]'
 
@@ -169,10 +166,7 @@ await wrapper.find(buttonSelector).trigger('click')
 expect(wrapper.find(valueSelector).text()).toContain('1')
 ```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="Cypress">
-
-```js
+```js [Cypress]
 const valueSelector = '[data-testid=stepper-value]'
 const buttonSelector = '[data-testid=increment]'
 
@@ -191,10 +185,7 @@ cy.get(valueSelector)
   .should('contain.text', '1')
 ```
 
-  </VTCodeGroupTab>
-  <VTCodeGroupTab label="Testing Library">
-
-```js
+```js [Testing Library]
 const { getByText } = render(Stepper, {
   props: {
     max: 1
@@ -213,8 +204,7 @@ getByText('1')
 await fireEvent.click(button)
 ```
 
-  </VTCodeGroupTab>
-</VTCodeGroup>
+:::
 
 **DON'T**
 
@@ -319,8 +309,7 @@ await fireEvent.click(button)
 
 পরবর্তী, `test` বিকল্প ব্লক যোগ করতে Vite কনফিগারেশন আপডেট করুন:
 
-```js{6-12}
-// vite.config.js
+```js{5-11} [vite.config.js]
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -338,9 +327,7 @@ export default defineConfig({
 :::tip
 আপনি TypeScript ব্যবহার করলে, আপনার `tsconfig.json`-এর `types` ক্ষেত্রে `vitest/globals` যোগ করুন।
 
-```json
-// tsconfig.json
-
+```json [tsconfig.json]
 {
   "compilerOptions": {
     "types": ["vitest/globals"]
@@ -352,8 +339,7 @@ export default defineConfig({
 
 তারপর, আপনার প্রজেক্টে `*.test.js` এ শেষ হওয়া একটি ফাইল তৈরি করুন। আপনি প্রোজেক্ট রুটে বা আপনার সোর্স ফাইলের পাশে টেস্ট ডিরেক্টরিতে একটি টেস্ট ডিরেক্টরিতে সমস্ত টেস্ট ফাইল রাখতে পারেন। Vitest স্বয়ংক্রিয়ভাবে নামকরণ পদ্ধতি ব্যবহার করে তাদের জন্য অনুসন্ধান করবে।
 
-```js
-// MyComponent.test.js
+```js [MyComponent.test.js]
 import { render } from '@testing-library/vue'
 import MyComponent from './MyComponent.vue'
 
@@ -371,7 +357,7 @@ test('it should work', () => {
 
 অবশেষে, পরীক্ষা স্ক্রিপ্ট যোগ করতে `package.json` আপডেট করুন এবং এটি চালান:
 
-```json{4}
+```json{4} [package.json]
 {
   // ...
   "scripts": {
@@ -397,8 +383,7 @@ test('it should work', () => {
 
 যদি একটি কম্পোজেবল শুধুমাত্র রিঅ্যাকটিভিটি এপিআই ব্যবহার করে, তাহলে এটি সরাসরি এটিকে আহ্বান করে এবং তার প্রত্যাবর্তিত অবস্থা/পদ্ধতি জাহির করে পরীক্ষা করা যেতে পারে:
 
-```js
-// counter.js
+```js [counter.js]
 import { ref } from 'vue'
 
 export function useCounter() {
@@ -412,8 +397,7 @@ export function useCounter() {
 }
 ```
 
-```js
-// counter.test.js
+```js [counter.test.js]
 import { useCounter } from './counter.js'
 
 test('useCounter', () => {
@@ -427,8 +411,7 @@ test('useCounter', () => {
 
 একটি কম্পোজেবল যা লাইফসাইকেল হুকের উপর নির্ভর করে বা প্রোভাইড/ইনজেক্টকে পরীক্ষা করার জন্য হোস্ট কম্পোনেন্টে মোড়ানো প্রয়োজন। আমরা নিম্নলিখিত মত একটি সাহায্যকারী তৈরি করতে পারেন:
 
-```js
-// test-utils.js
+```js [test-utils.js]
 import { createApp } from 'vue'
 
 export function withSetup(composable) {
@@ -447,7 +430,7 @@ export function withSetup(composable) {
 }
 ```
 
-```js
+```js [foo.test.js]
 import { withSetup } from './test-utils'
 import { useFoo } from './foo'
 

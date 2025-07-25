@@ -40,8 +40,7 @@ outline: deep
 
 `@vitejs/plugin-vue` স্বয়ংক্রিয়ভাবে এই ফ্ল্যাগগুলির জন্য ডিফল্ট মান প্রদান করে। ডিফল্ট মান পরিবর্তন করতে, Vite's ব্যবহার করুন[`define` config option](https://vitejs.dev/config/shared-options.html#define):
 
-```js
-// vite.config.js
+```js [vite.config.js]
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -56,8 +55,7 @@ export default defineConfig({
 
 `@vue/cli-service` স্বয়ংক্রিয়ভাবে এই ফ্ল্যাগর কিছুর জন্য ডিফল্ট মান প্রদান করে। মান কনফিগার/পরিবর্তন করতে:
 
-```js
-// vue.config.js
+```js [vue.config.js]
 module.exports = {
   chainWebpack: (config) => {
     config.plugin('define').tap((definitions) => {
@@ -76,8 +74,7 @@ module.exports = {
 
 ফ্ল্যাগ ওয়েবপ্যাক ব্যবহার করে সংজ্ঞায়িত করা উচিত [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
 
-```js
-// webpack.config.js
+```js [webpack.config.js]
 module.exports = {
   // ...
   plugins: [
@@ -94,8 +91,7 @@ module.exports = {
 
 ফ্ল্যাগ ব্যবহার করে সংজ্ঞায়িত করা উচিত [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace):
 
-```js
-// rollup.config.js
+```js [rollup.config.js]
 import replace from '@rollup/plugin-replace'
 
 export default {

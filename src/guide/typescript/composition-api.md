@@ -418,8 +418,7 @@ Vue 3.5 এবং `@vue/language-tools` 2.1 (IDE ভাষা পরিষেব
 
 একটি ইম্পোর্ট করা কম্পোনেন্টের ইনস্ট্যান্স টাইপ পেতে, আমাদের প্রথমে `typeof` এর মাধ্যমে এর টাইপ পেতে হবে, তারপর TypeScript এর অন্তর্নির্মিত `InstanceType` ইউটিলিটি ব্যবহার করে এর ইনস্ট্যান্স টাইপ বের করতে হবে:
 
-```vue{5}
-<!-- App.vue -->
+```vue{6,7} [App.vue]
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import Foo from './Foo.vue'
@@ -447,8 +446,7 @@ const child = useTemplateRef<ComponentPublicInstance>('child')
 
 উল্লেখ করা কম্পোনেন্টটি একটি [জেনেরিক কম্পোনেন্ট](/guide/typescript/overview.html#generic-components), উদাহরণস্বরূপ `MyGenericModal`:
 
-```vue
-<!-- MyGenericModal.vue -->
+```vue [MyGenericModal.vue]
 <script setup lang="ts" generic="ContentType extends string | number">
 import { ref } from 'vue'
 
@@ -464,8 +462,7 @@ defineExpose({
 
 এটিকে [`vue-component-type-helpers`](https://www.npmjs.com/package/vue-component-type-helpers) লাইব্রেরি থেকে `ComponentExposed` ব্যবহার করে উল্লেখ করা দরকার কারণ `InstanceType` কাজ করবে না।
 
-```vue
-<!-- App.vue -->
+```vue [App.vue]
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import MyGenericModal from './MyGenericModal.vue'
