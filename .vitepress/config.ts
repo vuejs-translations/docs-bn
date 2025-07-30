@@ -818,28 +818,28 @@ export default defineConfigWithTheme<ThemeConfig>({
       stringify: true
     },
     plugins: [
-//       llmstxt({
-//         ignoreFiles: [
-//           'about/team/**/*',
-//           'about/team.md',
-//           'about/privacy.md',
-//           'about/coc.md',
-//           'developers/**/*',
-//           'ecosystem/themes.md',
-//           'examples/**/*',
-//           'partners/**/*',
-//           'sponsor/**/*',
-//           'index.md'
-//         ],
-//         customLLMsTxtTemplate: `\
-// # Vue.js
+      // llmstxt({
+      //   ignoreFiles: [
+      //     'about/team/**/*',
+      //     'about/team.md',
+      //     'about/privacy.md',
+      //     'about/coc.md',
+      //     'developers/**/*',
+      //     'ecosystem/themes.md',
+      //     'examples/**/*',
+      //     'partners/**/*',
+      //     'sponsor/**/*',
+      //     'index.md'
+      //   ],
+      //   customLLMsTxtTemplate: `\
+      //   # Vue.js
 
-// Vue.js - The Progressive JavaScript Framework
+      //   Vue.js - The Progressive JavaScript Framework
 
-// ## Table of Contents
+      //   ## Table of Contents
 
-{toc}`
-      }) as Plugin,
+      //   {toc}`
+      // }) as Plugin,
       groupIconVitePlugin({
         customIcon: {
           cypress: 'vscode-icons:file-type-cypress',
