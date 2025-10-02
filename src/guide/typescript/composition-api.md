@@ -468,7 +468,8 @@ import { useTemplateRef } from 'vue'
 import MyGenericModal from './MyGenericModal.vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
 
-const modal = useTemplateRef<ComponentExposed<typeof MyGenericModal>>('modal')
+const modal =
+  useTemplateRef<ComponentExposed<typeof MyGenericModal>>('modal')
 
 const openModal = () => {
   modal.value?.open('newValue')
@@ -476,4 +477,42 @@ const openModal = () => {
 </script>
 ```
 
-Note that with `@vue/language-tools` 2.1+, static template refs' types can be automatically inferred and the above is only needed in edge cases.
+মনে রাখবেন যে `@vue/language-tools` 2.1+ এর সাহায্যে, স্ট্যাটিক টেমপ্লেট রেফের ধরণগুলি স্বয়ংক্রিয়ভাবে অনুমান করা যেতে পারে এবং উপরেরটি শুধুমাত্র এজ ক্ষেত্রে প্রয়োজন।
+
+## Typing Global Custom Directives {#typing-global-custom-directives}
+
+`app.directive()` দিয়ে ডিরেক্টিভস গ্লোবাল কাস্টম নির্দেশাবলীর জন্য টাইপ হিন্টিং এবং টাইপ চেকিং পেতে, আপনি `ComponentCustomProperties` এক্সটেন্ড করতে পারেন।
+
+```ts [src/directives/highlight.ts]
+import type { Directive } from 'vue'
+
+export type HighlightDirective = Directive<HTMLElement, string>
+
+declare module 'vue' {
+  export interface ComponentCustomProperties {
+    // prefix with v (v-highlight)
+    vHighlight: HighlightDirective
+  }
+}
+
+export default {
+  mounted: (el, binding) => {
+    el.style.backgroundColor = binding.value
+  }
+} satisfies HighlightDirective
+```
+
+```ts [main.ts]
+import highlight from './directives/highlight'
+// ...other code
+const app = createApp(App)
+app.directive('highlight', highlight)
+```
+
+কম্পোনেন্টে ব্যবহার
+
+```vue [App.vue]
+<template>
+  <p v-highlight="'blue'">This sentence is important!</p>
+</template>
+```

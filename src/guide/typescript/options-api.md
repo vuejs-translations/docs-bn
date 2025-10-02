@@ -291,3 +291,7 @@ declare module 'vue' {
 আরো দেখুন:
 
 - [কম্পোনেন্ট টাইপ এক্সটেনশনের জন্য টাইপস্ক্রিপ্ট ইউনিট পরীক্ষা](https://github.com/vuejs/core/blob/main/packages-private/dts-test/componentTypeExtensions.test-d.tsx)
+
+## Typing Global Custom Directives {#typing-global-custom-directives}
+
+দেখুন: [কাস্টম গ্লোবাল নির্দেশিকা টাইপ করা](/guide/typescript/composition-api#typing-global-custom-directives) <sup class="vt-badge ts" />

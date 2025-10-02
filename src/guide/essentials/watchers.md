@@ -486,7 +486,7 @@ export default {
 
 </div>
 
-This works in versions before 3.5. In addition, `onCleanup` passed via function argument is bound to the watcher instance so it is not subject to the synchronously constraint of `onWatcherCleanup`.
+এটি ৩.৫ এর আগের ভার্সনগুলিতে কাজ করে। এছাড়াও, ফাংশন আর্গুমেন্টের মাধ্যমে পাস করা `onCleanup` ওয়াচার ইনস্ট্যান্সের সাথে আবদ্ধ থাকে তাই এটি `onWatcherCleanup` এর সিঙ্ক্রোনাস সীমাবদ্ধতার অধীন নয়।
 
 ## Callback Flush Timing {#callback-flush-timing}
 
@@ -572,7 +572,7 @@ watchEffect(callback, {
 })
 ```
 
-Sync `watchEffect()` also has a convenience alias, `watchSyncEffect()`:
+সিঙ্ক `watchEffect()` এর একটি সুবিধাজনক উপনামও আছে, `watchSyncEffect()`:
 
 ```js
 import { watchSyncEffect } from 'vue'

@@ -63,11 +63,11 @@ TypeScript ব্যবহার করলে, [`defineSlots()`](/api/sfc-script
 
 - **Details**
 
-  `useModel()` can be used in non-SFC components, e.g. when using raw `setup()` function. It expects the `props` object as the first argument, and the model name as the second argument. The optional third argument can be used to declare custom getter and setter for the resulting model ref. Note that unlike `defineModel()`, you are responsible for declaring the props and emits yourself.
+  `useModel()` নন-SFC কম্পোনেন্টগুলিতে ব্যবহার করা যেতে পারে, যেমন raw `setup()` ফাংশন ব্যবহার করার সময়। এটি `props` অবজেক্টকে প্রথম আর্গুমেন্ট হিসেবে এবং মডেলের নামকে দ্বিতীয় আর্গুমেন্ট হিসেবে প্রত্যাশা করে। ঐচ্ছিক তৃতীয় আর্গুমেন্টটি ফলাফলস্বরূপ মডেল রেফারেন্সের জন্য কাস্টম গেটার এবং সেটার ঘোষণা করতে ব্যবহার করা যেতে পারে। মনে রাখবেন যে `defineModel()` এর বিপরীতে, আপনি নিজেই প্রপস ঘোষণা এবং নির্গমনের জন্য দায়ী।
 
 ## useTemplateRef() <sup class="vt-badge" data-text="3.5+" /> {#usetemplateref}
 
-Returns a shallow ref whose value will be synced with the template element or component with a matching ref attribute.
+একটি অগভীর রেফ প্রদান করে যার মান টেমপ্লেট উপাদান বা উপাদানের সাথে একটি মিলিত রেফ বৈশিষ্ট্য সহ সিঙ্ক করা হবে।
 
 - **Type**
 
@@ -133,6 +133,6 @@ Returns a shallow ref whose value will be synced with the template element or co
 
   যদি আপনার একই পৃষ্ঠার একাধিক Vue অ্যাপ্লিকেশন ইনস্ট্যান্স থাকে, তাহলে আপনি [`app.config.idPrefix`](/api/application#app-config-idprefix) এর মাধ্যমে প্রতিটি অ্যাপকে একটি ID প্রিফিক্স দিয়ে ID দ্বন্দ্ব এড়াতে পারেন।
 
-  :::warning সতর্কতা
+  :::warning সাবধানতা
   `useId()` কে `computed()` প্রপার্টির ভিতরে ডাকা উচিত নয় কারণ এটি ইনস্ট্যান্স কনফ্লিক্ট তৈরি করতে পারে। পরিবর্তে, `computed()` এর বাইরে আইডি ঘোষণা করুন এবং কম্পিউটেড ফাংশনের মধ্যে এটি উল্লেখ করুন।
   :::

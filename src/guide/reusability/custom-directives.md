@@ -73,9 +73,9 @@ export default {
 
 <div class="composition-api">
 
-In `<script setup>`, any camelCase variable that starts with the `v` prefix can be used as a custom directive. In the example above, `vHighlight` can be used in the template as `v-highlight`.
+`<script setup>`-এ, `v` প্রিফিক্স দিয়ে শুরু হওয়া যেকোনো camelCase ভেরিয়েবল কাস্টম ডিরেক্টিভ হিসেবে ব্যবহার করা যেতে পারে। উপরের উদাহরণে, `vHighlight` টেমপ্লেটে `v-highlight` হিসেবে ব্যবহার করা যেতে পারে।
 
-If you are not using `<script setup>`, custom directives can be registered using the `directives` option:
+যদি আপনি `<script setup>` ব্যবহার না করেন, তাহলে `directives` বিকল্প ব্যবহার করে কাস্টম ডিরেক্টিভ নিবন্ধিত করা যেতে পারে:
 
 ```js
 export default {
@@ -95,11 +95,11 @@ export default {
 
 <div class="options-api">
 
-Similar to components, custom directives must be registered so that they can be used in templates. In the example above, we are using local registration via the `directives` option.
+কম্পোনেন্টের মতোই, কাস্টম নির্দেশিকাগুলি অবশ্যই নিবন্ধিত হতে হবে যাতে সেগুলি টেমপ্লেটগুলিতে ব্যবহার করা যায়। উপরের উদাহরণে, আমরা `directives` বিকল্পের মাধ্যমে স্থানীয় নিবন্ধন ব্যবহার করছি।
 
 </div>
 
-It is also common to globally register custom directives at the app level:
+অ্যাপ লেভেলে বিশ্বব্যাপী কাস্টম নির্দেশিকা নিবন্ধন করাও সাধারণ:
 
 ```js
 const app = createApp({})
@@ -110,11 +110,15 @@ app.directive('highlight', {
 })
 ```
 
+`vue` থেকে `ComponentCustomProperties` ইন্টারফেস প্রসারিত করে গ্লোবাল কাস্টম নির্দেশিকা টাইপ করা সম্ভব।
+
+আরও বিস্তারিত: [টাইপিং কাস্টম গ্লোবাল নির্দেশিকা](/guide/typescript/composition-api#typing-global-custom-directives) <sup class="vt-badge ts" />
+
 ## When to use custom directives {#when-to-use}
 
-Custom directives should only be used when the desired functionality can only be achieved via direct DOM manipulation.
+কাস্টম নির্দেশিকা শুধুমাত্র তখনই ব্যবহার করা উচিত যখন কাঙ্ক্ষিত কার্যকারিতা কেবলমাত্র সরাসরি DOM ম্যানিপুলেশনের মাধ্যমে অর্জন করা সম্ভব।
 
-A common example of this is a `v-focus` custom directive that brings an element into focus.
+এর একটি সাধারণ উদাহরণ হল একটি `v-focus` কাস্টম নির্দেশিকা যা একটি উপাদানকে ফোকাসে নিয়ে আসে।
 
 <div class="composition-api">
 
