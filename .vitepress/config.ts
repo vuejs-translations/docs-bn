@@ -672,8 +672,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         async: 'true'
       },
     ],
-    inlineScript('gtag.js'),
-    inlineScript('perfops.js')
+    inlineScript('gtag.js')
   ],
 
   themeConfig: {
