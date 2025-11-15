@@ -8,7 +8,7 @@
 
 - **বিস্তারিত**
 
-'v-text' এলিমেন্টের [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) প্রপার্টি সেট করে কাজ করে, তাই এটি এলিমেন্টের ভিতরে বিদ্যমান যেকোনো কন্টেন্ট ওভাররাইট করবে . আপনার যদি `textContent`-এর অংশ আপডেট করতে হয়, তাহলে আপনার পরিবর্তে [mustache interpolations](/guide/essentials/template-syntax#text-interpolation) ব্যবহার করা উচিত।
+  `v-text` এলিমেন্টের [textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent) প্রপার্টি সেট করে কাজ করে, যাতে এটি এলিমেন্টের ভিতরে বিদ্যমান যেকোনো কন্টেন্ট ওভাররাইট করে। যদি আপনার `textContent` এর শুধুমাত্র কিছু অংশ আপডেট করার প্রয়োজন হয়, তাহলে আপনার [mustache interpolations](/guide/essentials/template-syntax#text-interpolation) ব্যবহার করা উচিত (অর্থাৎ <span v-pre>`<span>এটি রাখুন কিন্তু একটি {{dynamicPortion}} আপডেট করুন</span>`</span>)।
 
 - **উদাহরণ**
 

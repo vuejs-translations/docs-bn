@@ -1,6 +1,6 @@
 # Creating a Vue Application {#creating-a-vue-application}
 
-## The application instance {#the-application-instance}
+## The Application Instance {#the-application-instance}
 
 প্রতিটি Vue অ্যাপ্লিকেশন [`createApp`](/api/application#createapp) ফাংশনের সাথে একটি নতুন **অ্যাপ্লিকেশন ইনস্ট্যান্স** তৈরি করে শুরু হয়:
 
@@ -105,7 +105,7 @@ app.component('TodoDeleteButton', TodoDeleteButton)
 
 অ্যাপটি মাউন্ট করার আগে সমস্ত অ্যাপ কনফিগারেশন প্রয়োগ করতে ভুলবেন না!
 
-## Multiple application instances {#multiple-application-instances}
+## Multiple Application Instances {#multiple-application-instances}
 
 আপনি একই পৃষ্ঠায় একটি একক অ্যাপ্লিকেশন উদাহরণে সীমাবদ্ধ নন। `createApp` API একাধিক Vue অ্যাপ্লিকেশনকে একই পৃষ্ঠায় সহ-অস্তিত্বের অনুমতি দেয়, প্রতিটির নিজস্ব কনফিগারেশন এবং বৈশ্বিক সম্পদের সুযোগ রয়েছে:
 

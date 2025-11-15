@@ -27,4 +27,4 @@ corepack enable
 
 ## থিম নিয়ে কাজ করুন
 
-আপনি যদি থিমে পরিবর্তন করতে চান তবে [ডকুমেন্টেশন ও থিম সম্পাদনের নির্দেশাবলী দেখুন](https://github.com/vuejs/vue-theme#developing-with-real-content)।
+যদি থিমের জন্য পরিবর্তন করার প্রয়োজন হয়, তাহলে [ডক্সের পাশাপাশি থিম তৈরির নির্দেশাবলী] (https://github.com/vuejs/vue-theme#developing-with-real-content) দেখুন।
