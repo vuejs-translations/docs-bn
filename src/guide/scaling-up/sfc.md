@@ -94,7 +94,7 @@ SFC-এর ভিতরে `<style>` ট্যাগগুলি সাধার
 
 আপনি SFC-এর সাথে খেলতে পারেন এবং এগুলি কীভাবে সংকলিত হয় তা অন্বেষণ করতে পারেন [Vue SFC Playground](https://play.vuejs.org/).
 
-প্রকৃত প্রকল্পগুলিতে, আমরা সাধারণত [Vite](https://vitejs.dev/) বা [Vue CLI](http://cli.vuejs.org/) (যার উপর ভিত্তি করে) একটি বিল্ড টুলের সাথে SFC কম্পাইলারকে সংহত করি [webpack](https://webpack.js.org/)), এবং Vue আপনাকে যত দ্রুত সম্ভব SFC-এর সাথে শুরু করার জন্য অফিসিয়াল স্ক্যাফোল্ডিং টুল সরবরাহ করে। [SFC টুলিং](/guide/scaling-up/tooling) বিভাগে আরও বিশদ দেখুন।
+প্রকৃত প্রকল্পগুলিতে, আমরা সাধারণত SFC কম্পাইলারকে [Vite](https://vite.dev/) অথবা [Vue CLI](http://cli.vuejs.org/) (যা [webpack](https://webpack.js.org/) এর উপর ভিত্তি করে তৈরি) এর মতো একটি বিল্ড টুলের সাথে একীভূত করি, এবং Vue আপনাকে যত দ্রুত সম্ভব SFC দিয়ে শুরু করার জন্য অফিসিয়াল স্ক্যাফোল্ডিং টুল সরবরাহ করে। [SFC Tooling](/guide/scaling-up/tooling) বিভাগে আরও বিশদ দেখুন।
 
 ## What About Separation of Concerns? {#what-about-separation-of-concerns}
 

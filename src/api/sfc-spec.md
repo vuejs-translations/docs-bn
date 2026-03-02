@@ -105,7 +105,7 @@ p {{ msg }}
 
 নোট করুন যে বিভিন্ন প্রি-প্রসেসরের সাথে একীকরণ টুলচেইনের দ্বারা পৃথক হতে পারে। উদাহরণের জন্য সংশ্লিষ্ট ডকুমেন্টেশন দেখুন:
 
-- [Vite](https://vitejs.dev/guide/features.html#css-pre-processors)
+- [Vite](https://vite.dev/guide/features.html#css-pre-processors)
 - [Vue CLI](https://cli.vuejs.org/guide/css.html#pre-processors)
 - [webpack + vue-loader](https://vue-loader.vuejs.org/guide/pre-processors.html#using-pre-processors)
 

@@ -133,6 +133,6 @@ export default {
 
 </div>
 
-### Bundle for NPM
+### Bundle for NPM {#bundle-for-npm}
 
-আপনি যদি অন্যদের ব্যবহারের জন্য আপনার প্লাগইন তৈরি এবং প্রকাশ করতে চান তবে [লাইব্রেরি মোডে ভিটের বিভাগ](https://vitejs.dev/guide/build.html#library-mode) দেখুন।
+যদি আপনি অন্যদের ব্যবহারের জন্য আপনার প্লাগইন তৈরি এবং প্রকাশ করতে চান, তাহলে [লাইব্রেরি মোডের উপর ভাইটের বিভাগ] (https://vite.dev/guide/build.html#library-mode) দেখুন।

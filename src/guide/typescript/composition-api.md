@@ -54,7 +54,7 @@ const props = defineProps<Props>()
 </script>
 ```
 
-এটিও কাজ করে যদি `Props` কোনো বাহ্যিক উৎস থেকে ইম্পোর্ট করা হয়। এই বৈশিষ্ট্যটির জন্য Vue-এর peer নির্ভরতা হতে TypeScript প্রয়োজন।
+This also works if `Props` is imported from another file such as a relative import, a path alias (e.g., `@/types`), or an external dependency (e.g., `node_modules`). This feature requires TypeScript to be a peer dependency of Vue.
 
 ```vue
 <script setup lang="ts">
@@ -68,7 +68,7 @@ const props = defineProps<Props>()
 
 সংস্করণ 3.2 এবং নীচে, `defineProps()`-এর জন্য জেনেরিক টাইপ প্যারামিটার একটি আক্ষরিক টাইপ বা স্থানীয় ইন্টারফেসের একটি রেফারেন্সের মধ্যে সীমাবদ্ধ ছিল।
 
-এই সীমাবদ্ধতা 3.3 এ সমাধান করা হয়েছে। Vue-এর সর্বশেষ সংস্করণটি টাইপ প্যারামিটার অবস্থানে আমদানি করা রেফারেন্সিং এবং জটিল ধরনের একটি সীমিত সেট সমর্থন করে। যাইহোক, যেহেতু রানটাইম রূপান্তরের ধরনটি এখনও AST-ভিত্তিক, কিছু জটিল প্রকারের প্রকৃত প্রকার বিশ্লেষণের প্রয়োজন, যেমন শর্তাধীন প্রকার, সমর্থিত নয়। আপনি একটি একক প্রপের ধরণের জন্য শর্তসাপেক্ষ প্রকারগুলি ব্যবহার করতে পারেন, তবে সম্পূর্ণ প্রপস অবজেক্ট নয়।
+This limitation was resolved in 3.3. The latest version of Vue supports referencing imported and a limited set of complex types in the type parameter position. However, because the type to runtime conversion is still AST-based, some complex types that require actual type analysis, e.g. conditional types, are not supported. You can use conditional types for the type of a single prop, but not the entire props object.
 
 ### Props Default Values {#props-default-values}
 
@@ -481,7 +481,7 @@ const openModal = () => {
 
 ## Typing Global Custom Directives {#typing-global-custom-directives}
 
-`app.directive()` দিয়ে ডিরেক্টিভস গ্লোবাল কাস্টম নির্দেশাবলীর জন্য টাইপ হিন্টিং এবং টাইপ চেকিং পেতে, আপনি `ComponentCustomProperties` এক্সটেন্ড করতে পারেন।
+In order to get type hints and type checking for global custom directives declared with `app.directive()`, you can extend `GlobalDirectives`
 
 ```ts [src/directives/highlight.ts]
 import type { Directive } from 'vue'
@@ -489,7 +489,7 @@ import type { Directive } from 'vue'
 export type HighlightDirective = Directive<HTMLElement, string>
 
 declare module 'vue' {
-  export interface ComponentCustomProperties {
+  export interface GlobalDirectives {
     // prefix with v (v-highlight)
     vHighlight: HighlightDirective
   }

@@ -10,7 +10,7 @@ Vue টাইপস্ক্রিপ্টে লেখা হয় এবং 
 
 ## Project Setup {#project-setup}
 
-[`create-vue`](https://github.com/vuejs/create-vue), অফিসিয়াল প্রজেক্ট স্ক্যাফোল্ডিং টুল, একটি [Vite](https://vitejs.dev/)-চালিত স্ক্যাফোল্ড করার বিকল্পগুলি অফার করে , TypeScript-প্রস্তুত Vue প্রকল্প।
+[`create-vue`](https://github.com/vuejs/create-vue), অফিসিয়াল প্রজেক্ট স্ক্যাফোল্ডিং টুল, [Vite](https://vite.dev/)-চালিত, টাইপস্ক্রিপ্ট-প্রস্তুত Vue প্রজেক্ট স্ক্যাফোল্ড করার বিকল্পগুলি অফার করে।
 
 ### Overview {#overview}
 
@@ -25,13 +25,12 @@ Vue টাইপস্ক্রিপ্টে লেখা হয় এবং 
 ### IDE Support {#ide-support}
 
 - [ভিজ্যুয়াল স্টুডিও কোড](https://code.visualstudio.com/) (VS কোড) TypeScript-এর জন্য এর দুর্দান্ত আউট-অফ-দ্য-বক্স সমর্থনের জন্য দৃঢ়ভাবে সুপারিশ করা হয়।
+  - [Vue - অফিসিয়াল](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (আগে Volar) হল অফিসিয়াল VS কোড এক্সটেনশন যা Vue SFC-এর মধ্যে TypeScript সমর্থন প্রদান করে, সাথে আরও অনেক দুর্দান্ত বৈশিষ্ট্য রয়েছে।
 
-   - [Vue - অফিসিয়াল](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (আগে Volar) হল অফিসিয়াল VS কোড এক্সটেনশন যা Vue SFC-এর মধ্যে TypeScript সমর্থন প্রদান করে, সাথে আরও অনেক দুর্দান্ত বৈশিষ্ট্য রয়েছে।
+    :::tip
+    Vue - অফিসিয়াল এক্সটেনশন [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) প্রতিস্থাপন করে, Vue 2-এর জন্য আমাদের পূর্ববর্তী অফিসিয়াল VS কোড এক্সটেনশন। আপনার যদি বর্তমানে Vetur ইনস্টল করা থাকে, তাহলে এটি নিষ্ক্রিয় করতে ভুলবেন না। Vue 3 প্রকল্পে।
+    :::
 
-     :::tip
-     Vue - অফিসিয়াল এক্সটেনশন [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) প্রতিস্থাপন করে, Vue 2-এর জন্য আমাদের পূর্ববর্তী অফিসিয়াল VS কোড এক্সটেনশন। আপনার যদি বর্তমানে Vetur ইনস্টল করা থাকে, তাহলে এটি নিষ্ক্রিয় করতে ভুলবেন না। Vue 3 প্রকল্পে।
-     :::
-     
 - [ওয়েবস্টর্ম](https://www.jetbrains.com/webstorm/) এছাড়াও TypeScript এবং Vue উভয়ের জন্য আউট-অফ-দ্য-বক্স সমর্থন প্রদান করে। অন্যান্য JetBrains IDE গুলিও তাদের সমর্থন করে, হয় বাক্সের বাইরে বা [একটি বিনামূল্যের প্লাগইন](https://plugins.jetbrains.com/plugin/9442-vue-js) এর মাধ্যমে। 2023.2 সংস্করণ অনুসারে, WebStorm এবং Vue প্লাগইন Vue ভাষা সার্ভারের জন্য অন্তর্নির্মিত সমর্থন সহ আসে। আপনি সেটিংস > ভাষা এবং ফ্রেমওয়ার্ক > টাইপস্ক্রিপ্ট > Vue-এর অধীনে সমস্ত TypeScript সংস্করণে Volar ইন্টিগ্রেশন ব্যবহার করার জন্য Vue পরিষেবা সেট করতে পারেন। ডিফল্টরূপে, Volar টাইপস্ক্রিপ্ট সংস্করণ 5.0 এবং উচ্চতর জন্য ব্যবহার করা হবে।
 
 ### Configuring `tsconfig.json` {#configuring-tsconfig-json}
@@ -46,7 +45,7 @@ Vue টাইপস্ক্রিপ্টে লেখা হয় এবং 
 
 - আপনি যদি আপনার বিল্ড টুলে সমাধানকারী উপনামগুলি কনফিগার করে থাকেন, উদাহরণস্বরূপ `@/*` উপনাম একটি `create-vue` প্রজেক্টে ডিফল্টরূপে কনফিগার করা থাকে, তাহলে আপনাকে [`compilerOptions.paths`](এর মাধ্যমে TypeScript-এর জন্যও কনফিগার করতে হবে https://www.typescriptlang.org/tsconfig#paths)।
 
-- আপনি যদি Vue-এর সাথে TSX ব্যবহার করতে চান, তাহলে [`compilerOptions.jsx`](https://www.typescriptlang.org/tsconfig#jsx) সেট করুন `"সংরক্ষণ করুন"`, এবং সেট করুন [`compilerOptions.jsxImportSource`]( https://www.typescriptlang.org/tsconfig#jsxImportSource) থেকে `"vue"`।
+- আপনি যদি Vue-এর সাথে TSX ব্যবহার করতে চান, তাহলে [`compilerOptions.jsx`](https://www.typescriptlang.org/tsconfig#jsx) সেট করুন `"সংরক্ষণ করুন"`, এবং সেট করুন [`compilerOptions.jsxImportSource`](https://www.typescriptlang.org/tsconfig#jsxImportSource) থেকে `"vue"`।
 
 See also:
 

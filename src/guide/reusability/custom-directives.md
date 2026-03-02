@@ -110,7 +110,7 @@ app.directive('highlight', {
 })
 ```
 
-`vue` থেকে `ComponentCustomProperties` ইন্টারফেস প্রসারিত করে গ্লোবাল কাস্টম নির্দেশিকা টাইপ করা সম্ভব।
+`vue` থেকে `GlobalDirectives` ইন্টারফেস প্রসারিত করে গ্লোবাল কাস্টম নির্দেশিকা টাইপ করা সম্ভব।
 
 আরও বিস্তারিত: [টাইপিং কাস্টম গ্লোবাল নির্দেশিকা](/guide/typescript/composition-api#typing-global-custom-directives) <sup class="vt-badge ts" />
 

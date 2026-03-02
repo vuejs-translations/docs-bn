@@ -79,7 +79,7 @@ import SwitchComponent from './keep-alive-demos/SwitchComponent.vue'
 
 ## Max Cached Instances {#max-cached-instances}
 
-আমরা সর্বাধিক সংখ্যক কম্পোনেন্টের দৃষ্টান্ত সীমিত করতে পারি যা `max` প্রপের মাধ্যমে ক্যাশ করা যেতে পারে। যখন `max` নির্দিষ্ট করা হয়, `<KeepAlive>` একটি [LRU cache](<https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)>): যদি ক্যাশে করা দৃষ্টান্তের সংখ্যা নির্দিষ্ট সর্বোচ্চ গণনাকে অতিক্রম করতে থাকে, তবে নতুনটির জন্য জায়গা তৈরি করতে সর্বনিম্ন সম্প্রতি অ্যাক্সেস করা ক্যাশে করা উদাহরণ ধ্বংস করা হবে।
+`max` প্রপের মাধ্যমে ক্যাশে করা যায় এমন কম্পোনেন্ট ইনস্ট্যান্সের সর্বাধিক সংখ্যা আমরা সীমিত করতে পারি। যখন `max` নির্দিষ্ট করা থাকে, তখন `<KeepAlive>` [LRU ক্যাশে](<https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_Recently_Used_(LRU)>) এর মতো আচরণ করে: যদি ক্যাশে করা ইনস্ট্যান্সের সংখ্যা নির্দিষ্ট সর্বোচ্চ গণনা অতিক্রম করতে থাকে, তাহলে নতুনটির জন্য জায়গা তৈরি করার জন্য সবচেয়ে কম অ্যাক্সেস করা ক্যাশে করা ইনস্ট্যান্সটি ধ্বংস করা হবে।
 
 ```vue-html
 <KeepAlive :max="10">

@@ -38,7 +38,7 @@ outline: deep
 
 ### Vite {#vite}
 
-`@vitejs/plugin-vue` স্বয়ংক্রিয়ভাবে এই ফ্ল্যাগগুলির জন্য ডিফল্ট মান প্রদান করে। ডিফল্ট মান পরিবর্তন করতে, Vite's ব্যবহার করুন[`define` config option](https://vitejs.dev/config/shared-options.html#define):
+`@vitejs/plugin-vue` স্বয়ংক্রিয়ভাবে এই ফ্ল্যাগগুলির জন্য ডিফল্ট মান প্রদান করে। ডিফল্ট মান পরিবর্তন করতে, Vite এর [`define` config option](https://vite.dev/config/shared-options.html#define) ব্যবহার করুন:
 
 ```js [vite.config.js]
 import { defineConfig } from 'vite'

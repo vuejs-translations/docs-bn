@@ -26,7 +26,7 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 - [Node.js](https://nodejs.org/) সংস্করণ `^20.19.0 || >=22.12.0` ইনস্টল করুন
   :::
 
-এই বিভাগে আমরা আপনার local মেশিনে কীভাবে একটি Vue [একক পৃষ্ঠা অ্যাপ্লিকেশন](/guide/extras/ways-of-using-vue#single-page-application-spa) স্ক্যাফল্ড করবেন তার সাথে পরিচয় করিয়ে দিব। তৈরি করা প্রোজেক্টটি [Vite](https://vitejs.dev) এর উপর ভিত্তি করে একটি বিল্ড সেটআপ ব্যবহার করবে এবং আমাদেরকে Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs) ব্যবহার করার অনুমতি দিবে।
+এই বিভাগে আমরা আপনার স্থানীয় মেশিনে একটি Vue [Single-Page Application](/guide/extras/ways-of-using-vue#single-page-application-spa) কীভাবে স্ক্যাফোল্ড করবেন তা পরিচয় করিয়ে দেব। তৈরি প্রকল্পটি [Vite](https://vite.dev/) এর উপর ভিত্তি করে একটি বিল্ড সেটআপ ব্যবহার করবে এবং আমাদের Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs) ব্যবহার করার অনুমতি দেবে।
 
 নিশ্চিত করুন যে আপনার কাছে [Node.js](https://nodejs.org/) এর একটি আপ-টু-ডেট সংস্করণ ইনস্টল করা আছে এবং আপনার বর্তমান কার্যকারী ডিরেক্টরিটি যেখানে আপনি একটি প্রকল্প তৈরি করতে চান। আপনার কমান্ড লাইনে নিম্নলিখিত কমান্ডটি চালান (`$` চিহ্ন ছাড়া):
 
@@ -105,10 +105,10 @@ $ bun run dev
 
 আপনার প্রথম Vue প্রকল্পটি এখন চালু হয়ে যাওয়া উচিত! মনে রাখবেন যে উৎপন্ন প্রকল্পের উদাহরণ হিসেবে তৈরি হওয়া কম্পোনেন্টগুলি [Options API](/guide/introduction#options)-এর পরিবর্তে [Composition API](/guide/introduction#composition-api) এবং `<script setup>` ব্যবহার করে লেখা হয়েছে। এখানে কিছু অতিরিক্ত টিপস আছে:
 
-- প্রস্তাবিত IDE সেটআপ হল [ভিজ্যুয়াল স্টুডিও কোড](https://code.visualstudio.com/) + [Vue - অফিসিয়াল এক্সটেনশন](https://marketplace.visualstudio.com/items?itemName=Vue.volar)। আপনি যদি অন্য এডিটর ব্যবহার করেন তবে [IDE সমর্থন বিভাগ](/guide/scaling-up/tooling#ide-support) দেখুন।
-- ব্যাকএন্ড ফ্রেমওয়ার্কের সাথে ইন্টিগ্রেশন সহ আরও টুলিং বিশদ [টুলিং গাইড](/guide/scaling-up/tooling) এ আলোচনা করা হয়েছে।
-- অন্তর্নিহিত বিল্ড টুল Vite সম্পর্কে আরও জানতে, [Vite docs](https://vitejs.dev) দেখুন।
-- আপনি যদি টাইপস্ক্রিপ্ট ব্যবহার করতে চান তবে [টাইপস্ক্রিপ্ট ব্যবহার নির্দেশিকা](typescript/overview) দেখুন।
+- প্রস্তাবিত IDE সেটআপ হল [Visual Studio Code](https://code.visualstudio.com/) + [Vue - অফিসিয়াল এক্সটেনশন](https://marketplace.visualstudio.com/items?itemName=Vue.volar)। আপনি যদি অন্য এডিটর ব্যবহার করেন, তাহলে [IDE সাপোর্ট সেকশন](/guide/scaling-up/tooling#ide-support) দেখুন।
+- ব্যাকএন্ড ফ্রেমওয়ার্কের সাথে ইন্টিগ্রেশন সহ আরও টুলিং বিশদ [Tooling Guide](/guide/scaling-up/tooling) এ আলোচনা করা হয়েছে।
+- অন্তর্নিহিত বিল্ড টুল Vite সম্পর্কে আরও জানতে, [Vite docs](https://vite.dev/) দেখুন।
+- আপনি যদি TypeScript ব্যবহার করতে চান, তাহলে [TypeScript Usage Guide](typescript/overview) দেখুন।
 
 আপনি যখন আপনার অ্যাপটিকে প্রোডাকশনে পাঠানোর জন্য প্রস্তুত হন, তখন নিম্নলিখিতটি চালান:
 
