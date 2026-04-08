@@ -217,7 +217,7 @@
 
   **Error Capturing Caveats**
   
-  - async `setup()` ফাংশন সহ কম্পোনেন্টে (শীর্ষ-স্তরের `await` সহ) Vue **সর্বদা** কম্পোনেন্ট টেমপ্লেট রেন্ডার করার চেষ্টা করবে, এমনকি যদি `setup()` ত্রুটি থ্রো করেও। এর ফলে আরও ত্রুটি হতে পারে কারণ রেন্ডার কম্পোনেন্টের টেমপ্লেট ব্যর্থ `setup()` প্রসঙ্গের অ-বিদ্যমান বৈশিষ্ট্যগুলি অ্যাক্সেস করার চেষ্টা করতে পারে। এই ধরনের কম্পোনেন্টগুলিতে ত্রুটি ক্যাপচার করার সময়, ব্যর্থ অ্যাসিঙ্ক `setup()` (এগুলি সর্বদা প্রথমে আসবে) এবং ব্যর্থ রেন্ডার প্রক্রিয়া উভয় থেকে ত্রুটিগুলি পরিচালনা করার জন্য প্রস্তুত থাকুন।
+  - In components with async `setup()` function (with top-level `await`) Vue **will always** try to render component template, even if `setup()` threw error. This will likely cause more errors because during render component's template might try to access non-existing properties of failed `setup()` context. When capturing errors in such components, be ready to handle errors from both failed async `setup()` (they will always come first) and failed render process.
 
   - <sup class="vt-badge" data-text="SSR only"></sup> `<Suspense>` এর ভিতরে প্যারেন্ট কম্পোনেন্টে ত্রুটিযুক্ত চাইল্ড কম্পোনেন্ট প্রতিস্থাপন করলে SSR-তে হাইড্রেশন অমিল হবে। পরিবর্তে, লজিককে আলাদা করার চেষ্টা করুন যা সম্ভবত চাইল্ড `setup()` থেকে আলাদা ফাংশনে ফেলে দিতে পারে এবং প্যারেন্ট কম্পোনেন্টের `setup()` এ এটি কার্যকর করে, যেখানে আপনি নিরাপদে এক্সিকিউশন প্রক্রিয়াটি `চেষ্টা/ধরা` করতে পারেন এবং প্রয়োজনে প্রতিস্থাপন করতে পারেন। প্রকৃত চাইল্ড কম্পোনেন্ট রেন্ডার করার আগে।
 
