@@ -1,10 +1,6 @@
 # অগ্রাধিকার D নিয়ম: সতর্কতার সাথে ব্যবহার করুন {#priority-d-rules-use-with-caution}
 
-::: warning Note
-এই Vue.js স্টাইল গাইড পুরানো এবং পর্যালোচনা করা প্রয়োজন৷ আপনার কোন প্রশ্ন বা পরামর্শ থাকলে, অনুগ্রহ করে [একটি সমস্যা খুলুন](https://github.com/vuejs/docs/issues/new)।
-:::
-
-বিরল এজ কেস বা লিগ্যাসি কোড বেস থেকে মসৃণ মাইগ্রেশন মিটমাট করার জন্য Vue-এর কিছু বৈশিষ্ট্য বিদ্যমান। যদিও অত্যধিক ব্যবহার করা হয়, তারা আপনার কোড বজায় রাখা আরও কঠিন করে তুলতে পারে বা এমনকি বাগগুলির উৎস হয়ে উঠতে পারে। এই নিয়মগুলি কখন এবং কেন এড়ানো উচিত তা বর্ণনা করে সম্ভাব্য ঝুঁকিপূর্ণ বৈশিষ্ট্যগুলির উপর আলোকপাত করে৷
+Vue-এর কিছু বৈশিষ্ট্য বিরল এজ কেস সামাল দিতে বা পুরোনো কোডবেস থেকে সহজে মাইগ্রেশনের জন্য তৈরি করা হয়েছে। তবে, এগুলোর অতিরিক্ত ব্যবহার আপনার কোড রক্ষণাবেক্ষণকে আরও কঠিন করে তুলতে পারে, এমনকি বাগের উৎসও হয়ে উঠতে পারে। এই নিয়মগুলো সম্ভাব্য ঝুঁকিপূর্ণ বৈশিষ্ট্যগুলোর উপর আলোকপাত করে এবং কখন ও কেন সেগুলো পরিহার করা উচিত তা বর্ণনা করে।
 
 ## `scoped` কম্পোনেন্ট নির্বাচক {#element-selectors-with-scoped}
 
@@ -179,8 +175,6 @@ defineProps({
 
 ```vue
 <script setup>
-import { getCurrentInstance } from 'vue'
-
 const props = defineProps({
   todo: {
     type: Object,
@@ -188,22 +182,17 @@ const props = defineProps({
   }
 })
 
-const instance = getCurrentInstance()
-
-function removeTodo() {
-  const parent = instance.parent
-  if (!parent) return
-
-  parent.props.todos = parent.props.todos.filter((todo) => {
-    return todo.id !== props.todo.id
-  })
+function renameTodo() {
+  // Mutates the parent's reactive object via the prop
+  // In other words, the child is reaching into and changing parent-owned state.
+  props.todo.text = 'renamed by child'
 }
 </script>
 
 <template>
   <span>
     {{ todo.text }}
-    <button @click="removeTodo">×</button>
+    <button @click="renameTodo">rename</button>
   </span>
 </template>
 ```
@@ -232,20 +221,25 @@ const emit = defineEmits(['input'])
 
 ```vue
 <script setup>
-defineProps({
+const props = defineProps({
   todo: {
     type: Object,
     required: true
   }
 })
 
-const emit = defineEmits(['delete'])
+const emit = defineEmits(['update:todo'])
+
+function renameTodo() {
+  // Emit a new object — the parent owns the update.
+  emit('update:todo', { ...props.todo, text: 'renamed by parent' })
+}
 </script>
 
 <template>
   <span>
     {{ todo.text }}
-    <button @click="emit('delete')">×</button>
+    <button @click="renameTodo">rename</button>
   </span>
 </template>
 ```
