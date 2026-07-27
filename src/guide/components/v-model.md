@@ -115,6 +115,7 @@ const myRef = ref()
 </template>
 ```
 
+এছাড়াও, `defineProps`-এর সাথে `withDefaults` ব্যবহার করার সময়, অনিচ্ছাকৃত পরিবর্তন এবং বাহ্যিক পার্শ্ব প্রতিক্রিয়া এড়াতে পরিবর্তনযোগ্য রেফারেন্স টাইপগুলির (যেমন অ্যারে বা অবজেক্ট) ডিফল্ট মানগুলিকে `defineModel`-এর ফাংশনের মধ্যে রাখা উচিত।
 :::
 
 </div>
@@ -525,7 +526,7 @@ export default {
 আর্গুমেন্ট এবং মডিফায়ার উভয়ের সাথে `v-model` বাইন্ডিংয়ের জন্য, জেনারেট করা প্রপের নাম হবে `arg + "Modifiers"`। উদাহরণ স্বরূপ:
 
 ```vue-html
-<MyComponent v-model:title.capitalize="myText">
+<MyComponent v-model:title.capitalize="myText" />
 ```
 
 সংশ্লিষ্ট ঘোষণাগুলি হওয়া উচিত:

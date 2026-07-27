@@ -338,6 +338,30 @@ const post = {
 <BlogPost :id="post.id" :title="post.title" />
 ```
 
+### Merge Behavior When Combining Bindings {#merge-behavior-when-combining-bindings}
+
+যখন একই কম্পোনেন্টে সুস্পষ্ট বাইন্ডিংয়ের পাশাপাশি `v-bind` ব্যবহার করা হয়, তখন Vue অভ্যন্তরীণভাবে সেগুলোকে একত্রিত করার জন্য `mergeProps()` কল করে। একত্রিত করার কৌশলটি কী-এর ধরনের উপর নির্ভর করে:
+
+- **Regular props** — শেষের মানটিই প্রাধান্য পায়:
+
+```vue-html
+<!-- title === 'bar' -->
+<BlogPost title="foo" v-bind="{ title: 'bar' }" />
+```
+
+- **Event listeners** — একটি `v-bind` অবজেক্টে লিসেনার পাস করার সময়, [`onEventName` কী কনভেনশন ব্যবহার করুন](/guide/extras/render-function#v-on)। একই ইভেন্টের জন্য সমস্ত হ্যান্ডলার কল করা হবে ([`v-on` লিসেনার ইনহেরিটেন্স](/guide/components/attrs#v-on-listener-inheritance) দেখুন):
+
+```vue-html
+<!-- logs 1 and 2 -->
+<BlogPost @click="console.log(1)" v-bind="{ onClick: () => console.log(2) }" />
+```
+
+- **`class` এবং `style`** একই ধরনের মার্জ কৌশল অনুসরণ করে (দেখুন [`class` and `style` Merging](/guide/components/attrs#class-and-style-merging))।
+
+:::tip
+মার্জ করার সম্পূর্ণ নিয়মাবলী [`mergeProps()`](/api/render-function#mergeprops) এপিআই রেফারেন্সে বর্ণনা করা আছে।
+:::
+
 ## One-Way Data Flow {#one-way-data-flow}
 
 সমস্ত প্রপস  চাইল্ড কম্পিউটেড প্রপার্টি এবং পিতামাতার মধ্যে একটি **ওয়ান-ওয়ে-ডাউন বাইন্ডিং** গঠন করে: যখন পিতামাতার কম্পিউটেড প্রপার্টি আপডেট হয়, তখন এটি সন্তানের কাছে প্রবাহিত হবে, তবে অন্যভাবে নয়। এটি  চাইল্ডর কম্পোনেন্টগুলিকে দুর্ঘটনাক্রমে পিতামাতার অবস্থা পরিবর্তন করতে বাধা দেয়, যা আপনার অ্যাপের ডেটা প্রবাহকে বোঝা কঠিন করে তুলতে পারে।

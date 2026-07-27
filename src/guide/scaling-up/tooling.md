@@ -185,4 +185,8 @@ Vue টিম [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue), �
 - [Vue on Codepen](https://codepen.io/pen/editor/vue)
 - [Vue on WebComponents.dev](https://webcomponents.dev/create/cevue)
 
-<!-- TODO ## Backend Framework Integrations -->
+## Backend Framework Integrations {#backend-framework-integrations}
+
+আপনি যদি [Laravel](https://laravel.com/) এর সাথে Vue ব্যবহার করেন, তাহলে ফ্রেমওয়ার্কটির সাথে একটি অফিসিয়াল [Vite প্লাগইন](https://laravel.com/docs/vite) দেওয়া থাকে, যা স্বয়ংক্রিয়ভাবে অ্যাসেট বান্ডলিং এবং হট-মডিউল রিপ্লেসমেন্টের কাজ করে।
+
+অন্য যেকোনো ব্যাকএন্ডের জন্য, সেটিকে ম্যানুয়ালি সংযুক্ত করতে Vite-এর [ব্যাকএন্ড ইন্টিগ্রেশন গাইড](https://vite.dev/guide/backend-integration.html) দেখুন।

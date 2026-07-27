@@ -278,7 +278,7 @@ type DebuggerEvent = {
 
 ### Computed Debugging {#computed-debugging}
 
-<!-- TODO options API equivalent -->
+<div class="composition-api">
 
 আমরা `onTrack` এবং `onTrigger` কলব্যাকের সাথে একটি দ্বিতীয় বিকল্প অবজেক্টকে `computed()` পাস করে গণনা করা বৈশিষ্ট্যগুলি ডিবাগ করতে পারি:
 
@@ -310,9 +310,17 @@ count.value++
 `onTrack` এবং `onTrigger` গণনা করা বিকল্পগুলি শুধুমাত্র ডেভেলপমেন্ট মোডে কাজ করে।
 :::
 
+</div>
+
+<div class="options-api">
+
+Computed debugging options are only available via the Composition API `computed()` function.
+
+</div>
+
 ### Watcher Debugging {#watcher-debugging}
 
-<!-- TODO options API equivalent -->
+<div class="composition-api">
 
 `computed()` এর মতো, পর্যবেক্ষকরা `onTrack` এবং `onTrigger` বিকল্পগুলিকেও সমর্থন করে:
 
@@ -335,6 +343,32 @@ watchEffect(callback, {
   }
 })
 ```
+
+</div>
+
+<div class="options-api">
+
+Watchers declared with the object syntax also support the `onTrack` and `onTrigger` options:
+
+```js
+export default {
+  watch: {
+    source: {
+      handler() {
+        // ...
+      },
+      onTrack(e) {
+        debugger
+      },
+      onTrigger(e) {
+        debugger
+      }
+    }
+  }
+}
+```
+
+</div>
 
 :::tip
 `onTrack` এবং `onTrigger` প্রহরী বিকল্পগুলি শুধুমাত্র ডেভেলপমেন্ট মোডে কাজ করে।

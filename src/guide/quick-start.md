@@ -22,8 +22,8 @@ import { VTCodeGroup, VTCodeGroupTab } from '@vue/theme'
 
 :::tip পূর্বশর্ত
 
-- কমান্ড লাইনের সাথে পরিচিতি
-- [Node.js](https://nodejs.org/) সংস্করণ `^20.19.0 || >=22.12.0` ইনস্টল করুন
+- কমান্ড লাইন ব্যবহারে পরিচিতি
+- [Node.js](https://nodejs.org/) সংস্করণ `^22.18.0 || >=24.12.0` ইনস্টল করুন
   :::
 
 এই বিভাগে আমরা আপনার স্থানীয় মেশিনে একটি Vue [Single-Page Application](/guide/extras/ways-of-using-vue#single-page-application-spa) কীভাবে স্ক্যাফোল্ড করবেন তা পরিচয় করিয়ে দেব। তৈরি প্রকল্পটি [Vite](https://vite.dev/) এর উপর ভিত্তি করে একটি বিল্ড সেটআপ ব্যবহার করবে এবং আমাদের Vue [Single-File Components](/guide/scaling-up/sfc) (SFCs) ব্যবহার করার অনুমতি দেবে।
@@ -396,6 +396,24 @@ export default {
 একটি local HTTP সার্ভার শুরু করতে, প্রথমে নিশ্চিত করুন যে আপনি [Node.js](https://nodejs.org/en/) ইনস্টল করেছেন, তারপরে আপনার HTML ফাইলটি যেখানে একই ডিরেক্টরিতে কমান্ড লাইন থেকে `npx serve` চালান। আপনি অন্য কোনো HTTP সার্ভারও ব্যবহার করতে পারেন যা সঠিক MIME প্রকারের সাথে স্ট্যাটিক ফাইল পরিবেশন করতে পারে।
 
 আপনি হয়তো লক্ষ্য করেছেন যে আমদানি করা কম্পোনেন্টস টেমপ্লেটটি জাভাস্ক্রিপ্ট স্ট্রিং হিসাবে ইনলাইন করা হয়েছে। আপনি যদি VS কোড ব্যবহার করেন, তাহলে আপনি [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) এক্সটেনশনটি ইনস্টল করতে পারেন এবং একটি মন্তব্য সহ `/*html*/` স্ট্রিংগুলি প্রিফিক্স করতে পারেন তাদের জন্য সিনট্যাক্স হাইলাইটিং পান।
+
+## Frameworks {#frameworks}
+
+There are Vue frameworks which support [SSR](/guide/scaling-up/ssr) and other features out-of-the-box:
+- [Nuxt](https://nuxt.com/)
+- [Vike](https://vike.dev/)
+- [Astro](https://astro.build/)
+- [Quasar](https://quasar.dev/)
+
+:::tip
+The general recommendation is to use a framework only if you need SSR.
+
+If you don't need SSR, you can simply use [Vite](https://vite.dev/) (this is what the section above [Creating a Vue Application](#creating-a-vue-application) scaffolds).
+:::
+
+:::info
+Vue frameworks typically use Vite under the hood, so directly using Vite instead of a Vue framework is a simpler setup if you don't need SSR. That said, frameworks also support extra features, such as UI themes, which can also be a reason to favor a Vue framework instead of just using Vite.
+:::
 
 ## Next Steps {#next-steps}
 

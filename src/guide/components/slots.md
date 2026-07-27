@@ -26,7 +26,7 @@
 
 `<slot>` কম্পোনেন্ট হল একটি **স্লট আউটলেট** যা নির্দেশ করে যে অভিভাবক-প্রদত্ত **স্লট সামগ্রী** কোথায় রেন্ডার করা উচিত।
 
-![slot diagram](./images/slots.png)
+![Diagram showing slot content from the parent being injected into the slot outlet in the child component](./images/slots.png)
 
 <!-- https://www.figma.com/file/LjKTYVL97Ck6TEmBbstavX/slot -->
 
@@ -207,7 +207,7 @@ Vue কম্পোনেন্টের স্লট মেকানিজম [
 
 `v-slot` এর একটি ডেডিকেটেড শর্টহ্যান্ড `#` আছে, তাই `<template v-slot:header>` কে শুধু `<template #header>`-এ ছোট করা যেতে পারে। এটিকে " চাইল্ড কম্পোনেন্টের 'শিরোনাম' স্লটে এই টেমপ্লেট খণ্ডটি রেন্ডার করুন" হিসাবে ভাবুন৷
 
-![named slots diagram](./images/named-slots.png)
+![Diagram showing multiple named slots in a layout component, with content from the parent being directed to the corresponding header, main, and footer slots](./images/named-slots.png)
 
 <!-- https://www.figma.com/file/2BhP8gVZevttBu9oUmUUyz/named-slot -->
 
@@ -350,35 +350,38 @@ function BaseLayout(slots) {
 
 যাইহোক, এমন কিছু ক্ষেত্রে এটি কার্যকর হতে পারে যদি একটি স্লটের বিষয়অবজেক্ট প্যারেন্ট স্কোপ এবং চাইল্ড স্কোপ উভয়ের ডেটা ব্যবহার করতে পারে। এটি অর্জন করার জন্য, রেন্ডার করার সময়  চাইল্ডর একটি স্লটে ডেটা পাস করার জন্য আমাদের একটি উপায় প্রয়োজন।
 
-প্রকৃতপক্ষে, আমরা ঠিক এটি করতে পারি - আমরা একটি স্লট আউটলেটে বৈশিষ্ট্যগুলি পাস করতে পারি ঠিক যেমন একটি কম্পোনেন্টে প্রপস পাস করা:
+প্রকৃতপক্ষে, আমরা ঠিক সেটাই করতে পারি - একটি কম্পোনেন্টে প্রপস পাস করার মতোই একটি স্লট আউটলেটে অ্যাট্রিবিউট পাস করতে পারি। প্যারেন্ট টেমপ্লেট `v-slot` এর মাধ্যমে স্লট প্রপস গ্রহণ করে, অন্যদিকে চাইল্ড টেমপ্লেট রেন্ডার করার সময় স্লট আউটলেটে প্রপস পাস করে:
 
 ```vue-html
-<!-- <MyComponent> template -->
-<div>
-  <slot :text="greetingMessage" :count="1"></slot>
-</div>
+<!-- Parent template (usage) -->
+<ChildComponent v-slot="receivedProps">
+  {{ receivedProps.text }} {{ receivedProps.count }}
+</ChildComponent>
 ```
-
-একটি একক ডিফল্ট স্লট বনাম নামযুক্ত স্লট ব্যবহার করার সময় স্লট প্রপগুলি গ্রহণ করা কিছুটা আলাদা। চাইল্ড কম্পোনেন্ট ট্যাগে সরাসরি `v-slot` ব্যবহার করে প্রথমে একটি একক ডিফল্ট স্লট ব্যবহার করে প্রপস কীভাবে গ্রহণ করা যায় তা আমরা দেখাতে যাচ্ছি:
 
 ```vue-html
-<MyComponent v-slot="slotProps">
-  {{ slotProps.text }} {{ slotProps.count }}
-</MyComponent>
+<!-- Child template (slot definition) -->
+<!-- render with props! -->
+<slot
+  text="hello"
+  :count="1"
+/>
 ```
 
-![স্কোপড স্লট ডায়াগ্রাম](./images/scoped-slots.svg)
+একটিমাত্র ডিফল্ট স্লট ব্যবহার করার ক্ষেত্রে এবং নামযুক্ত স্লট ব্যবহার করার ক্ষেত্রে স্লট প্রপস গ্রহণ করার পদ্ধতি কিছুটা ভিন্ন। উপরের উদাহরণটিতে, `ChildComponent` ট্যাগে সরাসরি `v-slot` ব্যবহার করে একটিমাত্র ডিফল্ট স্লটের মাধ্যমে প্রপস গ্রহণ করা হয়েছে।
+
+![Diagram showing a scoped slot where the child component passes data back to the parent-provided slot content](./images/scoped-slots.svg)
 
 <!-- https://www.figma.com/file/QRneoj8eIdL1kw3WQaaEyc/scoped-slot -->
 
 <div class="composition-api">
 
-[চেষ্টা করুন](https://play.vuejs.org/#eNp9kMEKgzAMhl8l9OJlU3aVOhg7C3uAXsRlTtC2tFE2pO++dA5xMnZqk+b/8/2dxMnadBxQ5EL62rWWwCMN9qh021vjCMrn2fBNoya4OdNDkmarXhQnSstsVrOOC8LedhVhrEiuHca97wwVSsTj4oz1SvAUgKJpgqWZEj4IQoCvZm0Gtgghzss1BDvIbFkqdmID+CNdbbQnaBwitbop0fuqQSgguWPXmX+JePe1HT/QMtJBHnE51MZOCcjfzPx04JxsydPzp2Szxxo7vABY1I/p)
+[চেষ্টা করুন](https://play.vuejs.org/#eJxlj00Kg0AMha8SsnHTKt2KDhQv0ANkUzTFgfljJkpBvHsZhYK6fS+878uCzxDKeWKssUl91EEgsUxBkdM2+CjQjdoMnbfBO3YCn+gtFGV1jPNEQa6p9g1FjlwjbIN5CytyAM1pZ74n46UljNyznnl4RR8S4XYMsCxwKErhr8C6XoveTy43G+SkpbLSXwNveLXOjx9Fs9cukZkt4cjGeMI9qzdeS/jYk+rEWH9AQHet)
 
 </div>
 <div class="options-api">
 
-[চেষ্টা করুন](https://play.vuejs.org/#eNqFkNFqxCAQRX9l8CUttAl9DbZQ+rzQD/AlJLNpwKjoJGwJ/nvHpAnusrAg6FzHO567iE/nynlCUQsZWj84+lBmGJ31BKffL8sng4bg7O0IRVllWnpWKAOgDF7WBx2em0kTLElt975QbwLkhkmIyvCS1TGXC8LR6YYwVSTzH8yvQVt6VyJt3966oAR38XhaFjjEkvBCECNcia2d2CLyOACZQ7CDrI6h4kXcAF7lcg+za6h5et4JPdLkzV4B9B6RBtOfMISmxxqKH9TarrGtATxMgf/bDfM/qExEUCdEDuLGXAmoV06+euNs2JK7tyCrzSNHjX9aurQf)
+[চেষ্টা করুন](https://play.vuejs.org/#eJxlkMEKgzAMhl8l5LLLpuwqKoy9wB4gl6GRCTUtNYogffdRywbq9f+Tfl+64sO5bJ4YCyzHxvdOa5J+cNYrPD+9aZ92cFZYFDpvB7hk+T6OyxcSEl62pZa792QUVhKA5jc1FimAw6MxCySBpMz/eJJSeXDmrVzHgfIgMt9GY7Ui9NxwP3P78taNhHUirCvsikx5UQjhXDR2kthskMNddVT6a+AVz2fHP9uLRq8kEZkV4YeNsYQpKzZeRXhPSX5ghC8NDY0G)
 
 </div>
 
@@ -387,35 +390,32 @@ function BaseLayout(slots) {
 আপনি একটি স্কোপড স্লটকে চাইল্ড কম্পোনেন্টে একটি ফাংশন পাস করার মতো ভাবতে পারেন।  চাইল্ড কম্পোনেন্টটি তখন এটিকে কল করে, আর্গুমেন্ট হিসাবে প্রপস পাস করে:
 
 ```js
-MyComponent({
+ChildComponent({
   // passing the default slot, but as a function
-  default: (slotProps) => {
-    return `${slotProps.text} ${slotProps.count}`
+  default: (receivedProps) => {
+    return `${receivedProps.text} ${receivedProps.count}`
   }
 })
 
-function MyComponent(slots) {
-  const greetingMessage = 'hello'
-  return `<div>${
-    // call the slot function with props!
-    slots.default({ text: greetingMessage, count: 1 })
-  }</div>`
+function ChildComponent(slots) {
+  // call the slot function with props!
+  return slots.default({ text: 'hello', count: 1 })
 }
 ```
 
 প্রকৃতপক্ষে, এটি কীভাবে স্কোপড স্লটগুলি সংকলিত হয় এবং কীভাবে আপনি ম্যানুয়ালটিতে স্কোপড স্লটগুলি ব্যবহার করবেন তার খুব কাছাকাছি।[render functions](/guide/extras/render-function).
 
-লক্ষ্য করুন কিভাবে `v-slot="slotProps"` স্লট ফাংশনের স্বাক্ষরের সাথে মেলে। ঠিক ফাংশন আর্গুমেন্টের মতই, আমরা `v-slot`-এ destructuring ব্যবহার করতে পারি:
+লক্ষ্য করুন কিভাবে `v-slot="receivedProps"` স্লট ফাংশন সিগনেচারের সাথে মিলে যায়। ফাংশন আর্গুমেন্টের মতোই, আমরা `v-slot`-এও ডিস্ট্রাকচারিং ব্যবহার করতে পারি:
 
 ```vue-html
-<MyComponent v-slot="{ text, count }">
+<ChildComponent v-slot="{ text, count }">
   {{ text }} {{ count }}
-</MyComponent>
+</ChildComponent>
 ```
 
 ### Named Scoped Slots {#named-scoped-slots}
 
-নামযুক্ত স্কোপড স্লট একইভাবে কাজ করে - স্লট প্রপগুলি `v-slot` নির্দেশের মান হিসাবে অ্যাক্সেসযোগ্য: `v-slot:name="slotProps"`৷ শর্টহ্যান্ড ব্যবহার করার সময়, এটি এই মত দেখায়:
+নেমড স্কোপড স্লটগুলোও একইভাবে কাজ করে - স্লট প্রপসগুলো `v-slot` ডিরেক্টিভের ভ্যালু হিসেবে অ্যাক্সেস করা যায়: `v-slot:name="receivedProps"`। শর্টহ্যান্ড ব্যবহার করার সময়, এটি দেখতে এইরকম হয়:
 
 ```vue-html
 <MyComponent>
@@ -436,7 +436,7 @@ function MyComponent(slots) {
 একটি নামযুক্ত স্লটে প্রপস পাস করা:
 
 ```vue-html
-<slot name="header" message="hello"></slot>
+<slot name="header" message="hello" />
 ```
 
 নোট করুন একটি স্লটের `name` প্রপস-এ অন্তর্ভুক্ত করা হবে না কারণ এটি সংরক্ষিত - তাই ফলস্বরূপ `headerProps` হবে `{ message: 'hello' }`।
@@ -446,7 +446,7 @@ function MyComponent(slots) {
 ```vue-html
 <!-- <MyComponent> template -->
 <div>
-  <slot :message="hello"></slot>
+  <slot message="hello" />
   <slot name="footer" />
 </div>
 ```
@@ -497,7 +497,7 @@ function MyComponent(slots) {
 ```vue-html
 <ul>
   <li v-for="item in items">
-    <slot name="item" v-bind="item"></slot>
+    <slot name="item" v-bind="item" />
   </li>
 </ul>
 ```

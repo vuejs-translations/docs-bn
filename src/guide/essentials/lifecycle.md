@@ -59,7 +59,7 @@ setTimeout(() => {
 
 নীচে উদাহরণ লাইফসাইকেলের জন্য একটি চিত্র রয়েছে। আপনার এখনই যা চলছে তা সম্পূর্ণরূপে বোঝার দরকার নেই, তবে আপনি যখন আরও শিখবেন এবং আরও তৈরি করবেন, এটি একটি দরকারী রেফারেন্স হবে।
 
-![Component lifecycle diagram](./images/lifecycle.png)
+![Diagram showing the full lifecycle of a Vue component, from creation to destruction, including all major lifecycle hooks and the internal processes like template compilation and mounting](./images/lifecycle.png)
 
 <!-- https://www.figma.com/file/Xw3UeNMOralY6NV7gSjWdS/Vue-Lifecycle -->
 

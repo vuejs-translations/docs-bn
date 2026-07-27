@@ -263,3 +263,13 @@
   ```ts
   function isReadonly(value: unknown): boolean
   ```
+
+## isShallow() {#isshallow}
+
+কোনো অবজেক্ট [`shallowRef`](./reactivity-advanced#shallowref), [`shallowReactive()`](./reactivity-advanced#shallowreactive) বা [`shallowReadonly()`](./reactivity-advanced#shallowreadonly) দ্বারা তৈরি একটি প্রক্সি কিনা তা পরীক্ষা করে।
+
+- **Type**
+
+  ```ts
+  function isShallow(value: unknown): boolean
+  ```

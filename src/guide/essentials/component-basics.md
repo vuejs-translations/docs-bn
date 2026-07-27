@@ -6,7 +6,7 @@ Scrimba-তে একটি ইন্টারেক্টিভ ভিডিও
 
 উপাদানগুলি আমাদের UI-কে স্বাধীন এবং পুনঃব্যবহারযোগ্য অংশে বিভক্ত করতে এবং প্রতিটি অংশকে আলাদাভাবে চিন্তা করার অনুমতি দেয়। একটি অ্যাপকে নেস্টেড উপাদানের একটি ট্রিতে সংগঠিত করা সাধারণ:
 
-![Component Tree](./images/components.png)
+![Diagram showing a component tree structure with a root component branching into multiple child and nested sub-child components](./images/components.png)
 
 <!-- https://www.figma.com/file/qa7WHDQRWuEZNRs7iZRZSI/components -->
 

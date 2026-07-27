@@ -313,6 +313,7 @@ const myRef = ref()
 </template>
 ```
 
+এছাড়াও, `defineProps`-এর সাথে `withDefaults` ব্যবহার করার সময়, অনিচ্ছাকৃত পরিবর্তন এবং বাহ্যিক পার্শ্ব প্রতিক্রিয়া এড়াতে পরিবর্তনযোগ্য রেফারেন্স টাইপগুলির (যেমন অ্যারে বা অবজেক্ট) ডিফল্ট মানগুলিকে `defineModel`-এর ফাংশনের মধ্যে রাখা উচিত।
 :::
 
 ### Modifiers and Transformers {#modifiers-and-transformers}

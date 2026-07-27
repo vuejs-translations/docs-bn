@@ -6,7 +6,7 @@
 
 সাধারণত, যখন আমাদের পিতামাতার কাছ থেকে একটি চাইল্ড কম্পোনেন্টে ডেটা পাঠানোর প্রয়োজন হয়, আমরা [props](/guide/components/props) ব্যবহার করি। যাইহোক, সেই ক্ষেত্রে কল্পনা করুন যেখানে আমাদের একটি বড় কম্পোনেন্ট গাছ রয়েছে এবং একটি গভীরভাবে নেস্টেড কম্পোনেন্টটির জন্য একটি দূরবর্তী পূর্বপুরুষ কম্পোনেন্ট থেকে কিছু প্রয়োজন। শুধুমাত্র প্রপস সহ, আমাদের পুরো প্যারেন্ট চেইন জুড়ে একই প্রপ পাস করতে হবে:
 
-![prop drilling diagram](./images/prop-drilling.png)
+![Diagram showing props being passed through multiple levels of components just to reach a deeply nested child](./images/prop-drilling.png)
 
 <!-- https://www.figma.com/file/yNDTtReM2xVgjcGVRzChss/prop-drilling -->
 
@@ -14,7 +14,7 @@
 
 আমরা `provide` এবং `inject` দিয়ে প্রপস ড্রিলিং সমাধান করতে পারি। একটি অভিভাবক কম্পোনেন্ট তার সমস্ত বংশধরদের জন্য **নির্ভরতা প্রদানকারী** হিসেবে কাজ করতে পারে। বংশধর গাছের যেকোনো কম্পোনেন্ট, তা যতই গভীর হোক না কেন, **inject** করতে পারে তার মূল শৃঙ্খলে থাকা কম্পোনেন্টগুলির দ্বারা প্রদত্ত নির্ভরতা।
 
-![Provide/inject scheme](./images/provide-inject.png)
+![Diagram showing the provide/inject mechanism where a parent component provides a dependency that can be directly injected by a deeply nested child, bypassing intermediate components](./images/provide-inject.png)
 
 <!-- https://www.figma.com/file/PbTJ9oXis5KUawEOWdy2cE/provide-inject -->
 

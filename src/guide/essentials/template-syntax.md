@@ -286,6 +286,6 @@ as explained in the "Dynamic Argument Value Constraints" and "Dynamic Argument S
 
 এবং অবশেষে, এখানে সম্পূর্ণ নির্দেশক সিনট্যাক্স ভিজ্যুয়ালাইজ করা হয়েছে:
 
-![directive syntax graph](./images/directive.png)
+![Diagram visualizing the full directive syntax, including directive name, argument, modifiers, and value](./images/directive.png)
 
 <!-- https://www.figma.com/file/BGWUknIrtY9HOmbmad0vFr/Directive -->
