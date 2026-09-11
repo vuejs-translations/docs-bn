@@ -666,7 +666,14 @@ export default defineConfigWithTheme<ThemeConfig>({
         async: 'true'
       },
     ],
-    inlineScript('gtag.js')
+    inlineScript('gtag.js'),
+    [
+      'meta',
+      {
+        name: 'google-site-verification',
+        content: 'hH_aj6wnP0mIBi5EX0mixiQrx424unm7T3duqugmYBk'
+      }
+    ],
   ],
 
   themeConfig: {
