@@ -245,7 +245,7 @@ This pattern should be used with care and is not a replacement for normal compon
 
 ## JSX / TSX {#jsx-tsx}
 
-[JSX](https://facebook.github.io/jsx/) হল জাভাস্ক্রিপ্টের একটি XML-এর মতো এক্সটেনশন যা আমাদেরকে এইরকম কোড লিখতে দেয়:
+[JSX](https://react.dev/learn/writing-markup-with-jsx) হলো জাভাস্ক্রিপ্টের একটি XML-সদৃশ এক্সটেনশন, যা আমাদের এই ধরনের কোড লেখার সুযোগ দেয়:
 
 ```jsx
 const vnode = <div>hello</div>

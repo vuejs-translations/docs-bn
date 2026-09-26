@@ -102,6 +102,10 @@ Vue কম্পোনেন্টের স্লট মেকানিজম [
 
 > অভিভাবক টেমপ্লেটের অভিব্যক্তিগুলির শুধুমাত্র অভিভাবক সুযোগে অ্যাক্সেস আছে; চাইল্ড টেমপ্লেটের এক্সপ্রেশনের শুধুমাত্র চাইল্ড স্কোপের অ্যাক্সেস আছে।
 
+::: tip Note
+Because slot content is part of the parent's render scope, a `<style scoped>` block declared in the child component **will not** apply to it. If you need to style slotted content, do so from the parent component, or use the `:deep()` modifier in the child's scoped stylesheet (see [Scoped CSS](/api/sfc-css-features#scoped-css) for details).
+:::
+
 ## Fallback Content {#fallback-content}
 
 এমন কিছু ক্ষেত্রে আছে যখন একটি স্লটের জন্য ফলব্যাক (অর্থাৎ ডিফল্ট) বিষয়অবজেক্ট নির্দিষ্ট করা উপযোগী, শুধুমাত্র তখনই রেন্ডার করা হবে যখন কোনো বিষয়অবজেক্ট প্রদান করা হয় না। উদাহরণস্বরূপ, একটি `<SubmitButton>` কম্পোনেন্টে:
@@ -376,12 +380,12 @@ function BaseLayout(slots) {
 
 <div class="composition-api">
 
-[চেষ্টা করুন](https://play.vuejs.org/#eJxlj00Kg0AMha8SsnHTKt2KDhQv0ANkUzTFgfljJkpBvHsZhYK6fS+878uCzxDKeWKssUl91EEgsUxBkdM2+CjQjdoMnbfBO3YCn+gtFGV1jPNEQa6p9g1FjlwjbIN5CytyAM1pZ74n46UljNyznnl4RR8S4XYMsCxwKErhr8C6XoveTy43G+SkpbLSXwNveLXOjx9Fs9cukZkt4cjGeMI9qzdeS/jYk+rEWH9AQHet)
+[চেষ্টা করুন](https://play.vuejs.org/#eNplj8EKgzAQRH9l2UsvrdKrWKH4A/2AXIpuMRCzIVmlIP57EwMF9TgzyczbBZ/OFfNEWGEdOq+dQCCZXKOsHh17gXbQpm85CktW4ON5hEtR7u1UcVG2LnNH/B2F0OjMWygqgPrQM9+CYXko9NSRnql/eXZB4fYYYFlgFxRCX4F1PQcdTzYl28gBq0lIfwy84pk6Hb4HTVwZIm1GwoGMYYXZq7a96N6zUx421h9AQHet)
 
 </div>
 <div class="options-api">
 
-[চেষ্টা করুন](https://play.vuejs.org/#eJxlkMEKgzAMhl8l5LLLpuwqKoy9wB4gl6GRCTUtNYogffdRywbq9f+Tfl+64sO5bJ4YCyzHxvdOa5J+cNYrPD+9aZ92cFZYFDpvB7hk+T6OyxcSEl62pZa792QUVhKA5jc1FimAw6MxCySBpMz/eJJSeXDmrVzHgfIgMt9GY7Ui9NxwP3P78taNhHUirCvsikx5UQjhXDR2kthskMNddVT6a+AVz2fHP9uLRq8kEZkV4YeNsYQpKzZeRXhPSX5ghC8NDY0G)
+[চেষ্টা করুন](https://play.vuejs.org/#eNplkEEKhDAMRa8SunEzo8xWnMLgBeYA3YhGLNS21ChC8e7TWkZQoZv8n/S/xLOPtfkyIytZNbVOWuJCy9EaR1APUnW1CYVGTdA7M0KWF2c5DmdCC43rPtRh38yKwAsN0P67pjIJcPk0apvQ4VXFER8KwtGqhpDHhuoCsjwnZegtmMMW5YLd1xk7CcZTgvdwMnLClWDb7kZrZh2dPeSyF49IBwZ7sPva8WZn0MiVIGJmIBxQKSNY0so9L6ivpBSXjO0HDQ2NBg==)
 
 </div>
 

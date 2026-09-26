@@ -63,4 +63,8 @@ setTimeout(() => {
 
 <!-- https://www.figma.com/file/Xw3UeNMOralY6NV7gSjWdS/Vue-Lifecycle -->
 
-পরামর্শ করুন <span class="composition-api">[Lifecycle Hooks API reference](/api/composition-api-lifecycle)</span><span class="options-api">[Lifecycle Hooks API reference](/api/options-lifecycle)</span> সমস্ত লাইফসাইকেল হুক এবং তাদের নিজ নিজ ব্যবহারের ক্ষেত্রে বিস্তারিত জানার জন্য।
+সমস্ত লাইফসাইকেল হুক (lifecycle hooks) এবং সেগুলোর ব্যবহারের ক্ষেত্র সম্পর্কে বিস্তারিত জানতে <span class="composition-api">[Lifecycle Hooks API reference](/api/composition-api-lifecycle)</span><span class="options-api">[Lifecycle Hooks API reference](/api/options-lifecycle)</span> দেখুন।
+
+আর এভাবেই Vue-এর _Essentials_ বা মৌলিক বিষয়গুলোর সমাপ্তি ঘটল। অভিনন্দন! শেখার মতো আরও অনেক কিছুই বাকি আছে, তবে তার আগে আমরা পরামর্শ দেব একটু বিরতি নিয়ে নিজে Vue নিয়ে কাজ করার—মজার কিছু তৈরি করুন অথবা [Examples](/examples/) বিভাগটি ঘুরে দেখুন (যদি আগে না দেখে থাকেন)।
+
+এইমাত্র শেখা বিষয়গুলো নিয়ে আত্মবিশ্বাসী হয়ে উঠলে, গাইডটির পরবর্তী অংশে এগিয়ে যান এবং কম্পোনেন্ট (components) সম্পর্কে আরও বিস্তারিত জানুন।
